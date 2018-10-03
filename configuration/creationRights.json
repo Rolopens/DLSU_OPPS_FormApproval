@@ -1,0 +1,67 @@
+{
+    "SYSTEM_ADMIN-SLIFE": {
+		"creatable" : [],
+		"editable" : [
+			"AFFILIATION_ADMIN-USG",
+			"AFFILIATION_ADMIN-CSO",
+			"APPROVER-SLIFE"
+		]
+	},
+    "AFFILIATION_ADMIN-CSO": {
+		"creatable" : [],
+		"editable" : [
+			"ORGUNIT_HEAD-CSO",
+			"APPROVER_ADMIN-CSO"
+		]
+	},
+    "APPROVER_ADMIN-CSO": {
+		"creatable" : [],
+		"editable" : [
+			"APPROVER_ADMIN-APS",
+			"APPROVER_ADMIN-ADM"
+		]
+	},
+    "AFFILIATION_ADMIN-USG":  {
+		"creatable" : [],
+		"editable" : [
+			"APPROVER_ADMIN-USG",
+			"ORGUNIT_HEAD-USG"
+		]
+	},
+    "ORGUNIT_HEAD-CSO": {
+		"creatable" : [
+			"PROJECT_HEAD-CSO"
+		],
+		"editable" : [
+			"EXEC_CHECKER-CSO",
+			"FIN_OFFICER-CSO",
+			"DOCU_OFFICER-CSO"
+		]
+	},
+    "APPROVER_ADMIN-USG": {
+		"creatable" : [
+			"APPROVER-USG"
+		],
+		"editable" : []
+	},
+    "APPROVER_ADMIN-APS": {
+		"creatable" : [
+			"APPROVER-APS"
+		],
+		"editable" : []
+	},
+    "APPROVER_ADMIN-ADM": {
+		"creatable" : [
+			"APPROVER-ADM"
+		],
+		"editable" : []
+	},
+    "ORGUNIT_HEAD-USG": {
+		"creatable" : [
+			"PROJECT_HEAD-USG"
+		],
+		"editable" : [
+			"DOCU_OFFICER-USG"
+		]
+	}
+}

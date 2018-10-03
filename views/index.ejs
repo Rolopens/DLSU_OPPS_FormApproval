@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title> DLSU OPPS </title>
+
+        <!-- LIBRARIES -->
+        <script src="lib/jquery-3.3.1.min.js" type="text/javascript"> </script>
+
+        <!-- FILES -->
+        <link href="css/vertical_center.css" rel="stylesheet" type="text/css"/>
+        <link href="css/element-stylesheet/button.css" rel="stylesheet" type="text/css"/>
+        <link href="css/element-stylesheet/field.css" rel="stylesheet" type="text/css"/>
+        <link href="css/element-stylesheet/flex.css" rel="stylesheet" type="text/css"/>
+        <link href="css/login.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id = "main">
+            <div id = "welcome_card" class = "jumbotron">
+                <div class = "title">
+                    <h1> Welcome! </h1>
+                </div>
+                <div class = "line"> </div>
+                <div class = "description">
+                    <p> A short description of what this application is all about and how it is going to be used by affected stakeholders. Keep it short, concise and catchy. tell more about how this program can manage papers, preacts and/or postacts, handle users, etc. </p>
+                </div>
+                <div class = "action-bar">
+                    <h5> Quick Access: </h5>
+                    <div class = "buttons">
+                        <button class = "hollow"> View your form </button>
+                        <button class = "hollow"> Submit Pre-activity </button>
+                    </div>
+                </div>
+            </div>
+            <div id = "login" class = "form">
+                <div class = "brand"> 
+                    <object class = "icon" type = "image/svg+xml" data = "assets/login/icon.svg"> 
+                        Your browser does not support SVGs
+                    </object>
+                    <h5 class = "title">
+                        Online Paperless Processing System
+                    </h5>
+                </div>
+                <form method="post" action="/login">
+                    <div class = "field">
+                        <label> Email address </label>
+                        <input name = "email" type="text" placeholder = "Type your email address here"> 
+                    </div>
+                    <div class = "field">
+                        <label> Password </label>
+                        <input name = "password" type="password" placeholder = "Type your password here"> 
+                    </div>
+                    <button id = "login" class = "hollow" type="submit"> Sign in </button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

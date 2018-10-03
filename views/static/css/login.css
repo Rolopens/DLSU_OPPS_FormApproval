@@ -1,0 +1,142 @@
+@import url('main.css');
+    
+#main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    left: 0px;
+    padding: 0px;
+    color: white;
+    margin: 0px;
+    background: var(--theme-color);
+}
+
+.title h1 {
+    font-size: 48px;
+}
+
+button {
+    border: 1px solid var(--theme-light-2);
+    border-radius: 2em;
+}
+
+#welcome_card {
+    align-items: center;
+    padding: 0 100px;
+    width: 40%;
+}
+
+#welcome_card .title {
+    padding: 10px 0px;
+}
+
+#welcome_card .line {
+    border: 1px solid var(--theme-light-2);
+    width: 100px;
+    margin: 10px 0px 30px 0px;
+}
+
+#welcome_card .description {
+    padding: 30px 0px;
+    font-size: 12px;
+    padding-right: 50px;
+}
+
+.action-bar {
+    padding: 0px 0px;
+}
+
+.action-bar h5 {
+    font-size: 12px;;
+    padding: 20px 0;
+}
+
+#login.form {
+    border-radius: 5px;
+    width: calc(50% - 40px);
+    margin: 20px;
+    color: var(--theme-color);
+    overflow: hidden;
+    background: var(--theme-light-1);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background: var(--theme-light-2);
+}
+
+.brand .icon {
+    width: 50px;
+    height: 50px;
+}
+
+.brand .title {
+    font-size: 12px;
+    width: 100px;
+    padding-left: 10px;
+}
+
+#login.form form {
+    padding: 20px 40px;
+}
+
+.field {
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+}
+
+.field label {
+    font-size: 12px;
+    font-weight: bold;
+    
+}
+
+.field input {
+    border: none;
+    transition: 0.3s;
+    border-bottom: 1px solid var(--theme-light-2);
+}
+
+.field input:focus {
+    border-bottom: 1px solid var(--theme-color);
+}
+
+button#login {
+    color: var(--theme-color);
+    background: none;
+    border: 1px solid var(--theme-color);
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+button#login:hover {
+    color: var(--theme-light-1);
+    background: var(--theme-color);
+}
+
+#track {
+    width: 40vh;
+    margin: 0 5vh;
+}
+
+#track h4 {
+    font-size: 1.5vh;
+}
+
+#track input {
+    border-radius: 0;
+    outline: none;
+    font-size: 2vh;
+    color: white;
+    margin-top: 2vh;
+    border: none;
+    background: none;
+    border-bottom: 0.3vh solid var(--theme-light-1);
+    padding-bottom: 0.4vh;
+}

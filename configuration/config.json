@@ -1,0 +1,10 @@
+{
+    "port": 3000,
+    "views": "/views/",
+    "static": "/views/static",
+    "key": "CHANGEKEYSOON",
+    "database": {
+        "location": ".",
+        "name": "dlsu_opps.db"
+    }
+}

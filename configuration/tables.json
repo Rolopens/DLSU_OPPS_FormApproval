@@ -1,0 +1,93 @@
+{
+    "users": {
+        "columns": [
+            {
+                "name": "user_id",
+                "type": "INTEGER",
+                "constraint": "PRIMARY KEY"
+            },
+            {
+                "name": "email",
+                "type": "TEXT",
+                "constraint": ""
+            },
+            {
+                "name": "password",
+                "type": "TEXT",
+                "constraint": ""
+            }
+        ]
+    },
+	"org_role": {
+        "columns": [
+            {
+                "name": "orgrole_id",
+                "type": "INTEGER",
+                "constraint": "PRIMARY KEY"
+            },
+			{
+                "name": "org_id",
+                "type": "INTEGER",
+                "constraint": ""
+            },
+			{
+                "name": "role_id",
+                "type": "INTEGER",
+                "constraint": ""
+            },
+			{
+                "name": "user_id",
+                "type": "INTEGER",
+                "constraint": ""
+            },
+			{
+                "name": "enabled",
+                "type": "BOOLEAN",
+                "constraint": ""
+            }
+        ]
+    },
+	"organization": {
+        "columns": [
+            {
+                "name": "org_id",
+                "type": "INTEGER",
+                "constraint": "PRIMARY KEY"
+            },
+            {
+                "name": "name",
+                "type": "TEXT",
+                "constraint": ""
+            },
+            {
+                "name": "abbrev",
+                "type": "TEXT",
+                "constraint": ""
+            },
+			{
+                "name": "type",
+                "type": "TEXT",
+                "constraint": ""
+            },
+			{
+                "name": "enabled",
+                "type": "BOOLEAN",
+                "constraint": ""
+            }
+        ]
+    },
+    "role": {
+        "columns": [
+            {
+                "name": "role_id",
+                "type": "INTEGER",
+                "constraint": "PRIMARY KEY"
+            },
+            {
+                "name": "role_name",
+                "type": "TEXT",
+                "constraint": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "role": {
+        "columns": [
+            "role_name"
+        ]
+    },
+    "organization": {
+        "columns": [
+            "name",
+            "abbrev",
+            "type",
+            "enabled"
+        ]
+    },
+    "users": {
+        "columns": [
+            "email",
+            "password"
+        ]
+    },
+    "org_role": {
+        "columns": [
+            "org_id",
+            "role_id",
+            "user_id",
+            "enabled"
+        ]
+    }
+}

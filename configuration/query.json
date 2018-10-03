@@ -1,0 +1,26 @@
+{
+    "USG": {
+        "users": {
+            "head": "INSERT INTO users (email, password) VALUES ('sample_head@dlsu.edu.ph','p@ssword')",
+            "docu":"INSERT INTO users (email, password) VALUES ('sample_docu@dlsu.edu.ph','p@ssword')"
+        },
+        "roles": {
+            "head": "INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?,3,?,1)",
+            "docu":"INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?,2,?,1)"
+        }
+    },
+    "CSO":{
+        "users": {
+            "head": "INSERT INTO users (email, password) VALUES ('sample_head@dlsu.edu.ph','p@ssword')",
+            "docu":"INSERT INTO users (email, password) VALUES ('sample_docu@dlsu.edu.ph','p@ssword')",
+            "fin": "INSERT INTO users (email, password) VALUES ('sample_fin@dlsu.edu.ph','p@ssword')",
+            "exec":"INSERT INTO users (email, password) VALUES ('sample_exec@dlsu.edu.ph','p@ssword')"
+        },
+        "roles": {
+            "head": "INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?,3,?,1)",
+            "docu":"INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?,2,?,1)",
+            "fin": "INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?,4,?,1)",
+            "exec":"INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?,5,?,1)"
+        }
+    }
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Approver Dashboard</title>
+		<!-- external links -->
+		<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
+
+		<!-- stylesheet -->
+		<link rel="stylesheet" type="text/css" href="static/css/theme.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/variables.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/approver.css" />
+		<!-- element-stylesheet -->
+		<link rel="stylesheet" type="text/css" href="static/css/element-stylesheet/flex.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/element-stylesheet/button.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/element-stylesheet/field.css" />
+
+		<!-- javascript -->
+		<script src="static/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+		<script src="static/js/approver.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<nav id="primary-nav">
+			<ul>
+				<li class="active"><i class="fa fa-file"></i></li>
+				<li><i class="fa fa-file-text-o"></i></li>
+				<li><i class="fa fa-user-o"></i></li>
+				<li><i class="fa fa-building-o"></i></li>
+			</ul>
+		</nav>
+		<nav id="secondary-nav">
+			<img src="static/assets/svg/logo_opps-logo-white.svg" id="system-logo" />
+			<br/><br/>
+			<div class="filter-wrapper">
+				<div class="filter-title">
+					<i class="fa fa-filter fa-2x"></i>
+					<span>&nbsp;&nbsp;&nbsp;Filter Activities:</span>
+				</div>
+				<hr/>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Early Complete</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Late Complete</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Early Incomplete</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Late Incomplete</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Acknowledgement Cancellation</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="filter-wrapper">
+				<div class="filter-title">
+					<i class="fa fa-filter fa-2x"></i>
+					<span>&nbsp;&nbsp;&nbsp;College Filter:</span>
+				</div>
+				<hr/>
+				<ul>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Liberal Arts (CLA)</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Science (COS)</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Computer Studies (CCS)</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Engineering (GCOE)</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Business (COB)</span>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="checkbox" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+							<span>Economics (SOE)</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<header>
+			<div id="account" class="flex-end">
+				<span id="account-name">
+					Timmy Tiberius Turner &nbsp; <i class="fa fa-angle-down"></i>
+				</span>
+			</div>
+			<h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
+			<nav id="acts-nav">
+				<ul>
+					<li class="active">All (243)</li>
+					<li>Unreviewed (100)</li>
+					<li>Accepted (43)</li>
+					<li>Rejected (50)</li>
+					<li>Pending (50)</li>
+				</ul>
+			</nav>
+		</header>
+		<section>
+			<div id="main-content">
+				<div id="select-wrapper">
+					<label id="select-all">
+						<input type="checkbox" name="select-all" />
+						<span class="checkmark"><i class="fa fa-check"></i></span>
+					</label>
+					<input id="search" type="text" name="search" placeholder="Search something..." />
+				</div>
+				<div class="content-feed">
+					<div class="content-wrapper">
+						<label class="content-select">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<div class="activity-wrapper flex-start">
+							<div class="activity-icon positive"><i class="fa fa-check"></i></div>
+							<div class="activity">
+								<h3>ARHO DLSU Mission Vision Week Celebration 2018</h3>
+								<p>University Student Government | April 30, 2018</p>
+							</div>
+						</div>
+						<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+					</div>
+					<div class="content-wrapper">
+						<label class="content-select">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<div class="activity-wrapper flex-start">
+							<div class="activity-icon negative"><i class="fa fa-times"></i></div>
+							<div class="activity">
+								<h3>ARHO DLSU Mission Vision Week Celebration 2018</h3>
+								<p>University Student Government | April 30, 2018</p>
+							</div>
+						</div>
+						<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+					</div>
+					<div class="content-wrapper">
+						<label class="content-select">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<div class="activity-wrapper flex-start">
+							<div class="activity-icon positive"><i class="fa fa-check"></i></div>
+							<div class="activity">
+								<h3>ARHO DLSU Mission Vision Week Celebration 2018</h3>
+								<p>University Student Government | April 30, 2018</p>
+							</div>
+						</div>
+						<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+					</div>
+					<div class="content-wrapper">
+						<label class="content-select">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<div class="activity-wrapper flex-start">
+							<div class="activity-icon negative"><i class="fa fa-times"></i></div>
+							<div class="activity">
+								<h3>ARHO DLSU Mission Vision Week Celebration 2018</h3>
+								<p>University Student Government | April 30, 2018</p>
+							</div>
+						</div>
+						<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+					</div>
+					<div class="content-wrapper">
+						<label class="content-select">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<div class="activity-wrapper flex-start">
+							<div class="activity-icon positive"><i class="fa fa-check"></i></div>
+							<div class="activity">
+								<h3>ARHO DLSU Mission Vision Week Celebration 2018</h3>
+								<p>University Student Government | April 30, 2018</p>
+							</div>
+						</div>
+						<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+					</div>
+					<div class="content-wrapper">
+						<label class="content-select">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<div class="activity-wrapper flex-start">
+							<div class="activity-icon negative"><i class="fa fa-times"></i></div>
+							<div class="activity">
+								<h3>ARHO DLSU Mission Vision Week Celebration 2018</h3>
+								<p>University Student Government | April 30, 2018</p>
+							</div>
+						</div>
+						<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+					</div>
+				</div>
+			</div>
+			<div id="sidebar">
+				<h3 class="action-title">Quick View</h3>
+				<div id="quick-view">
+					<div class="info">
+						<h4>Title of the activity</h4>
+						<p>Aim High Reach Out Univweek 2018</p>
+					</div>
+					<div class="info">
+						<h4>Nature of Activity</h4>
+						<p>University wide</p>
+					</div>
+					<div class="info">
+						<h4>Type of Activity</h4>
+						<p>Holistic Development</p>
+					</div>
+					<div class="info">
+						<h4>Date of Activity</h4>
+						<p>June 5-9, 2018</p>
+					</div>
+					<div class="info">
+						<h4>Time of Activity</h4>
+						<p>7:30am - 4:00pm</p>
+					</div>
+					<div class="info">
+						<h4>Venue</h4>
+						<p>De La Salle University Campus</p>
+					</div>
+					<br/>
+					<button class="hallow">View Acitivity</button>
+					<br/><br/><br/>
+					<p class="action positive"><i class="fa fa-check-circle"></i> &nbsp; Accept Activity</p>
+					<hr/>
+					<p class="action negative"><i class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
+					<hr/>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

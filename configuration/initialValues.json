@@ -1,0 +1,627 @@
+{
+    "role": [
+        {
+            "role_name": "PROJECT_HEAD"
+        },
+        {
+            "role_name": "DOCU_OFFICER"
+        },
+        {
+            "role_name": "ORGUNIT_HEAD"
+        },
+        {
+            "role_name": "FIN_OFFICER"
+        },
+        {
+            "role_name": "EXEC_CHECKER"
+        },
+        {
+            "role_name": "APPROVER"
+        },
+        {
+            "role_name": "APPROVER_ADMIN"
+        },
+        {
+            "role_name": "AFFILIATION_ADMIN"
+        },
+        {
+            "role_name": "SYSTEM_ADMIN"
+        }
+    ],
+    "users": [
+        {
+            "email": "sys_ad@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "app_slife@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "affil_cso@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "affil_usg@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "aa_cso@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "aa_aps@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "aa_adm@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        },
+        {
+            "email": "aa_daam@dlsu.edu.ph",
+            "password": "p@ssw0rd123"
+        }
+    ],
+    "org_role": [
+        {
+            "org_id": 1,
+            "role_id": 9,
+            "user_id": 1,
+            "enabled": true
+        },
+        {
+            "org_id": 1,
+            "role_id": 6,
+            "user_id": 2,
+            "enabled": true
+        },
+        {
+            "org_id": 4,
+            "role_id": 8,
+            "user_id": 3,
+            "enabled": true
+        },
+        {
+            "org_id": 51,
+            "role_id": 8,
+            "user_id": 4,
+            "enabled": true
+        },
+        {
+            "org_id": 4,
+            "role_id": 7,
+            "user_id": 5,
+            "enabled": true
+        },
+        {
+            "org_id": 3,
+            "role_id": 7,
+            "user_id": 6,
+            "enabled": true
+        },
+        {
+            "org_id": 2,
+            "role_id": 7,
+            "user_id": 7,
+            "enabled": true
+        },
+        {
+            "org_id": 47,
+            "role_id": 7,
+            "user_id": 8,
+            "enabled": true
+        }
+    ],
+    "organization": [
+        {
+            "name": "SLIFE",
+            "abbrev": "SLIFE",
+            "type": "SLIFE",
+            "enabled": true
+        },
+        {
+            "name": "ADM",
+            "abbrev": "ADM",
+            "type": "ADM",
+            "enabled": true
+        },
+        {
+            "name": "APS",
+            "abbrev": "APS",
+            "type": "APS",
+            "enabled": true
+        },
+        {
+            "name": "CSO Main",
+            "abbrev": "CSO",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Chemistry Society",
+            "abbrev": "CHEMSOC",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Math Circle",
+            "abbrev": "MC",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Physics Society",
+            "abbrev": "PHYSOC",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Societas Vitae",
+            "abbrev": "SV",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "La Salle Computer Society",
+            "abbrev": "LSCS",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Union of Students Inspired Towards Education",
+            "abbrev": "UNITED",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "ENGLICOM - DLSU Filipino & Chinese Organization",
+            "abbrev": "ENGLICOM",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "United International Student Organization",
+            "abbrev": "UNISTO",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "AIESEC DLSU",
+            "abbrev": "AIESEC",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Moo Media",
+            "abbrev": "MOOMEDIA",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Outdoor Club",
+            "abbrev": "OC",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Writer’s Guild",
+            "abbrev": "WG",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Environmental Conservation Organization",
+            "abbrev": "ECO",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Gakuen Anime Shoshiki",
+            "abbrev": "GAS",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "The Organization for American Studies",
+            "abbrev": "AMSTUD",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Behavioral Sciences Society",
+            "abbrev": "BSS",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Cultura",
+            "abbrev": "CULTURA",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Dalubhasaan ng mga Umuusbong na Mag-aaral ng Araling Pilipino ",
+            "abbrev": "DANUM",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "European Studies Association",
+            "abbrev": "ESA",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Kapatiran ng Kabataan para sa Kaunlaran",
+            "abbrev": "KAUNLARAN",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Nihon Kenkyu Kai",
+            "abbrev": "NKK",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Political Science Society",
+            "abbrev": "POLISCY",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Samahan ng Lasalyanong Pilosopo",
+            "abbrev": "DLSU PILOSOPO",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Team Communications",
+            "abbrev": "TEAMCOMM",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Sociedad De Historia",
+            "abbrev": "SDH",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Association of Computer Engineering Students",
+            "abbrev": "ACCESS",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Chemical Engineering Society",
+            "abbrev": "CHEN",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Civil Engineering Society",
+            "abbrev": "CES",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Electronic and Communications Engineering Society",
+            "abbrev": "ECES",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Industrial Management Engineering Society",
+            "abbrev": "IMES",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Mechanical Engineering Society",
+            "abbrev": "MES",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Society of Manufacturing Engineering",
+            "abbrev": "SME",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "AdCreate Society",
+            "abbrev": "ADCREATE",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Business Management Society",
+            "abbrev": "BMS",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Economics Organization",
+            "abbrev": "ECONORG",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Junior Entrepreneurs Marketing Association",
+            "abbrev": "JEMA",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Junior Philippine Institute of Accountants",
+            "abbrev": "JPIA",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Ley La Salle",
+            "abbrev": "LLS",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Management of Financial Institutions Association",
+            "abbrev": "MAFIA",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Young Entrepreneurs Society",
+            "abbrev": "YES",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "Archers for UNICEF",
+            "abbrev": "UNICEF",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "MUNSOC",
+            "abbrev": "MUNSOC",
+            "type": "CSO",
+            "enabled": true
+        },
+        {
+            "name": "DAAM",
+            "abbrev": "DAAM",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "Office of the President",
+            "abbrev": "OPRES",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "Office of the Vice President for Internal Affairs",
+            "abbrev": "OVPIA",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "Office of the Vice President for External Affairs",
+            "abbrev": "OVPEA",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "Office of the Secretary",
+            "abbrev": "OSEC",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "Office of the Treasurer",
+            "abbrev": "OTREAS",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "COB College Government",
+            "abbrev": "COB CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "BLAZE2020",
+            "abbrev": "BLAZE2020",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "BLAZE2019",
+            "abbrev": "BLAZE2019",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "BLAZE2018",
+            "abbrev": "BLAZE2018",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "BLAZE2017",
+            "abbrev": "BLAZE2017",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CLA College Government",
+            "abbrev": "CLA CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FAST2017",
+            "abbrev": "FAST2017",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FAST2016",
+            "abbrev": "FAST2016",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FAST2015",
+            "abbrev": "FAST2015",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FAST2014",
+            "abbrev": "FAST2014",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "COE College Government",
+            "abbrev": "COE CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "72ND ENG",
+            "abbrev": "72ND ENG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "71ST ENG",
+            "abbrev": "71ST ENG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "70TH ENG",
+            "abbrev": "70TH ENG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "69TH ENG",
+            "abbrev": "69TH ENG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CCS College Government",
+            "abbrev": "CCS CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CATCH2T21",
+            "abbrev": "CATCH2T21",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CATCH2T20",
+            "abbrev": "CATCH2T20",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CATCH2T19",
+            "abbrev": "CATCH2T19",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CATCH2T18",
+            "abbrev": "CATCH2T18",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "COS College Government",
+            "abbrev": "COS CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FOCUS2017",
+            "abbrev": "FOCUS2017",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FOCUS2016",
+            "abbrev": "FOCUS2016",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "FOCUS2015",
+            "abbrev": "FOCUS2015",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "CED College Government",
+            "abbrev": "CED CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EDGE2017",
+            "abbrev": "EDGE2017",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EDGE2016",
+            "abbrev": "EDGE2016",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EDGE2015",
+            "abbrev": "EDGE2015",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "SOE College Government",
+            "abbrev": "SOE CG",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EXCEL2020",
+            "abbrev": "EXCEL2020",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EXCEL2019",
+            "abbrev": "EXCEL2019",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EXCEL2018",
+            "abbrev": "EXCEL2018",
+            "type": "USG",
+            "enabled": true
+        },
+        {
+            "name": "EXCEL2017",
+            "abbrev": "EXCEL2017",
+            "type": "USG",
+            "enabled": true
+        }
+    ]
+}

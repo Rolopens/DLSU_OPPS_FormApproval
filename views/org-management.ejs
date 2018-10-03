@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Organization Management Dashboard</title>
+		<!-- external links -->
+		<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" type="application/javascript"> </script>
+
+		<!-- stylesheet -->
+		<link rel="stylesheet" type="text/css" href="css/theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/variables.css" />
+		<link rel="stylesheet" type="text/css" href="css/approver.css" />
+		<!-- element-stylesheet -->
+		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/flex.css" />
+		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
+		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/field.css" />
+
+		<!-- for the modal -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap_modal.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+		<!-- javascript -->
+		<script src="lib/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script src="js/approver.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id = "orgs">
+			<!-- TO CREATE MODAL PREVIEW/EDIT HERE -->
+			<%- include nav_bar.ejs %>
+			<nav id="secondary-nav">
+				<img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
+				<br/><br/>
+				<div class="filter-wrapper">
+					<div class="filter-title">
+						<i class="fa fa-filter fa-2x"></i>
+						<span>&nbsp;&nbsp;&nbsp;Filter Clusters:</span>
+					</div>
+					<hr/>
+					<ul>
+						<li>
+							<label>
+								<input type="checkbox" />
+								<span class="checkmark"><i class="fa fa-check"></i></span>
+								<span>ASPIRE</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="checkbox" />
+								<span class="checkmark"><i class="fa fa-check"></i></span>
+								<span>ASO</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="checkbox" />
+								<span class="checkmark"><i class="fa fa-check"></i></span>
+								<span>Others</span>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<header>
+				<div id="account" class="flex-end">
+					<span id="account-name">
+						Timmy Tiberius Turner &nbsp; <i class="fa fa-angle-down"></i>
+					</span>
+				</div>
+				<div class="flex-start">
+					<h1 id="board-title">
+						<i class="fa fa-building"></i> &nbsp; Organization Management
+					</h1>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="hallow" data-toggle="modal" data-target="#addorg_modal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Add Organization</button>
+				</div>
+				<nav id="acts-nav">
+					<ul>
+						<li class="active">All (243)</li>
+						<li>Active (200)</li>
+						<li>Incative (43)</li>
+					</ul>
+				</nav>
+			</header>
+			<section>
+				<div id="main-content">
+					<div id="select-wrapper">
+						<label id="select-all">
+							<input type="checkbox" name="select-all" />
+							<span class="checkmark"><i class="fa fa-check"></i></span>
+						</label>
+						<input id="search" type="text" name="search" placeholder="Search something..." />
+					</div>
+					
+					<div class="content-feed" id="organization">
+						<div class="content-feed" v-if="orgs.length == 0">
+							No organizations/units yet
+						</div> 
+						<div v-else v-for="org in orgs">
+							
+							<div v-on:click = "quickview = org" class="content-wrapper">
+								<label class="content-select">
+									<input type="checkbox" name="select-all" />
+									<span class="checkmark"><i class="fa fa-check"></i></span>
+								</label>
+								<div class="activity-wrapper flex-start">
+									<div class="activity-icon positive"><i class="fa fa-check"></i></div>
+									<div class="activity">
+										<h3>{{org.name}}({{org.abbrev}})</h3>
+										<p>{{org.type}}</p>
+									</div>
+								</div>
+								<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div id="sidebar">
+					<h3 class="action-title">Quick View</h3>
+					<div v-if = "quickview" id="quick-view">
+						<div class="info">
+							<h4>Organization Name</h4>
+							<input type="text" v-model="quickview.name" disabled="true" id="orgname">
+						</div>
+						<div class="info">
+							<h4>Abbreviation</h4>
+							<input type="text" v-model="quickview.abbrev" disabled="true" id="orgabbrev">
+						</div>
+						<div class="info">
+							<h4>Cluster</h4>
+							<p>{{quickview.type}}</p>
+						</div>
+						<div class="info">
+							<h4>Status</h4>
+							<p>{{ quickview.enabled ? 'Activated' : 'Disabled' }}</p>
+						</div>
+						<br/>
+						<button class="hallow" v-on:click="changeToSave(quickview.name, quickview.abbrev, quickview.org_id)" id="editBtn">Edit</button>
+						<br/><br/><br/>
+						<p class="action positive" v-if="!quickview.enabled" v-on:click="changeStatus(quickview.org_id)">
+							<i class="fa fa-check-circle"></i> &nbsp; Set Active</p>
+						<!-- <hr/> -->
+						<p class="action negative" v-else v-on:click="changeStatus(quickview.org_id)">
+							<i class="fa fa-times-circle"></i> &nbsp; Set Inactive</p>
+						<hr/>
+						<!-- <p class="action negative"><i class="fa fa-trash"></i> &nbsp; Delete</p> -->
+						<!-- <hr/> -->
+					</div>
+				</div>
+			</section>
+
+			<!-- The Modal -->
+			<div class="modal" id="addorg_modal">
+				<div class="modal-dialog modal-medium">
+					<div class="modal-content">
+				
+					<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Add New Organization</h4>
+						</div>
+						<form action="/organization" method="POST">
+						<!-- Modal body -->
+							<div class="modal-body">
+								<table class="modal-table">
+									<tr>
+										<td>Full Name of Organization<br/>
+											<input type="text" name="name" class="full-width">
+										</td> 
+									</tr>
+									<tr>
+										<td>Abbreviation<br/>
+											<input type="text" name="abbrev" class="full-width">
+										</td>
+									</tr>
+								</table>
+							</div>
+					
+					       <!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="hallow radius-full" data-dismiss="modal">Close</button>
+								<button type="submit" class="radius-full">Add</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js" type="text/javascript"></script>
+	<script src="js/vue_orgs.js" type="text/javascript"></script>
+</html>

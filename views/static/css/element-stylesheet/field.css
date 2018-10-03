@@ -1,0 +1,106 @@
+/* input field customization stylesheet */
+
+/* NOTE: WHAT TO USE?
+ *
+ * - dark
+ * - indent
+ * - custom-width
+ * - half-width
+ * - full-width
+ * - full-radius
+ *
+ */
+
+:root{
+    --theme-color: #26BE9B;
+    --theme-field-light-bg: white;
+    --theme-field-dark-bg: #313942;
+
+    --theme-field-light-border: #DDDDDD;
+    --theme-field-dark-border: #849CB2;
+
+    --theme-field-light-value: #555555;
+    --theme-field-dark-value: #849CB2;
+
+    --theme-field-custom-width: 20%; /* .custom-width */
+}
+
+/* light theme as default look */
+input[type="text"], input[type="number"], input[type="email"],
+input[type="password"]{
+    color: var(--theme-field-light-value);
+    background-color: var(--theme-field-light-bg);
+    border: thin solid var(--theme-field-light-border);
+    padding: 10px 10px;
+    border-radius: 3px;
+    outline: none;
+    font-size: 0.9em;
+    font-family: 'Lato', sans-serif;
+
+    transition: ease all 0.3s;
+    -webkit-transition: ease all 0.3s;
+    -moz-transition: ease all 0.3s;
+    -o-transition: ease all 0.3s;
+    -ms-transition: ease all 0.3s;
+}
+
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	background-color: none;
+	border: 1px solid var(--theme-field-light-border);
+	padding: 7px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked:after {
+	position: absolute;
+	content: '\2714';
+	left: 1px;
+    font-size: 20px;
+    right: 0px;
+    bottom: -3px;
+	color: var(--theme-field-light-border);
+}
+
+input[type="text"].dark, input[type="number"].dark, input[type="email"].dark,
+input[type="password"].dark{
+    color: var(--theme-field-dark-value);
+    background-color: var(--theme-field-dark-bg);
+    border: thin solid var(--theme-field-dark-border);
+}
+
+::-webkit-input-placeholder{
+    color: #8D9EAE;
+}
+
+input.indent{
+    text-indent: 13px;
+}
+
+/* NOTE properties of this class is changeable */
+input.custom-width{
+    width: var(--theme-field-custom-width);
+}
+
+input.half-width{
+    width: 50%;
+}
+
+input.full-width{
+    width: 98.5%;
+}
+
+input.full-radius{
+    border-radius: 200px;
+}
+
+
+/* Pseudoclasses */
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
+input[type="password"]:focus{
+    border-color: var(--theme-color);
+}
