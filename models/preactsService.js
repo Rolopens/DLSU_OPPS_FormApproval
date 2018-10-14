@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.connect('mongodb://localhost:27017/OPPS');
 var Schema = mongoose.Schema;
 
 var formSchema = new Schema({
@@ -17,7 +18,7 @@ var formSchema = new Schema({
     },
     venue: String,
     context: String,
-    objectives: String,
+    objectives: [String],
     state: String, //State of the form
     comments: String, //Comments given by the checker
     position: String, //Used for tracking the form
@@ -59,7 +60,7 @@ Search database with title
 exports.findFormViaTitle = function (title) {
     return new Promise(function (resolve, reject) {
         //Create pattern to find substring
-        var pattern = '/' + title '$/';
+        var pattern = '/' + title + '$/';
 
         //Search for db with the title with the substring
         Form.find({
