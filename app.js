@@ -7,6 +7,7 @@ var ejs = require('ejs')
 let fs = require('fs')
 let db = require('./configuration/database')
 let values = require('./configuration/config')
+let mongoose = require('mongoose');
 
 let app = express()
 let appSession = session({
