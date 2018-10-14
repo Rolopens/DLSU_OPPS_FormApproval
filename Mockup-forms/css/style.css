@@ -1,0 +1,93 @@
+body{
+    padding: 20px;
+}
+
+label{
+    
+}
+
+.inputron {
+    margin-top: 10px;
+    border: none;
+    border-bottom: 1.5px solid;
+    border-bottom-color: #5e6479;
+    width: 100%;
+}
+
+.inputron:focus{
+    outline: none;
+    
+}
+
+.others-input{
+    margin-top: 10px;
+    border: none !important;
+    border-bottom: 1.5px solid !important;
+    border-bottom-color: #5e6479 !important;
+    border-radius: 0px !important;
+}
+
+.ui{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.container-of-ENMP-ENP{
+    display: flex;
+    flex-direction: row;
+}
+
+.ENMP-holder{
+    margin-right: 10px;
+    width: 50%;
+}
+
+.EMP-holder{
+    width: 50%;
+}
+
+.submit-button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: right;
+    background: white;
+    border-color: #26BE9B;
+    border-style: solid;
+    color: #26BE9B;
+    border-radius: 50px;
+    margin-left: 10px;
+    width: 110px;
+    height: 50px;
+    font-weight: 700;
+}
+
+.next:hover{
+    background: #26BE9B;
+    border-color: white;
+    color: white;
+    border-style: solid;
+}
+
+.previous{
+    border-color: #DCDCDC;
+    color: #DCDCDC;
+}
+
+.red{
+    color:red;
+}
+
+.others{
+    display:flex;
+    flex-direction: row;
+}
+
+.others input{
+    display: inline !important;
+}
+    
+.others2{
+    margin-top: 20px;
+    display: inline-block !important;
+    text-align: right !important;
+}
