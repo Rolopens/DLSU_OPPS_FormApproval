@@ -10,8 +10,9 @@ let fs = require('fs');
 let sqlite3 = require('sqlite3').verbose()
 let logger = require("./../models/logService")
 
+//called when each service in the model is asking for the database.
 let getDBInstance = function () {
-
+    
     if (!fs.existsSync(values.database.location)){
         fs.mkdirSync(values.database.location);
     }
