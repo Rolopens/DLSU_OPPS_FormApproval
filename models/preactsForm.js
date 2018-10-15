@@ -29,8 +29,26 @@ var formSchema = new Schema({
         contact_number: {
             type: Number
         }
-    }]
-
+    }],
+    //tables
+    during: {
+        duringData: [[String]]
+    },
+    before: {
+        beforeData: [[String]]
+    },
+    expenses: {
+        expensesData: [[String]]
+    },
+    allocation: {
+        allocationData: [[String]]
+    },
+    income: {
+        incomeData: [[String]]
+    },
+    funds: {
+        fundsData: [[String]]
+    },
 });
 
 var Form = mongoose.model("Form", formSchema);
