@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/OPPS');
+mongoose.connect("mongodb://localhost:27017/DLSU_OPPS", {
+    useNewUrlParser: true 
+});
 var Schema = mongoose.Schema;
 
 var formSchema = new Schema({
@@ -32,3 +34,7 @@ var formSchema = new Schema({
 });
 
 var Form = mongoose.model("Form", formSchema);
+
+module.exports = {
+    Form
+}

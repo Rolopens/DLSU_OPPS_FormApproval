@@ -1,21 +1,23 @@
 // packages
 
 // defined in model
-const Form = require("../models/preactsForm.js");
+const {
+    Form
+} = require("../models/preactsForm.js");
 
 /*
     Accepts: Form object
     return: new promise that resolves the newly added form
     Adds a form into the database
 */
-exports.addForm = function (form) {
+module.exports.addForm = function (form) {
     return new Promise(function (resolve, reject) {
         //Create DB form object
-        var form = new Form(form);
-
+        //var form = new Form(form);
+        
         //Save object in database and check if it resolves
         form.save().then((newForm) => {
-            resolve(newUser)
+            resolve(newForm)
         }, (err) => {
             reject(err)
         })
@@ -27,17 +29,15 @@ exports.addForm = function (form) {
     return: new promise that resolves the form found
     Search database with title
 */
-exports.findFormViaTitle = function (title) {
+module.exports.findFormViaTitle = function (title) {
     return new Promise(function (resolve, reject) {
-        //Create pattern to find substring
-        var pattern = '/' + title + '$/';
-
+        
         //Search for db with the title with the substring
         Form.find({
             title: {
-                $regex: pattern
+                $regex: title
             }
-        }).then((similarForms) => {
+        }).then((similarForm) => {
             resolve(similarForm)
         }, (err) => {
             reject(err)
@@ -50,14 +50,14 @@ exports.findFormViaTitle = function (title) {
     return: new promise that resolves the form found
     Search database with certain objectID
 */
-exports.findFormViaId = function (_id) {
+module.exports.findFormViaId = function (_id) {
     return new Promise(function (resolve, reject) {
 
         //Search for db with the title with the substring
         Form.find({
             _id
         }).then((similarForms) => {
-            resolve(similarForm)
+            resolve(similarForms)
         }, (err) => {
             reject(err)
         })
@@ -69,7 +69,7 @@ exports.findFormViaId = function (_id) {
     return: new promise that returns the newly updated form
     Adds a form into the database
 */
-exports.updateForm = function (form) {
+module.exports.updateForm = function (form) {
     return new Promise(function (resolve, reject) {
 
         //Search for db with the title with the substring
@@ -91,8 +91,8 @@ exports.updateForm = function (form) {
             position: form.position,
             projectHeads: form.projectHeads
 
-        }).then((updatedForm) => {
-            resolve(updatedForm)
+        }).then((updatedForms) => {
+            resolve(updatedForms)
         }, (err) => {
             reject(err)
         })
@@ -104,14 +104,14 @@ exports.updateForm = function (form) {
     return: new promise that returns the result / deleted object
     Deletes a form into the database
 */
-exports.deleteFormViaId = function(_id){
-    return new Promise(function(resolve, reject){
-    Form.remove({
-      _id
-    }).then((result)=>{
-      resolve(result)
-    }, (err)=>{
-      reject(err)
+module.exports.deleteFormViaId = function (_id) {
+    return new Promise(function (resolve, reject) {
+        Form.remove({
+            _id
+        }).then((result) => {
+            resolve(result)
+        }, (err) => {
+            reject(err)
+        })
     })
-  })
 }
