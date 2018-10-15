@@ -1,42 +1,12 @@
-const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/OPPS');
-var Schema = mongoose.Schema;
+// packages
 
-var formSchema = new Schema({
-    user_id: mongoose.Schema.Types.ObjectId,
-    title: String,
-    nature: String,
-    typeOfActivity: String,
-    date: {
-        type: Date
-    },
-    enmp: {
-        type: Number
-    },
-    enp: {
-        type: Number
-    },
-    venue: String,
-    context: String,
-    objectives: [String],
-    state: String, //State of the form
-    comments: String, //Comments given by the checker
-    position: String, //Used for tracking the form
-    projectHeads: [{
-        name: String,
-        contact_number: {
-            type: Number
-        }
-    }]
-
-});
-
-var Form = mongoose.model("Form", formSchema);
+// defined in model
+const Form = require("../models/preactsForm.js");
 
 /*
-Accepts: Form object
-return: new promise that resolves the newly added form
-Adds a form into the database
+    Accepts: Form object
+    return: new promise that resolves the newly added form
+    Adds a form into the database
 */
 exports.addForm = function (form) {
     return new Promise(function (resolve, reject) {
@@ -53,9 +23,9 @@ exports.addForm = function (form) {
 }
 
 /*
-Accepts: Title of Activity (STRING)
-return: new promise that resolves the form found
-Search database with title
+    Accepts: Title of Activity (STRING)
+    return: new promise that resolves the form found
+    Search database with title
 */
 exports.findFormViaTitle = function (title) {
     return new Promise(function (resolve, reject) {
@@ -76,9 +46,9 @@ exports.findFormViaTitle = function (title) {
 }
 
 /*
-Accepts: _id (OBJECTID)
-return: new promise that resolves the form found
-Search database with certain objectID
+    Accepts: _id (OBJECTID)
+    return: new promise that resolves the form found
+    Search database with certain objectID
 */
 exports.findFormViaId = function (_id) {
     return new Promise(function (resolve, reject) {
@@ -95,9 +65,9 @@ exports.findFormViaId = function (_id) {
 }
 
 /*
-Accepts: Form object
-return: new promise that returns the newly updated form
-Adds a form into the database
+    Accepts: Form object
+    return: new promise that returns the newly updated form
+    Adds a form into the database
 */
 exports.updateForm = function (form) {
     return new Promise(function (resolve, reject) {
@@ -130,9 +100,9 @@ exports.updateForm = function (form) {
 }
 
 /*
-Accepts: _id(Objectid)
-return: new promise that returns the result / deleted object
-Deletes a form into the database
+    Accepts: _id(Objectid)
+    return: new promise that returns the result / deleted object
+    Deletes a form into the database
 */
 exports.deleteFormViaId = function(_id){
     return new Promise(function(resolve, reject){
