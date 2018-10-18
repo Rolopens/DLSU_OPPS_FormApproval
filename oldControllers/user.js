@@ -1,23 +1,16 @@
-const path = require("path");
-
-let orgService = require(path.join(__dirname, "..", "models", "orgService.js"));
-let userService = require(path.join(__dirname, "..", "models", "userService.js"));
-let roleService = require(path.join(__dirname, "..", "models", "roleService.js")); //added
+let orgService = require('./../models/orgService')
+let userService = require('./../models/userService')
+let orgRoleService = require('./../models/orgRoleService')
+let values = require('./../configuration/initialValues')
 
 module.exports.controller = function (app) {
     app.get('/accounts', function(req, res) {
-        res.render('user-management', {
-          preacts : true,
-          postacts : true,
-          accounts : true,
-          organization : true
-        });
+        res.render('user-management')
     })
 
-    /*
     app.post('/accounts', function(req, res) {
         var data = JSON.parse(req.body.data)
-        if(req.session.uid == null) {
+        if(req.session.uid == null) { 
             return res.redirect('/')
         }
         console.log("role:"+values.role[data.role_id-1].role_name)
@@ -26,7 +19,7 @@ module.exports.controller = function (app) {
                 return res.send({error:"passwords do not match"})
         orgRoleService.roleOrgExists(data.role_id, data.org_id, function(exists) {
             console.log(exists)
-            userService.userCanCreateUser(req.session.uid,
+            userService.userCanCreateUser(req.session.uid, 
                 values.role[data.role_id-1].role_name,
                 values.organization[data.org_id-1].type, exists,
                 function(userCheck) {
@@ -37,16 +30,14 @@ module.exports.controller = function (app) {
                 if (userCheck.data == undefined || !userCheck.data) {
                     return res.send({error:"unauthorized"})
                 }
-
+                
                 createUser(data,res)
             })
 
         })
-
+        
     })
-    */
 
-    /*
     function createUser(data,res) {
         var user_data = {
             email: data.email,
@@ -78,14 +69,13 @@ module.exports.controller = function (app) {
                     else return res.send({error:'error'})
                 })
             }
-
+            
         })
-
+        
     }
-    */
 
     app.get('/users', function(req, res) {
-        userService.getAllUsers(function(rows){
+        userService.userGetAllUsers(function(rows){
             var toSend=[]
             if(rows != undefined) {
                 toSend = rows
@@ -122,21 +112,21 @@ module.exports.controller = function (app) {
                         return res.send({orgs: toSend})
                     })
                 } else res.send({orgs: toSend})
-            }
-
+            } 
+            
         })
-
+        
     })
 
     app.put("/accounts", function(req,res){
-        if(req.session.uid == null) {
+        if(req.session.uid == null) { 
             return res.redirect('/')
         }
         data = req.body
-        // use req.body to get passed data;
+        // use req.body to get passed data; 
         userService.getUserByEmail(data.email, function(result){
             if(result.status && result.data != undefined) {
-                userService.userCanCreateUser(req.session.uid,
+                userService.userCanCreateUser(req.session.uid, 
                     values.role[data.role_id-1].role_name,
                     values.organization[data.org_id-1].type, false,
                     function(userCheck) {

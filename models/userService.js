@@ -1,156 +1,115 @@
-let database = require('./../configuration/database')
-let logger = require("./logService")
-let rights = require('./../configuration/creationRights')
+const path = require("path");
 
-let GET_USER_QUERY = "SELECT * FROM (((org_role NATURAL JOIN organization) " + 
-					   "NATURAL JOIN users) NATURAL JOIN role) " + 
-					   "WHERE ((role_name = 'ORGUNIT_HEAD' AND TYPE = 'CSO') " +
-					   "OR (role_name = 'ORGUNIT_HEAD' AND TYPE = 'USG') " +
-					   "OR (role_name = 'APPROVER_ADMIN' AND  " +
-					   "(TYPE = 'APS' OR TYPE = 'ADM' OR TYPE = 'USG' OR TYPE = 'CSO'))) " +
-					   "AND user_id = ?"
+const User = require(path.join(__dirname, "User.js")).User;
+const orgService = require(path.join(__dirname, "orgService.js"));
+const roleService = require(path.join(__dirname, "roleService.js"));
+const rights = require(path.join(__dirname, "..", "configuration", "creationRights.json"));
 
-let GET_USER_ORGS_QUERY = "SELECT org_id, abbrev FROM (((org_role NATURAL JOIN organization) " + 
-					"NATURAL JOIN users) NATURAL JOIN role) " + 
-					"WHERE ((role_name = 'ORGUNIT_HEAD' AND TYPE = 'CSO') " +
-					"OR (role_name = 'ORGUNIT_HEAD' AND TYPE = 'USG') " +
-					"OR (role_name = 'APPROVER_ADMIN' AND  " +
-					"(TYPE = 'APS' OR TYPE = 'ADM' OR TYPE = 'USG' OR TYPE = 'CSO'))) " +
-					"AND user_id = ?"
-
-let GET_ALL_USERS_QUERY = "SELECT * FROM (((org_role NATURAL JOIN organization) " + 
-						"NATURAL JOIN users) NATURAL JOIN role) "
-
-let GET_USER_TYPE_QUERY = "SELECT type, abbrev, org_id, role_name FROM (((org_role NATURAL JOIN organization) " + 
-						"NATURAL JOIN users) NATURAL JOIN role) WHERE user_id = ?"
-
-let GET_ALL_ROLES_QUERY = "SELECT * FROM role"
-
-let INSERT_USER_QUERY = "INSERT INTO users (email, password) VALUES (?, ?)"	
-
-let INSERT_ORG_ROLE_QUERY = "INSERT INTO org_role (org_id, role_id,user_id,enabled) VALUES (?, ?, ?, ?)"
-
-let GET_USER_EMAIL_QUERY = "SELECT * FROM (((org_role NATURAL JOIN organization) " + 
-"NATURAL JOIN users) NATURAL JOIN role) WHERE email = ?"
-
-
-let UPDATE_USER_QUERY = "UPDATE org_role SET enabled = ? " +
-                        "WHERE user_id = ? AND org_id = ? AND role_id = ?"
-
-module.exports.userCanCreateUser = function (uid, role, org, create, next) {
-	let db = database.getDBInstance()
-	db.all(GET_USER_TYPE_QUERY, [uid], function(error, rows) {
-        if (error) {
-			logger.logToFile("Error ", error)
-			return next({status: 'error', data: error})
-		}
-        if (rows.length == 0)
-            return next({status: 'success', data: undefined})
-		var data = rows[0]
-		var usertype = data.role_name + "-" + data.type
-		console.log(rights[usertype].creatable.includes(role + "-" + org))
-		if(rights[usertype] == undefined)
-			return next({status: 'success', data: false})
-		if (create && rights[usertype].creatable.includes(role + "-" + org))
-			return next({status: 'success', data: true})
-		else if (!create && (rights[usertype].creatable.includes(role + "-" + org)|| 
-			rights[usertype].editable.includes(role + "-" + org)))
-			return next({status: 'success', data: true})
-		return next({status: 'success', data: false})
-    })
+function getUserWithId(_id){
+  return new Promise(
+    function (resolve, reject){
+      User.findById(_id, "email firstname lastname user_roles").then((doc)=>{
+        if (doc) resolve(doc);
+        else reject(Error("User not found"));
+      }, (err)=>{
+        reject(err);
+      });
+    }
+  );
 }
 
-module.exports.userGetAllUsers = function(next) {
-	let db = database.getDBInstance()
-	db.all(GET_ALL_USERS_QUERY, function(error, rows) {
-		if (error) {
-			logger.logToFile("Error ", error)
-			return next(undefined)
-		}
-        if (rows.length == 0)
-			return next(undefined)
-		return next(rows)
-	})
+function getAllUsers(){
+  return new Promise(
+    function (resolve, reject){
+      User.find({}, "email firstname lastname user_roles")
+      .then((docs)=>{
+        if (docs) resolve(docs);
+        else reject(Error("No users"));
+      })
+      .catch((err)=>{
+        reject(err);
+      });
+    }
+  );
 }
 
-module.exports.getUserType = function(id, next) {
-	let db = database.getDBInstance()
-	db.all(GET_USER_TYPE_QUERY, [id], function(error, rows) {
-		if (error) {
-			logger.logToFile("Error ", error)
-			return next({status:false})
-		}
-        if (rows.length == 0)
-			return next({status:false})
-		return next({status:true, data:rows})
-	})
+//String orgType, all caps
+function getUsersWithOrgType(orgType){
+  return new Promise(
+    function (resolve, reject){
+      orgService.getOrgsWithOrgType(orgType)
+      .then((orgs)=>{
+        var orgIds = orgs.map(x => x._id);
+        var userPromises = [];
+        return User.find({user_roles : {$elemMatch : {org_id : {$in : orgIds}}}}, "email firstname lastname user_roles");
+      })
+      .then((users)=>{
+        if (users) resolve(users);
+        else reject(Error("No users with org type " + orgType));
+      })
+      .catch((err)=>{
+        reject(err);
+      });
+    }
+  )
 }
 
-module.exports.getUserByEmail = function(email, next) {
-	let db = database.getDBInstance()
-	db.all(GET_USER_EMAIL_QUERY, [email], function(error, rows) {
-		if (error) {
-			logger.logToFile("Error ", error)
-			return next({status:false})
-		}
-        if (rows.length == 0)
-			return next({status:false})
-		return next({status:true, data:rows[0]})
-	})
+function createUser(data){
+  return new Promise(
+    function (resolve, reject){
+      var email = data.email;
+      var password = data.password;
+      var firstname = data.firstname;
+      var lastname = data.lastname;
+      var initialOrgId = data.initialOrgId;
+      var initialRoleId = data.initialRoleId;
+      var initialEnabled = data.initialEnabled;
+
+      orgService.orgExists(initialOrgId)
+      .then((result)=>{
+        if (!result) reject(Error("Invalid org"));
+        else return roleService.roleExists(initialRoleId);
+      })
+      .then((result)=>{
+        if (!result) reject(Error("Invalid role"));
+      });
+
+      var u = new User({email, password, firstname, lastname});
+      u.save()
+      .then((doc)=>{
+        var user_role = {
+          org_id : initialOrgId,
+          role_id : initialRoleId,
+          enabled : initialEnabled,
+        };
+        return User.findByIdAndUpdate(doc._id, {$push : {user_roles : user_role}});
+      })
+      .then((doc)=>{
+        resolve(doc);
+      })
+      .catch((err)=>{
+        reject(err);
+      });
+    }
+  );
 }
 
-module.exports.userGetOrgs = function(data, next) {
-	let db = database.getDBInstance()
-	db.all(GET_USER_ORGS_QUERY, [data],function(error, rows) {
-		if (error) {
-			logger.logToFile("Error ", error)
-			return next(undefined)
-		}
-        if (rows.length == 0)
-			return next(undefined)
-		console.log("rows"+ rows)
-		return next(rows)
-	})
+/*
+function userCanCreateUser(_id, role, org){
+  return new Promise(
+    function (resolve, reject){
+      getUserWithId(_id).then((doc)=>{
+
+      }, (err)=>{
+
+      })
+    }
+  };
 }
 
-module.exports.userGetAllRoles = function(next) {
-	let db = database.getDBInstance()
-	db.all(GET_ALL_ROLES_QUERY, function(error, rows) {
-		if (error) {
-			logger.logToFile("Error ", error)
-			return next(undefined)
-		}
-        if (rows.length == 0)
-			return next(undefined)
-		return next(rows)
-	})
-}
+function userCanEditUser(){
 
-module.exports.createUser = function (data, next) {
-    let db = database.getDBInstance()
-    db.run(INSERT_USER_QUERY, [data.email, data.password], function(error) {
-        if (error) 
-            return next({status: 'error', data: error})
-        next({status: 'success', data: this.lastID})
-    })
 }
+*/
 
-module.exports.createOrgRole = function (data, next) {
-    let db = database.getDBInstance()
-	db.run(INSERT_ORG_ROLE_QUERY, 
-		[data.org_id, data.role_id, data.user_id, data.enabled], 
-		function(error) {
-			if (error) 
-				return next({status: 'error', data: error})
-			next({status: 'success', data: this.lastID})
-    })
-}
-
-module.exports.changeUserStatus = function (enabled, id, orgid, roleid, next) {
-    let db = database.getDBInstance()
-    db.run(UPDATE_USER_QUERY, [enabled, id, orgid, roleid], function(error) {
-        if (error) 
-            return next({status: 'error', data: error})
-        next({status: 'success', data: this.lastID})
-    })
-}
+module.exports = {getUserWithId, getAllUsers, createUser, getUsersWithOrgType};

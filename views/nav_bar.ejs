@@ -1,29 +1,37 @@
 <nav id="primary-nav">
 	<ul>
+		<% if (preacts) { %>
 		<a href="/preacts">
 			<li :class = "active['preacts'] ? 'active' : ''">
 				<i class="fa fa-file"> </i>
 			</li>
 		</a>
+		<% } %>
+		<% if (postacts) { %>
 		<a href="/postacts">
 			<li :class = "active['postacts'] ? 'active' : ''">
 				<i class="fa fa-file-text-o"> </i>
 			</li>
 		</a>
+		<% } %>
+		<% if (accounts) { %>
 		<a href="/accounts">
 			<li :class = "active['accounts'] ? 'active' : ''">
 				<i class="fa fa-user-o"> </i>
 			</li>
 		</a>
+		<% } %>
+		<% if (organization) { %>
 		<a href="/organization">
 			<li :class = "active['organization'] ? 'active' : ''">
 				<i class="fa fa-building-o"> </i>
 			</li>
 		</a>
+		<% } %>
 	</ul>
 </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js" type="text/javascript"></script>
+<script src="lib/vue.min.js" type="text/javascript"></script>
 <script src="js/vue_nav.js" type="text/javascript"> </script>
 
 <!-- stylesheet -->

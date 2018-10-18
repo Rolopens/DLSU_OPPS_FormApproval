@@ -4,6 +4,7 @@
     "static": "/views/static",
     "key": "CHANGEKEYSOON",
     "database": {
-      "uri": "mongodb://localhost:27017/DLSU_OPPS"
+        "location": ".",
+        "name": "dlsu_opps.db"
     }
 }
