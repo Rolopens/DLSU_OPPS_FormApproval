@@ -9,7 +9,12 @@ var formSchema = new Schema({
     title: String,
     nature: String,
     typeOfActivity: String,
-    date: {
+    startTime: String,
+    endTime: String,
+    startDate: {
+        type: Date
+    },
+    endDate: {
         type: Date
     },
     enmp: {
@@ -19,36 +24,81 @@ var formSchema = new Schema({
         type: Number
     },
     venue: String,
-    context: String,
+    reach: String,
+    online: Boolean,
+    GOSM: Boolean,
+    president: mongoose.Schema.Types.ObjectId,
+    status: String, //current status of the form
+    approvedDate: Date, //date and time when the form is approved
+    
+    context: [String],
     objectives: [String],
-    state: String, //State of the form
     comments: String, //Comments given by the checker
-    position: String, //Used for tracking the form
+    //position: String, //Used for tracking the form
     projectHeads: [{
         name: String,
         contact_number: {
             type: Number
         }
     }],
+    currentCheckers: [ mongoose.Schema.Types.ObjectId],
+    approvedBy: [ mongoose.Schema.Types.ObjectId],
     //tables
-    during: {
-        duringData: [[String]]
+    program_flow: [{
+        startTime: Date,
+        endTime: Date,
+        duration: Number,
+        activity: String,
+        description: String,
+        person: String, //String???
+    }],
+//    before: [{ // not in the original form
+//        
+//    }],
+    breakdown_expenses: {
+        material: [{
+            name: String,
+            quantity: Number,
+            unit_cost: Number,
+            total_cost: Number
+        }],
+        total_expense: Number
     },
-    before: {
-        beforeData: [[String]]
+    source_funds: {
+        organization_funds: Number,
+        participants_fee: Number,
+        others: Number,
+        total: Number
     },
-    expenses: {
-        expensesData: [[String]]
+    projected_income: {
+        revenue: [{
+            item: String,
+            quantity: Number,
+            price: Number,
+            amount: Number
+        }],
+        expenses: [{
+            item: String,
+            quantity: Number,
+            price: Number,
+            amount: Number
+        }],
+        total: Number
     },
-    allocation: {
-        allocationData: [[String]]
+    organizational_funds: {
+        operational_fund: Number,
+        depository_fund: Number,
+        other_fund: Number,
+        total_disbursement: Number,
+        projected_expenses: Number,
+        rem_balance: Number
     },
-    income: {
-        incomeData: [[String]]
+    person_responsible: { // another person responsible aside from the submitter
+        name: String,
+        position: String
     },
-    funds: {
-        fundsData: [[String]]
-    },
+    archived: Boolean,
+    creationDate: Date
 });
 
 var Form = mongoose.model("Form", formSchema);

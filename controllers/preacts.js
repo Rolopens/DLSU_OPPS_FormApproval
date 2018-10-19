@@ -63,7 +63,8 @@ module.exports.controller = function(app) {
             "projectHeads": [{
                 "name": req.body.phead,
                 "contact_number": req.body.cnumber
-            }]
+            }],
+            "creationDate": new Date
         });
         //        if(req.session.uid == null){
         //            resp.redirect('/');
