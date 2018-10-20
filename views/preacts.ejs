@@ -121,7 +121,28 @@
 						</label>
 						<input id="search" type="text" name="search" placeholder="Search something..." />
 					</div>
+                    <% if (forms.length != 0) {%>
 					<div class="content-feed">
+                        <% for(var i=0; i<forms.length; i++) { %>
+                        
+                        <div class="content-wrapper" id="<%= forms[i]._id%>">
+							<label class="content-select">
+								<input type="checkbox" name="select-all" />
+								<span class="checkmark"><i class="fa fa-check"></i></span>
+							</label>
+							<div class="activity-wrapper flex-start">
+								<div class="activity-icon positive"><i class="fa fa-check"></i></div>
+								<div class="activity">
+									<h3><%= forms[i].title%></h3>
+									<p><%= forms[i].org%> | <%= forms[i].startDate%></p>
+								</div>
+							</div>
+							<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+						</div>
+                        <% } %>
+                        
+                        
+<!--
 						<div class="content-wrapper">
 							<label class="content-select">
 								<input type="checkbox" name="select-all" />
@@ -206,7 +227,14 @@
 							</div>
 							<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
 						</div>
+-->
 					</div>
+                    <% } %>
+                    <% if (forms.length == 0) {%>
+                    <div class="content-feed">
+                        No forms submitted yet
+                    </div>
+                    <% } %>
 				</div>
 				<div id="sidebar">
 					<h3 class="action-title">Quick View</h3>

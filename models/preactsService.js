@@ -65,6 +65,22 @@ module.exports.findFormViaId = function (_id) {
 }
 
 /*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db
+*/
+module.exports.getAllForms = function (){
+    return new Promise(function (resolve, reject) {
+        Form.find().then((results)=>{
+            //console.log(results)
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
     Accepts: Form object
     return: new promise that returns the newly updated form
     Adds a form into the database

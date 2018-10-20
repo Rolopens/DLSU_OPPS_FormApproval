@@ -8,6 +8,7 @@ var formSchema = new Schema({
     user_id: mongoose.Schema.Types.ObjectId,
     title: String,
     nature: String,
+    org: String,
     typeOfActivity: String,
     startTime: String,
     endTime: String,
@@ -34,7 +35,7 @@ var formSchema = new Schema({
     context: [String],
     objectives: [String],
     comments: String, //Comments given by the checker
-    //position: String, //Used for tracking the form
+    position: String, //Used for tracking the form
     projectHeads: [{
         name: String,
         contact_number: {
@@ -50,7 +51,7 @@ var formSchema = new Schema({
         duration: Number,
         activity: String,
         description: String,
-        person: String, //String???
+        person: String //String???
     }],
 //    before: [{ // not in the original form
 //        
