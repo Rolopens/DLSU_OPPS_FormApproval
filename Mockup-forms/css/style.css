@@ -1,9 +1,17 @@
 body{
     padding: 20px;
+    background-color: #26BE9B;
 }
 
 label{
     
+}
+
+.main {
+    width: 50%;
+    margin-left: 25%;
+    background-color: white;
+    padding: 2%;
 }
 
 .inputron {
@@ -20,11 +28,12 @@ label{
 }
 
 .others-input{
-    margin-top: 10px;
     border: none !important;
     border-bottom: 1.5px solid !important;
     border-bottom-color: #5e6479 !important;
     border-radius: 0px !important;
+    height: 0px;
+
 }
 
 .ui{
@@ -47,16 +56,13 @@ label{
 }
 
 .submit-button{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    float: right;
+    margin-top: 5%;
     background: white;
     border-color: #26BE9B;
     border-style: solid;
     color: #26BE9B;
     border-radius: 50px;
-    margin-left: 10px;
-    width: 110px;
+    width: 130px;
     height: 50px;
     font-weight: 700;
 }
@@ -87,7 +93,7 @@ label{
 }
     
 .others2{
-    margin-top: 20px;
+    margin-top: 0px;
     display: inline-block !important;
     text-align: right !important;
 }

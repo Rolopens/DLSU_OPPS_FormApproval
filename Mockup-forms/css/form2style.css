@@ -1,5 +1,22 @@
 body {
     padding: 20px;
+    background-color: #26BE9B;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+}
+
+.row-textarea {
+    border: none;
+}
+
+.main {
+    width: 50%;
+    margin-left: 25%;
+    background-color: white;
+    padding: 2%;
 }
 
 .inputron {
@@ -29,16 +46,29 @@ body {
     width: 50%;
 }
 
-.submit-button {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.row-button {
     float: right;
+    margin-bottom: 20px;
+    margin-top: 5%;
+    margin-right: 10px;
     background: white;
     border-color: #26BE9B;
     border-style: solid;
     color: #26BE9B;
     border-radius: 50px;
-    margin-left: 10px;
+    width: 130px;
+    height: 50px;
+    font-weight: 700;
+}
+
+.submit-button {
+    margin-top: 5%;
+    margin-right: 10px;
+    background: white;
+    border-color: #26BE9B;
+    border-style: solid;
+    color: #26BE9B;
+    border-radius: 50px;
     width: 130px;
     height: 50px;
     font-weight: 700;
@@ -133,4 +163,10 @@ tr:last-child {
 
 .italics {
     font-style: italic;
+}
+
+textarea {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 107px;
 }

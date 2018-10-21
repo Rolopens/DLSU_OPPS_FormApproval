@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Pre-acts Form 2</title>
+    <title>Create Project Proposal</title>
 
     <!--CSS-->
     <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
@@ -21,384 +21,416 @@
 </head>
 
 <body>
-    <form>
-        <h1>Create Project Proposal</h1>
-        <span>Brief Context / Perspective of the Activity</span>
-        <br /><br />
-        <span>Part 1<span class="red"> * </span></span>
-        <ul>
-            <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
-            <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
-                supported with</li>
-        </ul>
-        <input class="inputron" type="text">
-        <br /><br />
-        <span>Part 2<span class="red"> * </span></span>
-        <ul>
-            <li>Why is there a problem?</li>
-            <li>What could be the cause and the effect?</li>
-            <li>How did you feel about the experience, situation, or problem? And why did you feel that way?</li>
-            <li>What can we discover or realize?</li>
-        </ul>
-        <input class="inputron" type="text">
-        <br /><br />
-        <span>Part 3<span class="red"> * </span></span>
-        <ul>
-            <li>Out of all the possible projects, activities, and solutions, why this?</li>
-            <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
-        </ul>
-        <input class="inputron" type="text">
+    <div class="main">
+        <form>
+            <h1>Create Project Proposal</h1>
+            <span>Brief Context / Perspective of the Activity</span>
+            <br /><br />
+            <span>Part 1<span class="red"> * </span></span>
+            <ul>
+                <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
+                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
+                    supported with</li>
+            </ul>
+            <textarea rows="2" required></textarea>
+            <br /><br />
+            <span>Part 2<span class="red"> * </span></span>
+            <ul>
+                <li>Why is there a problem?</li>
+                <li>What could be the cause and the effect?</li>
+                <li>How did you feel about the experience, situation, or problem? And why did you feel that way?</li>
+                <li>What can we discover or realize?</li>
+            </ul>
+            <textarea rows="2" required></textarea>
+            <br /><br />
+            <span>Part 3<span class="red"> * </span></span>
+            <ul>
+                <li>Out of all the possible projects, activities, and solutions, why this?</li>
+                <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
+            </ul>
+            <textarea rows="2" required></textarea>
 
-        <br /><br /><br />
-        <span>Objectives<span class="red"> * </span></span>
-        <br /><br />
-        <div class="inputron">
-            1.
-            <input class="inputron no-margin" type="text">
+            <br /><br /><br />
+            <span>Objectives<span class="red"> * </span></span>
+            <br /><br />
+            <div class="inputron">
+                1.
+                <input class="inputron no-margin" type="text">
+            </div>
+            <br /><br />
+            <div class="inputron">
+                2.
+                <input class="inputron no-margin" type="text">
+            </div>
+            <br /><br />
+            <div class="inputron">
+                3.
+                <input class="inputron no-margin" type="text">
+            </div>
+            <br /><br />
+
+            <div class="submit-holder">
+                <div class="title">Project Head/s <span class="red">*</span></div>
+                <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
+                <button type="button" class="row-button previous" id="btnDeletePhead">Delete Row</button>
+            </div>
+
+            <table class="ui compact celled definition fixed table" id="dynamicTable1">
+                <thead class="full-width">
+                    <tr style="text-align: center;">
+                        <th style="width: 40px;"></th>
+                        <th class="item">NAME</th>
+                        <th class="item">CONTACT NUMBER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox"> <label></label>
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="submit-holder">
+                <div class="title">Comprehensive Program Design <span class="red">*</span></div>
+                <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
+                <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button>
+            </div>
+
+            <table class="ui compact celled definition fixed table" id="dynamicTable2">
+                <thead class="full-width">
+                    <tr style="text-align: center;">
+                        <th style="width: 40px;"></th>
+                        <th class="item">START TIME TO END TIME</th>
+                        <th class="item">ACTIVITY</th>
+                        <th class="item">BRIEF DESCRIPTION OF THE ACTIVITY</th>
+                        <th class="item">PERSON-IN-CHARGE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox"> <label></label>
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="time"><input class="inputron no-margin" type="time"></td>
+                        <td><textarea class="row-textarea"></textarea></td>
+                        <td><textarea class="row-textarea"></textarea></td>
+                        <td><textarea class="row-textarea"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="submit-holder">
+                <div class="title">Breakdown of Expenses <span class="red">*</span></div>
+                <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
+                <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
+            </div>
+
+            <table class="ui compact celled definition fixed table" id="dynamicTable3">
+                <thead class="full-width">
+                    <tr style="text-align: center;">
+                        <th style="width: 40px;"></th>
+                        <th class="item">Materials</th>
+                        <th class="item">Quantity</th>
+                        <th class="item">Unit Cost</th>
+                        <th class="item">Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox"> <label></label>
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="full-width">
+                    <tr>
+                        <th></th>
+                        <th colspan="3" class="total">
+                            <div class="ui right floated small primary labeled">
+                                Total:
+                            </div>
+                        </th>
+                        <th class="result">n/a</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <br /><br /> Source of Funds<span class="red">*</span>
+            <table class="ui compact celled definition fixed table">
+                <thead class="full-width">
+                    <tr style="text-align: center;">
+                        <th style="width: 40px;"></th>
+                        <th class="item" style="width: 80%">Source/s of Funds</th>
+                        <th class="item">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                        </td>
+                        <td>Organizational Funds</td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+                        </td>
+                        <td>Participants Fee</td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+                        </td>
+                        <td>Others (i.e. Sponsorships)</td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="full-width">
+                    <tr>
+                        <th></th>
+                        <th colspan="1" class="total">
+                            <div class="ui right floated small primary labeled">
+                                Total:
+                            </div>
+                        </th>
+                        <th class="result">n/a</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <br /><br /> Organizational Funds<span class="red">*</span>
+            <table class="ui compact celled definition fixed table">
+                <thead class="full-width">
+                    <tr style="text-align: left;">
+                        <th style="width: 40px;"></th>
+                        <th class="item" style="width: 80%">Accumulated Operational Funds</th>
+                        <th class="item"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td>
+                            <div class="right">
+                                Operational Fund
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td class="bold">Accumulated Depository Funds</td>
+                        <td class="php"> <input class="inputron no-margin" type="text">
+                            <div class="pwp">Php </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td>
+                            <div class="right">
+                                Depository Fund
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td>Other Sources of Funds</td>
+                        <td class="php"> <input class="inputron no-margin" type="text">
+                            <div class="pwp">Php </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td>
+                            <div class="right">
+                                Participants Fee/Donation/Sponsorships
+                            </div>
+                        </td>
+                        <td class="php"> <input class="inputron no-margin" type="text">
+                            <div class="pwp">Php </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td>
+                            <div class="right bold">
+                                Accumulated Operational Funds
+                            </div>
+                        </td>
+                        <td class="php"> <input class="inputron no-margin" type="text">
+                            <div class="pwp">Php </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td class="bg-gray bold">
+                            <div class="right italics">
+                                Total Cash For Disbursement
+                            </div>
+                        </td>
+                        <td class="bg-gray ">Php</td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td>
+                            <div class="right bold">
+                                Less: Total Projected Expenses
+                            </div>
+                        </td>
+                        <td class="php"> <input class="inputron no-margin" type="text">
+                            <div class="pwp">Php </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+
+                        </td>
+                        <td class="bg-gray">
+                            <div class="right bold">
+                                REMAINING BALANCE
+                            </div>
+                        </td>
+                        <td>Php</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="submit-holder">
+                <div class="title">Projected Income <span class="red">*</span></div>
+                <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
+                <button type="button" class="row-button previous" id="btnDeleteProjRev">Delete Row</button>
+            </div>
+
+            <table class="ui compact celled definition fixed table" id="dynamicTable4">
+                <thead class="full-width">
+                    <tr>
+                        <th style="width:40px"></th>
+                        <th>Projected Revenue</th>
+                        <th class="pj-border"></th>
+                        <th class="pj-border"></th>
+                        <th class="pj-border"></th>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <th style="width: 40px;"></th>
+                        <th class="item">Item</th>
+                        <th class="item">Qty</th>
+                        <th class="item">Selling Price</th>
+                        <th class="item">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox"> <label></label>
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="submit-holder">
+                <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
+                <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button>
+            </div>
+            <table class="ui compact celled definition fixed table" id="dynamicTable5">
+                <thead class="full-width">
+                    <tr>
+                        <th style="width:40px"></th>
+                        <th>Less: Projected Expenses</th>
+                        <th class="pj-border"></th>
+                        <th class="pj-border"></th>
+                        <th class="pj-border"></th>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <th style="width: 40px;"></th>
+                        <th class="item">Item</th>
+                        <th class="item">Qty</th>
+                        <th class="item">Selling Price</th>
+                        <th class="item">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox"> <label></label>
+                            </div>
+                        </td>
+                        <td><input class="inputron no-margin" type="text"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                        <td><input class="inputron no-margin" type="number"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="full-width">
+                    <tr>
+                        <th></th>
+                        <th colspan="3" class="total">
+                            <div class="ui right floated small primary labeled">
+                                TOTAL PROJECTED INCOME:
+                            </div>
+                        </th>
+                        <th class="result">n/a</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <br /><br /> Provision for Profit and Loss
+            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the
+            project.
+            <br /><br />
+
+            <span>Name of Person Responsible (Aside from you)<span class="red"> * </span></span>
+            <br />
+            <select class="inputron">
+                <option value="Person-Repsonsible"></option>
+            </select>
+            <br /><br />
+            <span>Position<span class="red"> * </span></span>
+            <br />
+            <input class="inputron" type="text">
+            <br /><br />
+
+            <div class="button-align">
+                <button type="submit" class="submit-button previous">Previous</button>
+                <button type="submit" class="submit-button next">Submit</button>
+            </div>
+        </form>
         </div>
-        <br /><br />
-        <div class="inputron">
-            2.
-            <input class="inputron no-margin" type="text">
-        </div>
-        <br /><br />
-        <div class="inputron">
-            3.
-            <input class="inputron no-margin" type="text">
-        </div>
-        <br /><br />
-
-        <div class="submit-holder">
-            <div class="title">Comprehensive Program Design <span class="red">*</span></div>
-            <button type="button" class="submit-button next" id="btnAddRow">Add Row</button>
-            <button type="button" class="submit-button previous" id="btnDeleteRow">Delete Row</button>
-        </div>
-
-        <table class="ui compact celled definition fixed table" id="dynamicTable">
-            <thead class="full-width">
-                <tr style="text-align: center;">
-                    <th style="width: 40px;"></th>
-                    <th class="item">TIME</th>
-                    <th class="item">DURATION</th>
-                    <th class="item">ACTIVITY</th>
-                    <th class="item">BRIEF DESCRIPTION OF THE ACTIVITY</th>
-                    <th class="item">PERSON-IN-CHARGE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="collapsing">
-                        <div class="ui fitted checkbox">
-                            <input type="checkbox"> <label></label>
-                        </div>
-                    </td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="submit-holder">
-            <div class="title">Breakdown of Expenses <span class="red">*</span></div>
-            <button type="button" class="submit-button next">Add Row</button>
-            <button type="button" class="submit-button previous">Delete Row</button>
-        </div>
-
-        <table class="ui compact celled definition fixed table">
-            <thead class="full-width">
-                <tr style="text-align: center;">
-                    <th style="width: 40px;"></th>
-                    <th class="item">Materials</th>
-                    <th class="item">Quantity</th>
-                    <th class="item">Unit Cost</th>
-                    <th class="item">Total Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="collapsing">
-                        <div class="ui fitted checkbox">
-                            <input type="checkbox"> <label></label>
-                        </div>
-                    </td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-            </tbody>
-            <tfoot class="full-width">
-                <tr>
-                    <th></th>
-                    <th colspan="3" class="total">
-                        <div class="ui right floated small primary labeled">
-                            Total:
-                        </div>
-                    </th>
-                    <th class="result">n/a</th>
-                </tr>
-            </tfoot>
-        </table>
-        <br /><br /> Source of Funds<span class="red">*</span>
-        <table class="ui compact celled definition fixed table">
-            <thead class="full-width">
-                <tr style="text-align: center;">
-                    <th style="width: 40px;"></th>
-                    <th class="item" style="width: 80%">Source/s of Funds</th>
-                    <th class="item">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="collapsing">
-                    </td>
-                    <td>Organizational Funds</td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-                    </td>
-                    <td>Participants Fee</td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-                    </td>
-                    <td>Others (i.e. Sponsorships)</td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-            </tbody>
-            <tfoot class="full-width">
-                <tr>
-                    <th></th>
-                    <th colspan="1" class="total">
-                        <div class="ui right floated small primary labeled">
-                            Total:
-                        </div>
-                    </th>
-                    <th class="result">n/a</th>
-                </tr>
-            </tfoot>
-        </table>
-        <br /><br /> Organizational Funds<span class="red">*</span>
-        <table class="ui compact celled definition fixed table">
-            <thead class="full-width">
-                <tr style="text-align: left;">
-                    <th style="width: 40px;"></th>
-                    <th class="item" style="width: 80%">Accumulated Operational Funds</th>
-                    <th class="item"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td>
-                        <div class="right">
-                            Operational Fund
-                        </div>
-                    </td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td class="bold">Accumulated Depository Funds</td>
-                    <td class="php"> <input class="inputron no-margin" type="text">
-                        <div class="pwp">Php </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td>
-                        <div class="right">
-                            Depository Fund
-                        </div>
-                    </td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td>Other Sources of Funds</td>
-                    <td class="php"> <input class="inputron no-margin" type="text">
-                        <div class="pwp">Php </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td>
-                        <div class="right">
-                            Participants Fee/Donation/Sponsorships
-                        </div>
-                    </td>
-                    <td class="php"> <input class="inputron no-margin" type="text">
-                        <div class="pwp">Php </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td>
-                        <div class="right bold">
-                            Accumulated Operational Funds
-                        </div>
-                    </td>
-                    <td class="php"> <input class="inputron no-margin" type="text">
-                        <div class="pwp">Php </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td class="bg-gray bold">
-                        <div class="right italics">
-                            Total Cash For Disbursement
-                        </div>
-                    </td>
-                    <td class="bg-gray ">Php</td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td>
-                        <div class="right bold">
-                            Less: Total Projected Expenses
-                        </div>
-                    </td>
-                    <td class="php"> <input class="inputron no-margin" type="text">
-                        <div class="pwp">Php </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="collapsing">
-
-                    </td>
-                    <td class="bg-gray">
-                        <div class="right bold">
-                            REMAINING BALANCE
-                        </div>
-                    </td>
-                    <td>Php</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="submit-holder">
-            <div class="title">Projected Income <span class="red">*</span></div>
-            <button type="button" class="submit-button next">Add Row</button>
-            <button type="button" class="submit-button previous">Delete Row</button>
-        </div>
-
-        <table class="ui compact celled definition fixed table">
-            <thead class="full-width">
-                <tr>
-                    <th style="width:40px"></th>
-                    <th>Projected Revenue</th>
-                    <th class="pj-border"></th>
-                    <th class="pj-border"></th>
-                    <th class="pj-border"></th>
-                </tr>
-                <tr style="text-align: center;">
-                    <th style="width: 40px;"></th>
-                    <th class="item">Item</th>
-                    <th class="item">Qty</th>
-                    <th class="item">Selling Price</th>
-                    <th class="item">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="collapsing">
-                        <div class="ui fitted checkbox">
-                            <input type="checkbox"> <label></label>
-                        </div>
-                    </td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-            </tbody>
-            <thead class="full-width">
-                <tr>
-                    <th style="width:40px"></th>
-                    <th>Less: Projected Expenses</th>
-                    <th class="pj-border"></th>
-                    <th class="pj-border"></th>
-                    <th class="pj-border"></th>
-                </tr>
-                <tr style="text-align: center;">
-                    <th style="width: 40px;"></th>
-                    <th class="item">Item</th>
-                    <th class="item">Qty</th>
-                    <th class="item">Selling Price</th>
-                    <th class="item">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="collapsing">
-                        <div class="ui fitted checkbox">
-                            <input type="checkbox"> <label></label>
-                        </div>
-                    </td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                    <td><input class="inputron no-margin" type="text"></td>
-                </tr>
-            </tbody>
-            <tfoot class="full-width">
-                <tr>
-                    <th></th>
-                    <th colspan="3" class="total">
-                        <div class="ui right floated small primary labeled">
-                            TOTAL PROJECTED INCOME:
-                        </div>
-                    </th>
-                    <th class="result">n/a</th>
-                </tr>
-            </tfoot>
-        </table>
-        <br /><br /> Provision for Profit and Loss
-        <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the
-        project.
-        <br /><br />
-
-        <span>Name of Person Responsible<span class="red"> * </span></span>
-        <br />
-        <select class="inputron">
-            <option value="Person-Repsonsible"></option>
-        </select>
-        <br /><br />
-        <span>Position<span class="red"> * </span></span>
-        <br />
-        <input class="inputron" type="text">
-        <br /><br />
-        <span>Name of Person Responsible<span class="red"> * </span></span>
-        <br />
-        <select class="inputron">
-            <option value="Person-Repsonsible-2"></option>
-        </select>
-
-        <button type="submit" class="submit-button next">Submit</button>
-        <button type="submit" class="submit-button previous">Previous</button>
-    </form>
     <script>
-        function addRow() {
+        
+        //add project head
+        function addPhead() {
             var row = document.createElement("tr");
             var col1 = document.createElement("td");
             col1.className = "collapsing";
@@ -417,45 +449,94 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             col2.append(input2);
-
+            
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
-            input3.setAttribute('type', 'text');
+            input3.setAttribute('type', 'number');
+            col3.append(input3);
+
+            row.append(col1);
+            row.append(col2);
+            row.append(col3);
+
+            $("#dynamicTable1").find('tbody').append(row);
+
+            console.log('ADD PHEAD()');
+        }
+        
+        //delete project head
+        function deletePhead() {
+            let tableRef = document.getElementById('dynamicTable1');
+            let tbody = tableRef.querySelector("tbody");
+
+            let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
+            Array.prototype.slice.call(checkedInputs)
+                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+
+            console.log('DELETE PHEAD()');
+        }
+        
+        //add row in comprehensive projgram design table
+        function addCPD() {
+            var row = document.createElement("tr");
+            var col1 = document.createElement("td");
+            col1.className = "collapsing";
+            var div = document.createElement("div");
+            div.className = "ui fitted checkbox";
+            var cBox = document.createElement("input");
+            cBox.setAttribute('type', 'checkbox');
+            var label = document.createElement("label");
+
+            div.append(cBox);
+            div.append(label);
+            col1.append(div);
+            
+            var col2 = document.createElement("td");
+            var input2 = document.createElement("input");
+            input2.className = "inputron no-margin";
+            input2.setAttribute('type', 'time');
+            var input6 = document.createElement("input");
+            input6.className = "inputron no-margin";
+            input6.setAttribute('type', 'time');
+            col2.append(input2);
+            col2.append(input6);
+
+            var col3 = document.createElement("td");
+            var input3 = document.createElement("textarea");
+            input3.className = "row-textarea";
             col3.append(input3);
 
             var col4 = document.createElement("td");
-            var input4 = document.createElement("input");
-            input4.className = "inputron no-margin";
-            input4.setAttribute('type', 'text');
+            var input4 = document.createElement("textarea");
+            input4.className = "row-textarea";
             col4.append(input4);
 
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'text');
+            var input5 = document.createElement("textarea");
+            input5.className = "row-textarea";
             col5.append(input5);
-
-            var col6 = document.createElement("td");
-            var input6 = document.createElement("input");
-            input6.className = "inputron no-margin";
-            input6.setAttribute('type', 'text');
-            col6.append(input6);
+            
+//            var col5 = document.createElement("td");
+//            var input5 = document.createElement("input");
+//            input5.className = "inputron no-margin";
+//            input5.setAttribute('type', 'text');
+//            col5.append(input5);
 
             row.append(col1);
             row.append(col2);
             row.append(col3);
             row.append(col4);
             row.append(col5);
-            row.append(col6);
 
-            $("#dynamicTable").find('tbody').append(row);
+            $("#dynamicTable2").find('tbody').append(row);
 
             console.log('ADD ROW()');
         }
 
-        function deleteCheckedRows() {
-            let tableRef = document.getElementById('dynamicTable');
+        //delete row in comprehensive projgram design table
+        function deleteCPD() {
+            let tableRef = document.getElementById('dynamicTable2');
             let tbody = tableRef.querySelector("tbody");
 
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
@@ -464,17 +545,236 @@
 
             console.log('DELETE ROW()');
         }
+        
+        //add row in break down of expenses
+        function addBOE() {
+            var row = document.createElement("tr");
+            var col1 = document.createElement("td");
+            col1.className = "collapsing";
+            var div = document.createElement("div");
+            div.className = "ui fitted checkbox";
+            var cBox = document.createElement("input");
+            cBox.setAttribute('type', 'checkbox');
+            var label = document.createElement("label");
+
+            div.append(cBox);
+            div.append(label);
+            col1.append(div);
+
+            var col2 = document.createElement("td");
+            var input2 = document.createElement("input");
+            input2.className = "inputron no-margin";
+            input2.setAttribute('type', 'text');
+            col2.append(input2);
+            
+            var col3 = document.createElement("td");
+            var input3 = document.createElement("input");
+            input3.className = "inputron no-margin";
+            input3.setAttribute('type', 'number');
+            col3.append(input3);
+
+            var col4 = document.createElement("td");
+            var input4 = document.createElement("input");
+            input4.className = "inputron no-margin";
+            input4.setAttribute('type', 'number');
+            col4.append(input4);
+            
+            var col5 = document.createElement("td");
+            var input5 = document.createElement("input");
+            input5.className = "inputron no-margin";
+            input5.setAttribute('type', 'number');
+            col5.append(input5);
+            
+            row.append(col1);
+            row.append(col2);
+            row.append(col3);
+            row.append(col4);
+            row.append(col5);
+
+            $("#dynamicTable3").find('tbody').append(row);
+
+            console.log('ADD BOE()');
+        }
+        
+        //delete project head
+        function deleteBOE() {
+            let tableRef = document.getElementById('dynamicTable3');
+            let tbody = tableRef.querySelector("tbody");
+
+            let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
+            Array.prototype.slice.call(checkedInputs)
+                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+
+            console.log('DELETE BOE()');
+        }
+        
+        //add row in projected revenue
+        function addProjRev() {
+            var row = document.createElement("tr");
+            var col1 = document.createElement("td");
+            col1.className = "collapsing";
+            var div = document.createElement("div");
+            div.className = "ui fitted checkbox";
+            var cBox = document.createElement("input");
+            cBox.setAttribute('type', 'checkbox');
+            var label = document.createElement("label");
+
+            div.append(cBox);
+            div.append(label);
+            col1.append(div);
+
+            var col2 = document.createElement("td");
+            var input2 = document.createElement("input");
+            input2.className = "inputron no-margin";
+            input2.setAttribute('type', 'text');
+            col2.append(input2);
+            
+            var col3 = document.createElement("td");
+            var input3 = document.createElement("input");
+            input3.className = "inputron no-margin";
+            input3.setAttribute('type', 'number');
+            col3.append(input3);
+
+            var col4 = document.createElement("td");
+            var input4 = document.createElement("input");
+            input4.className = "inputron no-margin";
+            input4.setAttribute('type', 'number');
+            col4.append(input4);
+            
+            var col5 = document.createElement("td");
+            var input5 = document.createElement("input");
+            input5.className = "inputron no-margin";
+            input5.setAttribute('type', 'number');
+            col5.append(input5);
+            
+            row.append(col1);
+            row.append(col2);
+            row.append(col3);
+            row.append(col4);
+            row.append(col5);
+
+            $("#dynamicTable4").find('tbody').append(row);
+
+            console.log('ADD ProjRev()');
+        }
+        
+        //delete row in projected revenue
+        function deleteProjRev() {
+            let tableRef = document.getElementById('dynamicTable4');
+            let tbody = tableRef.querySelector("tbody");
+
+            let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
+            Array.prototype.slice.call(checkedInputs)
+                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+
+            console.log('DELETE ProjRev()');
+        }
+        
+        //add row in projected expenses
+        function addProjExp() {
+            var row = document.createElement("tr");
+            var col1 = document.createElement("td");
+            col1.className = "collapsing";
+            var div = document.createElement("div");
+            div.className = "ui fitted checkbox";
+            var cBox = document.createElement("input");
+            cBox.setAttribute('type', 'checkbox');
+            var label = document.createElement("label");
+
+            div.append(cBox);
+            div.append(label);
+            col1.append(div);
+
+            var col2 = document.createElement("td");
+            var input2 = document.createElement("input");
+            input2.className = "inputron no-margin";
+            input2.setAttribute('type', 'text');
+            col2.append(input2);
+            
+            var col3 = document.createElement("td");
+            var input3 = document.createElement("input");
+            input3.className = "inputron no-margin";
+            input3.setAttribute('type', 'number');
+            col3.append(input3);
+
+            var col4 = document.createElement("td");
+            var input4 = document.createElement("input");
+            input4.className = "inputron no-margin";
+            input4.setAttribute('type', 'number');
+            col4.append(input4);
+            
+            var col5 = document.createElement("td");
+            var input5 = document.createElement("input");
+            input5.className = "inputron no-margin";
+            input5.setAttribute('type', 'number');
+            col5.append(input5);
+            
+            row.append(col1);
+            row.append(col2);
+            row.append(col3);
+            row.append(col4);
+            row.append(col5);
+
+            $("#dynamicTable5").find('tbody').append(row);
+
+            console.log('ADD ProjExp()');
+        }
+        
+        //delete row in projected expenses
+        function deleteProjExp() {
+            let tableRef = document.getElementById('dynamicTable5');
+            let tbody = tableRef.querySelector("tbody");
+
+            let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
+            Array.prototype.slice.call(checkedInputs)
+                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+
+            console.log('DELETE ProjExp()');
+        }
 
         $(document).ready(function () {
-            document.getElementById("btnDeleteRow").addEventListener("click", function () {
-                deleteCheckedRows();
+            
+            document.getElementById("btnAddCPD").addEventListener("click", function () {
+                addCPD();
+            });
+            
+            document.getElementById("btnDeleteCPD").addEventListener("click", function () {
+                deleteCPD();
             });
 
-            document.getElementById("btnAddRow").addEventListener("click", function () {
-                addRow();
+            document.getElementById("btnAddPhead").addEventListener("click", function () {
+                addPhead();
+            });
+
+            document.getElementById("btnDeletePhead").addEventListener("click", function () {
+                deletePhead();
+            });
+            
+            document.getElementById("btnAddBOE").addEventListener("click", function () {
+                addBOE();
+            });
+
+            document.getElementById("btnDeleteBOE").addEventListener("click", function () {
+                deleteBOE();
+            });
+            
+            document.getElementById("btnAddProjRev").addEventListener("click", function () {
+                addProjRev();
+            });
+
+            document.getElementById("btnDeleteProjRev").addEventListener("click", function () {
+                deleteProjRev();
+            });
+            
+            document.getElementById("btnAddProjExp").addEventListener("click", function () {
+                addProjExp();
+            });
+
+            document.getElementById("btnDeleteProjExp").addEventListener("click", function () {
+                deleteProjExp();
             });
         });
-    </script>
+    </script>       
 </body>
-
+    
 </html>
