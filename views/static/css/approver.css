@@ -200,9 +200,10 @@ header{
 
 #search{
 	width: 30em;
-	text-indent: 30px;
+/*	text-indent: 30px;*/
 	background-image: url('../assets/icons/round-search-24px.svg');
 	background-repeat: no-repeat;
+    padding-left: 40px;
 	background-position: 10px;
 	background-size: 25px;
 }
@@ -375,6 +376,14 @@ header{
 	cursor: pointer;
 }
 
+#quick-view .positive{
+    background-color: var(--theme-color);
+}
+
+#quick-view .negative{
+    background-color: #FF4F4F;
+}
+
 #main-content .content-wrapper .activity-icon.positive{
 	color: var(--theme-color);
 	border: thin solid var(--theme-color);
@@ -388,13 +397,16 @@ header{
 }
 
 .positive:hover{
-	color: var(--theme-color);
+/*	color: var(--theme-color);*/
+    color: white;
 }
 
 .negative:hover{
-	color: #FF4F4F;
+/*	color: #FF4F4F;*/
+    color: white;
 }
 
+/*
 #quick-view .action:hover{
 	background-color: white;
-}
+}*/
