@@ -55,7 +55,7 @@ module.exports.controller = function (app) {
         var id = req.params.id
         
         preactsService.findFormViaId(id).then((formData)=>{
-            var form = formData[0]
+            var form = formData
             form.status = "Approved"
             preactsService.updateForm(form).then((updatedForm)=>{
                 preactsService.findFormViaId(form._id).then((formData1)=>{
@@ -70,7 +70,7 @@ module.exports.controller = function (app) {
         var id = req.params.id
         
         preactsService.findFormViaId(id).then((formData)=>{
-            var form = formData[0]
+            var form = formData
             form.status = "Rejected"
             preactsService.updateForm(form).then((updatedForm)=>{
                 preactsService.findFormViaId(form._id).then((formData1)=>{

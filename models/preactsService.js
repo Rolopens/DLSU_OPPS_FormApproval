@@ -54,7 +54,7 @@ module.exports.findFormViaId = function (_id) {
     return new Promise(function (resolve, reject) {
 
         //Search for db with the title with the substring
-        Form.find({
+        Form.findOne({
             _id
         }).then((similarForms) => {
             resolve(similarForms)
