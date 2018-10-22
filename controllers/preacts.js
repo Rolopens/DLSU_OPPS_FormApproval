@@ -40,6 +40,46 @@ module.exports.controller = function (app) {
                 })
             });
     });
+    
+    //ajax request for quick view
+    app.get("/preacts/:id", function(req,res){
+        var id = req.params.id
+        
+        preactsService.findFormViaId(id).then((formData)=>{
+            res.send(formData)
+        })
+    })
+    
+    //ajax request for approving a form
+    app.post("/preacts/approve/:id", function(req, res){
+        var id = req.params.id
+        
+        preactsService.findFormViaId(id).then((formData)=>{
+            var form = formData[0]
+            form.status = "Approved"
+            preactsService.updateForm(form).then((updatedForm)=>{
+                preactsService.findFormViaId(form._id).then((formData1)=>{
+                    res.send(formData1)
+                })
+            })
+        })
+    })
+    
+    //ajax request for rejecting a form
+    app.post("/preacts/reject/:id", function(req, res){
+        var id = req.params.id
+        
+        preactsService.findFormViaId(id).then((formData)=>{
+            var form = formData[0]
+            form.status = "Rejected"
+            preactsService.updateForm(form).then((updatedForm)=>{
+                preactsService.findFormViaId(form._id).then((formData1)=>{
+                    res.send(formData1)
+                })
+            })
+        })
+    })
+    
     //preacts page for submitters
     app.get('/preacts-submission', function (req, res) {
 
@@ -55,14 +95,13 @@ module.exports.controller = function (app) {
         var form = new Form({
             "title": req.body.title,
             "nature": req.body.nature,
-            "typeOfActivity": req.body.type,
+            "typeOfActivity": req.body.typeOfActivity,
             "enmp": req.body.enmp,
             "enp": req.body.enp,
             "startDate": new Date(req.body.dateOfActivity),
             "venue": req.body.venue,
             "context": req.body.context,
             "objectives": [req.body.objective1, req.body.objective2, req.body.objective3],
-            "state": req.body.state,
             "comments": null,
             "position": null,
             "projectHeads": [{
@@ -72,7 +111,7 @@ module.exports.controller = function (app) {
             "creationDate": new Date,
             "org": req.body.org,
             "position": "Documents Committee",
-            "status": "Pending"
+            "status": "Pending" 
         });
         //        if(req.session.uid == null){
         //            resp.redirect('/');

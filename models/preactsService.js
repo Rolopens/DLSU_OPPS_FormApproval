@@ -102,7 +102,7 @@ module.exports.updateForm = function (form) {
             venue: form.venue,
             context: form.context,
             objectives: form.objectives,
-            state: form.state,
+            status: form.status,
             comments: form.comments,
             position: form.position,
             projectHeads: form.projectHeads
