@@ -1,134 +1,137 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Approver Dashboard</title>
-		<!-- external links -->
-		<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
-		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
 
-		<!-- stylesheet -->
-		<link rel="stylesheet" type="text/css" href="css/theme.css" />
-		<link rel="stylesheet" type="text/css" href="css/variables.css" />
-		<link rel="stylesheet" type="text/css" href="css/approver.css" />
-		<!-- element-stylesheet -->
-		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/flex.css" />
-		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
-		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/field.css" />
+<head>
+    <title>Approver Dashboard</title>
+    <!-- external links -->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
 
-		<!-- javascript -->
-		<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
-		<script src="js/approver.js" type="text/javascript"></script>
-        
-        <style>
-            .dropdown {
-                float: left;
-                overflow: hidden;
-            }
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/variables.css" />
+    <link rel="stylesheet" type="text/css" href="css/approver.css" />
+    <!-- element-stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/element-stylesheet/flex.css" />
+    <link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
+    <link rel="stylesheet" type="text/css" href="css/element-stylesheet/field.css" />
 
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
+    <!-- javascript -->
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/approver.js" type="text/javascript"></script>
 
-            .dropdown-content a {
-                float: none;
-                color: black;
-                padding: 12px 16px;
-                display: block;
-                font-family: "Lato", sans-serif;
-                margin: 0;
-            }
+    <style>
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
 
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-        </style>
-	</head>
-	<body>
-		<div id = "preacts">
-			<%- include("nav_bar.ejs", this) %>
-			<nav id="secondary-nav">
-				<img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
-				<br/><br/>
-				<div class="filter-wrapper">
-					<div class="filter-title">
-						<i class="fa fa-filter fa-2x"></i>
-						<span>&nbsp;&nbsp;&nbsp;Filter Activities:</span>
-					</div>
-					<hr/>
-					<ul>
-						<li v-for = "item in filter.status">
-							<label>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            display: block;
+            font-family: "Lato", sans-serif;
+            margin: 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="preacts">
+        <%- include("nav_bar.ejs", this) %>
+            <nav id="secondary-nav">
+                <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
+                <br/><br/>
+                <div class="filter-wrapper">
+                    <div class="filter-title">
+                        <i class="fa fa-filter fa-2x"></i>
+                        <span>&nbsp;&nbsp;&nbsp;Filter Activities:</span>
+                    </div>
+                    <hr/>
+                    <ul>
+                        <li v-for="item in filter.status">
+                            <label>
 								<input type="checkbox" />
 								<span class="checkmark"><i class="fa fa-check"></i></span>
 								<span> {{ item }} </span>
 							</label>
-						</li>
-					</ul>
-				</div>
-				<div class="filter-wrapper">
-					<div class="filter-title">
-						<i class="fa fa-filter fa-2x"></i>
-						<span>&nbsp;&nbsp;&nbsp;College Filter:</span>
-					</div>
-					<hr/>
-					<ul>
-						<li v-for = "item in filter.colleges">
-							<label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="filter-wrapper">
+                    <div class="filter-title">
+                        <i class="fa fa-filter fa-2x"></i>
+                        <span>&nbsp;&nbsp;&nbsp;College Filter:</span>
+                    </div>
+                    <hr/>
+                    <ul>
+                        <li v-for="item in filter.colleges">
+                            <label>
 								<input type="checkbox" />
 								<span class="checkmark"><i class="fa fa-check"></i></span>
 								<span> {{item}}</span>
 							</label>
-						</li>
-					</ul>
-				</div>
-			</nav>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-			<header>
-				<div id="account" class="flex-end">
+            <header>
+                <div id="account" class="flex-end">
                     <div class="dropdown">
                         <span id="account-name">
                             Timmy Tiberius Turner &nbsp; <i id="dropdownTab" class="fa fa-angle-down"></i>
                         </span>
                         <div class="dropdown-content">
-                          <a href="/logout">Logout</a>
+                            <a href="/logout">Logout</a>
                         </div>
                     </div>
-				</div>
-				<h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
-				<nav id="acts-nav">
-					<ul>
-						<li class="active">All (243)</li>
-						<li>Unreviewed (100)</li>
-						<li>Accepted (43)</li>
-						<li>Rejected (50)</li>
-						<li>Pending (50)</li>
-					</ul>
-				</nav>
-			</header>
-			<section>
-                <input type="hidden" value= "<%=forms.length%>" id="formLength">
-				<div id="main-content">
-					<div id="select-wrapper">
-						<label id="select-all">
+                </div>
+                <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
+                <nav id="acts-nav">
+                    <ul>
+                        <li class="active">All (243)</li>
+                        <li>Unreviewed (100)</li>
+                        <li>Accepted (43)</li>
+                        <li>Rejected (50)</li>
+                        <li>Pending (50)</li>
+                    </ul>
+                </nav>
+            </header>
+            <section>
+                <input type="hidden" value="<%=forms.length%>" id="formLength">
+                <div id="main-content">
+                    <div id="select-wrapper">
+                        <label id="select-all">
 							<input type="checkbox" name="select-all" />
 							<span class="checkmark"><i class="fa fa-check"></i></span>
 						</label>
-						<input id="search" type="text" name="search" placeholder="Search something..." />
-					</div>
+                        <input id="search" type="text" name="search" placeholder="Search something..." />
+                    </div>
                     <% if (forms.length != 0) {%>
-					<div class="content-feed">
-                        <% for(var i=0; i<forms.length; i++) { %>
-                        
-                        <div class="content-wrapper" id="item-<%=i%>" data-id="<%= forms[i]._id%>">
+                        <div class="content-feed">
+                            <% for(var i=0; i<forms.length; i++) { %>
 
-<!--
+                                <div class="content-wrapper" id="item-<%=i%>" data-id="<%= forms[i]._id%>" onclick="quickDisplay('<%= forms[i]._id%>')">
+
+                                    <!--
 <<<<<<< HEAD
 >>>>>>> 183b786aa02d134c92886c26e157951bf2def0c9
 =======
@@ -138,65 +141,72 @@
 								<span class="checkmark"><i class="fa fa-check"></i></span>
 							</label>
 -->
-							<div class="activity-wrapper flex-start">
-								<div class="activity-icon positive"><i class="fa fa-check"></i></div>
-								<div class="activity">
-									<h3 name="FormTitle"><%= forms[i].title%></h3>
-									<p name="FormDetails"><%= forms[i].org%> | <%= forms[i].startDate%></p>
-								</div>
-							</div>
-							<div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-						</div>
-                        <% } %>
-                        
-					</div>
-                    <% } %>
+                                    <div class="activity-wrapper flex-start">
+                                        <div class="activity-icon positive"><i class="fa fa-check"></i></div>
+                                        <div class="activity">
+                                            <h3 name="FormTitle">
+                                                <%= forms[i].title%>
+                                            </h3>
+                                            <p name="FormDetails">
+                                                <%= forms[i].org%> |
+                                                    <%= forms[i].startDate%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                                </div>
+                                <% } %>
 
-				</div>
-				<div id="sidebar">
-					<h3 class="action-title">Quick View</h3>
-					<div id="quick-view">
-						<div class="info">
-							<h4>Title</h4>
-							<p id="Title"></p>
-						</div>
-						<div class="info">
-							<h4>Nature</h4>
-							<p id="Nature"></p>
-						</div>
-						<div class="info">
-							<h4>Type</h4>
-							<p id="Type"></p>
-						</div>
-						<div class="info">
-							<h4>Date</h4>
-							<p id="startDate"></p>
-						</div>
-						<div class="info">
-							<h4>Time</h4>
-							<p id="startTime"></p>
-						</div>
-						<div class="info">
-							<h4>Venue</h4>
-							<p id="location"></p>
-						</div>
+                        </div>
+                        <% } %>
+
+                </div>
+                <div id="sidebar">
+                    <h3 class="action-title">Quick View</h3>
+                    <div id="quick-view">
                         <div class="info">
-							<h4>Status</h4>
-							<p id="status"></p>
-						</div>
-						<br/>
-						<button class="hallow">View Activity</button>
-						<br/><br/><br/>
-						<p class="action positive" id="ApproveForm"><i class="fa fa-check-circle"></i> &nbsp; Accept Activity</p>
-						<hr/>
-						<p class="action negative" id="RejectForm"><i class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
-						<hr/>
-					</div>
-				</div>
-			</section>
-		</div>
-	</body>
-	<script src="lib/vue.min.js" type="text/javascript"></script>
-	<script src="js/vue_preacts.js" type="text/javascript"></script>
-    <script src="js/preacts_ajax.js" type="text/javascript"></script>
+                            <h4>Title</h4>
+                            <p id="Title"></p>
+                        </div>
+                        <div class="info">
+                            <h4>Nature</h4>
+                            <p id="Nature"></p>
+                        </div>
+                        <div class="info">
+                            <h4>Type</h4>
+                            <p id="Type"></p>
+                        </div>
+                        <div class="info">
+                            <h4>Date</h4>
+                            <p id="startDate"></p>
+                        </div>
+                        <div class="info">
+                            <h4>Time</h4>
+                            <p id="startTime"></p>
+                        </div>
+                        <div class="info">
+                            <h4>Venue</h4>
+                            <p id="location"></p>
+                        </div>
+                        <div class="info">
+                            <h4>Status</h4>
+                            <p id="status"></p>
+                        </div>
+                        <br/>
+                        <button class="hallow">View Activity</button>
+                        <br/><br/><br/>
+                        <p class="action positive" id="ApproveForm"><i class="fa fa-check-circle"></i> &nbsp; Accept Activity</p>
+                        <hr/>
+                        <p class="action negative" id="RejectForm"><i class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
+                        <hr/>
+                    </div>
+                </div>
+            </section>
+    </div>
+</body>
+<script src="lib/vue.min.js" type="text/javascript"></script>
+<script src="js/vue_preacts.js" type="text/javascript"></script>
+<script src="js/preacts_ajax.js" type="text/javascript"></script>
+
+
 </html>
