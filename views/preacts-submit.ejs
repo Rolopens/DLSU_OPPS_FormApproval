@@ -78,7 +78,7 @@
 						<i class="fa fa-file"></i> &nbsp; Pre-Activities Submission
 					</h1>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="hallow" data-toggle="modal" data-target="#addorg_modal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Pre-acts Form</button>
+					<button class="hallow" data-toggle="modal" data-target="#addorg_modal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Pre-Activities Form</button>
 				</div>
 				<nav id="acts-nav">
 					<ul>
@@ -92,13 +92,18 @@
 			<section>
 				<div id="main-content">
 					<div id="select-wrapper">
-						<input id="search" type="text" name="search" placeholder="Search something..." />
+						<input id="search" type="text" name="search" placeholder="Search for an activity..." />
 					</div>
 					
-					<div class="content-feed" id="organization">
-						<div class="content-feed" v-if="orgs.length == 0">
-							No forms submitted yet
-						</div> 
+					<div class="content-feed" id="organization">                               
+                        <div class="content-empty">
+                            <div class="activity-wrapper flex-start" v-if="orgs.length == 0">
+                                <div class="activity">
+                                    No forms submitted yet.
+                                </div>
+                            </div>
+                        </div>
+                        
 						<div v-else v-for="org in orgs">
 							
 							<div v-on:click = "quickview = org" class="content-wrapper">
@@ -157,7 +162,7 @@
 				
 					<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Create New Pre-acts Form</h4>
+							<h4 class="modal-title">Create New Pre-Activities Form</h4>
 						</div>
 						<form action="/preacts-submission" method="POST">
 						<!-- Modal body -->

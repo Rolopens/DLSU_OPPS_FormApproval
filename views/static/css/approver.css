@@ -285,6 +285,11 @@ header{
 	cursor: pointer;
 }
 
+#main-content .content-feed .content-empty{
+	padding: 20;
+	margin: 1em 0;
+}
+
 #main-content .content-feed .content-wrapper.active{
 	border-color: var(--theme-color);
 }
