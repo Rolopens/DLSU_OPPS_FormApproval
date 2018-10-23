@@ -302,6 +302,7 @@ header{
 	position: relative;
 	display: inline-block;
 	margin: 0 2em;
+    overflow-x: auto;
 }
 
 #main-content .content-feed .content-wrapper .goto{
