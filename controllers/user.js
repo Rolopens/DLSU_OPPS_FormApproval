@@ -6,12 +6,20 @@ let roleService = require(path.join(__dirname, "..", "models", "roleService.js")
 
 module.exports.controller = function (app) {
     app.get('/accounts', function(req, res) {
+      userService.hasUserManagementRights(req.session.uid)
+      .then((result)=>{
+        if (!result) throw Error("User does not have user management rights");
         res.render('user-management', {
           preacts : true,
           postacts : true,
           accounts : true,
           organization : true
         });
+      })
+      .catch((err)=>{
+        console.log(err);
+        res.redirect("/preacts");
+      })
     })
 
     /*
@@ -85,50 +93,65 @@ module.exports.controller = function (app) {
     */
 
     app.get('/users', function(req, res) {
-        userService.getAllUsers(function(rows){
-            var toSend=[]
-            if(rows != undefined) {
-                toSend = rows
-            }
-            res.send({users: toSend})
+        userService.getAllExpandedUsers().then((result)=>{
+            res.send({users: result})
+        }).catch((err)=>{
+            console.log(err);
+            res.send({users: []});
         })
+    })
+
+    app.get('/users/id/:id', (req, res)=>{
+        userService.getExpandedUserWithId(req.params.id)
+        .then((result)=>{
+            res.send({user: result});
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.send({user: null});
+        })
+    });
+
+    app.get('/users/orgtype/:orgtype', (req, res)=>{
+      userService.getExpandedUsersWithOrgType(req.params.orgtype)
+      .then((users)=>{
+        res.send({users});
+      })
+      .catch((err)=>{
+        console.log(err);
+        res.send({users: null});
+      })
+    })
+
+    // sends data for currently logged-in user
+    app.get('/whoami', (req, res)=>{
+      userService.getExpandedUserWithId(req.session.uid)
+      .then((user)=>{
+        res.send({user});
+      })
+      .catch((err)=>{
+        console.log(err);
+        res.send({user: null});
+      })
     })
 
     app.get('/roles', function(req, res) {
-        userService.userGetAllRoles(function(rows){
-            var toSend=[]
-            if(rows != undefined) {
-                toSend = rows
-            }
-            res.send({roles: toSend})
+        roleService.getAllRoles().then((result)=>{
+            res.send({roles: result})
+        }).catch((err)=>{
+            console.log(err);
         })
     })
 
-    app.get('/users/organizations', function(req, res) {
-        userService.getUserType(req.session.uid, function(row) {
-            //console.log(row.data)
-            var toSend=[]
-            if(row.status) {
-                var orgHead = row.data.filter((x)=>x.role_name == 'ORGUNIT_HEAD')
-                var approver = row.data.filter((x)=>x.role_name == 'APPROVER_ADMIN')
-                var affil = row.data.filter((x)=>x.role_name == 'AFFILIATION_ADMIN')
-                if(orgHead.length != 0)
-                    toSend.push(orgHead)
-                if(approver.length != 0)
-                    toSend.push(approver)
-                if(affil != 0) {
-                    orgService.getAllTypeOrgs(affil[0].type, function(rows) {
-                        toSend.push(rows)
-                        return res.send({orgs: toSend})
-                    })
-                } else res.send({orgs: toSend})
-            }
-
-        })
-
+    app.get('/orgs', function(req, res) {
+      orgService.getAllOrgs().then((orgs)=>{
+        res.send({orgs});
+      }).catch((err)=>{
+        console.log(err);
+      })
     })
 
-    app.put("/accounts", function(req,res){
+    /*app.put("/accounts", function(req,res){
         if(req.session.uid == null) {
             return res.redirect('/')
         }
@@ -154,5 +177,5 @@ module.exports.controller = function (app) {
                 })
             }
         })
-    })
+    })*/
 }

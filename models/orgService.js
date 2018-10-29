@@ -130,5 +130,35 @@ function getOrgsWithOrgType(orgType){
   );
 }
 
+function getAllOrgs(){
+  return new Promise(
+    function (resolve, reject){
+      Org.find({})
+      .then((orgs)=>{
+        resolve(orgs);
+      })
+      .catch((err)=>{
+        reject(err);
+      })
+    }
+  );
+}
+
+function getOrgWithAbbrev(abbrev){
+  return new Promise(
+    function (resolve, reject){
+      Org.findOne({abbrev : abbrev.toUpperCase()})
+      .then((org)=>{
+        if (org) resolve(org);
+        else reject(Error("Org does not exist"));
+      })
+      .catch((err)=>{
+        reject(err);
+      });
+    }
+  );
+}
+
 module.exports = {activateOrg, deactivateOrg, findSpecificOrg, orgExists,
-  deleteOrg, updateOrg, createOrg, changeOrgStatus, getOrgsWithOrgType};
+  deleteOrg, updateOrg, createOrg, changeOrgStatus, getOrgsWithOrgType,
+  getAllOrgs, getOrgWithAbbrev};

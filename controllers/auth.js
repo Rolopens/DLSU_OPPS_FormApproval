@@ -5,7 +5,8 @@ const authService = require(path.join(__dirname, "..", "models", "authService.js
 module.exports.controller = function (app) {
 
     app.get('/login', function(req, res) {
-        res.render('index');
+        if (!req.session.uid) res.redirect("/");
+        else res.redirect("/preacts");
     })
 
     app.post('/login', function(req, res) {

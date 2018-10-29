@@ -18,8 +18,16 @@ var postacts_app = new Vue({
                 "Economics (SOE)"
             ]
         }
-    },
-    methods: {
-
+        ,
+//        whoami: null
     }
+//    ,
+//    created: function(){
+//      axios.get('/whoami')
+//      .then((rows)=> {console.log(rows);this.whoami = rows.data.user;return this.whoami;})
+    }
+//                           ,
+//    methods: {
+
+//    }
 })

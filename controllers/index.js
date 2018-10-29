@@ -1,5 +1,9 @@
 module.exports.controller = function(app) {
     app.get('/', function(req, res) {
-        res.render('index')
+      if (req.session.uid) {
+        res.redirect("/preacts");
+      } else {
+        res.render('index');
+      }
     });
 }

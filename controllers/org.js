@@ -1,16 +1,25 @@
 const path = require("path");
 
 let orgService = require(path.join(__dirname, "..", "models", "orgService"));
+let userService = require(path.join(__dirname, "..", "models", "userService.js"));
 
 module.exports.controller = function (app) {
 
     app.get('/organization', function(req, res) {
-        res.render('org-management', {
-          preacts : true,
-          postacts : true,
-          accounts : true,
-          organization : true
-        });
+        userService.hasOrgManagementRights(req.session.uid)
+        .then((result)=>{
+          if (!result) throw Error("User does not have org management rights");
+          res.render('org-management', {
+            preacts : true,
+            postacts : true,
+            accounts : true,
+            organization : true
+          });
+        })
+        .catch((err)=>{
+          console.log(err);
+          res.redirect("/preacts");
+        })
     })
 
     // adding org

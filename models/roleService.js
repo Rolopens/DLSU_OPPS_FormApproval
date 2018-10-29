@@ -58,4 +58,20 @@ function createRole(data){
   );
 }
 
-module.exports = {getAllRoles, getRoleWithId, roleExists, createRole};
+function getRoleWithName(name){
+  return new Promise(
+    function (resolve, reject){
+      Role.findOne({name})
+      .then((role)=>{
+        if (role) resolve(role);
+        else reject(Error("Role does not exist"));
+      })
+      .catch((err)=>{
+        reject(err);
+      });
+    }
+  );
+}
+
+module.exports = {getAllRoles, getRoleWithId,
+  roleExists, createRole, getRoleWithName};

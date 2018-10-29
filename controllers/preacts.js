@@ -15,6 +15,7 @@ module.exports.controller = function (app) {
         // is in the session
         var roleID;
         //      var canSee = false;
+        if (!req.session.uid) res.redirect("/");
         userService.getUserWithId(req.session.uid)
             .then((result) => {
                 var rolePromises = [];
@@ -38,48 +39,52 @@ module.exports.controller = function (app) {
                         forms: results
                     });
                 })
+            })
+            .catch((err) => {
+                console.log(err);
+                res.redirect("/");
             });
     });
-    
+
     //ajax request for quick view
-    app.get("/preacts/:id", function(req,res){
+    app.get("/preacts/:id", function (req, res) {
         var id = req.params.id
-        
-        preactsService.findFormViaId(id).then((formData)=>{
+
+        preactsService.findFormViaId(id).then((formData) => {
             res.send(formData)
         })
     })
-    
+
     //ajax request for approving a form
-    app.post("/preacts/approve/:id", function(req, res){
+    app.post("/preacts/approve/:id", function (req, res) {
         var id = req.params.id
-        
-        preactsService.findFormViaId(id).then((formData)=>{
+
+        preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Approved"
-            preactsService.updateForm(form).then((updatedForm)=>{
-                preactsService.findFormViaId(form._id).then((formData1)=>{
+            preactsService.updateForm(form).then((updatedForm) => {
+                preactsService.findFormViaId(form._id).then((formData1) => {
                     res.send(formData1)
                 })
             })
         })
     })
-    
+
     //ajax request for rejecting a form
-    app.post("/preacts/reject/:id", function(req, res){
+    app.post("/preacts/reject/:id", function (req, res) {
         var id = req.params.id
-        
-        preactsService.findFormViaId(id).then((formData)=>{
+
+        preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Rejected"
-            preactsService.updateForm(form).then((updatedForm)=>{
-                preactsService.findFormViaId(form._id).then((formData1)=>{
+            preactsService.updateForm(form).then((updatedForm) => {
+                preactsService.findFormViaId(form._id).then((formData1) => {
                     res.send(formData1)
                 })
             })
         })
     })
-    
+
     //preacts page for submitters
     app.get('/preacts-submission', function (req, res) {
 
@@ -111,7 +116,7 @@ module.exports.controller = function (app) {
             "creationDate": new Date,
             "org": req.body.org,
             "position": "Documents Committee",
-            "status": "Pending" 
+            "status": "Pending"
         });
         //        if(req.session.uid == null){
         //            resp.redirect('/');
