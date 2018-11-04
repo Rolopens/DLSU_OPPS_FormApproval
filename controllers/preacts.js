@@ -96,11 +96,13 @@ module.exports.controller = function (app) {
         });
     });
 
+    //form page 1
     app.get('/create-form', function (req, res) {
         res.render('form1');
 
     });
 
+    //form page 2
     app.post('/create-form-2', function (req, res) {
         res.render('form2');
         req.session.title = req.body.title;
