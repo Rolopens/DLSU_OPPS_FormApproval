@@ -94,8 +94,16 @@ module.exports.controller = function (app) {
             accounts: canSee,
             organization: canSee
         });
-        //}
     });
+    
+    app.get('/create-form', function (req, res) {
+        res.render('form1');
+    });
+    
+    app.post('/create-form-2', function (req, res) {
+        res.render('form2');
+    });
+    
     app.post('/preacts-submission', function (req, res) {
         var form = new Form({
             "title": req.body.title,

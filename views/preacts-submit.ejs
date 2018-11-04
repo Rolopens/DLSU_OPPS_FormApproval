@@ -30,7 +30,7 @@
 	</head>
 	<body>
 		<div id = "orgs">
-			<!-- TO CREATE MODAL PREVIEW/EDIT HERE -->
+            
 			<%- include nav_bar.ejs %>
 			<nav id="secondary-nav">
 				<img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
@@ -78,7 +78,9 @@
 						<i class="fa fa-file"></i> &nbsp; Pre-Activities Submission
 					</h1>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="hallow" data-toggle="modal" data-target="#addorg_modal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Pre-Activities Form</button>
+                    <form action="create-form" method="get">
+                        <button class="hallow" data-toggle="modal" data-target="#addorg_modal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Pre-Activities Form</button>
+                    </form>
 				</div>
 				<nav id="acts-nav">
 					<ul>
@@ -154,108 +156,6 @@
 					</div>
 				</div>
 			</section>
-
-			<!-- The Modal -->
-			<div class="modal" id="addorg_modal">
-				<div class="modal-dialog modal-medium">
-					<div class="modal-content">
-				
-					<!-- Modal Header -->
-						<div class="modal-header">
-							<h4 class="modal-title">Create New Pre-Activities Form</h4>
-						</div>
-						<form action="/preacts-submission" method="POST">
-						<!-- Modal body -->
-							<div class="modal-body">
-								<table class="modal-table">
-									<tr>
-										<td>Title of Activity<br/>
-											<input type="text" name="title" class="full-width" required>
-										</td> 
-									</tr>
-									<tr>
-										<td>Nature of Activity<br/>
-											<input type="text" name="nature" class="full-width" required>
-										</td>
-									</tr>
-                                    <tr>
-										<td>Type of Activity<br/>
-											<input type="text" name="typeOfActivity" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Date of Activity<br/>
-											<input type="date" name="dateOfActivity" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>ENMP<br/>
-											<input type="number" name="enmp" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>ENP<br/>
-											<input type="number" name="enp" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Venue<br/>
-											<input type="text" name="venue" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Context<br/>
-											<input type="text" name="context" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Objective 1<br/>
-											<input type="text" name="objective1" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Objective 2<br/>
-											<input type="text" name="objective2" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Objective 3<br/>
-											<input type="text" name="objective3" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>State of Activity<br/>
-											<input type="text" name="state" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Project Head<br/>
-											<input type="text" name="phead" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Contact Number<br/>
-											<input type="number" name="cnumber" class="full-width" required>
-										</td> 
-									</tr>
-                                    <tr>
-										<td>Organization<br/>
-											<input type="text" name="org" class="full-width" required>
-										</td> 
-									</tr>
-                                    
-								</table>
-							</div>
-					
-					       <!-- Modal footer -->
-							<div class="modal-footer">
-								<button type="button" class="hallow radius-full" data-dismiss="modal">Cancel</button>
-								<button type="submit" class="radius-full">Submit</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
 		</div>
 	</body>
 	
