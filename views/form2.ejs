@@ -170,7 +170,7 @@
                 <thead class="full-width">
                     <tr style="text-align: center;">
                         <th style="width: 40px;"></th>
-                        <th class="item" style="width: 80%">Source/s of Funds</th>
+                        <th class="item" style="width: 50%">Source/s of Funds</th>
                         <th class="item">Amount</th>
                     </tr>
                 </thead>
@@ -179,19 +179,19 @@
                         <td class="collapsing">
                         </td>
                         <td>Organizational Funds</td>
-                        <td><input class="inputron no-margin" name="OrganizationalFunds" type="number" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
                         </td>
                         <td>Participants Fee</td>
-                        <td><input class="inputron no-margin" name="ParticipantsFee" type="number" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="ParticipantsFee" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
                         </td>
                         <td>Others (i.e. Sponsorships)</td>
-                        <td><input class="inputron no-margin" name="OtherFunds" type="number" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00" min="0"  step="0.01" required></td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -202,7 +202,7 @@
                                 Total:
                             </div>
                         </th>
-                        <th class="result" name="totalSource">n/a</th>
+                        <th class="result" name="totalSource">Php 0.00</th>
                     </tr>
                 </tfoot>
             </table>
@@ -213,7 +213,7 @@
                 <thead class="full-width">
                     <tr style="text-align: left;">
                         <th style="width: 40px;"></th>
-                        <th class="item" style="width: 80%">Accumulated Operational Funds</th>
+                        <th class="item" style="width: 50%">Accumulated Operational Funds</th>
                         <th class="item"></th>
                     </tr>
                 </thead>
@@ -227,9 +227,7 @@
                                 Operational Fund
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" name="OperationalFund" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="OperationalFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     
                     <tr>
@@ -248,9 +246,7 @@
                                 Depository Fund
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" name="DepositoryFund" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="DepositoryFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -268,22 +264,7 @@
                                 Participants Fee/Donation/Sponsorships
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" name="OtherFund" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing">
-
-                        </td>
-                        <td>
-                            <div class="right bold">
-                                Accumulated Operational Funds
-                            </div>
-                        </td>
-                        <td class="php"> <input class="inputron no-margin" name="AccumulatedFund" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -294,7 +275,7 @@
                                 Total Cash For Disbursement
                             </div>
                         </td>
-                        <td class="bg-gray ">Php</td>
+                        <td class="bg-gray" name="totalDisbursement">Php 0.00</td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -305,9 +286,7 @@
                                 Less: Total Projected Expenses
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" name="ProjectedExpenses" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="ProjectedExpenses" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -318,7 +297,7 @@
                                 REMAINING BALANCE
                             </div>
                         </td>
-                        <td>Php</td>
+                        <td>Php 0.00</td>
                     </tr>
                 </tbody>
             </table>
@@ -784,6 +763,38 @@
 
             document.getElementById("btnDeleteProjExp").addEventListener("click", function () {
                 deleteProjExp();
+            });
+            
+            //adds Source of Funds automatically and Organizational Funds
+            $("input").change(function() {
+                var sum_SOF = 0;
+                var sum_OF = 0;
+                var remBalance = 0;
+                
+                //Source of Funds
+                $("input[name=OrganizationalFunds]").each(function() {
+                    sum_SOF = sum_SOF + parseFloat($(this).val());
+                });
+                $("input[name=ParticipantsFee]").each(function() {
+                    sum_SOF = sum_SOF + parseFloat($(this).val());
+                });
+                $("input[name=OtherFunds]").each(function() {
+                    sum_SOF = sum_SOF + parseFloat($(this).val());
+                });
+                $("th[name=totalSource]").text("Php " + sum_SOF.toFixed(2));
+                
+                //Organizational Funds
+                $("input[name=OperationalFund]").each(function() {
+                    sum_OF = sum_OF + parseFloat($(this).val());
+                });
+                $("input[name=DepositoryFund]").each(function() {
+                    sum_OF = sum_OF + parseFloat($(this).val());
+                });
+                $("input[name=OtherFund]").each(function() {
+                    sum_OF = sum_OF + parseFloat($(this).val());
+                });
+                $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
+                
             });
         });
     </script>       

@@ -27,6 +27,11 @@ textarea {
     width: 100%;
 }
 
+.table_input {
+    margin-top: 0px;
+    width: 70%;
+}
+
 .inputron:focus {
     outline: none;
 
