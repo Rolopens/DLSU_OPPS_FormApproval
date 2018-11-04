@@ -90,6 +90,7 @@ var formSchema = new Schema({
         operational_fund: Number,
         depository_fund: Number,
         other_fund: Number,
+        accumulated_fund: Number,
         total_disbursement: Number,
         projected_expenses: Number,
         rem_balance: Number

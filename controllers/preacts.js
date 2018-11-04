@@ -128,7 +128,7 @@ module.exports.controller = function (app) {
         } else {
             req.session.GOSM = false;
         }
-
+        console.log("FORM CREATION")
         console.log("DEBUG: " + req.session.title);
         console.log("DEBUG: " + req.session.nature);
         console.log("DEBUG: " + req.session.type);
@@ -156,7 +156,23 @@ module.exports.controller = function (app) {
             name: req.body.namePR,
             position: req.body.positionPR
         }
+        req.session.sourceFunds = {
+            organization_funds: req.body.OrganizationalFunds,
+            participants_fee: req.body.ParticipantsFee,
+            others: req.body.OtherFunds,
+            total: req.body.OrganizationalFunds + req.body.ParticipantsFee + req.body.OtherFunds
+        }
+        req.session.organizational_funds = {
+            operational_fund: req.body.OperationalFund,
+            depository_fund: req.body.DepositoryFund,
+            other_fund: req.body.OtherFund,
+            accumulated_fund: req.body.AccumulatedFund,
+            total_disbursement: req.body.OperationalFund + req.body.DepositoryFund + req.body.OtherFund + req.body.AccumulatedFund,
+            projected_expenses: req.body.ProjectedExpenses,
+            rem_balance: req.body.OperationalFund + req.body.DepositoryFund + req.body.OtherFund + req.body.AccumulatedFund - req.body.ProjectedExpenses
+        }
         
+        console.log("FROM CREATION PART 2")
         console.log("DEBUG: " + req.session.context1);
         console.log("DEBUG: " + req.session.context2);
         console.log("DEBUG: " + req.session.context3);
