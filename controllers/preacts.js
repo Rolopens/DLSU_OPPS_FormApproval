@@ -95,15 +95,87 @@ module.exports.controller = function (app) {
             organization: canSee
         });
     });
-    
+
     app.get('/create-form', function (req, res) {
         res.render('form1');
+
     });
-    
+
     app.post('/create-form-2', function (req, res) {
         res.render('form2');
+        req.session.title = req.body.title;
+        req.session.nature = req.body.nature;
+        if (req.body.type == 'Others') {
+            req.session.type = req.body.typeOthers;
+        } else {
+            req.session.type = req.body.type;
+        }
+        req.session.startDate = req.body.startDate;
+        req.session.startTime = req.body.startTime;
+        req.session.endDate = req.body.endDate;
+        req.session.endTime = req.body.endTime;
+        req.session.venue = req.body.venue;
+        req.session.enmp = req.body.enmp;
+        req.session.emp = req.body.emp;
+        req.session.reach = req.body.reach;
+        if (req.body.online == 'yes') {
+            req.session.online = true;
+        } else {
+            req.session.online = false;
+        }
+        if (req.body.GOSM == 'yes') {
+            req.session.GOSM = true;
+        } else {
+            req.session.GOSM = false;
+        }
+
+        console.log("DEBUG: " + req.session.title);
+        console.log("DEBUG: " + req.session.nature);
+        console.log("DEBUG: " + req.session.type);
+        console.log("DEBUG: " + req.session.startDate);
+        console.log("DEBUG: " + req.session.startTime);
+        console.log("DEBUG: " + req.session.endDate);
+        console.log("DEBUG: " + req.session.endTime);
+        console.log("DEBUG: " + req.session.venue);
+        console.log("DEBUG: " + req.session.enmp);
+        console.log("DEBUG: " + req.session.emp);
+        console.log("DEBUG: " + req.session.reach);
+        console.log("DEBUG: " + req.session.online);
+        console.log("DEBUG: " + req.session.GOSM);
     });
     
+    app.post('/create-form-2-confirm', function (req, res){
+        //we need an ejs that allows them to view the form so they can confirm
+        req.session.context1 = req.body.context1;
+        req.session.context2 = req.body.context2;
+        req.session.context3 = req.body.context3;
+        req.session.objective1 = req.body.objective1;
+        req.session.objective2 = req.body.objective2;
+        req.session.objective3 = req.body.objective3;
+        req.session.PR = {
+            name: req.body.namePR,
+            position: req.body.positionPR
+        }
+        
+        console.log("DEBUG: " + req.session.context1);
+        console.log("DEBUG: " + req.session.context2);
+        console.log("DEBUG: " + req.session.context3);
+        console.log("DEBUG: " + req.session.objective1);
+        console.log("DEBUG: " + req.session.objective2);
+        console.log("DEBUG: " + req.session.objective3);
+        console.log("DEBUG: " + req.session.PR.name);
+        console.log("DEBUG: " + req.session.PR.position);
+        
+        //temporary
+        res.render('preacts-submit', {
+            preacts: true,
+            postacts: true,
+            accounts: canSee,
+            organization: canSee
+        });
+        //temporary
+    });
+
     app.post('/preacts-submission', function (req, res) {
         var form = new Form({
             "title": req.body.title,

@@ -24,7 +24,7 @@
 
 <body>
     <div class="main">
-        <form>
+        <form action="create-form-2-confirm" method="post">
             <h1>Create Project Proposal</h1>
             <span>Brief Context / Perspective of the Activity</span>
             <br /><br />
@@ -34,7 +34,7 @@
                 <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
                     supported with examples)</li>
             </ul>
-            <textarea rows="2" required></textarea>
+            <textarea name='context1' rows="2" required></textarea>
             <br /><br />
             <span>Part 2<span class="red"> * </span></span>
             <ul>
@@ -43,31 +43,31 @@
                 <li>How did you feel about the experience, situation, or problem? And why did you feel that way?</li>
                 <li>What can we discover or realize?</li>
             </ul>
-            <textarea rows="2" required></textarea>
+            <textarea rows="2" name='context2' required></textarea>
             <br /><br />
             <span>Part 3<span class="red"> * </span></span>
             <ul>
                 <li>Out of all the possible projects, activities, and solutions, why this?</li>
                 <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
             </ul>
-            <textarea rows="2" required></textarea>
+            <textarea rows="2" name='context3' required></textarea>
 
             <br /><br /><br />
             <span>Objectives<span class="red"> * </span></span>
             <br /><br />
             <div>
                 1.
-                <input class="inputron" type="text" required>
+                <input class="inputron" name='objective1' type="text" required>
             </div>
             <br /><br />
             <div>
                 2.
-                <input class="inputron" type="text" required>
+                <input class="inputron" name='objective2' type="text" required>
             </div>
             <br /><br />
             <div>
                 3.
-                <input class="inputron" type="text" required>
+                <input class="inputron" name='objective3' type="text" required>
             </div>
             <br /><br />
 
@@ -76,7 +76,7 @@
                 <thead class="full-width">
                     <tr style="text-align: center;">
                         <th style="width: 40px;"></th>
-                        <th class="item">NAME</th>
+                        <th class="item">NAME</th>  
                         <th class="item">CONTACT NUMBER</th>
                     </tr>
                 </thead>
@@ -413,11 +413,11 @@
 
             <span>Name of Person Responsible (Aside from you)<span class="red"> * </span></span>
             <br />
-            <input class="inputron" type="text" required>
+            <input class="inputron" name='namePR' type="text" required>
             <br /><br />
             <span>Position<span class="red"> * </span></span>
             <br />
-            <input class="inputron" type="text" required>
+            <input class="inputron" name='positionPR' type="text" required>
             <br /><br />
 
             <div class="button-align">
