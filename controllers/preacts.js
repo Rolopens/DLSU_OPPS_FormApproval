@@ -1,4 +1,5 @@
 const path = require("path");
+const duration = require("duration");
 
 const userService = require(path.join(__dirname, "..", "models", "userService.js"));
 const roleService = require(path.join(__dirname, "..", "models", "roleService.js"));
@@ -186,6 +187,8 @@ module.exports.controller = function (app) {
             projected_expenses: req.body.ProjectedExpenses,
             rem_balance: req.body.OperationalFund + req.body.DepositoryFund + req.body.OtherFund + req.body.AccumulatedFund - req.body.ProjectedExpenses
         }
+        
+        //accessing data from project head table
         var pheadData =[];
         
         var pheadlength = req.body.dynamicTable1len + 1;
@@ -197,6 +200,67 @@ module.exports.controller = function (app) {
             pheadData.push(rowdata);
         }
         
+        //accessing data from comprehensive program design table
+        var programData = [];
+        var programlength = req.body.dynamicTable2len + 1;
+        for (var i=0; i < programlength; i++){
+            var start = req.body.startTime0.split(":");
+            var end = req.body.endTime0.split(":");
+            var dur = new duration(new Date(0,0,0,start[0], start[1], 0, 0), new Date(0,0,0,end[0],end[1],0,0));
+            
+            var rowdata = {
+                startTime: req.body['startTime'+i],
+                endTime: req.body['endTime'+i], 
+                duration: dur.minutes,
+                activity: req.body['activity'+i],
+                description: req.body['description'+i],
+                person: req.body['person'+i]
+            }
+            programData.push(rowdata);
+        }
+
+        //accessing data from breakdown of expenses table
+        var expensesData = [];
+        var expenseslength = req.body.dynamicTable3len + 1;
+        for (var i=0; i < expenseslength; i++){
+            var rowdata = {
+                name: req.body['material'+i],
+                quantity: req.body['quantity'+i],
+                unit_cost: req.body['unit'+i],
+                total_cost: req.body['quantity'+i] * req.body['unit'+i]
+            }
+            expensesData.push(rowdata);
+        }
+        
+        req.session.boeTotal = req.body.boeTotal;
+        
+        //accessing data from projected revenue table
+        var projRevData = [];
+        var projRevlength = req.body.dynamicTable4len + 1;
+        for (var i=0; i < projRevlength; i++){
+            var rowdata = {
+                item: req.body['item'+i],
+                quantity: req.body['qty'+i],
+                price: req.body['price'+i],
+                amount: req.body['qty'+i] * req.body['price'+i]
+            }
+            projRevData.push(rowdata);
+        }
+        
+        //accessing data from projected expenses table
+        var projExpData = [];
+        var projExplength = req.body.dynamicTable5len + 1;
+        for (var i=0; i < projRevlength; i++){
+            var rowdata = {
+                item: req.body['it'+i],
+                quantity: req.body['qu'+i],
+                price: req.body['pr'+i],
+                amount: req.body['qu'+i] * req.body['pr'+i]
+            }
+            projExpData.push(rowdata);
+        }
+        
+        req.session.projIncomeTotal = req.body.projIncomeTotal;
         
         console.log("FROM CREATION PART 2")
         console.log("DEBUG: " + req.session.context1);

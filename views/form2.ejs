@@ -23,7 +23,7 @@
 
 <body>
     <div class="main">
-        <form action="create-form-2-confirm" method="post">
+        <form name="form2" action="create-form-2-confirm" method="post">
             <h1>Create Project Proposal</h1>
             <span>Brief Context / Perspective of the Activity</span>
             <br /><br />
@@ -83,7 +83,7 @@
                     <tr value=0>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
-                                <input type="checkbox"><label></label>
+                                <input type="checkbox" name="phead_check"><label></label>
                             </div>
                         </td>
                         <td><input class="inputron no-margin" name="phead_name0" type="text" required></td>
@@ -95,6 +95,7 @@
             <button type="button" class="row-button previous" id="btnDeletePhead">Delete Row</button>
 
             <br/><br/><br/><br/>
+            <input style="display:none;" value='0' id="dynamicTable2length" name="dynamicTable2len">
             <div>Comprehensive Program Design <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable2">
                 <thead class="full-width">
@@ -107,16 +108,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr value=0>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="time" required><input class="inputron no-margin" type="time" required></td>
-                        <td><textarea class="row-textarea" required></textarea></td>
-                        <td><textarea class="row-textarea" required></textarea></td>
-                        <td><textarea class="row-textarea" required></textarea></td>
+                        <td><input class="inputron no-margin" type="time" name="startTime0" required><input class="inputron no-margin" type="time" name="endTime0" required></td>
+                        <td><textarea class="row-textarea" name="activity0" required></textarea></td>
+                        <td><textarea class="row-textarea" name="description0" required></textarea></td>
+                        <td><textarea class="row-textarea" name="person0" required></textarea></td>
                     </tr>
                 </tbody>
             </table>
@@ -124,6 +125,7 @@
             <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button>
 
             <br/><br/><br/><br/>
+            <input style="display:none;" value='0' id="dynamicTable3length" name="dynamicTable3len">
             <div>Breakdown of Expenses <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable3">
                 <thead class="full-width">
@@ -142,10 +144,10 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" type="text" name="material0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="quantity0" value=0 min=0 required></td>
+                        <td><input class="inputron no-margin" type="number" name="unit0" value=0.00 min=0 step=0.01 required></td>
+                        <td class="bg-gray" name="BOE_subtotal0">Php 0.00</td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -156,7 +158,7 @@
                                 Total:
                             </div>
                         </th>
-                        <th class="result">n/a</th>
+                        <th class="result" name="boeTotal">Php 0.00</th>
                     </tr>
                 </tfoot>
             </table>
@@ -285,7 +287,7 @@
                                 Less: Total Projected Expenses
                             </div>
                         </td>
-                        <td>Php <input class="inputron no-margin table_input" name="ProjectedExpenses" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php 0.00</td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -296,12 +298,13 @@
                                 REMAINING BALANCE
                             </div>
                         </td>
-                        <td>Php 0.00</td>
+                        <td class="bg-gray">Php 0.00</td>
                     </tr>
                 </tbody>
             </table>
 
             <br/><br/>
+            <input style="display:none;" value='0' id="dynamicTable4length" name="dynamicTable4len">
             <div>Projected Income <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable4">
                 <thead class="full-width">
@@ -327,10 +330,10 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" type="text" name="item0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="qty0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="price0" required></td>
+                        <td class="bg-gray" name="amount0"></td>
                     </tr>
                 </tbody>
             </table>
@@ -338,6 +341,7 @@
             <button type="button" class="row-button previous" id="btnDeleteProjRev">Delete Row</button>
 
 
+            <input style="display:none;" value='0' id="dynamicTable5length" name="dynamicTable5len">
             <table class="ui compact celled definition fixed table" id="dynamicTable5">
                 <thead class="full-width">
                     <tr>
@@ -362,10 +366,10 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" type="text" name="it0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="qu0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="pr0" required></td>
+                        <td class="bg-gray" name="am0"></td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -376,7 +380,7 @@
                                 TOTAL PROJECTED INCOME:
                             </div>
                         </th>
-                        <th class="result">n/a</th>
+                        <th name="projIncomeTotal">Php 0.00</th>
                     </tr>
                 </tfoot>
             </table>
@@ -413,6 +417,7 @@
             div.className = "ui fitted checkbox";
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
+            cBox.setAttribute('name', 'phead_check');
             var label = document.createElement("label");
 
             var tableLength = document.getElementById("dynamicTable1length");
@@ -458,23 +463,23 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
-            console.log("DEBUG1")
-
-            console.log(document.getElementById("dynamicTable1").rows[1].cells[1].firstElementChild.name)
-            //var table = document.getElementById("dynamicTable1");
-            for (var i = 0; i < document.getElementById("dynamicTable1").rows.length; i++) {
+        
+            var i;
+            
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable1").rows.length; i++) {
                 for (var j = 0; j < document.getElementById("dynamicTable1").rows[i].cells.length; j++) {
                     if (i>0 &&j == 1) {
                         document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_name' + (i - 1)
                     }
                     if (i>0&&j == 2) {
-                        //col.childNodes[0].setAttribute('name', 'phead_number'+i-1);
-                        //$(col).child().attr('name', 'phead_number'+i-1)
                         document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_number' + (i - 1)
                     }
                 }
             }
 
+            var tableLength = document.getElementById("dynamicTable1length");
+            tableLength.setAttribute('value', i - 2)
             console.log('DELETE PHEAD()');
         }
 
@@ -488,6 +493,10 @@
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
+            
+            var tableLength = document.getElementById("dynamicTable2length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
 
             div.append(cBox);
             div.append(label);
@@ -498,10 +507,12 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'time');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'startTime' + tableLength.value);
             var input6 = document.createElement("input");
             input6.className = "inputron no-margin";
             input6.setAttribute('type', 'time');
             input6.setAttribute('required', true);
+            input6.setAttribute('name', 'endTime' + tableLength.value);
             col2.append(input2);
             col2.append(input6);
 
@@ -509,18 +520,21 @@
             var input3 = document.createElement("textarea");
             input3.className = "row-textarea";
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'activity' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
             var input4 = document.createElement("textarea");
             input4.className = "row-textarea";
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'description' + tableLength.value);
             col4.append(input4);
 
             var col5 = document.createElement("td");
             var input5 = document.createElement("textarea");
             input5.className = "row-textarea";
             input5.setAttribute('required', true);
+            input5.setAttribute('name', 'person' + tableLength.value);
             col5.append(input5);
 
             row.append(col1);
@@ -541,8 +555,30 @@
 
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
-                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode));
+            
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable2").rows.length; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable2").rows[i].cells.length; j++) {
+                    if (i>0&&j == 1) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'startTime' + (i - 1);
+                        document.getElementById("dynamicTable2").rows[i].cells[j].childNodes[1].name = 'endTime' + (i - 1);
+                    }
+                    if (i>0&&j == 2) {
+                       document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'activity' + (i - 1);
+                    }
+                    if (i>0&&j == 3) {
+                         document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'description' + (i - 1);
+                    }
+                    if (i>0&&j == 4) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'person' + (i - 1);
+                    }
+                }
+            }
 
+            var tableLength = document.getElementById("dynamicTable2length");
+            tableLength.setAttribute('value', i - 2)
             console.log('DELETE ROW()');
         }
 
@@ -557,6 +593,10 @@
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
 
+            var tableLength = document.getElementById("dynamicTable3length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
+            
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -566,6 +606,7 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'material' + tableLength.value);
             col2.append(input2);
 
             var col3 = document.createElement("td");
@@ -573,6 +614,7 @@
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'quantity' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
@@ -580,14 +622,12 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'unit' + tableLength.value);
             col4.append(input4);
 
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'number');
-            input5.setAttribute('required', true);
-            col5.append(input5);
+            col5.className = "bg-gray";
+            col5.setAttribute('name', 'BOE_subtotal' + tableLength.value);
 
             row.append(col1);
             row.append(col2);
@@ -609,6 +649,27 @@
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
 
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable3").rows.length - 1; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable3").rows[i].cells.length; j++) {
+                    if (i>0&&j == 1) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'material' + (i - 1);
+                    }
+                    if (i>0&&j == 2) {
+                       document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'quantity' + (i - 1);
+                    }
+                    if (i>0&&j == 3) {
+                         document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'unit' + (i - 1);
+                    }
+                    if (i>0&&j == 4) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].setAttribute('name','BOE_subtotal' + (i - 1));
+                    }
+                }
+            }
+
+            var tableLength = document.getElementById("dynamicTable3length");
+            tableLength.setAttribute('value', i - 2)
             console.log('DELETE BOE()');
         }
 
@@ -623,6 +684,10 @@
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
 
+            var tableLength = document.getElementById("dynamicTable4length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
+            
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -632,6 +697,7 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'item' + tableLength.value);
             col2.append(input2);
 
             var col3 = document.createElement("td");
@@ -639,6 +705,7 @@
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'qty' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
@@ -646,14 +713,12 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'price' + tableLength.value);
             col4.append(input4);
 
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'number');
-            input5.setAttribute('required', true);
-            col5.append(input5);
+            col5.className = "bg-gray";
+            col5.setAttribute('name', 'amount' + tableLength.value);
 
             row.append(col1);
             row.append(col2);
@@ -674,7 +739,28 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+            
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable4").rows.length; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable4").rows[i].cells.length; j++) {
+                    if (i>1&&j == 1) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'item' + (i - 2);
+                    }
+                    if (i>1&&j == 2) {
+                       document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'qty' + (i - 2);
+                    }
+                    if (i>1&&j == 3) {
+                         document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'price' + (i - 2);
+                    }
+                    if (i>1&&j == 4) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].setAttribute('name','amount' + (i - 2));
+                    }
+                }
+            }
 
+            var tableLength = document.getElementById("dynamicTable4length");
+            tableLength.setAttribute('value', i - 3)
             console.log('DELETE ProjRev()');
         }
 
@@ -688,6 +774,10 @@
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
+            
+            var tableLength = document.getElementById("dynamicTable5length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
 
             div.append(cBox);
             div.append(label);
@@ -698,6 +788,7 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'it' + tableLength.value);
             col2.append(input2);
 
             var col3 = document.createElement("td");
@@ -705,6 +796,7 @@
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'qu' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
@@ -712,14 +804,12 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'pr' + tableLength.value);
             col4.append(input4);
 
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'number');
-            input5.setAttribute('required', true);
-            col5.append(input5);
+            col5.setAttribute('name', 'am' + tableLength.value);
+            col5.className = "bg-gray";
 
             row.append(col1);
             row.append(col2);
@@ -741,9 +831,30 @@
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
 
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable5").rows.length - 1; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable5").rows[i].cells.length; j++) {
+                    if (i>1&&j == 1) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'it' + (i - 2);
+                    }
+                    if (i>1&&j == 2) {
+                       document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'qu' + (i - 2);
+                    }
+                    if (i>1&&j == 3) {
+                         document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'pr' + (i - 2);
+                    }
+                    if (i>1&&j == 4) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].setAttribute('name','am' + (i - 2));
+                    }
+                }
+            }
+
+            var tableLength = document.getElementById("dynamicTable5length");
+            tableLength.setAttribute('value', i - 3)
             console.log('DELETE ProjExp()');
         }
-
+        
         $(document).ready(function() {
 
             document.getElementById("btnAddCPD").addEventListener("click", function() {
@@ -787,9 +898,12 @@
             });
 
             //adds Source of Funds automatically and Organizational Funds
+            var i = 0;
             $("input").change(function() {
                 var sum_SOF = 0;
                 var sum_OF = 0;
+                var sum_BOE;
+                var subtotal_BOE = 1;
                 var remBalance = 0;
 
                 //Source of Funds
@@ -816,7 +930,44 @@
                 });
                 $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
 
+                //
+                $("input[name=quantity0]").each(function() {
+                   subtotal_BOE = subtotal_BOE * parseFloat($(this).val());
+                });
+                $("input[name=unit0]").each(function() {
+                    subtotal_BOE = subtotal_BOE * parseFloat($(this).val());
+                });
+                $("td[name=BOE_subtotal0]").text("Php " + subtotal_BOE.toFixed(2));
+             
             });
+            
+            function calculateSum() {
+                var sum = 0;
+                $(".txt").each(function () {
+                    
+                    if (!isNaN(this.value) && this.value.length != 0) {
+                        sum += parseFloat(this.value);
+                    }
+
+                });
+                //.toFixed() method will roundoff the final sum to 2 decimal places
+                $("#sum").html(sum.toFixed(2));
+            }
+            
+            $("#dynamicTable3").on("keyup", ".txt", function () {
+                calculateSum();
+            });
+            
+//            $('input[name=phead_check][type=checkbox]').click(function(){
+//                if (this.checked) {
+//                    $('#btnDeletePhead').css('color', '#26BE9B');
+//                    $('#btnDeletePhead').css('border-color', '#26BE9B');
+//                }
+//                else {
+//                    $('#btnDeletePhead').css('color', '#DCDCDC');
+//                    $('#btnDeletePhead').css('border-color', '#DCDCDC');
+//                }
+//            });
         });
 
     </script>
