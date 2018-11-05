@@ -30,19 +30,19 @@ module.exports.controller = function (app) {
                 return Promise.all(rolePromises);
             })
             .then((result) => {
-                preactsService.getAllForms().then((results) => {
-                    res.render('preacts', {
+                res.render('preacts', {
                         preacts: true,
                         postacts: true,
                         accounts: canSee,
-                        organization: canSee,
-                        forms: results
+                        organization: canSee
                     });
-                })
             })
             .catch((err) => {
                 console.log(err);
                 res.redirect("/");
+            })
+            .catch((err)=>{
+                console.log(err)
             });
     });
 
@@ -50,21 +50,27 @@ module.exports.controller = function (app) {
     app.get("/preacts/:id", function (req, res) {
         var id = req.params.id
 
-        preactsService.findFormViaId(id).then((formData) => {
-            res.send(formData)
+        preactsService.findFormViaId(id).then((form) => {
+            res.send({form})
+        })
+    })
+    
+    //ajax request for all the forms
+    app.get("/preacts/getAllForms/forms", function(req, res){
+        preactsService.getAllForms().then((forms)=>{
+            res.send({forms})
         })
     })
 
     //ajax request for approving a form
     app.post("/preacts/approve/:id", function (req, res) {
-        var id = req.params.id
-
+        var id = req.params.id;
         preactsService.findFormViaId(id).then((formData) => {
-            var form = formData
-            form.status = "Approved"
+            var form = formData;
+            form.status = "Approved";
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
-                    res.send(formData1)
+                    res.send({formData1})
                 })
             })
         })
@@ -79,7 +85,7 @@ module.exports.controller = function (app) {
             form.status = "Rejected"
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
-                    res.send(formData1)
+                    res.send({formData1})
                 })
             })
         })
