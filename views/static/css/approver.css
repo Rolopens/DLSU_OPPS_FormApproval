@@ -271,7 +271,9 @@ header{
 }
 
 #main-content{
+/*    position: fixed;*/
     width: 500px;
+    overflow-x: auto;
 }
 
 #main-content .content-feed{
@@ -358,9 +360,10 @@ header{
 	position: fixed;
 	z-index: 998;
 	right: 0;
-	width: calc(100% - 450px - 418px);
+	min-width: calc(100% - 450px - 418px);
 	max-height: 485px;
-	overflow-y: scroll;
+    overflow-x: auto;
+    overflow-y: auto;
 	border-left: thin solid #ddd;
 }
 
@@ -391,10 +394,14 @@ header{
 
 #quick-view .positive{
     background-color: var(--theme-color);
+    width:100%;
+    max-width:200px;
 }
 
 #quick-view .negative{
     background-color: #FF4F4F;
+    width:100%;
+    max-width:200px;
 }
 
 #main-content .content-wrapper .activity-icon.positive{
@@ -421,3 +428,15 @@ header{
 #quick-view .action:hover{
 	background-color: white;
 }*/
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
