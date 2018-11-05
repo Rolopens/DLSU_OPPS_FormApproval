@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="css/form2.css">
 
     <!--Scripts-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!--
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         
@@ -31,8 +30,7 @@
             <span>Part 1<span class="red"> * </span></span>
             <ul>
                 <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
-                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
-                    supported with examples)</li>
+                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
             </ul>
             <textarea name='context1' rows="2" required></textarea>
             <br /><br />
@@ -71,30 +69,31 @@
             </div>
             <br /><br />
 
-            <div>Project Head/s <span class="red">*</span></div>        
+            <input style="display:none;" value='0' id="dynamicTable1length" name="dynamicTable1len">
+            <div>Project Head/s <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable1">
                 <thead class="full-width">
                     <tr style="text-align: center;">
                         <th style="width: 40px;"></th>
-                        <th class="item">NAME</th>  
+                        <th class="item">NAME</th>
                         <th class="item">CONTACT NUMBER</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr value=0>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
-                                <input type="checkbox"> <label></label>
+                                <input type="checkbox"><label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" name="phead_name0" type="text" required></td>
+                        <td><input class="inputron no-margin" name="phead_number0" type="number" required></td>
                     </tr>
                 </tbody>
             </table>
             <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeletePhead">Delete Row</button>
-            
+
             <br/><br/><br/><br/>
             <div>Comprehensive Program Design <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable2">
@@ -123,7 +122,7 @@
             </table>
             <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button>
-            
+
             <br/><br/><br/><br/>
             <div>Breakdown of Expenses <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable3">
@@ -163,7 +162,7 @@
             </table>
             <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
-            
+
             <br/><br/><br/><br/>
             <div>Source of Funds<span class="red">*</span></div>
             <table class="ui compact celled definition fixed table">
@@ -191,7 +190,7 @@
                         <td class="collapsing">
                         </td>
                         <td>Others (i.e. Sponsorships)</td>
-                        <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00" min="0"  step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -206,7 +205,7 @@
                     </tr>
                 </tfoot>
             </table>
-            
+
             <br/><br/>
             <div>Organizational Funds<span class="red">*</span></div>
             <table class="ui compact celled definition fixed table">
@@ -229,7 +228,7 @@
                         </td>
                         <td>Php <input class="inputron no-margin table_input" name="OperationalFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
-                    
+
                     <tr>
                         <td class="collapsing">
 
@@ -337,7 +336,7 @@
             </table>
             <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeleteProjRev">Delete Row</button>
-     
+
 
             <table class="ui compact celled definition fixed table" id="dynamicTable5">
                 <thead class="full-width">
@@ -383,11 +382,10 @@
             </table>
             <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button>
-            
+
             <br /><br />
             <br /><br /> Provision for Profit and Loss
-            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the
-            project.
+            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the project.
             <br /><br />
 
             <span>Name of Person Responsible (Aside from you)<span class="red"> * </span></span>
@@ -404,9 +402,8 @@
                 <button type="submit" class="submit-button next">Submit</button>
             </div>
         </form>
-        </div>
+    </div>
     <script>
-        
         //add project head
         function addPhead() {
             var row = document.createElement("tr");
@@ -418,6 +415,12 @@
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
 
+            var tableLength = document.getElementById("dynamicTable1length");
+            console.log(tableLength.value)
+            row.setAttribute('value', tableLength.value)
+            console.log(tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
+
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -427,13 +430,15 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'phead_name' + tableLength.value);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'phead_number' + tableLength.value)
             col3.append(input3);
 
             row.append(col1);
@@ -444,7 +449,7 @@
 
             console.log('ADD PHEAD()');
         }
-        
+
         //delete project head
         function deletePhead() {
             let tableRef = document.getElementById('dynamicTable1');
@@ -453,10 +458,26 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+            console.log("DEBUG1")
+
+            console.log(document.getElementById("dynamicTable1").rows[1].cells[1].firstElementChild.name)
+            //var table = document.getElementById("dynamicTable1");
+            for (var i = 0; i < document.getElementById("dynamicTable1").rows.length; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable1").rows[i].cells.length; j++) {
+                    if (i>0 &&j == 1) {
+                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_name' + (i - 1)
+                    }
+                    if (i>0&&j == 2) {
+                        //col.childNodes[0].setAttribute('name', 'phead_number'+i-1);
+                        //$(col).child().attr('name', 'phead_number'+i-1)
+                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_number' + (i - 1)
+                    }
+                }
+            }
 
             console.log('DELETE PHEAD()');
         }
-        
+
         //add row in comprehensive projgram design table
         function addCPD() {
             var row = document.createElement("tr");
@@ -471,7 +492,7 @@
             div.append(cBox);
             div.append(label);
             col1.append(div);
-            
+
             var col2 = document.createElement("td");
             var input2 = document.createElement("input");
             input2.className = "inputron no-margin";
@@ -524,7 +545,7 @@
 
             console.log('DELETE ROW()');
         }
-        
+
         //add row in break down of expenses
         function addBOE() {
             var row = document.createElement("tr");
@@ -546,7 +567,7 @@
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
@@ -560,14 +581,14 @@
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
             col4.append(input4);
-            
+
             var col5 = document.createElement("td");
             var input5 = document.createElement("input");
             input5.className = "inputron no-margin";
             input5.setAttribute('type', 'number');
             input5.setAttribute('required', true);
             col5.append(input5);
-            
+
             row.append(col1);
             row.append(col2);
             row.append(col3);
@@ -578,7 +599,7 @@
 
             console.log('ADD BOE()');
         }
-        
+
         //delete project head
         function deleteBOE() {
             let tableRef = document.getElementById('dynamicTable3');
@@ -590,7 +611,7 @@
 
             console.log('DELETE BOE()');
         }
-        
+
         //add row in projected revenue
         function addProjRev() {
             var row = document.createElement("tr");
@@ -612,7 +633,7 @@
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
@@ -626,14 +647,14 @@
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
             col4.append(input4);
-            
+
             var col5 = document.createElement("td");
             var input5 = document.createElement("input");
             input5.className = "inputron no-margin";
             input5.setAttribute('type', 'number');
             input5.setAttribute('required', true);
             col5.append(input5);
-            
+
             row.append(col1);
             row.append(col2);
             row.append(col3);
@@ -644,7 +665,7 @@
 
             console.log('ADD ProjRev()');
         }
-        
+
         //delete row in projected revenue
         function deleteProjRev() {
             let tableRef = document.getElementById('dynamicTable4');
@@ -656,7 +677,7 @@
 
             console.log('DELETE ProjRev()');
         }
-        
+
         //add row in projected expenses
         function addProjExp() {
             var row = document.createElement("tr");
@@ -678,7 +699,7 @@
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
@@ -692,14 +713,14 @@
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
             col4.append(input4);
-            
+
             var col5 = document.createElement("td");
             var input5 = document.createElement("input");
             input5.className = "inputron no-margin";
             input5.setAttribute('type', 'number');
             input5.setAttribute('required', true);
             col5.append(input5);
-            
+
             row.append(col1);
             row.append(col2);
             row.append(col3);
@@ -710,7 +731,7 @@
 
             console.log('ADD ProjExp()');
         }
-        
+
         //delete row in projected expenses
         function deleteProjExp() {
             let tableRef = document.getElementById('dynamicTable5');
@@ -722,55 +743,55 @@
 
             console.log('DELETE ProjExp()');
         }
-        
-        $(document).ready(function () {
-            
-            document.getElementById("btnAddCPD").addEventListener("click", function () {
+
+        $(document).ready(function() {
+
+            document.getElementById("btnAddCPD").addEventListener("click", function() {
                 addCPD();
             });
-            
-            document.getElementById("btnDeleteCPD").addEventListener("click", function () {
+
+            document.getElementById("btnDeleteCPD").addEventListener("click", function() {
                 deleteCPD();
             });
 
-            document.getElementById("btnAddPhead").addEventListener("click", function () {
+            document.getElementById("btnAddPhead").addEventListener("click", function() {
                 addPhead();
             });
 
-            document.getElementById("btnDeletePhead").addEventListener("click", function () {
+            document.getElementById("btnDeletePhead").addEventListener("click", function() {
                 deletePhead();
             });
-            
-            document.getElementById("btnAddBOE").addEventListener("click", function () {
+
+            document.getElementById("btnAddBOE").addEventListener("click", function() {
                 addBOE();
             });
 
-            document.getElementById("btnDeleteBOE").addEventListener("click", function () {
+            document.getElementById("btnDeleteBOE").addEventListener("click", function() {
                 deleteBOE();
             });
-            
-            document.getElementById("btnAddProjRev").addEventListener("click", function () {
+
+            document.getElementById("btnAddProjRev").addEventListener("click", function() {
                 addProjRev();
             });
 
-            document.getElementById("btnDeleteProjRev").addEventListener("click", function () {
+            document.getElementById("btnDeleteProjRev").addEventListener("click", function() {
                 deleteProjRev();
             });
-            
-            document.getElementById("btnAddProjExp").addEventListener("click", function () {
+
+            document.getElementById("btnAddProjExp").addEventListener("click", function() {
                 addProjExp();
             });
 
-            document.getElementById("btnDeleteProjExp").addEventListener("click", function () {
+            document.getElementById("btnDeleteProjExp").addEventListener("click", function() {
                 deleteProjExp();
             });
-            
+
             //adds Source of Funds automatically and Organizational Funds
             $("input").change(function() {
                 var sum_SOF = 0;
                 var sum_OF = 0;
                 var remBalance = 0;
-                
+
                 //Source of Funds
                 $("input[name=OrganizationalFunds]").each(function() {
                     sum_SOF = sum_SOF + parseFloat($(this).val());
@@ -782,7 +803,7 @@
                     sum_SOF = sum_SOF + parseFloat($(this).val());
                 });
                 $("th[name=totalSource]").text("Php " + sum_SOF.toFixed(2));
-                
+
                 //Organizational Funds
                 $("input[name=OperationalFund]").each(function() {
                     sum_OF = sum_OF + parseFloat($(this).val());
@@ -794,10 +815,11 @@
                     sum_OF = sum_OF + parseFloat($(this).val());
                 });
                 $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
-                
+
             });
         });
-    </script>       
+
+    </script>
 </body>
-    
+
 </html>

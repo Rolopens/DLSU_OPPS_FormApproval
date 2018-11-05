@@ -173,6 +173,17 @@ module.exports.controller = function (app) {
             projected_expenses: req.body.ProjectedExpenses,
             rem_balance: req.body.OperationalFund + req.body.DepositoryFund + req.body.OtherFund + req.body.AccumulatedFund - req.body.ProjectedExpenses
         }
+        var pheadData =[];
+        
+        var pheadlength = req.body.dynamicTable1len + 1;
+        for (var i=0; i < pheadlength; i++){
+            var rowdata = {
+                name: req.body['phead_name'+i],
+                contact_number: req.body['phead_number'+i]
+            }
+            pheadData.push(rowdata);
+        }
+        
         
         console.log("FROM CREATION PART 2")
         console.log("DEBUG: " + req.session.context1);
@@ -183,15 +194,17 @@ module.exports.controller = function (app) {
         console.log("DEBUG: " + req.session.objective3);
         console.log("DEBUG: " + req.session.PR.name);
         console.log("DEBUG: " + req.session.PR.position);
+        console.log("DEBUG PHEADATA " + pheadData[0].name);
         
         //temporary
-        res.render('preacts-submit', {
-            preacts: true,
-            postacts: true,
-            accounts: canSee,
-            organization: canSee
-        });
-        //temporary
+//        res.render('preacts-submit', {
+//            preacts: true,
+//            postacts: true,
+//            accounts: canSee,
+//            organization: canSee
+//        });
+//        //temporary
+        res.redirect('/preacts-submission');
     });
 
     app.post('/preacts-submission', function (req, res) {
