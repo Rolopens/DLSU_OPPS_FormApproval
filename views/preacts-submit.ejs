@@ -93,9 +93,11 @@
 			</header>
 			<section>
 				<div id="main-content">
-					<div id="select-wrapper">
-						<input id="search" type="text" name="search" placeholder="Search for an activity..." />
-					</div>
+                    <div class="content-header">
+                        <div id="select-wrapper">
+                            <input id="search" type="text" name="search" placeholder="Search for an activity..." />
+                        </div>
+                    </div>
 					
 					<div class="content-feed" id="organization">                               
                         <div class="content-empty">
@@ -124,7 +126,9 @@
 					
 				</div>
 				<div id="sidebar">
-					<h3 class="action-title">Quick View</h3>
+					<div class="content-header">
+                        <h3 class="action-title">Quick View</h3>
+                    </div>
 					<div v-if = "quickview" id="quick-view">
 						<div class="info">
 							<h4>Organization Name</h4>

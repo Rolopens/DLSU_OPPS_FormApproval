@@ -192,10 +192,18 @@ header{
 	font-weight: normal;
 }
 
+.content-header {
+    height:60px;
+	background-color: #f4f4f4;
+	border-bottom: thin solid #ddd;
+}
+
 #select-wrapper{
 	padding: 0.78em 4em;
+/*
 	border-bottom: thin solid #dedede;
 	background-color: #f4f4f4;
+*/
 }
 
 #search{
@@ -263,12 +271,12 @@ header{
 }
 
 #main-content{
-	width: calc(100% - 450px);
+    width: 500px;
 }
 
 #main-content .content-feed{
-	overflow-y: scroll;
-    max-height: 430px;
+	overflow-y: auto;
+    max-height: 450px;
 	padding: 0 4em;
 	padding-right: 2.5em;
 }
@@ -350,7 +358,7 @@ header{
 	position: fixed;
 	z-index: 998;
 	right: 0;
-	width: 450px;
+	width: calc(100% - 450px - 418px);
 	max-height: 490px;
 	overflow-y: scroll;
 	border-left: thin solid #ddd;
@@ -359,8 +367,10 @@ header{
 #sidebar .action-title{
 	color: var(--theme-color);
 	padding: 1.1em 2em;
+/*
 	background-color: #f4f4f4;
 	border-bottom: thin solid #ddd;
+*/
 }
 
 #quick-view{
