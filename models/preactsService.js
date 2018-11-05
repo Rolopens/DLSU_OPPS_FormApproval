@@ -81,6 +81,22 @@ module.exports.getAllForms = function (){
 }
 
 /*
+    Accepts: user_id
+    return: new promise that resolves all forms owned by 'user_id' in the db
+    Gets all forms in the db owned by 'user_id'
+*/
+module.exports.getAllFormsOfOwner = function (id){
+    return new Promise(function (resolve, reject) {
+        Form.find({user_id: id}).then((results)=>{
+            //console.log(results)
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
     Accepts: Form object
     return: new promise that returns the newly updated form
     Adds a form into the database

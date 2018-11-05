@@ -61,6 +61,13 @@ module.exports.controller = function (app) {
             res.send({forms})
         })
     })
+    
+    //ajax request for all the forms owned by a user
+    app.get("/preacts/getAllFormsOfUser/:id", function(req, res){
+        preactsService.getAllFormsOfOwner(req.params.id).then((forms)=>{
+            res.send({forms})
+        })
+    })
 
     //ajax request for approving a form
     app.post("/preacts/approve/:id", function (req, res) {
