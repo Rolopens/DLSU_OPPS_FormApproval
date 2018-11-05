@@ -21,6 +21,10 @@
     margin: 0;
 }
 
+.dropdown-content a:hover {
+    color: var(--theme-color);
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
