@@ -181,7 +181,7 @@ header{
 }
 
 #account-name{
-	font-size: 0.9em;
+	font-size: 1.1em;
 	cursor: pointer;
 	font-family: 'Merriweather', sans-serif;
 }
@@ -276,7 +276,7 @@ header{
 
 #main-content .content-feed{
 	overflow-y: auto;
-    max-height: 450px;
+    max-height: 425px;
 	padding: 0 4em;
 	padding-right: 2.5em;
 }
@@ -359,7 +359,7 @@ header{
 	z-index: 998;
 	right: 0;
 	width: calc(100% - 450px - 418px);
-	max-height: 490px;
+	max-height: 485px;
 	overflow-y: scroll;
 	border-left: thin solid #ddd;
 }
