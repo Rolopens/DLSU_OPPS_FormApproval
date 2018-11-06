@@ -332,7 +332,7 @@
                         </td>
                         <td><input class="inputron no-margin" type="text" name="item0" required></td>
                         <td><input class="inputron no-margin" type="number" name="qty0" required></td>
-                        <td><input class="inputron no-margin" type="number" name="price0" required></td>
+                        <td><input class="inputron no-margin table_input" name="price0" type="number" value="0.00" min="0" step="0.01" required></td>
                         <td class="bg-gray" name="amount0"></td>
                     </tr>
                 </tbody>
@@ -368,7 +368,7 @@
                         </td>
                         <td><input class="inputron no-margin" type="text" name="it0" required></td>
                         <td><input class="inputron no-margin" type="number" name="qu0" required></td>
-                        <td><input class="inputron no-margin" type="number" name="pr0" required></td>
+                        <td><input class="inputron no-margin table_input" name="pr0" type="number" value="0.00" min="0" step="0.01" required></td>
                         <td class="bg-gray" name="am0"></td>
                     </tr>
                 </tbody>
@@ -548,7 +548,7 @@
             console.log('ADD ROW()');
         }
 
-        //delete row in comprehensive projgram design table
+        //delete row in comprehensive program design table
         function deleteCPD() {
             let tableRef = document.getElementById('dynamicTable2');
             let tbody = tableRef.querySelector("tbody");
@@ -623,7 +623,10 @@
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
             input4.setAttribute('name', 'unit' + tableLength.value);
-            col4.append(input4);
+            input4.setAttribute('min', 0);
+            input4.setAttribute('value', 0.00);
+            input4.setAttribute('step', 0.01)
+            col4.append(input4); 
 
             var col5 = document.createElement("td");
             col5.className = "bg-gray";
@@ -714,6 +717,9 @@
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
             input4.setAttribute('name', 'price' + tableLength.value);
+            input4.setAttribute('min', 0);
+            input4.setAttribute('value', 0.00);
+            input4.setAttribute('step', 0.01)
             col4.append(input4);
 
             var col5 = document.createElement("td");
@@ -805,6 +811,9 @@
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
             input4.setAttribute('name', 'pr' + tableLength.value);
+            input4.setAttribute('min', 0);
+            input4.setAttribute('value', 0.00);
+            input4.setAttribute('step', 0.01)
             col4.append(input4);
 
             var col5 = document.createElement("td");

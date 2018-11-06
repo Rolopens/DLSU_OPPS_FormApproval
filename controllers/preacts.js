@@ -118,7 +118,7 @@ module.exports.controller = function (app) {
 
     //form page 2
     app.post('/create-form-2', function (req, res) {
-        res.render('form2');
+        
         req.session.title = req.body.title;
         req.session.nature = req.body.nature;
         if (req.body.type == 'Others') {
@@ -144,20 +144,24 @@ module.exports.controller = function (app) {
         } else {
             req.session.GOSM = false;
         }
-        console.log("FORM CREATION")
-        console.log("DEBUG: " + req.session.title);
-        console.log("DEBUG: " + req.session.nature);
-        console.log("DEBUG: " + req.session.type);
-        console.log("DEBUG: " + req.session.startDate);
-        console.log("DEBUG: " + req.session.startTime);
-        console.log("DEBUG: " + req.session.endDate);
-        console.log("DEBUG: " + req.session.endTime);
-        console.log("DEBUG: " + req.session.venue);
-        console.log("DEBUG: " + req.session.enmp);
-        console.log("DEBUG: " + req.session.emp);
-        console.log("DEBUG: " + req.session.reach);
-        console.log("DEBUG: " + req.session.online);
-        console.log("DEBUG: " + req.session.GOSM);
+        
+//        console.log("FORM CREATION 1")
+//        console.log (req.session.id)
+//        console.log("DEBUG: " + req.session.title);
+//        console.log("DEBUG: " + req.session.nature);
+//        console.log("DEBUG: " + req.session.type);
+//        console.log("DEBUG: " + req.session.startDate);
+//        console.log("DEBUG: " + req.session.startTime);
+//        console.log("DEBUG: " + req.session.endDate);
+//        console.log("DEBUG: " + req.session.endTime);
+//        console.log("DEBUG: " + req.session.venue);
+//        console.log("DEBUG: " + req.session.enmp);
+//        console.log("DEBUG: " + req.session.emp);
+//        console.log("DEBUG: " + req.session.reach);
+//        console.log("DEBUG: " + req.session.online);
+//        console.log("DEBUG: " + req.session.GOSM);
+        res.render('form2');
+
     });
     
     app.post('/create-form-2-confirm', function (req, res){
@@ -176,22 +180,14 @@ module.exports.controller = function (app) {
             organization_funds: req.body.OrganizationalFunds,
             participants_fee: req.body.ParticipantsFee,
             others: req.body.OtherFunds,
-            total: req.body.OrganizationalFunds + req.body.ParticipantsFee + req.body.OtherFunds
+            total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
         }
-        req.session.organizational_funds = {
-            operational_fund: req.body.OperationalFund,
-            depository_fund: req.body.DepositoryFund,
-            other_fund: req.body.OtherFund,
-            accumulated_fund: req.body.AccumulatedFund,
-            total_disbursement: req.body.OperationalFund + req.body.DepositoryFund + req.body.OtherFund + req.body.AccumulatedFund,
-            projected_expenses: req.body.ProjectedExpenses,
-            rem_balance: req.body.OperationalFund + req.body.DepositoryFund + req.body.OtherFund + req.body.AccumulatedFund - req.body.ProjectedExpenses
-        }
+        
         
         //accessing data from project head table
         var pheadData =[];
         
-        var pheadlength = req.body.dynamicTable1len + 1;
+        var pheadlength = parseInt(req.body.dynamicTable1len, 10) + 1;
         for (var i=0; i < pheadlength; i++){
             var rowdata = {
                 name: req.body['phead_name'+i],
@@ -199,10 +195,12 @@ module.exports.controller = function (app) {
             }
             pheadData.push(rowdata);
         }
+        req.session.pheadData = pheadData;
+        //console.log("PHEAD LENGTH: " + pheadlength)
         
         //accessing data from comprehensive program design table
         var programData = [];
-        var programlength = req.body.dynamicTable2len + 1;
+        var programlength = parseInt(req.body.dynamicTable2len, 10) + 1;
         for (var i=0; i < programlength; i++){
             var start = req.body.startTime0.split(":");
             var end = req.body.endTime0.split(":");
@@ -218,10 +216,12 @@ module.exports.controller = function (app) {
             }
             programData.push(rowdata);
         }
+        req.session.programData = programData;
 
         //accessing data from breakdown of expenses table
         var expensesData = [];
-        var expenseslength = req.body.dynamicTable3len + 1;
+        var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
+        var totalExpenses = 0.00;
         for (var i=0; i < expenseslength; i++){
             var rowdata = {
                 name: req.body['material'+i],
@@ -229,14 +229,26 @@ module.exports.controller = function (app) {
                 unit_cost: req.body['unit'+i],
                 total_cost: req.body['quantity'+i] * req.body['unit'+i]
             }
+            totalExpenses = rowdata.total_cost + totalExpenses;
             expensesData.push(rowdata);
         }
-        
-        req.session.boeTotal = req.body.boeTotal;
-        
+        req.session.breakdownOfExpenses = {
+            material: expensesData,
+            total_expense: totalExpenses
+        }
+//        req.session.boeTotal = req.body.boeTotal;
+        req.session.organizational_funds = {
+            operational_fund: req.body.OperationalFund,
+            depository_fund: req.body.DepositoryFund,
+            other_fund: req.body.OtherFund,
+            //accumulated_fund: req.body.AccumulatedFund,
+            total_disbursement: parseFloat(req.body.OperationalFund) + parseFloat(req.body.DepositoryFund) + parseFloat(req.body.OtherFund),
+            projected_expenses: totalExpenses,
+            rem_balance: parseFloat(req.body.OperationalFund) + parseFloat(req.body.DepositoryFund) + parseFloat(req.body.OtherFund) - totalExpenses
+        }
         //accessing data from projected revenue table
         var projRevData = [];
-        var projRevlength = req.body.dynamicTable4len + 1;
+        var projRevlength = parseInt(req.body.dynamicTable4len, 10) + 1;
         for (var i=0; i < projRevlength; i++){
             var rowdata = {
                 item: req.body['item'+i],
@@ -246,11 +258,12 @@ module.exports.controller = function (app) {
             }
             projRevData.push(rowdata);
         }
+        req.session.projRevData = projRevData;
         
         //accessing data from projected expenses table
         var projExpData = [];
-        var projExplength = req.body.dynamicTable5len + 1;
-        for (var i=0; i < projRevlength; i++){
+        var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+        for (var i=0; i < projExplength; i++){
             var rowdata = {
                 item: req.body['it'+i],
                 quantity: req.body['qu'+i],
@@ -259,19 +272,54 @@ module.exports.controller = function (app) {
             }
             projExpData.push(rowdata);
         }
+        req.session.porjExpData = projExpData;
+        req.session.projIncomeTotal = req.body.projIncomeTotal;    
+//        console.log("FROM CREATION PART 2")
+//        console.log(req.session.programData);
+//        console.log(req.session.breakdownOfExpenses);
+//        console.log(req.session.organizational_funds);
         
-        req.session.projIncomeTotal = req.body.projIncomeTotal;
-        
-        console.log("FROM CREATION PART 2")
-        console.log("DEBUG: " + req.session.context1);
-        console.log("DEBUG: " + req.session.context2);
-        console.log("DEBUG: " + req.session.context3);
-        console.log("DEBUG: " + req.session.objective1);
-        console.log("DEBUG: " + req.session.objective2);
-        console.log("DEBUG: " + req.session.objective3);
-        console.log("DEBUG: " + req.session.PR.name);
-        console.log("DEBUG: " + req.session.PR.position);
-        console.log("DEBUG PHEADATA " + pheadData[0].name);
+//        console.log("DEBUG: " + req.session.objective1);
+//        console.log("DEBUG: " + req.session.objective2);
+//        console.log("DEBUG: " + req.session.objective3);
+//        console.log("DEBUG: " + req.session.PR.name);
+//        console.log("DEBUG: " + req.session.PR.position);
+//        console.log("DEBUG PHEADATA " + pheadData[0].name);
+        var form = new Form({
+            "title": req.session.title,
+            "nature": req.session.nature,
+            "typeOfActivity": req.session.type,
+            "enmp": req.session.enmp,
+            "enp": req.session.enp,
+            "startDate": req.session.startDate,
+            "startTime": req.session.startTime,
+            "endDate": req.session.endDate,
+            "endTime": req.session.endTime,
+            "venue": req.session.venue,
+            "reach": req.session.reach,
+            "GOSM": req.session.GOSM,
+            "online": req.session.online,
+            "context": [req.session.context1, req.session.context2, req.session.context3],
+            "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+            "person_responsible": req.session.PR,
+            "source_funds": req.session.sourceFunds,
+            "organizational_funds": req.session.organizational_funds,
+            "program_flow": req.session.programData,
+            "projectHeads": req.session.pheadData,
+            "breakdown_expenses": req.session.breakdownOfExpenses,
+            "projected_income": {
+                revenue: req.session.projRevData,
+                expenses: req.session.porjExpData,
+                total: req.session.projIncomeTotal
+            },
+            "comments": null,
+            "position": null,
+            "creationDate": new Date,
+            "org": "SPRINT", //fix this later on
+            "position": "Documents Committee",
+            "status": "Pending",
+            "user_id": req.session.uid
+        });
         
         //temporary
 //        res.render('preacts-submit', {
@@ -281,41 +329,77 @@ module.exports.controller = function (app) {
 //            organization: canSee
 //        });
 //        //temporary
+        preactsService.addForm(form).then((addedForm)=>{
+            console.log(addedForm);
+            //clearSessionForm(req);
+        });
+        
         res.redirect('/preacts-submission');
     });
+    
+    var clearSessionForm = function(req){
+        req.session.title = null;
+        req.session.nature = null;
+        req.session.type = null;
+        req.session.enmp = null;
+        req.session.enp = null;
+        req.session.startDate = null;
+        req.session.startTime = null;
+        req.session.endDate = null;
+        req.session.endTime = null;
+        req.session.venue = null;
+        req.session.reach = null;
+        req.session.GOSM = null;
+        req.session.online = null;
+        req.session.context1 = null;
+        req.session.context2  = null;
+        req.session.context3 = null;
+        req.session.objective1 = null;
+        req.session.objective2 = null;
+        req.session.objective3 = null;
+        req.session.PR = null;
+        req.session.sourceFunds = null;
+        req.session.organizational_funds = null;
+        req.session.programData = null;
+        req.session.pheadData = null;
+        req.session.breakdownOfExpenses = null;
+        req.session.projRevData = null;
+        req.session.porjExpData = null;
+        req.session.projIncomeTotal = null;
+    }
 
-    app.post('/preacts-submission', function (req, res) {
-        var form = new Form({
-            "title": req.body.title,
-            "nature": req.body.nature,
-            "typeOfActivity": req.body.typeOfActivity,
-            "enmp": req.body.enmp,
-            "enp": req.body.enp,
-            "startDate": new Date(req.body.dateOfActivity),
-            "venue": req.body.venue,
-            "context": req.body.context,
-            "objectives": [req.body.objective1, req.body.objective2, req.body.objective3],
-            "comments": null,
-            "position": null,
-            "projectHeads": [{
-                "name": req.body.phead,
-                "contact_number": req.body.cnumber
-            }],
-            "creationDate": new Date,
-            "org": req.body.org,
-            "position": "Documents Committee",
-            "status": "Pending"
-        });
-        //        if(req.session.uid == null){
-        //            resp.redirect('/');
-        //        } else {
-        preactsService.addForm(form);
-        res.render('preacts-submit', {
-            preacts: true,
-            postacts: true,
-            accounts: canSee,
-            organization: canSee
-        });
-        //}
-    });
+//    app.post('/preacts-submission', function (req, res) {
+//        var form = new Form({
+//            "title": req.body.title,
+//            "nature": req.body.nature,
+//            "typeOfActivity": req.body.typeOfActivity,
+//            "enmp": req.body.enmp,
+//            "enp": req.body.enp,
+//            "startDate": new Date(req.body.dateOfActivity),
+//            "venue": req.body.venue,
+//            "context": req.body.context,
+//            "objectives": [req.body.objective1, req.body.objective2, req.body.objective3],
+//            "comments": null,
+//            "position": null,
+//            "projectHeads": [{
+//                "name": req.body.phead,
+//                "contact_number": req.body.cnumber
+//            }],
+//            "creationDate": new Date,
+//            "org": req.body.org,
+//            "position": "Documents Committee",
+//            "status": "Pending"
+//        });
+//        //        if(req.session.uid == null){
+//        //            resp.redirect('/');
+//        //        } else {
+//        preactsService.addForm(form);
+//        res.render('preacts-submit', {
+//            preacts: true,
+//            postacts: true,
+//            accounts: canSee,
+//            organization: canSee
+//        });
+//        //}
+//    });
 }
