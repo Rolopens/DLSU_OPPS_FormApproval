@@ -1,4 +1,6 @@
-var test = document.getElementById("formLength").value
+var test = document.getElementById("formLength").value;
+console.log("FORM LENGTH")
+console.log(test)
 var length = parseInt(test, 10)
 //for (var i = 0; i < length; i++) {
 //    var form_id = $("#item-" + i).attr("data-id")
@@ -43,36 +45,47 @@ function quickDisplay(form_id) {
             $("#location").text(formData["venue"]);
             $("#status").text(formData["status"]);
             $("#sidebar").attr("data-id", formData["_id"]);
-        }
+        },
+        error: function (error){
+            console.log(error);
+            console.log("ERROR HAPPENED");
+        } 
     })
 }
 
-
+console.log(document.getElementById("ApproveForm"))
 
 document.getElementById("ApproveForm").addEventListener("click", function () {
     var approvedID = $("#sidebar").attr("data-id")
+    console.log(approvedID)
+    console.log("APPROVE")
     $.ajax({
         url: "preacts/approve/" + approvedID,
         method: "post",
         contentType: 'application/json',
         success: function (formData) {
+            console.log("APPROVE SUCCESS")
             var form = JSON.parse(JSON.stringify(formData));
             //            console.log(form)
             $("#status").text(formData["status"]);
-        }
+        },
+        error: console.log("APPROVE FAIL") //remove debug message laters
     })
 })
 
 document.getElementById("RejectForm").addEventListener("click", function () {
     var rejectedID = $("#sidebar").attr("data-id")
+    console.log("DISAPPROVE")
     $.ajax({
         url: "preacts/reject/" + rejectedID,
         method: "post",
         contentType: 'application/json',
         success: function (formData) {
+            console.log("DISAPPROVE SUCCESS")
             var form = JSON.parse(JSON.stringify(formData));
             //            console.log(form)
             $("#status").text(formData["status"]);
-        }
+        },
+        error: console.log("DISAPPROVE FAIL")
     })
 })

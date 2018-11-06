@@ -5,14 +5,15 @@
 
     <!--CSS-->
     <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="css/semantic.css">
-    <link rel="stylesheet" href="css/form2style.css">
 
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="css/form2.css">
 
     <!--Scripts-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!--
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         
@@ -22,17 +23,16 @@
 
 <body>
     <div class="main">
-        <form>
+        <form name="form2" action="create-form-2-confirm" method="post">
             <h1>Create Project Proposal</h1>
             <span>Brief Context / Perspective of the Activity</span>
             <br /><br />
             <span>Part 1<span class="red"> * </span></span>
             <ul>
                 <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
-                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
-                    supported with examples)</li>
+                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
             </ul>
-            <textarea rows="2" required></textarea>
+            <textarea name='context1' rows="2" required></textarea>
             <br /><br />
             <span>Part 2<span class="red"> * </span></span>
             <ul>
@@ -41,40 +41,36 @@
                 <li>How did you feel about the experience, situation, or problem? And why did you feel that way?</li>
                 <li>What can we discover or realize?</li>
             </ul>
-            <textarea rows="2" required></textarea>
+            <textarea rows="2" name='context2' required></textarea>
             <br /><br />
             <span>Part 3<span class="red"> * </span></span>
             <ul>
                 <li>Out of all the possible projects, activities, and solutions, why this?</li>
                 <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
             </ul>
-            <textarea rows="2" required></textarea>
+            <textarea rows="2" name='context3' required></textarea>
 
             <br /><br /><br />
             <span>Objectives<span class="red"> * </span></span>
             <br /><br />
-            <div class="inputron">
+            <div>
                 1.
-                <input class="inputron no-margin" type="text" required>
+                <input class="inputron" name='objective1' type="text" required>
             </div>
             <br /><br />
-            <div class="inputron">
+            <div>
                 2.
-                <input class="inputron no-margin" type="text" required>
+                <input class="inputron" name='objective2' type="text" required>
             </div>
             <br /><br />
-            <div class="inputron">
+            <div>
                 3.
-                <input class="inputron no-margin" type="text" required>
+                <input class="inputron" name='objective3' type="text" required>
             </div>
             <br /><br />
 
-            <div class="submit-holder">
-                <div class="title">Project Head/s <span class="red">*</span></div>
-                <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
-                <button type="button" class="row-button previous" id="btnDeletePhead">Delete Row</button>
-            </div>
-
+            <input style="display:none;" value='0' id="dynamicTable1length" name="dynamicTable1len">
+            <div>Project Head/s <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable1">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -84,23 +80,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr value=0>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
-                                <input type="checkbox"> <label></label>
+                                <input type="checkbox" name="phead_check"><label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" name="phead_name0" type="text" required></td>
+                        <td><input class="inputron no-margin" name="phead_number0" type="number" required></td>
                     </tr>
                 </tbody>
             </table>
-            <div class="submit-holder">
-                <div class="title">Comprehensive Program Design <span class="red">*</span></div>
-                <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
-                <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button>
-            </div>
+            <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
+            <button type="button" class="row-button previous" id="btnDeletePhead">Delete Row</button>
 
+            <br/><br/><br/><br/>
+            <input style="display:none;" value='0' id="dynamicTable2length" name="dynamicTable2len">
+            <div>Comprehensive Program Design <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable2">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -112,25 +108,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr value=0>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="time" required><input class="inputron no-margin" type="time" required></td>
-                        <td><textarea class="row-textarea" required></textarea></td>
-                        <td><textarea class="row-textarea" required></textarea></td>
-                        <td><textarea class="row-textarea" required></textarea></td>
+                        <td><input class="inputron no-margin" type="time" name="startTime0" required><input class="inputron no-margin" type="time" name="endTime0" required></td>
+                        <td><textarea class="row-textarea" name="activity0" required></textarea></td>
+                        <td><textarea class="row-textarea" name="description0" required></textarea></td>
+                        <td><textarea class="row-textarea" name="person0" required></textarea></td>
                     </tr>
                 </tbody>
             </table>
-            <div class="submit-holder">
-                <div class="title">Breakdown of Expenses <span class="red">*</span></div>
-                <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
-                <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
-            </div>
+            <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
+            <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button>
 
+            <br/><br/><br/><br/>
+            <input style="display:none;" value='0' id="dynamicTable3length" name="dynamicTable3len">
+            <div>Breakdown of Expenses <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable3">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -148,10 +144,10 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" type="text" name="material0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="quantity0" value=0 min=0 required></td>
+                        <td><input class="inputron no-margin" type="number" name="unit0" value=0.00 min=0 step=0.01 required></td>
+                        <td class="bg-gray" name="BOE_subtotal0">Php 0.00</td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -162,16 +158,20 @@
                                 Total:
                             </div>
                         </th>
-                        <th class="result">n/a</th>
+                        <th class="result" name="boeTotal">Php 0.00</th>
                     </tr>
                 </tfoot>
             </table>
-            <br /><br /> Source of Funds<span class="red">*</span>
+            <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
+            <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
+
+            <br/><br/><br/><br/>
+            <div>Source of Funds<span class="red">*</span></div>
             <table class="ui compact celled definition fixed table">
                 <thead class="full-width">
                     <tr style="text-align: center;">
                         <th style="width: 40px;"></th>
-                        <th class="item" style="width: 80%">Source/s of Funds</th>
+                        <th class="item" style="width: 50%">Source/s of Funds</th>
                         <th class="item">Amount</th>
                     </tr>
                 </thead>
@@ -180,19 +180,19 @@
                         <td class="collapsing">
                         </td>
                         <td>Organizational Funds</td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
                         </td>
                         <td>Participants Fee</td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="ParticipantsFee" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
                         </td>
                         <td>Others (i.e. Sponsorships)</td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -203,16 +203,18 @@
                                 Total:
                             </div>
                         </th>
-                        <th class="result">n/a</th>
+                        <th class="result" name="totalSource">Php 0.00</th>
                     </tr>
                 </tfoot>
             </table>
-            <br /><br /> Organizational Funds<span class="red">*</span>
+
+            <br/><br/>
+            <div>Organizational Funds<span class="red">*</span></div>
             <table class="ui compact celled definition fixed table">
                 <thead class="full-width">
                     <tr style="text-align: left;">
                         <th style="width: 40px;"></th>
-                        <th class="item" style="width: 80%">Accumulated Operational Funds</th>
+                        <th class="item" style="width: 50%">Accumulated Operational Funds</th>
                         <th class="item"></th>
                     </tr>
                 </thead>
@@ -226,11 +228,9 @@
                                 Operational Fund
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="OperationalFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
-                    
+
                     <tr>
                         <td class="collapsing">
 
@@ -247,9 +247,7 @@
                                 Depository Fund
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="DepositoryFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -267,22 +265,7 @@
                                 Participants Fee/Donation/Sponsorships
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing">
-
-                        </td>
-                        <td>
-                            <div class="right bold">
-                                Accumulated Operational Funds
-                            </div>
-                        </td>
-                        <td class="php"> <input class="inputron no-margin" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFund" type="number" value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -293,7 +276,7 @@
                                 Total Cash For Disbursement
                             </div>
                         </td>
-                        <td class="bg-gray ">Php</td>
+                        <td class="bg-gray" name="totalDisbursement">Php 0.00</td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -304,9 +287,7 @@
                                 Less: Total Projected Expenses
                             </div>
                         </td>
-                        <td class="php"> <input class="inputron no-margin" type="number" required>
-                            <div class="pwp">Php </div>
-                        </td>
+                        <td>Php 0.00</td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -317,17 +298,14 @@
                                 REMAINING BALANCE
                             </div>
                         </td>
-                        <td>Php</td>
+                        <td class="bg-gray">Php 0.00</td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="submit-holder">
-                <div class="title">Projected Income <span class="red">*</span></div>
-                <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
-                <button type="button" class="row-button previous" id="btnDeleteProjRev">Delete Row</button>
-            </div>
-
+            <br/><br/>
+            <input style="display:none;" value='0' id="dynamicTable4length" name="dynamicTable4len">
+            <div>Projected Income <span class="red">*</span></div>
             <table class="ui compact celled definition fixed table" id="dynamicTable4">
                 <thead class="full-width">
                     <tr>
@@ -352,18 +330,18 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" type="text" name="item0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="qty0" required></td>
+                        <td><input class="inputron no-margin table_input" name="price0" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td class="bg-gray" name="amount0"></td>
                     </tr>
                 </tbody>
             </table>
+            <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
+            <button type="button" class="row-button previous" id="btnDeleteProjRev">Delete Row</button>
 
-            <div class="submit-holder">
-                <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
-                <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button>
-            </div>
+
+            <input style="display:none;" value='0' id="dynamicTable5length" name="dynamicTable5len">
             <table class="ui compact celled definition fixed table" id="dynamicTable5">
                 <thead class="full-width">
                     <tr>
@@ -388,10 +366,10 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="text" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
-                        <td><input class="inputron no-margin" type="number" required></td>
+                        <td><input class="inputron no-margin" type="text" name="it0" required></td>
+                        <td><input class="inputron no-margin" type="number" name="qu0" required></td>
+                        <td><input class="inputron no-margin table_input" name="pr0" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td class="bg-gray" name="am0"></td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -402,22 +380,25 @@
                                 TOTAL PROJECTED INCOME:
                             </div>
                         </th>
-                        <th class="result">n/a</th>
+                        <th name="projIncomeTotal">Php 0.00</th>
                     </tr>
                 </tfoot>
             </table>
+            <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
+            <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button>
+
+            <br /><br />
             <br /><br /> Provision for Profit and Loss
-            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the
-            project.
+            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the project.
             <br /><br />
 
             <span>Name of Person Responsible (Aside from you)<span class="red"> * </span></span>
             <br />
-            <input class="inputron" type="text" required>
+            <input class="inputron" name='namePR' type="text" required>
             <br /><br />
             <span>Position<span class="red"> * </span></span>
             <br />
-            <input class="inputron" type="text" required>
+            <input class="inputron" name='positionPR' type="text" required>
             <br /><br />
 
             <div class="button-align">
@@ -425,9 +406,8 @@
                 <button type="submit" class="submit-button next">Submit</button>
             </div>
         </form>
-        </div>
+    </div>
     <script>
-        
         //add project head
         function addPhead() {
             var row = document.createElement("tr");
@@ -437,7 +417,14 @@
             div.className = "ui fitted checkbox";
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
+            cBox.setAttribute('name', 'phead_check');
             var label = document.createElement("label");
+
+            var tableLength = document.getElementById("dynamicTable1length");
+            console.log(tableLength.value)
+            row.setAttribute('value', tableLength.value)
+            console.log(tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
 
             div.append(cBox);
             div.append(label);
@@ -448,13 +435,15 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'phead_name' + tableLength.value);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'phead_number' + tableLength.value)
             col3.append(input3);
 
             row.append(col1);
@@ -465,7 +454,7 @@
 
             console.log('ADD PHEAD()');
         }
-        
+
         //delete project head
         function deletePhead() {
             let tableRef = document.getElementById('dynamicTable1');
@@ -474,10 +463,26 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+        
+            var i;
+            
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable1").rows.length; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable1").rows[i].cells.length; j++) {
+                    if (i>0 &&j == 1) {
+                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_name' + (i - 1)
+                    }
+                    if (i>0&&j == 2) {
+                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_number' + (i - 1)
+                    }
+                }
+            }
 
+            var tableLength = document.getElementById("dynamicTable1length");
+            tableLength.setAttribute('value', i - 2)
             console.log('DELETE PHEAD()');
         }
-        
+
         //add row in comprehensive projgram design table
         function addCPD() {
             var row = document.createElement("tr");
@@ -488,20 +493,26 @@
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
+            
+            var tableLength = document.getElementById("dynamicTable2length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
 
             div.append(cBox);
             div.append(label);
             col1.append(div);
-            
+
             var col2 = document.createElement("td");
             var input2 = document.createElement("input");
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'time');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'startTime' + tableLength.value);
             var input6 = document.createElement("input");
             input6.className = "inputron no-margin";
             input6.setAttribute('type', 'time');
             input6.setAttribute('required', true);
+            input6.setAttribute('name', 'endTime' + tableLength.value);
             col2.append(input2);
             col2.append(input6);
 
@@ -509,18 +520,21 @@
             var input3 = document.createElement("textarea");
             input3.className = "row-textarea";
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'activity' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
             var input4 = document.createElement("textarea");
             input4.className = "row-textarea";
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'description' + tableLength.value);
             col4.append(input4);
 
             var col5 = document.createElement("td");
             var input5 = document.createElement("textarea");
             input5.className = "row-textarea";
             input5.setAttribute('required', true);
+            input5.setAttribute('name', 'person' + tableLength.value);
             col5.append(input5);
 
             row.append(col1);
@@ -534,18 +548,40 @@
             console.log('ADD ROW()');
         }
 
-        //delete row in comprehensive projgram design table
+        //delete row in comprehensive program design table
         function deleteCPD() {
             let tableRef = document.getElementById('dynamicTable2');
             let tbody = tableRef.querySelector("tbody");
 
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
-                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+                .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode));
+            
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable2").rows.length; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable2").rows[i].cells.length; j++) {
+                    if (i>0&&j == 1) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'startTime' + (i - 1);
+                        document.getElementById("dynamicTable2").rows[i].cells[j].childNodes[1].name = 'endTime' + (i - 1);
+                    }
+                    if (i>0&&j == 2) {
+                       document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'activity' + (i - 1);
+                    }
+                    if (i>0&&j == 3) {
+                         document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'description' + (i - 1);
+                    }
+                    if (i>0&&j == 4) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'person' + (i - 1);
+                    }
+                }
+            }
 
+            var tableLength = document.getElementById("dynamicTable2length");
+            tableLength.setAttribute('value', i - 2)
             console.log('DELETE ROW()');
         }
-        
+
         //add row in break down of expenses
         function addBOE() {
             var row = document.createElement("tr");
@@ -557,6 +593,10 @@
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
 
+            var tableLength = document.getElementById("dynamicTable3length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
+            
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -566,13 +606,15 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'material' + tableLength.value);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'quantity' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
@@ -580,15 +622,16 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
-            col4.append(input4);
-            
+            input4.setAttribute('name', 'unit' + tableLength.value);
+            input4.setAttribute('min', 0);
+            input4.setAttribute('value', 0.00);
+            input4.setAttribute('step', 0.01)
+            col4.append(input4); 
+
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'number');
-            input5.setAttribute('required', true);
-            col5.append(input5);
-            
+            col5.className = "bg-gray";
+            col5.setAttribute('name', 'BOE_subtotal' + tableLength.value);
+
             row.append(col1);
             row.append(col2);
             row.append(col3);
@@ -599,7 +642,7 @@
 
             console.log('ADD BOE()');
         }
-        
+
         //delete project head
         function deleteBOE() {
             let tableRef = document.getElementById('dynamicTable3');
@@ -609,9 +652,30 @@
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
 
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable3").rows.length - 1; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable3").rows[i].cells.length; j++) {
+                    if (i>0&&j == 1) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'material' + (i - 1);
+                    }
+                    if (i>0&&j == 2) {
+                       document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'quantity' + (i - 1);
+                    }
+                    if (i>0&&j == 3) {
+                         document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'unit' + (i - 1);
+                    }
+                    if (i>0&&j == 4) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].setAttribute('name','BOE_subtotal' + (i - 1));
+                    }
+                }
+            }
+
+            var tableLength = document.getElementById("dynamicTable3length");
+            tableLength.setAttribute('value', i - 2)
             console.log('DELETE BOE()');
         }
-        
+
         //add row in projected revenue
         function addProjRev() {
             var row = document.createElement("tr");
@@ -623,6 +687,10 @@
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
 
+            var tableLength = document.getElementById("dynamicTable4length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
+            
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -632,13 +700,15 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'item' + tableLength.value);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'qty' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
@@ -646,15 +716,16 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'price' + tableLength.value);
+            input4.setAttribute('min', 0);
+            input4.setAttribute('value', 0.00);
+            input4.setAttribute('step', 0.01)
             col4.append(input4);
-            
+
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'number');
-            input5.setAttribute('required', true);
-            col5.append(input5);
-            
+            col5.className = "bg-gray";
+            col5.setAttribute('name', 'amount' + tableLength.value);
+
             row.append(col1);
             row.append(col2);
             row.append(col3);
@@ -665,7 +736,7 @@
 
             console.log('ADD ProjRev()');
         }
-        
+
         //delete row in projected revenue
         function deleteProjRev() {
             let tableRef = document.getElementById('dynamicTable4');
@@ -674,10 +745,31 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
+            
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable4").rows.length; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable4").rows[i].cells.length; j++) {
+                    if (i>1&&j == 1) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'item' + (i - 2);
+                    }
+                    if (i>1&&j == 2) {
+                       document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'qty' + (i - 2);
+                    }
+                    if (i>1&&j == 3) {
+                         document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'price' + (i - 2);
+                    }
+                    if (i>1&&j == 4) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].setAttribute('name','amount' + (i - 2));
+                    }
+                }
+            }
 
+            var tableLength = document.getElementById("dynamicTable4length");
+            tableLength.setAttribute('value', i - 3)
             console.log('DELETE ProjRev()');
         }
-        
+
         //add row in projected expenses
         function addProjExp() {
             var row = document.createElement("tr");
@@ -688,6 +780,10 @@
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
+            
+            var tableLength = document.getElementById("dynamicTable5length");
+            row.setAttribute('value', tableLength.value)
+            tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
 
             div.append(cBox);
             div.append(label);
@@ -698,13 +794,15 @@
             input2.className = "inputron no-margin";
             input2.setAttribute('type', 'text');
             input2.setAttribute('required', true);
+            input2.setAttribute('name', 'it' + tableLength.value);
             col2.append(input2);
-            
+
             var col3 = document.createElement("td");
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('name', 'qu' + tableLength.value);
             col3.append(input3);
 
             var col4 = document.createElement("td");
@@ -712,15 +810,16 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
+            input4.setAttribute('name', 'pr' + tableLength.value);
+            input4.setAttribute('min', 0);
+            input4.setAttribute('value', 0.00);
+            input4.setAttribute('step', 0.01)
             col4.append(input4);
-            
+
             var col5 = document.createElement("td");
-            var input5 = document.createElement("input");
-            input5.className = "inputron no-margin";
-            input5.setAttribute('type', 'number');
-            input5.setAttribute('required', true);
-            col5.append(input5);
-            
+            col5.setAttribute('name', 'am' + tableLength.value);
+            col5.className = "bg-gray";
+
             row.append(col1);
             row.append(col2);
             row.append(col3);
@@ -731,7 +830,7 @@
 
             console.log('ADD ProjExp()');
         }
-        
+
         //delete row in projected expenses
         function deleteProjExp() {
             let tableRef = document.getElementById('dynamicTable5');
@@ -741,52 +840,146 @@
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
 
+            var i;
+            //reset index
+            for (i = 0; i < document.getElementById("dynamicTable5").rows.length - 1; i++) {
+                for (var j = 0; j < document.getElementById("dynamicTable5").rows[i].cells.length; j++) {
+                    if (i>1&&j == 1) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'it' + (i - 2);
+                    }
+                    if (i>1&&j == 2) {
+                       document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'qu' + (i - 2);
+                    }
+                    if (i>1&&j == 3) {
+                         document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'pr' + (i - 2);
+                    }
+                    if (i>1&&j == 4) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].setAttribute('name','am' + (i - 2));
+                    }
+                }
+            }
+
+            var tableLength = document.getElementById("dynamicTable5length");
+            tableLength.setAttribute('value', i - 3)
             console.log('DELETE ProjExp()');
         }
         
-        $(document).ready(function () {
-            
-            document.getElementById("btnAddCPD").addEventListener("click", function () {
+        $(document).ready(function() {
+
+            document.getElementById("btnAddCPD").addEventListener("click", function() {
                 addCPD();
             });
-            
-            document.getElementById("btnDeleteCPD").addEventListener("click", function () {
+
+            document.getElementById("btnDeleteCPD").addEventListener("click", function() {
                 deleteCPD();
             });
 
-            document.getElementById("btnAddPhead").addEventListener("click", function () {
+            document.getElementById("btnAddPhead").addEventListener("click", function() {
                 addPhead();
             });
 
-            document.getElementById("btnDeletePhead").addEventListener("click", function () {
+            document.getElementById("btnDeletePhead").addEventListener("click", function() {
                 deletePhead();
             });
-            
-            document.getElementById("btnAddBOE").addEventListener("click", function () {
+
+            document.getElementById("btnAddBOE").addEventListener("click", function() {
                 addBOE();
             });
 
-            document.getElementById("btnDeleteBOE").addEventListener("click", function () {
+            document.getElementById("btnDeleteBOE").addEventListener("click", function() {
                 deleteBOE();
             });
-            
-            document.getElementById("btnAddProjRev").addEventListener("click", function () {
+
+            document.getElementById("btnAddProjRev").addEventListener("click", function() {
                 addProjRev();
             });
 
-            document.getElementById("btnDeleteProjRev").addEventListener("click", function () {
+            document.getElementById("btnDeleteProjRev").addEventListener("click", function() {
                 deleteProjRev();
             });
-            
-            document.getElementById("btnAddProjExp").addEventListener("click", function () {
+
+            document.getElementById("btnAddProjExp").addEventListener("click", function() {
                 addProjExp();
             });
 
-            document.getElementById("btnDeleteProjExp").addEventListener("click", function () {
+            document.getElementById("btnDeleteProjExp").addEventListener("click", function() {
                 deleteProjExp();
             });
+
+            //adds Source of Funds automatically and Organizational Funds
+            var i = 0;
+            $("input").change(function() {
+                var sum_SOF = 0;
+                var sum_OF = 0;
+                var sum_BOE;
+                var subtotal_BOE = 1;
+                var remBalance = 0;
+
+                //Source of Funds
+                $("input[name=OrganizationalFunds]").each(function() {
+                    sum_SOF = sum_SOF + parseFloat($(this).val());
+                });
+                $("input[name=ParticipantsFee]").each(function() {
+                    sum_SOF = sum_SOF + parseFloat($(this).val());
+                });
+                $("input[name=OtherFunds]").each(function() {
+                    sum_SOF = sum_SOF + parseFloat($(this).val());
+                });
+                $("th[name=totalSource]").text("Php " + sum_SOF.toFixed(2));
+
+                //Organizational Funds
+                $("input[name=OperationalFund]").each(function() {
+                    sum_OF = sum_OF + parseFloat($(this).val());
+                });
+                $("input[name=DepositoryFund]").each(function() {
+                    sum_OF = sum_OF + parseFloat($(this).val());
+                });
+                $("input[name=OtherFund]").each(function() {
+                    sum_OF = sum_OF + parseFloat($(this).val());
+                });
+                $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
+
+                //
+                $("input[name=quantity0]").each(function() {
+                   subtotal_BOE = subtotal_BOE * parseFloat($(this).val());
+                });
+                $("input[name=unit0]").each(function() {
+                    subtotal_BOE = subtotal_BOE * parseFloat($(this).val());
+                });
+                $("td[name=BOE_subtotal0]").text("Php " + subtotal_BOE.toFixed(2));
+             
+            });
+            
+            function calculateSum() {
+                var sum = 0;
+                $(".txt").each(function () {
+                    
+                    if (!isNaN(this.value) && this.value.length != 0) {
+                        sum += parseFloat(this.value);
+                    }
+
+                });
+                //.toFixed() method will roundoff the final sum to 2 decimal places
+                $("#sum").html(sum.toFixed(2));
+            }
+            
+            $("#dynamicTable3").on("keyup", ".txt", function () {
+                calculateSum();
+            });
+            
+//            $('input[name=phead_check][type=checkbox]').click(function(){
+//                if (this.checked) {
+//                    $('#btnDeletePhead').css('color', '#26BE9B');
+//                    $('#btnDeletePhead').css('border-color', '#26BE9B');
+//                }
+//                else {
+//                    $('#btnDeletePhead').css('color', '#DCDCDC');
+//                    $('#btnDeletePhead').css('border-color', '#DCDCDC');
+//                }
+//            });
         });
-    </script>       
+
+    </script>
 </body>
-    
+
 </html>

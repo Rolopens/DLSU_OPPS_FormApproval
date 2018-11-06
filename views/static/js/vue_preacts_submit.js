@@ -29,12 +29,15 @@ var preacts_app = new Vue({
                 this.whoami = rows.data.user;
                 return this.whoami;
             })
-        
-        axios.get('/preacts/getAllForms/forms').then((rows)=>{
+            .then((user)=>{
+                axios.get("/preacts/getAllFormsOfUser/"+ user._id).then((rows)=>{
                 console.log(rows);
                 this.forms = rows.data.forms;
                 return this.forms;
-        })
+                })
+            })
+        
+        
     },
     methods: {
         quickviewForm(_id) {
@@ -46,36 +49,6 @@ var preacts_app = new Vue({
                         Vue.set(preacts_app, 'quickview', response.data.form);
                     }
                 })
-        },
-        approveForm(_id){
-            axios.post("/preacts/approve/" + _id)
-                .then((response)=>{
-                if (response.error != undefined)
-                        $("#error_msg").html(response.error)
-                    else {
-                        Vue.set(preacts_app, 'quickview', response.data.formData1);
-                    }
-            })
-            axios.get('/preacts/getAllForms/forms').then((rows)=>{
-                console.log(rows);
-                this.forms = rows.data.forms;
-//                return this.forms;
-            })
-        },
-        rejectForm(_id){
-            axios.post("/preacts/reject/" + _id)
-                .then((response)=>{
-                if (response.error != undefined)
-                        $("#error_msg").html(response.error)
-                    else {
-                        Vue.set(preacts_app, 'quickview', response.data.formData1);
-                    }
-            })
-            axios.get('/preacts/getAllForms/forms').then((rows)=>{
-                console.log(rows);
-                this.forms = rows.data.forms;
-//                return this.forms;
-            })
         }
     }
 })

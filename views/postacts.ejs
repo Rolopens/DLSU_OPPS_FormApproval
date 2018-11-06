@@ -4,14 +4,16 @@
 		<title>Approver Dashboard</title>
 		<!-- external links -->
 		<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="lib/font-awesome.min.css" />
 		<link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
+		<script src="lib/axios.min.js" type="application/javascript"> </script>
 
 		<!-- stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/theme.css" />
 		<link rel="stylesheet" type="text/css" href="css/variables.css" />
 		<link rel="stylesheet" type="text/css" href="css/approver.css" />
+		<link rel="stylesheet" type="text/css" href="css/user_dropdown.css" />
 		<!-- element-stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/flex.css" />
 		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
@@ -62,11 +64,7 @@
 			</nav>
 
 			<header>
-				<div id="account" class="flex-end">
-					<span id="account-name">
-						Timmy Tiberius Turner &nbsp; <i class="fa fa-angle-down"></i>
-					</span>
-				</div>
+				<%- include("user_dropdown.ejs") %>
 				<h1 id="board-title"><i class="fa fa-file-text"></i> &nbsp; Post-Activities Submission</h1>
 				<nav id="acts-nav">
 					<ul>

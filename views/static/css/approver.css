@@ -136,7 +136,7 @@ nav#acts-nav ul li:hover{
 
 #secondary-nav .filter-wrapper .checkmark{
     position: absolute;
-    top: 18px;
+    top: 16.5px;
     left: 0;
     height: 18px;
     width: 18px;
@@ -181,7 +181,7 @@ header{
 }
 
 #account-name{
-	font-size: 0.9em;
+	font-size: 1.1em;
 	cursor: pointer;
 	font-family: 'Merriweather', sans-serif;
 }
@@ -192,15 +192,22 @@ header{
 	font-weight: normal;
 }
 
+.content-header {
+    height:60px;
+	background-color: #f4f4f4;
+	border-bottom: thin solid #ddd;
+}
+
 #select-wrapper{
 	padding: 0.78em 4em;
+/*
 	border-bottom: thin solid #dedede;
 	background-color: #f4f4f4;
+*/
 }
 
 #search{
-    width: 80%;
-/*	text-indent: 30px;*/
+	width: 80%;
 	background-image: url('../assets/icons/round-search-24px.svg');
 	background-repeat: no-repeat;
     padding-left: 40px;
@@ -264,12 +271,14 @@ header{
 }
 
 #main-content{
-	width: calc(100% - 450px);
+/*    position: fixed;*/
+    width: 500px;
+    overflow-x: auto;
 }
 
 #main-content .content-feed{
-	overflow-y: scroll;
-    max-height: 430px;
+	overflow-y: auto;
+    max-height: 425px;
 	padding: 0 4em;
 	padding-right: 2.5em;
 }
@@ -351,18 +360,16 @@ header{
 	position: fixed;
 	z-index: 998;
 	right: 0;
-	width: 450px;
-/*    max-height: 100%;*/
-	max-height: 490px;
-	overflow-y: scroll;
+	min-width: calc(100% - 450px - 418px);
+	max-height: 485px;
+    overflow-x: auto;
+    overflow-y: auto;
 	border-left: thin solid #ddd;
 }
 
 #sidebar .action-title{
 	color: var(--theme-color);
 	padding: 1.1em 2em;
-	background-color: #f4f4f4;
-	border-bottom: thin solid #ddd;
 }
 
 #quick-view{
@@ -382,14 +389,19 @@ header{
 #quick-view .action{
 	padding: 1em;
 	cursor: pointer;
+    border-radius: 3px;
 }
 
 #quick-view .positive{
     background-color: var(--theme-color);
+    width:100%;
+    max-width:200px;
 }
 
 #quick-view .negative{
     background-color: #FF4F4F;
+    width:100%;
+    max-width:200px;
 }
 
 #main-content .content-wrapper .activity-icon.positive{
@@ -405,16 +417,26 @@ header{
 }
 
 .positive:hover{
-/*	color: var(--theme-color);*/
-    color: white;
+	color: white;
 }
 
 .negative:hover{
-/*	color: #FF4F4F;*/
-    color: white;
+	color: white;
 }
 
 /*
 #quick-view .action:hover{
 	background-color: white;
 }*/
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

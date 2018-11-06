@@ -10,6 +10,7 @@ module.exports.controller = function(app) {
       // is in the session
       var roleID;
       var canSee = false;
+      if (!req.session.uid) res.redirect("/");
       userService.getUserWithId(req.session.uid)
       .then((result)=>{
         var rolePromises = [];
@@ -30,6 +31,10 @@ module.exports.controller = function(app) {
             accounts : canSee,
             organization : canSee
         });
-      });
+      })
+      .catch((err)=>{
+        console.log(err);
+        res.redirect("/");
+      })
     });
 }

@@ -5,6 +5,7 @@
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.2",
+        "duration": "^0.2.2",
         "ejs": "^2.5.9",
         "express": "^4.6.1",
         "express-session": "^1.15.6",

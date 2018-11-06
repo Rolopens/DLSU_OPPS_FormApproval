@@ -72,6 +72,11 @@ button.dark, input[type="button"].dark, input[type="submit"].dark{
     color: var(--theme-button-color-value);
 }
 
+button.hallow {
+    width:100%;
+    max-width:200px;
+}
+
 /* transparent background color, themed button */
 button.hallow, input[type="button"].hallow, input[type="submit"].hallow{
     background-color: transparent;

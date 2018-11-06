@@ -2,9 +2,12 @@ var orgs_app = new Vue({
     el: '#orgs',
     data: {
         orgs: [],
-        quickview: null
+        quickview: null,
+        whoami: null
     },
     created: function(){
+        axios.get('/whoami')
+            .then((rows)=> {console.log(rows);this.whoami = rows.data.user;return this.whoami;})
         axios.get('/organizations')
             .then((rows)=> {
                 console.log(rows)

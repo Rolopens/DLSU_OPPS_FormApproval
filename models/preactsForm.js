@@ -13,10 +13,10 @@ var formSchema = new Schema({
     startTime: String,
     endTime: String,
     startDate: {
-        type: Date
+        type: String
     },
     endDate: {
-        type: Date
+        type: String
     },
     enmp: {
         type: Number
@@ -46,8 +46,8 @@ var formSchema = new Schema({
     approvedBy: [ mongoose.Schema.Types.ObjectId],
     //tables
     program_flow: [{
-        startTime: Date,
-        endTime: Date,
+        startTime: String, //for now (used to be date)
+        endTime: String, //for now (used to be date)
         duration: Number,
         activity: String,
         description: String,
@@ -89,7 +89,8 @@ var formSchema = new Schema({
     organizational_funds: {
         operational_fund: Number,
         depository_fund: Number,
-        other_fund: Number,
+//        other_fund: Number,
+//        accumulated_fund: Number,
         total_disbursement: Number,
         projected_expenses: Number,
         rem_balance: Number

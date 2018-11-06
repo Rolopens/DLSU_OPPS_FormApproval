@@ -1,0 +1,91 @@
+body{
+    padding: 20px;
+    background-color: #26BE9B;
+    
+}
+
+.main {
+    width: 50%;
+    margin-left: 25%;
+    background-color: white;
+    padding: 2%;
+}
+
+.inputron {
+    margin-top: 10px;
+    border: none;
+    border-bottom: 1.5px solid;
+    border-bottom-color: #5e6479;
+    width: 100%;
+}
+
+.inputron:focus{
+    outline: none;
+    
+}
+
+.others-input{
+    border: none !important;
+    border-bottom: 1.5px solid !important;
+    border-bottom-color: #5e6479 !important;
+    border-radius: 0px !important;
+    height: 0px;
+
+}
+
+.container-of-ENMP-ENP{
+    display: flex;
+    flex-direction: row;
+}
+
+.ENMP-holder{
+    margin-right: 10px;
+    width: 50%;
+}
+
+.EMP-holder{
+    width: 50%;
+}
+
+.submit-button{
+    margin-top: 5%;
+    background: white;
+    border-color: #26BE9B;
+    border-style: solid;
+    color: #26BE9B;
+    border-radius: 5px;
+    width: 130px;
+    height: 50px;
+    font-weight: 700;
+}
+
+.next:hover{
+    background: #26BE9B;
+    border-color: white;
+    color: white;
+    border-style: solid;
+}
+
+.previous{
+    border-color: #DCDCDC;
+    color: #DCDCDC;
+}
+
+.red{
+    color:red;
+}
+
+.others{
+    display:flex;
+    flex-direction: row;
+}
+
+.others input{
+    display: inline !important;
+}
+    
+.others2{
+    margin-top: 0px;
+    display: inline-block !important;
+    text-align: right !important;
+}
