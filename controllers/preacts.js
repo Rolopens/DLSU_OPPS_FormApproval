@@ -34,7 +34,6 @@ module.exports.controller = function (app) {
             .then((result) => {
                 res.render('preacts', {
                     preacts: true,
-                    postacts: true,
                     accounts: canSee,
                     organization: canSee
                 });
@@ -133,7 +132,6 @@ module.exports.controller = function (app) {
 
         res.render('preacts-submit', {
             preacts: true,
-            postacts: true,
             accounts: canSee,
             organization: canSee
         });
