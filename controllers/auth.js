@@ -29,6 +29,14 @@ module.exports.controller = function (app) {
             })
         }
     })
+    
+    app.get('/home', (req, res)=>{
+        // check if the logged in user is a phead or a checker
+        // if phead
+            // res.redirect('/preacts-submission')
+        // else
+            //return res.redirect('/preacts');
+    })
 
     /* DEBUG */
     app.get('/auth', function(req, res) {

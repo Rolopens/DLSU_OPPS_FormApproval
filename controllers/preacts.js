@@ -48,6 +48,24 @@ module.exports.controller = function (app) {
             });
     });
 
+    //ajax request for getting orgs of user
+    app.get("/preacts/userOrgs/:id", function(req, res){
+        userService.getUserWithId(req.paramas.id).then((userObject) => {
+            var org_ids = userObject.user_roles;
+            console.log("LOG: USER OBJECT")
+            return orgService.findSpecificOrg(org_id).then((orgObject) => {
+                usersOrganization = orgObject.name;
+                res.send({org_ids})
+            }).catch((err) => {
+                console.log("ERROR: Failed to find organizations given org_id - " + org_id);
+                console.log(err);
+            });
+        }).catch((err) => {
+            console.log("ERROR: Failed to find user given user_id - " + req.session.uid);
+            console.log(err);
+        });
+    });
+    
     //ajax request for quick view
     app.get("/preacts/:id", function (req, res) {
         var id = req.params.id
@@ -57,7 +75,7 @@ module.exports.controller = function (app) {
                 form
             })
         })
-    })
+    });
 
     //ajax request for all the forms
     app.get("/preacts/getAllForms/forms", function (req, res) {
@@ -66,7 +84,7 @@ module.exports.controller = function (app) {
                 forms
             })
         })
-    })
+    });
 
     //ajax request for all the forms owned by a user
     app.get("/preacts/getAllFormsOfUser/:id", function (req, res) {
@@ -299,7 +317,7 @@ module.exports.controller = function (app) {
         var usersOrganization;
         userService.getUserWithId(req.session.uid).then((userObject) => {
             var org_id = userObject.user_roles[0].org_id;
-            console.log("LOG: USER OBJECT")
+//            console.log("LOG: USER OBJECT");
             return orgService.findSpecificOrg(org_id).then((orgObject) => {
                 usersOrganization = orgObject.name;
                 var form = new Form({
@@ -332,21 +350,18 @@ module.exports.controller = function (app) {
                     "comments": null,
                     "position": null,
                     "creationDate": new Date,
-                    "org": usersOrganization, //fix this later on
+                    "org": usersOrganization, //fix this later on to session
                     "position": "Documents Committee",
                     "status": "Pending",
                     "user_id": req.session.uid
                 });
                 return preactsService.addForm(form).then((addedForm) => {
-                    console.log(addedForm);
+//                    console.log(addedForm);
                     clearSessionForm(req);
                 }).catch((err)=>{
                     console.log("ERROR: Failed to add form in database");
                     console.log(err);
                 });
-
-
-
             }).catch((err) => {
                 console.log("ERROR: Failed to find organization given org_id - " + org_id);
                 console.log(err);
