@@ -59,13 +59,13 @@
                         <ul>
                             <li class="active">All (243)</li>
                             <li>Unreviewed (100)</li>
-                            <li>Accepted (43)</li>
+                            <li>Approved (43)</li>
                             <li>Rejected (50)</li>
                             <li>Pending (50)</li>
                         </ul>
                     </nav>
             </header>
-            <section>
+            <section id="main-bars">
                 <div id="main-content">
                     <div class="content-header">
                         <div id="select-wrapper">
@@ -82,10 +82,10 @@
                                 <div class="activity-wrapper flex-start">
                                     <div class="activity-icon positive"><i class="fa fa-check"></i></div>
                                     <div class="activity">
-                                        <h3 name="FormTitle">
+                                        <h3 class="infoData" name="FormTitle">
                                             {{form.title}}
                                         </h3>
-                                        <p name="FormDetails">
+                                        <p class="infoData" name="FormDetails">
                                             {{form.org}} |
                                                 {{form.startDate}}
                                         </p>
@@ -105,33 +105,33 @@
                             <div class="column">
                                 <div class="info">
                                     <h4>Title</h4>
-                                    <p id="Title">{{quickview.title}}</p>
+                                    <p class="infoData" id="Title">{{quickview.title}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Nature</h4>
-                                    <p id="Nature">{{quickview.nature}}</p>
+                                    <p class="infoData" id="Nature">{{quickview.nature}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Type</h4>
-                                    <p id="Type">{{quickview.typeOfActivity}}</p>
+                                    <p class="infoData" id="Type">{{quickview.typeOfActivity}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Status</h4>
-                                    <p id="status">{{quickview.status}}</p>
+                                    <p class="infoData" id="status">{{quickview.status}}</p>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="info">
                                     <h4>Date</h4>
-                                    <p id="startDate">{{quickview.startDate}}</p>
+                                    <p class="infoData" id="startDate">{{quickview.startDate}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Time</h4>
-                                    <p id="startTime">{{quickview.startDate}}</p>
+                                    <p class="infoData" id="startTime">{{quickview.startDate}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Venue</h4>
-                                    <p id="location">{{quickview.venue}}</p>
+                                    <p class="infoData" id="location">{{quickview.venue}}</p>
                                 </div>
                                 <br/>
                                 <button class="hallow">View Activity</button>
@@ -140,14 +140,12 @@
                         <br/><br/>
                         <div class="row">
                             <div class="column">
-                                <p class="action positive" id="ApproveForm" v-on:click="approveForm(quickview._id)"><i class="fa fa-check-circle"></i> &nbsp; Accept Activity</p>
+                                <p class="action positive" id="ApproveForm" v-on:click="approveForm(quickview._id)"><i class="fa fa-check-circle"></i> &nbsp; Approve Activity</p>
                             </div>
                             <div class="column">
                                 <p class="action negative" id="RejectForm" v-on:click="rejectForm(quickview._id)"><i class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
                             </div>
                         </div>
-                        <br/>
-                        <br/>
                     </div>
                 </div>
             </section>
