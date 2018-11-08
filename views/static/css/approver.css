@@ -301,6 +301,19 @@ header{
 	margin: 1em 0;
 }
 
+#main-content .content-feed .content-wrapper:hover{
+	background-color: var(--theme-color-lighter-accent);
+}
+#main-content .content-feed .content-wrapper:hover .goto{
+	background-color: var(--theme-color);
+}
+#main-content .content-feed .content-wrapper:active{
+	border-color: var(--theme-color);
+}
+#main-content .content-feed .content-wrapper:active .goto{
+	background-color: var(--theme-color);
+}
+
 #main-content .content-feed .content-wrapper.active{
 	border-color: var(--theme-color);
 }
@@ -348,7 +361,7 @@ header{
 
 #main-content .content-feed .content-wrapper .activity-icon i.fa{
 	font-size: 1em;
-    padding: 0px 15px;
+/*    padding: 0px 15px;*/
 }
 
 #main-content .content-feed .content-wrapper .activity-wrapper{
