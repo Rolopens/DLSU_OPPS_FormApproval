@@ -431,26 +431,28 @@ header{
 }
 
 #quick-view .positive{
-    background-color: var(--theme-color);
+    background-color: var(--theme-approval);
     width:100%;
-    max-width:200px;
+    max-width:180px;
+    text-align: center;
 }
 
 #quick-view .negative{
-    background-color: #FF4F4F;
+    background-color: var(--theme-rejection);
     width:100%;
-    max-width:200px;
+    max-width:168px;
+    text-align: center;
 }
 
 #main-content .content-wrapper .activity-icon.positive{
-	color: var(--theme-color);
-	border: thin solid var(--theme-color);
+	color: var(--theme-approval);
+	border: thin solid var(--theme-approval);
 	background-color: transparent;
 }
 
 #main-content .content-wrapper .activity-icon.negative{
-	color: #FF4F4F;
-	border: thin solid #FF4F4F;
+	color: var(--theme-rejection);
+	border: thin solid var(--theme-rejection);
 	background-color: transparent;
 }
 

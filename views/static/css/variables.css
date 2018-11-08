@@ -3,10 +3,12 @@
 :root {
 	--theme-color: #26BE9B;
 	--theme-color-light-accent: #48FFD5;
-	--theme-color-lighter-accent: #cbf2e9;
+	--theme-color-lighter-accent: #CBF2E9;
 	--theme-dark-1: #5E6479;
 	--theme-dark-2: #3A3E4B;
 	--theme-dark-3: #18191E;
 	--theme-light-1: #FFFFFF;
 	--theme-light-2: #E7E7E7; 
+	--theme-approval: #2bd673;
+	--theme-rejection: #FF4F4F;
 }
