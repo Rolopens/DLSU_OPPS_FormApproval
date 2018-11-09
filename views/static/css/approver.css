@@ -280,9 +280,9 @@ header{
 #main-content .content-feed{
 	padding: 0 4em;
 	padding-right: 2.5em;
-/*    max-height: 425px;*/
     min-width: 208px;
-/*	overflow-y: auto;*/
+    max-height: 425px;
+	overflow-y: auto;
 }
 
 #main-content .content-feed .content-wrapper{
@@ -332,6 +332,7 @@ header{
 	display: inline-block;
 	margin: 0 2em;
     overflow-x: auto;
+    width:80%;
 }
 
 #main-content .content-feed .content-wrapper .goto{
@@ -351,8 +352,8 @@ header{
 
 #main-content .content-feed .content-wrapper .activity-icon{
 	border-radius: 100%;
-	width: 3em;
-	height: 3em;
+    min-width: 3em;
+    min-height: 3em;
 	background-color: #eee;
 	display: flex;
 	justify-content: center;
@@ -402,8 +403,10 @@ header{
 /*    height: 400px;*/
 /*    overflow-y: auto;*/
     min-height: 350px;
-    width: 600px;
+    max-height: 375px;
+    min-width: 600px;
     max-width: calc(100% - calc(100% - 600px));
+    overflow-x: auto;
     overflow-y: auto;
 }
 
