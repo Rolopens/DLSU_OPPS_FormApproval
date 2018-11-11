@@ -1,6 +1,8 @@
 const path = require("path");
 
 const authService = require(path.join(__dirname, "..", "models", "authService.js"));
+const roleService = require(path.join(__dirname, "..", "models", "roleService.js"));
+const userService = require(path.join(__dirname, "..", "models", "userService.js"));
 
 module.exports.controller = function (app) {
 
@@ -22,8 +24,8 @@ module.exports.controller = function (app) {
         else {
             authService.checkUser(email, password).then((result)=>{
                 req.session.uid = result._id;
-                console.log(req.session.uid);
-                return res.redirect('/preacts');
+                //console.log(req.session.uid);
+                return res.redirect('/home');
             }).catch((err)=>{
                 return res.redirect("/login?error=BadCredentials");
             })
@@ -36,7 +38,24 @@ module.exports.controller = function (app) {
             // res.redirect('/preacts-submission')
         // else
             //return res.redirect('/preacts');
-    })
+        var userId = req.session.uid;
+        userService.getUserWithId(userId).then((retUser)=>{
+            var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
+            roleService.getRoleWithId(roleId).then((retRole)=>{
+                if(retRole.name == "PROJECT_HEAD"){
+                    return res.redirect('/preacts-submission');
+                } else {
+                    return res.redirect('/preacts');
+                }
+            }).catch((err)=>{
+                console.log("ERROR MESSAGE: Cannot find role with id "+roleId);
+                console.log(err);
+            });
+        }).catch((err)=>{
+            console.log("ERROR MESSAGE: Cannot find user with id "+ userId);
+            console.log(err); 
+        });
+     });
 
     /* DEBUG */
     app.get('/auth', function(req, res) {
