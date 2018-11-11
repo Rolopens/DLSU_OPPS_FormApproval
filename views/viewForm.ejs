@@ -1,0 +1,333 @@
+<html>
+    <head>
+        <title>View Form</title>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+        <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+        <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="css/viewForm.css">
+    </head>
+
+    <body>
+
+        <div id="main">
+
+            <h1>Project Proposal</h1>
+
+            <table style="border: none">
+                <tr>
+                    <th>Organization:</th>
+                    <th>Title of the Activity:</th>
+                </tr>
+                <tr>
+                    <td>{Organization Name}</td>
+                    <td>{Activity Name}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <table style="border: none">
+                <tr>
+                    <th>Nature of the Activity:</th>
+                    <th>Type of the Activity:</th>
+                </tr>
+                <tr>
+                    <td>{Nature}</td>
+                    <td>{Type}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <table style="border: none">
+                <tr>
+                    <th>Start Date of the Activity:</th>
+                    <th>Start Time of the Activity:</th>
+                </tr>
+                <tr>
+                    <td>{Start Date}</td>
+                    <td>{Start Time}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <table style="border: none">
+                <tr>
+                    <th>End Date of the Activity:</th>
+                    <th>End Time of the Activity:</th>
+                </tr>
+                <tr>
+                    <td>{End Date}</td>
+                    <td>{End Time}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <table style="border: none">
+                <tr>
+                    <th>ENMP:</th>
+                    <th>ENP:</th>
+                </tr>
+                <tr>
+                    <td>{ENMP}</td>
+                    <td>{ENP}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <table style="border: none">
+                <tr>
+                    <th>Venue of the Activity:</th>
+                    <th>Reach of the Activity:</th>
+                </tr>
+                <tr>
+                    <td>{Venue}</td>
+                    <td>{Reach}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <table style="border: none">
+                <tr>
+                    <th>Online Activity:</th>
+                    <th>Activity in GOSM:</th>
+                </tr>
+                <tr>
+                    <td>{Yes/No}</td>
+                    <td>{Yes/No}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <h3>Brief Context/Perspective of the Activity</h3>
+            <label>Part 1</label>
+            <ul>
+                <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
+                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
+            </ul>
+            <div class="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+
+            <br/>
+            <label>Part 2</label>
+            <ul>
+                <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
+                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
+            </ul>
+            <div class="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+
+            <br/>
+            <label>Part 3</label>
+            <ul>
+                <li>Out of all the possible projects, activities, and solutions, why this?</li>
+                <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
+            </ul>
+            <div class="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+
+            <br/>
+            <h3>Objectives</h3>
+            <ol>
+                <li>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</li>
+                <li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</li>
+                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+            </ol>
+
+            <h3>Project Heads</h3>
+            <table>
+                <tr>
+                    <th class="cell">Name</th>
+                    <th class="cell">Contact Number</th>
+                </tr>
+                <!--for loop-->
+                <tr>
+                    <td class="cell left">{Name}</td>
+                    <td class="cell left">{Number}</td>
+                </tr>
+                
+            </table>
+
+            <h3>Comprehensive Program Design</h3>
+            <table>
+                <tr>
+                    <th class="cell">Start Time</th>
+                    <th class="cell">End Time</th>
+                    <th class="cell">Activity</th>
+                    <th class="cell">Brief Description</th>
+                    <th class="cell">Person-In-Charge</th>
+                </tr>
+                <!--for loop-->
+                <tr>
+                    <td class="cell left">{Start Time}</td>
+                    <td class="cell left">{End Time}</td>
+                    <td class="cell left">{Activity}</td>
+                    <td class="cell left">{Description}</td>
+                    <td class="cell left">{Person}</td>
+                </tr>
+                
+            </table>
+
+            <h3>Breakdown of Expenses</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <th class="cell">Materials</th>
+                        <th class="cell">Quantity</th>
+                        <th class="cell">Unit Cost</th>
+                        <th class="cell">Total Cost</th>
+                    </tr>
+                    <!--for loop-->
+                    <tr>
+                        <td class="cell left">{Material}</td>
+                        <td class="cell left">{Qty}</td>
+                        <td class="cell left">{Cost}</td>
+                        <td class="cell left">{Total}</td>
+                    </tr>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3" class="cell right"> Total:</th>
+                        <th class="cell left">Php 0.00</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h3>Source of Funds</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <th class="cell">Sources of Funds</th>
+                        <th class="cell">Amount</th>
+                    </tr>
+                    <tr>
+                        <td class="cell right">Organizational Funds</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                    <tr>
+                        <td class="cell right">Participants Fee</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                    <tr>
+                        <td class="cell right">Others (i.e. Sponsorships)</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="cell right"> Total:</th>
+                        <th class="cell left">Php 0.00</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h3>Organizational Funds</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <th colspan="2" class="cell left">Accumulated Operational Funds</th>
+                    </tr>
+                    <tr>
+                        <td class="cell right">Operational Fund</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="cell left">Accumulated Depository Funds</th>
+                    </tr>
+                    <tr>
+                        <td class="cell right">Depository Fund</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="cell left">Other Sources of Funds</th>
+                    </tr>
+                    <tr>
+                        <td class="cell right">Participants Fee/Donation/Sponsorships</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                    <tr>
+                        <td class="cell right gray-bg"><b>Total Cash For Disbursement</b></td>
+                        <td class="cell left gray-bg">Php {Amount}</td>
+                    </tr>
+                    <tr>
+                        <td class="cell right"><b>Less: Total Projected Expenses</b></td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="cell right gray-bg">REMAINING BALANCE</th>
+                        <th class="cell left gray-bg">Php {Amount}</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h3>Projected Income</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <th colspan="4" class="cell left">Projected Revenue</th>
+                    </tr>
+                    <tr>
+                        <th class="cell">Item</th>
+                        <th class="cell">Quantity</th>
+                        <th class="cell">Selling Price</th>
+                        <th class="cell">Amount</th>
+                    </tr>
+                    <!--for loop-->
+                    <tr>
+                        <td class="cell left">{Item}</td>
+                        <td class="cell left">{Quantity}</td>
+                        <td class="cell left">{Selling Price}</td>
+                        <td class="cell left">Php {Amount}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th colspan="4" class="cell left">Less: Projected Expenses</th>
+                    </tr>
+                    <tr>
+                        <th class="cell">Item</th>
+                        <th class="cell">Quantity</th>
+                        <th class="cell">Selling Price</th>
+                        <th class="cell">Amount</th>
+                    </tr>
+                    <!--for loop-->
+                    <tr>
+                        <td class="cell left">{Item}</td>
+                        <td class="cell left">{Quantity}</td>
+                        <td class="cell left">{Selling Price}</td>
+                        <td class="cell left">{Amount}</td>
+                    </tr>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3" class="cell right gray-bg">TOTAL PROJECTED INCOME</th>
+                        <th class="cell left gray-bg">Php {Amount}</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h3>Provision for Profit and Loss</h3>
+            <p>The following people shall be held liable and will shoulder any remaining balance incurred by the project.</p>
+
+            <table style="border: none">
+                <tr>
+                    <th>Name:</th>
+                    <th>Position:</th>
+                </tr>
+                <tr>
+                    <td>{Person 1}</td>
+                    <td>{Position}</td>
+                </tr>
+                <tr>
+                    <td>{Person 2}</td>
+                    <td>{Position}</td>
+                </tr>
+            </table>
+            
+            <br/>
+            <button>Accept</button>
+            <button>Reject</button>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,61 @@
+body {
+    background-color: #26BE9B;
+}
+
+table {
+    width: 100%;
+    border: 2px solid black;
+}
+
+th {
+    width: 20%;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+    column-span: all;
+    padding-bottom: 3%;
+}
+
+#main {
+    width: 90%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
+    column-count: 2;
+    column-gap: 5%;
+    background-color: white;
+    column-rule: 4px solid black;
+
+}
+
+.box {
+    padding: 3%;
+    border: solid black;
+}
+
+.cell {
+    text-align: center;
+    padding: 2%;
+    border: 1px solid black;
+    
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
+.gray-bg {
+    background-color: #b9b9b9;
+}
+
+button {
+    float: right
+}
+

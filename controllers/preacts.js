@@ -403,4 +403,10 @@ module.exports.controller = function (app) {
         req.session.porjExpData = null;
         req.session.projIncomeTotal = null;
     }
+    
+    app.get('/view-form', function (req, res) {
+        
+        res.render('viewForm');
+
+    });
 }
