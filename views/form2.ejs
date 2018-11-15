@@ -25,7 +25,7 @@
     <div class="main">
         <form name="form2" action="create-form-2-confirm" method="post">
             <h1>Create Project Proposal</h1>
-            <span>Brief Context / Perspective of the Activity</span>
+            <span class="labelHead">Brief Context / Perspective of the Activity</span>
             <br /><br />
             <span>Part 1<span class="red"> * </span></span>
             <ul>
@@ -51,7 +51,7 @@
             <textarea rows="2" name='context3' required></textarea>
 
             <br /><br /><br />
-            <span>Objectives<span class="red"> * </span></span>
+            <span class="labelHead">Objectives<span class="red"> * </span></span>
             <br /><br />
             <div>
                 1.
@@ -70,7 +70,7 @@
             <br /><br />
 
             <input style="display:none;" value='0' id="dynamicTable1length" name="dynamicTable1len">
-            <div>Project Head/s <span class="red">*</span></div>
+            <span class="labelHead">Project Head/s <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable1">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -96,7 +96,7 @@
 
             <br/><br/><br/><br/>
             <input style="display:none;" value='0' id="dynamicTable2length" name="dynamicTable2len">
-            <div>Comprehensive Program Design <span class="red">*</span></div>
+            <span class="labelHead">Comprehensive Program Design <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable2">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -126,7 +126,7 @@
 
             <br/><br/><br/><br/>
             <input style="display:none;" value='0' id="dynamicTable3length" name="dynamicTable3len">
-            <div>Breakdown of Expenses <span class="red">*</span></div>
+            <span class="labelHead">Breakdown of Expenses <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable3">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -166,7 +166,7 @@
             <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
 
             <br/><br/><br/><br/>
-            <div>Source of Funds<span class="red">*</span></div>
+            <span class="labelHead">Source of Funds <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table">
                 <thead class="full-width">
                     <tr style="text-align: center;">
@@ -209,7 +209,7 @@
             </table>
 
             <br/><br/>
-            <div>Organizational Funds<span class="red">*</span></div>
+            <span class="labelHead">Organizational Funds <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table">
                 <thead class="full-width">
                     <tr style="text-align: left;">
@@ -305,7 +305,7 @@
 
             <br/><br/>
             <input style="display:none;" value='0' id="dynamicTable4length" name="dynamicTable4len">
-            <div>Projected Income <span class="red">*</span></div>
+            <span class="labelHead">Projected Income <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable4">
                 <thead class="full-width">
                     <tr>
@@ -388,15 +388,15 @@
             <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button>
 
             <br /><br />
-            <br /><br /> Provision for Profit and Loss
+            <br /><br /> <span class="labelHead">Provision for Profit and Loss</span>
             <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the project.
             <br /><br />
 
-            <span>Name of Person Responsible (Aside from you)<span class="red"> * </span></span>
+            <span>Name of Person Responsible (aside from you)<span class="red"> * </span></span>
             <br />
             <input class="inputron" name='namePR' type="text" required>
             <br /><br />
-            <span>Position<span class="red"> * </span></span>
+            <span>Position of Person Responsible<span class="red"> * </span></span>
             <br />
             <input class="inputron" name='positionPR' type="text" required>
             <br /><br />

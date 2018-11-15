@@ -11,6 +11,35 @@ body{
     padding: 2%;
 }
 
+.main .labelHead {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.others{
+    display:flex;
+/*    flex-direction: row;*/
+}
+
+.others input{
+    display: inline !important;
+}
+    
+.others2{
+    margin-top: 0px;
+    margin-right: 10px;
+    display: inline-block !important;
+    text-align: right !important;
+}
+
+.others-input{
+    border: none !important;
+    border-bottom: 1.5px solid !important;
+    border-bottom-color: #5e6479 !important;
+    border-radius: 0px !important;
+    height: 0px;
+}
+
 .inputron {
     margin-top: 10px;
     border: none;
@@ -22,15 +51,6 @@ body{
 .inputron:focus{
     outline: none;
     
-}
-
-.others-input{
-    border: none !important;
-    border-bottom: 1.5px solid !important;
-    border-bottom-color: #5e6479 !important;
-    border-radius: 0px !important;
-    height: 0px;
-
 }
 
 .container-of-ENMP-ENP{
@@ -73,21 +93,6 @@ body{
 
 .red{
     color:red;
-}
-
-.others{
-    display:flex;
-    flex-direction: row;
-}
-
-.others input{
-    display: inline !important;
-}
-    
-.others2{
-    margin-top: 0px;
-    display: inline-block !important;
-    text-align: right !important;
 }
 
 input[type=number]::-webkit-inner-spin-button,

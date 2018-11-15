@@ -19,6 +19,11 @@ textarea {
     padding: 2%;
 }
 
+.main .labelHead {
+    font-weight: 700;
+    font-size: 14px;
+}
+
 .inputron {
     margin-top: 10px;
     border: none;

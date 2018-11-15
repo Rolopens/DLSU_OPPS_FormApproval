@@ -30,14 +30,14 @@
         <div class="main">
             <form action="create-form-2" method="post">
                 <h1>Create Project Proposal</h1>
-                <span>Title of the Activity <span class="red"> * </span></span>
+                <span class="labelHead">Title of the Activity <span class="red"> * </span></span>
                 <br/>
                 <input class="inputron" type="text" name="title" required>
                 <br/><br/>
 
                 <div class="ui form">
                   <div class="grouped fields">
-                    <label>Nature of the Activity <span class="red"> * </span></label>
+                    <span class="labelHead">Nature of the Activity <span class="red"> * </span></span>
                     <div class="field">
                       <div class="ui radio checkbox">
                         <input type="radio" value="Academic" name="nature" checked="checked">
@@ -97,7 +97,7 @@
                 <br/>
                 <div class="ui form">
                   <div class="grouped fields">
-                    <label>Type of the Activity <span class="red"> * </span></label>
+                    <span class="labelHead">Type of the Activity <span class="red"> * </span></span>
                     <div class="field">
                       <div class="ui radio checkbox">
                         <input type="radio" value="Academic Contest" name="type" checked="checked">
@@ -154,8 +154,8 @@
                     </div>  
                     <div class="field">
                       <div class="ui radio checkbox">
-                        <input type="radio" value="Others" name="type">    
-                        <label class="others2">Others</label><input type="text" name="typeOthers" class="others-input"/>
+                        <div class="others"><input type="radio" value="Others" name="type">    
+                        <label class="others2">Others</label><input type="text" name="typeOthers" class="others-input"/></div>
                         <!-- TADHG OVER HERE -->
                       </div>    
                     </div>
@@ -163,8 +163,8 @@
                 </div>
 
                 <br/><br/>
-                <span>Start Date of the Activity <span class="red"> * </span></span>
-                <span style="margin-left: 25%">Start Time of the Activity  <span class="red"> * </span></span>
+                <span class="labelHead">Start Date of the Activity <span class="red"> * </span></span>
+                <span class="labelHead" style="margin-left: 25%">Start Time of the Activity  <span class="red"> * </span></span>
                 <br/>
                 <span class="ui calendar" id="startdate">
                     <div class="ui input left icon">
@@ -180,8 +180,8 @@
                 </span>
                 
                 <br/><br/>
-                <span>End Date of the Activity <span class="red"> * </span></span>
-                <span style="margin-left: 25%">End Time of the Activity  <span class="red"> * </span></span>
+                <span class="labelHead">End Date of the Activity <span class="red"> * </span></span>
+                <span class="labelHead" style="margin-left: 25%">End Time of the Activity  <span class="red"> * </span></span>
                 <br/>
                 <span class="ui calendar" id="enddate">
                     <div class="ui input left icon">
@@ -199,17 +199,17 @@
                 <br/><br/>
                 <div class="container-of-ENMP-ENP">
                     <div class="ENMP-holder">
-                        <span>Venue <span class="red"> * </span></span>
+                        <span class="labelHead">Venue <span class="red"> * </span></span>
                         <br/>
                         <input class="inputron" name="venue" type="text" required>
                     </div>
                     <div class="ENMP-holder">
-                        <span>ENMP <span class="red"> * </span></span>
+                        <span class="labelHead">ENMP <span class="red"> * </span></span>
                         <br/>
                         <input class="inputron" name="enmp" type="number" required>
                     </div>
                     <div class="EMP-holder">
-                        <span>ENP <span class="red"> * </span></span>
+                        <span class="labelHead">ENP <span class="red"> * </span></span>
                         <br/>
                         <input class="inputron" name="emp" type="number" required>
                     </div>
@@ -218,7 +218,7 @@
                 <br/>
                 <div class="ui form">
                   <div class="grouped fields">
-                    <label>Reach of the Activity <span class="red"> * </span></label>
+                    <span class="labelHead">Reach of the Activity <span class="red"> * </span></span>
                     <div class="field">
                       <div class="ui radio checkbox">
                         <input type="radio" value="Batch Wide" name="reach" checked="checked">
@@ -249,7 +249,7 @@
                 <br/>
                 <div class="ui form">
                   <div class="grouped fields">
-                    <label>Online Activity <span class="red"> * </span></label>
+                    <span class="labelHead">Online Activity? <span class="red"> * </span></span>
                     <div class="field">
                       <div class="ui radio checkbox">
                         <input type="radio" value="yes" name="online" checked="checked">
@@ -268,7 +268,7 @@
                 <br/>
                 <div class="ui form">
                   <div class="grouped fields">
-                    <label>Activity in GOSM <span class="red"> * </span></label>
+                    <span class="labelHead">Activity in GOSM? <span class="red"> * </span></span>
                     <div class="field">
                       <div class="ui radio checkbox">
                         <input type="radio" value="yes" name="GOSM" checked="checked">
