@@ -271,7 +271,6 @@ header{
 }
 
 #main-content{
-/*    position: fixed;*/
     width: 500px;
     max-width: calc(100% - 600px);
     min-width: 300px;
@@ -431,19 +430,16 @@ header{
 	padding: 1em;
 	cursor: pointer;
     border-radius: 3px;
+    width: 60%;
 }
 
 #quick-view .positive{
     background-color: var(--theme-approval);
-    width:100%;
-    max-width:180px;
     text-align: center;
 }
 
 #quick-view .negative{
     background-color: var(--theme-rejection);
-    width:100%;
-    max-width:168px;
     text-align: center;
 }
 
