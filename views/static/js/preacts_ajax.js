@@ -36,7 +36,7 @@ function quickDisplay(form_id) {
         method: "get",
         contentType: 'application/json',
         success: function (formData) {
-            var form = JSON.parse(JSON.stringify(formData));
+            //var form = JSON.parse(JSON.stringify(formData));
             $("#Title").text(formData["title"]);
             $("#Nature").text(formData["nature"]);
             $("#Type").text(formData["typeOfActivity"]);
