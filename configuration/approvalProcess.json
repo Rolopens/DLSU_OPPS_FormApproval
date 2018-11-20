@@ -1,0 +1,89 @@
+{
+    // change the role names later on in coordination with other module (user_roles)
+    
+    "ORGANIZATIONS_PROCESS-SLIFE" : [
+        "DOCU_OFFICER-CSO",
+        "FIN_OFFICER-CSO",
+        "EXEC_CHECKER-CSO",
+        "PROJECT_HEAD-CSO",
+        "APPROVER-SLIFE"
+    ],
+    "ORGANIZATIONS_PROCESS-CSO" : [
+        "DOCU_OFFICER-CSO",
+        "FIN_OFFICER-CSO",
+        "EXEC_CHECKER-CSO",
+        "PROJECT_HEAD-CSO",
+        "CSO-APS"
+    ],
+    "ORGANIZATIONS_PROCESS-DAAM" : [
+        "DOCU_OFFICER-CSO",
+        "FIN_OFFICER-CSO",
+        "EXEC_CHECKER-CSO",
+        "PROJECT_HEAD-CSO",
+        "DAAM-APS"
+    ],
+    "GOVERNMENT_PROCESS-USG-SLIFE" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-USG",
+        "PRESIDENT-DLSU",
+        "APPROVER-SLIFE"
+    ],
+    "GOVERNMENT_PROCESS-COLLEGE-SLIFE" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-COLLEGE",
+        "PRESIDENT-USG",
+        "APPROVER-SLIFE"
+    ],
+    "GOVERNMENT_PROCESS-BATCH-SLIFE" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-BATCH",
+        "PRESIDENT-COLLEGE",
+        "APPROVER-SLIFE"
+    ],
+    "GOVERNMENT_PROCESS-USG-CSO" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-USG",
+        "PRESIDENT-DLSU",
+        "CSO-APS"
+    ],
+    "GOVERNMENT_PROCESS-COLLEGE-CSO" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-COLLEGE",
+        "PRESIDENT-USG",
+        "CSO-APS"
+    ],
+    "GOVERNMENT_PROCESS-BATCH-CSO" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-BATCH",
+        "PRESIDENT-COLLEGE",
+        "CSO-APS"
+    ],
+    "GOVERNMENT_PROCESS-USG-DAAM" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-USG",
+        "PRESIDENT-DLSU",
+        "DAAM-APS"
+    ],
+    "GOVERNMENT_PROCESS-COLLEGE-DAAM" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-COLLEGE",
+        "PRESIDENT-USG",
+        "DAAM-APS"
+    ],
+    "GOVERNMENT_PROCESS-BATCH-DAAM" : [
+        "OPLOG-USG",
+        "ORTEAS-USG",
+        "PRESIDENT-BATCH",
+        "PRESIDENT-COLLEGE",
+        "DAAM-APS"
+    ]
+    
+}
