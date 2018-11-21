@@ -25,9 +25,9 @@ h1 {
     margin-bottom: 5%;
     padding: 3%;
     column-count: 2;
-    column-gap: 5%;
+    column-gap: 5em;
     background-color: white;
-    column-rule: 4px solid black;
+    column-rule: 0px solid black;
 
 }
 
@@ -56,6 +56,6 @@ h1 {
 }
 
 button {
-    float: right
+    float: right;
 }
 

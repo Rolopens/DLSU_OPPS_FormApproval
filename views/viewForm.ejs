@@ -20,8 +20,8 @@
                     <th>Title of the Activity:</th>
                 </tr>
                 <tr>
-                    <td>{Organization Name}</td>
-                    <td>{Activity Name}</td>
+                    <td><%=data.org%></td>
+                    <td><%=data.title%></td>
                 </tr>
             </table>
 
@@ -32,8 +32,8 @@
                     <th>Type of the Activity:</th>
                 </tr>
                 <tr>
-                    <td>{Nature}</td>
-                    <td>{Type}</td>
+                    <td><%=data.nature%></td>
+                    <td><%=data.typeOfActivity%></td>
                 </tr>
             </table>
 
@@ -44,8 +44,8 @@
                     <th>Start Time of the Activity:</th>
                 </tr>
                 <tr>
-                    <td>{Start Date}</td>
-                    <td>{Start Time}</td>
+                    <td><%=data.startDate%></td>
+                    <td><%=data.startTime%></td>
                 </tr>
             </table>
 
@@ -56,8 +56,8 @@
                     <th>End Time of the Activity:</th>
                 </tr>
                 <tr>
-                    <td>{End Date}</td>
-                    <td>{End Time}</td>
+                    <td><%=data.endDate%></td>
+                    <td><%=data.endTime%></td>
                 </tr>
             </table>
 
@@ -68,8 +68,8 @@
                     <th>ENP:</th>
                 </tr>
                 <tr>
-                    <td>{ENMP}</td>
-                    <td>{ENP}</td>
+                    <td><%=data.enmp%></td>
+                    <td><%=data.enp%></td>
                 </tr>
             </table>
 
@@ -80,8 +80,8 @@
                     <th>Reach of the Activity:</th>
                 </tr>
                 <tr>
-                    <td>{Venue}</td>
-                    <td>{Reach}</td>
+                    <td><%=data.venue%></td>
+                    <td><%=data.reach%></td>
                 </tr>
             </table>
 
@@ -92,8 +92,16 @@
                     <th>Activity in GOSM:</th>
                 </tr>
                 <tr>
-                    <td>{Yes/No}</td>
-                    <td>{Yes/No}</td>
+                    <%if(data.online == true) {%>
+                        <td>YES</td>
+                    <%} else{%>
+                        <td>NO</td>
+                    <%}%>
+                    <%if(data.GOSM == true) {%>
+                        <td>YES</td>
+                    <%} else{%>
+                        <td>NO</td>
+                    <%}%>
                 </tr>
             </table>
 
@@ -104,7 +112,7 @@
                 <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
                 <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
             </ul>
-            <div class="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div class="box"><%=data.context[0]%></div>
 
             <br/>
             <label>Part 2</label>
@@ -112,7 +120,7 @@
                 <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
                 <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
             </ul>
-            <div class="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div class="box"><%=data.context[1]%></div>
 
             <br/>
             <label>Part 3</label>
@@ -120,14 +128,14 @@
                 <li>Out of all the possible projects, activities, and solutions, why this?</li>
                 <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
             </ul>
-            <div class="box">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div class="box"><%=data.context[2]%></div>
 
             <br/>
             <h3>Objectives</h3>
             <ol>
-                <li>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</li>
-                <li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</li>
-                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+                <li><%=data.objectives[0]%></li>
+                <li><%=data.objectives[1]%></li>
+                <li><%=data.objectives[2]%></li>
             </ol>
 
             <h3>Project Heads</h3>
@@ -136,32 +144,32 @@
                     <th class="cell">Name</th>
                     <th class="cell">Contact Number</th>
                 </tr>
-                <!--for loop-->
-                <tr>
-                    <td class="cell left">{Name}</td>
-                    <td class="cell left">{Number}</td>
-                </tr>
-                
+                <%for(var i=0; i<data.projectHeads.length;i++) {%>
+                    <tr>
+                        <td class="cell left"><%=data.projectHeads[i].name%></td>
+                        <td class="cell left"><%=data.projectHeads[i].contact_number%></td>
+                    </tr>
+                <%}%>   
             </table>
 
             <h3>Comprehensive Program Design</h3>
             <table>
                 <tr>
-                    <th class="cell">Start Time</th>
-                    <th class="cell">End Time</th>
+                    <th class="cell">Time</th>
+                    <th class="cell">Duration</th>
                     <th class="cell">Activity</th>
                     <th class="cell">Brief Description</th>
                     <th class="cell">Person-In-Charge</th>
                 </tr>
-                <!--for loop-->
-                <tr>
-                    <td class="cell left">{Start Time}</td>
-                    <td class="cell left">{End Time}</td>
-                    <td class="cell left">{Activity}</td>
-                    <td class="cell left">{Description}</td>
-                    <td class="cell left">{Person}</td>
-                </tr>
-                
+                <%for(var i=0; i<data.program_flow.length;i++) {%>
+                    <tr>
+                        <td class="cell left"><%=data.program_flow[i].startTime%> to <%=data.program_flow[i].endTime%></td>
+                        <td class="cell left"><%=data.program_flow[i].duration%> mins</td>
+                        <td class="cell left"><%=data.program_flow[i].activity%></td>
+                        <td class="cell left"><%=data.program_flow[i].description%></td>
+                        <td class="cell left"><%=data.program_flow[i].person%></td>
+                    </tr>
+                <%}%>                
             </table>
 
             <h3>Breakdown of Expenses</h3>
@@ -173,19 +181,20 @@
                         <th class="cell">Unit Cost</th>
                         <th class="cell">Total Cost</th>
                     </tr>
-                    <!--for loop-->
-                    <tr>
-                        <td class="cell left">{Material}</td>
-                        <td class="cell left">{Qty}</td>
-                        <td class="cell left">{Cost}</td>
-                        <td class="cell left">{Total}</td>
-                    </tr>
+                    <%for(var i=0; i<data.breakdown_expenses.material.length;i++) {%>
+                        <tr>
+                            <td class="cell left"><%=data.breakdown_expenses.material[i].name%></td>
+                            <td class="cell left"><%=data.breakdown_expenses.material[i].quantity%></td>
+                            <td class="cell left"><%=data.breakdown_expenses.material[i].unit_cost%></td>
+                            <td class="cell left"><%=data.breakdown_expenses.material[i].total_cost%></td>
+                        </tr>
+                    <%}%> 
                     
                 </tbody>
                 <tfoot>
                     <tr>
                         <th colspan="3" class="cell right"> Total:</th>
-                        <th class="cell left">Php 0.00</th>
+                        <th class="cell left">Php <%=data.breakdown_expenses.total_expense%></th>
                     </tr>
                 </tfoot>
             </table>
@@ -199,21 +208,21 @@
                     </tr>
                     <tr>
                         <td class="cell right">Organizational Funds</td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.source_funds.organization_funds%></td>
                     </tr>
                     <tr>
                         <td class="cell right">Participants Fee</td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.source_funds.participants_fee%></td>
                     </tr>
                     <tr>
                         <td class="cell right">Others (i.e. Sponsorships)</td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.source_funds.others%></td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th class="cell right"> Total:</th>
-                        <th class="cell left">Php 0.00</th>
+                        <th class="cell left">Php <%=data.source_funds.total%></th>
                     </tr>
                 </tfoot>
             </table>
@@ -226,36 +235,36 @@
                     </tr>
                     <tr>
                         <td class="cell right">Operational Fund</td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.organizational_funds.operational_fund%></td>
                     </tr>
                     <tr>
                         <th colspan="2" class="cell left">Accumulated Depository Funds</th>
                     </tr>
                     <tr>
                         <td class="cell right">Depository Fund</td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.organizational_funds.depository_fund%></td>
                     </tr>
                     <tr>
                         <th colspan="2" class="cell left">Other Sources of Funds</th>
                     </tr>
                     <tr>
                         <td class="cell right">Participants Fee/Donation/Sponsorships</td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.organizational_funds.other_fund%></td>
                     </tr>
                     <tr>
                         <td class="cell right gray-bg"><b>Total Cash For Disbursement</b></td>
-                        <td class="cell left gray-bg">Php {Amount}</td>
+                        <td class="cell left gray-bg">Php <%=data.organizational_funds.total_disbursement%></td>
                     </tr>
                     <tr>
                         <td class="cell right"><b>Less: Total Projected Expenses</b></td>
-                        <td class="cell left">Php {Amount}</td>
+                        <td class="cell left">Php <%=data.organizational_funds.projected_expenses%></td>
                     </tr>
 
                 </tbody>
                 <tfoot>
                     <tr>
                         <th class="cell right gray-bg">REMAINING BALANCE</th>
-                        <th class="cell left gray-bg">Php {Amount}</th>
+                        <th class="cell left gray-bg">Php <%=data.organizational_funds.rem_balance%></th>
                     </tr>
                 </tfoot>
             </table>
@@ -272,14 +281,14 @@
                         <th class="cell">Selling Price</th>
                         <th class="cell">Amount</th>
                     </tr>
-                    <!--for loop-->
-                    <tr>
-                        <td class="cell left">{Item}</td>
-                        <td class="cell left">{Quantity}</td>
-                        <td class="cell left">{Selling Price}</td>
-                        <td class="cell left">Php {Amount}</td>
-                    </tr>
-                    
+                    <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
+                        <tr>
+                            <td class="cell left"><%=data.projected_income.revenue[i].item%></td>
+                            <td class="cell left"><%=data.projected_income.revenue[i].quantity%></td>
+                            <td class="cell left"><%=data.projected_income.revenue[i].price%></td>
+                            <td class="cell left">Php <%=data.projected_income.revenue[i].amount%></td>
+                        </tr>
+                    <%}%>
                     <tr>
                         <th colspan="4" class="cell left">Less: Projected Expenses</th>
                     </tr>
@@ -289,19 +298,20 @@
                         <th class="cell">Selling Price</th>
                         <th class="cell">Amount</th>
                     </tr>
-                    <!--for loop-->
-                    <tr>
-                        <td class="cell left">{Item}</td>
-                        <td class="cell left">{Quantity}</td>
-                        <td class="cell left">{Selling Price}</td>
-                        <td class="cell left">{Amount}</td>
-                    </tr>
+                    <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
+                        <tr>
+                            <td class="cell left"><%=data.projected_income.expenses[i].item%></td>
+                            <td class="cell left"><%=data.projected_income.expenses[i].quantity%></td>
+                            <td class="cell left"><%=data.projected_income.expenses[i].price%></td>
+                            <td class="cell left">Php <%=data.projected_income.expenses[i].amount%></td>
+                        </tr>
+                    <%}%>
                     
                 </tbody>
                 <tfoot>
                     <tr>
                         <th colspan="3" class="cell right gray-bg">TOTAL PROJECTED INCOME</th>
-                        <th class="cell left gray-bg">Php {Amount}</th>
+                        <th class="cell left gray-bg">Php <%=data.projected_income.total%></th>
                     </tr>
                 </tfoot>
             </table>
@@ -315,11 +325,11 @@
                     <th>Position:</th>
                 </tr>
                 <tr>
-                    <td>{Person 1}</td>
-                    <td>{Position}</td>
+                    <td><%=data.person_responsible.name%></td>
+                    <td><%=data.person_responsible.position%></td>
                 </tr>
                 <tr>
-                    <td>{Person 2}</td>
+                    <td>{User 2}</td>
                     <td>{Position}</td>
                 </tr>
             </table>

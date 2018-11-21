@@ -161,7 +161,8 @@
                                     </div>
                                     <br/>
                                     
-                                    <form name="view-form" action="view-form" method="get">
+                                    <form name="view-form" action="view-form" method="post">
+                                        <input style="display:none;" :value="quickview._id" name="form_id">
                                         <button type="submit" class="hallow">View Activity</button>
                                     </form>
                                 </div>

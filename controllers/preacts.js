@@ -404,9 +404,14 @@ module.exports.controller = function (app) {
         req.session.projIncomeTotal = null;
     }
     
-    app.get('/view-form', function (req, res) {
+    app.post('/view-form', function (req, res) {
         
-        res.render('viewForm');
+        var id = req.body.form_id;
 
+        preactsService.findFormViaId(id).then((form) => {
+            res.render('viewForm', {data:form});
+        }, (error) => {
+            console.error(error);
+        });
     });
 }
