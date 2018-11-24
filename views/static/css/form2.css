@@ -170,6 +170,7 @@ textarea {
     height: 107px;
 }
 
+/* TODO: must target browsers besides Chrome */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;

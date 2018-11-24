@@ -4,20 +4,25 @@
     <title>Create Project Proposal</title>
 
     <!--CSS-->
-    <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
+    <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" 
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
+        rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="css/form2.css">
 
     <!--Scripts-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <!--
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" 
+        crossorigin="anonymous"></script>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+        crossorigin="anonymous"></script>
 -->
 </head>
 
@@ -30,7 +35,8 @@
             <span>Part 1<span class="red"> * </span></span>
             <ul>
                 <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
-                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be supported with examples)</li>
+                <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
+                    supported with examples)</li>
             </ul>
             <textarea name='context1' rows="2" required></textarea>
             <br /><br />
@@ -94,7 +100,7 @@
             <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeletePhead">Delete Row</button>
 
-            <br/><br/><br/><br/>
+            <br /><br /><br /><br />
             <input style="display:none;" value='0' id="dynamicTable2length" name="dynamicTable2len">
             <span class="labelHead">Comprehensive Program Design <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable2">
@@ -114,7 +120,8 @@
                                 <input type="checkbox"> <label></label>
                             </div>
                         </td>
-                        <td><input class="inputron no-margin" type="time" name="startTime0" required><input class="inputron no-margin" type="time" name="endTime0" required></td>
+                        <td><input class="inputron no-margin" type="time" name="startTime0" required><input class="inputron no-margin"
+                                type="time" name="endTime0" required></td>
                         <td><textarea class="row-textarea" name="activity0" required></textarea></td>
                         <td><textarea class="row-textarea" name="description0" required></textarea></td>
                         <td><textarea class="row-textarea" name="person0" required></textarea></td>
@@ -124,7 +131,7 @@
             <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button>
 
-            <br/><br/><br/><br/>
+            <br /><br /><br /><br />
             <input style="display:none;" value='0' id="dynamicTable3length" name="dynamicTable3len">
             <span class="labelHead">Breakdown of Expenses <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable3">
@@ -145,8 +152,10 @@
                             </div>
                         </td>
                         <td><input class="inputron no-margin" type="text" name="material0" required></td>
-                        <td><input class="inputron no-margin" type="number" name="quantity0" value=0 min=0 required></td>
-                        <td><input class="inputron no-margin" type="number" name="unit0" value=0.00 min=0 step=0.01 required></td>
+                        <td><input class="inputron no-margin" type="number" name="quantity0" onkeyup="computeBOE()"
+                                value=0 min=0 required></td>
+                        <td><input class="inputron no-margin" type="number" name="unit0" onkeyup="computeBOE()" value=0.00
+                                min=0 step=0.01 required></td>
                         <td class="bg-gray" name="BOE_subtotal0">Php 0.00</td>
                     </tr>
                 </tbody>
@@ -165,7 +174,7 @@
             <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
             <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
 
-            <br/><br/><br/><br/>
+            <br /><br /><br /><br />
             <span class="labelHead">Source of Funds <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table">
                 <thead class="full-width">
@@ -180,19 +189,22 @@
                         <td class="collapsing">
                         </td>
                         <td>Organizational Funds</td>
-                        <td>Php <input class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OrganizationalFunds" type="number"
+                                value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
                         </td>
                         <td>Participants Fee</td>
-                        <td>Php <input class="inputron no-margin table_input" name="ParticipantsFee" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="ParticipantsFee" type="number"
+                                value="0.00" min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
                         </td>
                         <td>Others (i.e. Sponsorships)</td>
-                        <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00"
+                                min="0" step="0.01" required></td>
                     </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -208,7 +220,7 @@
                 </tfoot>
             </table>
 
-            <br/><br/>
+            <br /><br />
             <span class="labelHead">Organizational Funds <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table">
                 <thead class="full-width">
@@ -228,7 +240,8 @@
                                 Operational Fund
                             </div>
                         </td>
-                        <td>Php <input class="inputron no-margin table_input" name="OperationalFund" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OperationalFund" type="number"
+                                value="0.00" min="0" step="0.01" required></td>
                     </tr>
 
                     <tr>
@@ -247,7 +260,8 @@
                                 Depository Fund
                             </div>
                         </td>
-                        <td>Php <input class="inputron no-margin table_input" name="DepositoryFund" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="DepositoryFund" type="number" value="0.00"
+                                min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -265,7 +279,8 @@
                                 Participants Fee/Donation/Sponsorships
                             </div>
                         </td>
-                        <td>Php <input class="inputron no-margin table_input" name="OtherFund" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td>Php <input class="inputron no-margin table_input" name="OtherFund" type="number" value="0.00"
+                                min="0" step="0.01" required></td>
                     </tr>
                     <tr>
                         <td class="collapsing">
@@ -303,7 +318,7 @@
                 </tbody>
             </table>
 
-            <br/><br/>
+            <br /><br />
             <input style="display:none;" value='0' id="dynamicTable4length" name="dynamicTable4len">
             <span class="labelHead">Projected Income <span class="red">*</span></span>
             <table class="ui compact celled definition fixed table" id="dynamicTable4">
@@ -332,7 +347,8 @@
                         </td>
                         <td><input class="inputron no-margin" type="text" name="item0" required></td>
                         <td><input class="inputron no-margin" type="number" name="qty0" required></td>
-                        <td><input class="inputron no-margin table_input" name="price0" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td><input class="inputron no-margin table_input" name="price0" type="number" value="0.00" min="0"
+                                step="0.01" required></td>
                         <td class="bg-gray" name="amount0"></td>
                     </tr>
                 </tbody>
@@ -368,7 +384,8 @@
                         </td>
                         <td><input class="inputron no-margin" type="text" name="it0" required></td>
                         <td><input class="inputron no-margin" type="number" name="qu0" required></td>
-                        <td><input class="inputron no-margin table_input" name="pr0" type="number" value="0.00" min="0" step="0.01" required></td>
+                        <td><input class="inputron no-margin table_input" name="pr0" type="number" value="0.00" min="0"
+                                step="0.01" required></td>
                         <td class="bg-gray" name="am0"></td>
                     </tr>
                 </tbody>
@@ -389,7 +406,8 @@
 
             <br /><br />
             <br /><br /> <span class="labelHead">Provision for Profit and Loss</span>
-            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by the project.
+            <br /><br /> The following people shall be held liable and will shoulder any remaining balance incurred by
+            the project.
             <br /><br />
 
             <span>Name of Person Responsible (aside from you)<span class="red"> * </span></span>
@@ -463,17 +481,19 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
-        
+
             var i;
-            
+
             //reset index
             for (i = 0; i < document.getElementById("dynamicTable1").rows.length; i++) {
                 for (var j = 0; j < document.getElementById("dynamicTable1").rows[i].cells.length; j++) {
-                    if (i>0 &&j == 1) {
-                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_name' + (i - 1)
+                    if (i > 0 && j == 1) {
+                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_name' +
+                            (i - 1)
                     }
-                    if (i>0&&j == 2) {
-                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name = 'phead_number' + (i - 1)
+                    if (i > 0 && j == 2) {
+                        document.getElementById("dynamicTable1").rows[i].cells[j].firstElementChild.name =
+                            'phead_number' + (i - 1)
                     }
                 }
             }
@@ -493,7 +513,7 @@
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
-            
+
             var tableLength = document.getElementById("dynamicTable2length");
             row.setAttribute('value', tableLength.value)
             tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
@@ -556,23 +576,28 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode));
-            
+
             var i;
             //reset index
             for (i = 0; i < document.getElementById("dynamicTable2").rows.length; i++) {
                 for (var j = 0; j < document.getElementById("dynamicTable2").rows[i].cells.length; j++) {
-                    if (i>0&&j == 1) {
-                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'startTime' + (i - 1);
-                        document.getElementById("dynamicTable2").rows[i].cells[j].childNodes[1].name = 'endTime' + (i - 1);
+                    if (i > 0 && j == 1) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'startTime' +
+                            (i - 1);
+                        document.getElementById("dynamicTable2").rows[i].cells[j].childNodes[1].name = 'endTime' + (i -
+                            1);
                     }
-                    if (i>0&&j == 2) {
-                       document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'activity' + (i - 1);
+                    if (i > 0 && j == 2) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'activity' +
+                            (i - 1);
                     }
-                    if (i>0&&j == 3) {
-                         document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'description' + (i - 1);
+                    if (i > 0 && j == 3) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name =
+                            'description' + (i - 1);
                     }
-                    if (i>0&&j == 4) {
-                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'person' + (i - 1);
+                    if (i > 0 && j == 4) {
+                        document.getElementById("dynamicTable2").rows[i].cells[j].firstElementChild.name = 'person' + (
+                            i - 1);
                     }
                 }
             }
@@ -596,7 +621,7 @@
             var tableLength = document.getElementById("dynamicTable3length");
             row.setAttribute('value', tableLength.value)
             tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
-            
+
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -614,6 +639,9 @@
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
             input3.setAttribute('required', true);
+            input3.setAttribute('onkeyup', 'computeBOE()');
+            input3.setAttribute('min', 0);
+            input3.setAttribute('value', 0);
             input3.setAttribute('name', 'quantity' + tableLength.value);
             col3.append(input3);
 
@@ -622,15 +650,17 @@
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
             input4.setAttribute('required', true);
+            input4.setAttribute('onkeyup', 'computeBOE()');
             input4.setAttribute('name', 'unit' + tableLength.value);
             input4.setAttribute('min', 0);
             input4.setAttribute('value', 0.00);
             input4.setAttribute('step', 0.01)
-            col4.append(input4); 
+            col4.append(input4);
 
             var col5 = document.createElement("td");
             col5.className = "bg-gray";
             col5.setAttribute('name', 'BOE_subtotal' + tableLength.value);
+            col5.innerHTML = 'Php 0.00'
 
             row.append(col1);
             row.append(col2);
@@ -639,11 +669,28 @@
             row.append(col5);
 
             $("#dynamicTable3").find('tbody').append(row);
-
-            console.log('ADD BOE()');
         }
 
-        //delete project head
+        function computeBOE() {
+            var rowCount = $('#dynamicTable3 tr').length - 2;
+            var totalBOE = 0;
+
+            for (var num = 0; num < rowCount; num++) {
+                $("input[name=quantity" + num + "]").each(function () {
+                    subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(
+                        this).val());
+                });
+                $("input[name=unit" + num + "]").each(function () {
+                    subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat(
+                        $(this).val());
+                });
+                $("td[name=BOE_subtotal" + num + "]").text("Php " + subtotal_BOE.toFixed(2));
+                totalBOE += subtotal_BOE;
+            }
+
+            $("th[name=boeTotal]").text("Php " + totalBOE.toFixed(2));
+        }
+
         function deleteBOE() {
             let tableRef = document.getElementById('dynamicTable3');
             let tbody = tableRef.querySelector("tbody");
@@ -656,17 +703,21 @@
             //reset index
             for (i = 0; i < document.getElementById("dynamicTable3").rows.length - 1; i++) {
                 for (var j = 0; j < document.getElementById("dynamicTable3").rows[i].cells.length; j++) {
-                    if (i>0&&j == 1) {
-                        document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'material' + (i - 1);
+                    if (i > 0 && j == 1) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'material' +
+                            (i - 1);
                     }
-                    if (i>0&&j == 2) {
-                       document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'quantity' + (i - 1);
+                    if (i > 0 && j == 2) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'quantity' +
+                            (i - 1);
                     }
-                    if (i>0&&j == 3) {
-                         document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'unit' + (i - 1);
+                    if (i > 0 && j == 3) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].firstElementChild.name = 'unit' + (i -
+                            1);
                     }
-                    if (i>0&&j == 4) {
-                        document.getElementById("dynamicTable3").rows[i].cells[j].setAttribute('name','BOE_subtotal' + (i - 1));
+                    if (i > 0 && j == 4) {
+                        document.getElementById("dynamicTable3").rows[i].cells[j].setAttribute('name', 'BOE_subtotal' +
+                            (i - 1));
                     }
                 }
             }
@@ -690,7 +741,7 @@
             var tableLength = document.getElementById("dynamicTable4length");
             row.setAttribute('value', tableLength.value)
             tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
-            
+
             div.append(cBox);
             div.append(label);
             col1.append(div);
@@ -745,22 +796,26 @@
             let checkedInputs = document.querySelectorAll("input[type='checkbox']:checked");
             Array.prototype.slice.call(checkedInputs)
                 .forEach(input => tbody.removeChild(input.parentNode.parentNode.parentNode))
-            
+
             var i;
             //reset index
             for (i = 0; i < document.getElementById("dynamicTable4").rows.length; i++) {
                 for (var j = 0; j < document.getElementById("dynamicTable4").rows[i].cells.length; j++) {
-                    if (i>1&&j == 1) {
-                        document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'item' + (i - 2);
+                    if (i > 1 && j == 1) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'item' + (i -
+                            2);
                     }
-                    if (i>1&&j == 2) {
-                       document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'qty' + (i - 2);
+                    if (i > 1 && j == 2) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'qty' + (i -
+                            2);
                     }
-                    if (i>1&&j == 3) {
-                         document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'price' + (i - 2);
+                    if (i > 1 && j == 3) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].firstElementChild.name = 'price' + (i -
+                            2);
                     }
-                    if (i>1&&j == 4) {
-                        document.getElementById("dynamicTable4").rows[i].cells[j].setAttribute('name','amount' + (i - 2));
+                    if (i > 1 && j == 4) {
+                        document.getElementById("dynamicTable4").rows[i].cells[j].setAttribute('name', 'amount' + (i -
+                            2));
                     }
                 }
             }
@@ -780,7 +835,7 @@
             var cBox = document.createElement("input");
             cBox.setAttribute('type', 'checkbox');
             var label = document.createElement("label");
-            
+
             var tableLength = document.getElementById("dynamicTable5length");
             row.setAttribute('value', tableLength.value)
             tableLength.setAttribute('value', parseInt(tableLength.value, 10) + 1)
@@ -844,17 +899,20 @@
             //reset index
             for (i = 0; i < document.getElementById("dynamicTable5").rows.length - 1; i++) {
                 for (var j = 0; j < document.getElementById("dynamicTable5").rows[i].cells.length; j++) {
-                    if (i>1&&j == 1) {
-                        document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'it' + (i - 2);
+                    if (i > 1 && j == 1) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'it' + (i -
+                            2);
                     }
-                    if (i>1&&j == 2) {
-                       document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'qu' + (i - 2);
+                    if (i > 1 && j == 2) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'qu' + (i -
+                            2);
                     }
-                    if (i>1&&j == 3) {
-                         document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'pr' + (i - 2);
+                    if (i > 1 && j == 3) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].firstElementChild.name = 'pr' + (i -
+                            2);
                     }
-                    if (i>1&&j == 4) {
-                        document.getElementById("dynamicTable5").rows[i].cells[j].setAttribute('name','am' + (i - 2));
+                    if (i > 1 && j == 4) {
+                        document.getElementById("dynamicTable5").rows[i].cells[j].setAttribute('name', 'am' + (i - 2));
                     }
                 }
             }
@@ -863,52 +921,52 @@
             tableLength.setAttribute('value', i - 3)
             console.log('DELETE ProjExp()');
         }
-        
-        $(document).ready(function() {
 
-            document.getElementById("btnAddCPD").addEventListener("click", function() {
+        $(document).ready(function () {
+
+            document.getElementById("btnAddCPD").addEventListener("click", function () {
                 addCPD();
             });
 
-            document.getElementById("btnDeleteCPD").addEventListener("click", function() {
+            document.getElementById("btnDeleteCPD").addEventListener("click", function () {
                 deleteCPD();
             });
 
-            document.getElementById("btnAddPhead").addEventListener("click", function() {
+            document.getElementById("btnAddPhead").addEventListener("click", function () {
                 addPhead();
             });
 
-            document.getElementById("btnDeletePhead").addEventListener("click", function() {
+            document.getElementById("btnDeletePhead").addEventListener("click", function () {
                 deletePhead();
             });
 
-            document.getElementById("btnAddBOE").addEventListener("click", function() {
+            document.getElementById("btnAddBOE").addEventListener("click", function () {
                 addBOE();
             });
 
-            document.getElementById("btnDeleteBOE").addEventListener("click", function() {
+            document.getElementById("btnDeleteBOE").addEventListener("click", function () {
                 deleteBOE();
             });
 
-            document.getElementById("btnAddProjRev").addEventListener("click", function() {
+            document.getElementById("btnAddProjRev").addEventListener("click", function () {
                 addProjRev();
             });
 
-            document.getElementById("btnDeleteProjRev").addEventListener("click", function() {
+            document.getElementById("btnDeleteProjRev").addEventListener("click", function () {
                 deleteProjRev();
             });
 
-            document.getElementById("btnAddProjExp").addEventListener("click", function() {
+            document.getElementById("btnAddProjExp").addEventListener("click", function () {
                 addProjExp();
             });
 
-            document.getElementById("btnDeleteProjExp").addEventListener("click", function() {
+            document.getElementById("btnDeleteProjExp").addEventListener("click", function () {
                 deleteProjExp();
             });
 
             //adds Source of Funds automatically and Organizational Funds
             var i = 0;
-            $("input").change(function() {
+            $("input").change(function () {
                 var sum_SOF = 0;
                 var sum_OF = 0;
                 var sum_BOE;
@@ -916,44 +974,48 @@
                 var remBalance = 0;
 
                 //Source of Funds
-                $("input[name=OrganizationalFunds]").each(function() {
+                $("input[name=OrganizationalFunds]").each(function () {
                     sum_SOF = sum_SOF + parseFloat($(this).val());
                 });
-                $("input[name=ParticipantsFee]").each(function() {
+                $("input[name=ParticipantsFee]").each(function () {
                     sum_SOF = sum_SOF + parseFloat($(this).val());
                 });
-                $("input[name=OtherFunds]").each(function() {
+                $("input[name=OtherFunds]").each(function () {
                     sum_SOF = sum_SOF + parseFloat($(this).val());
                 });
                 $("th[name=totalSource]").text("Php " + sum_SOF.toFixed(2));
 
                 //Organizational Funds
-                $("input[name=OperationalFund]").each(function() {
+                $("input[name=OperationalFund]").each(function () {
                     sum_OF = sum_OF + parseFloat($(this).val());
                 });
-                $("input[name=DepositoryFund]").each(function() {
+                $("input[name=DepositoryFund]").each(function () {
                     sum_OF = sum_OF + parseFloat($(this).val());
                 });
-                $("input[name=OtherFund]").each(function() {
+                $("input[name=OtherFund]").each(function () {
                     sum_OF = sum_OF + parseFloat($(this).val());
                 });
                 $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
 
-                //
-                $("input[name=quantity0]").each(function() {
-                   subtotal_BOE = subtotal_BOE * parseFloat($(this).val());
-                });
-                $("input[name=unit0]").each(function() {
-                    subtotal_BOE = subtotal_BOE * parseFloat($(this).val());
-                });
-                $("td[name=BOE_subtotal0]").text("Php " + subtotal_BOE.toFixed(2));
-             
+                // var rowCount = $('#dynamicTable3 tr').length - 2;
+
+                // for (var num = 0; num < rowCount; num++) {
+                //     $("input[name=quantity" + num + "]").each(function () {
+                //         subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(
+                //             this).val());
+                //     });
+                //     $("input[name=unit" + num + "]").each(function () {
+                //         subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat(
+                //             $(this).val());
+                //     });
+                //     $("td[name=BOE_subtotal" + num + "]").text("Php " + subtotal_BOE.toFixed(2));
+                // }
             });
-            
+
             function calculateSum() {
                 var sum = 0;
                 $(".txt").each(function () {
-                    
+
                     if (!isNaN(this.value) && this.value.length != 0) {
                         sum += parseFloat(this.value);
                     }
@@ -962,23 +1024,22 @@
                 //.toFixed() method will roundoff the final sum to 2 decimal places
                 $("#sum").html(sum.toFixed(2));
             }
-            
+
             $("#dynamicTable3").on("keyup", ".txt", function () {
                 calculateSum();
             });
-            
-//            $('input[name=phead_check][type=checkbox]').click(function(){
-//                if (this.checked) {
-//                    $('#btnDeletePhead').css('color', '#26BE9B');
-//                    $('#btnDeletePhead').css('border-color', '#26BE9B');
-//                }
-//                else {
-//                    $('#btnDeletePhead').css('color', '#DCDCDC');
-//                    $('#btnDeletePhead').css('border-color', '#DCDCDC');
-//                }
-//            });
-        });
 
+            //            $('input[name=phead_check][type=checkbox]').click(function(){
+            //                if (this.checked) {
+            //                    $('#btnDeletePhead').css('color', '#26BE9B');
+            //                    $('#btnDeletePhead').css('border-color', '#26BE9B');
+            //                }
+            //                else {
+            //                    $('#btnDeletePhead').css('color', '#DCDCDC');
+            //                    $('#btnDeletePhead').css('border-color', '#DCDCDC');
+            //                }
+            //            });
+        });
     </script>
 </body>
 
