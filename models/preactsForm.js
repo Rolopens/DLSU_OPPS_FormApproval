@@ -100,10 +100,10 @@ var formSchema = new Schema({
         projected_expenses: Number,
         rem_balance: Number
     },
-    person_responsible: { // another person responsible aside from the submitter
+    person_responsible: [{ // another person responsible aside from the submitter
         name: String,
         position: String
-    },
+    }],
     archived: Boolean,
     creationDate: Date
 });

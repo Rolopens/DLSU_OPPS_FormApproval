@@ -14,7 +14,7 @@ th {
 
 h1 {
     text-align: center;
-    column-span: all;
+    -webkit-column-span: all;
     padding-bottom: 3%;
 }
 
@@ -33,13 +33,13 @@ h1 {
 
 .box {
     padding: 3%;
-    border: solid black;
+    border: 2px solid black;
 }
 
 .cell {
     text-align: center;
     padding: 2%;
-    border: 1px solid black;
+    border: 3px solid black;
     
 }
 
@@ -59,3 +59,19 @@ button {
     float: right;
 }
 
+.button {
+    margin: 5px;
+    padding: 1em;
+	cursor: pointer;
+    border-radius: 3px;
+    width: 20%;
+    text-align: center;
+}
+
+.reject {
+    background-color: #FF4F4F;
+}
+
+.approve {
+    background-color: #2bd673;
+}

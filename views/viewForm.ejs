@@ -325,18 +325,20 @@
                     <th>Position:</th>
                 </tr>
                 <tr>
-                    <td><%=data.person_responsible.name%></td>
-                    <td><%=data.person_responsible.position%></td>
+                    <td><%=data.person_responsible[0].name%></td>
+                    <td><%=data.person_responsible[0].position%></td>
                 </tr>
                 <tr>
-                    <td>{User 2}</td>
-                    <td>{Position}</td>
+                    <td><%=data.person_responsible[1].name%></td>
+                    <td><%=data.person_responsible[1].position%></td>
                 </tr>
             </table>
             
             <br/>
-            <button>Accept</button>
-            <button>Reject</button>
+            <form action="/preacts" method="get">
+                <button class="button approve">Approve</button>
+                <button class="button reject">Reject</button>
+            </form>
         </div>
     </body>
 
