@@ -15,7 +15,8 @@ var preacts_app = new Vue({
                 "Engineering (GCOE)",
                 "Business (RVM-COB)",
                 "Education (BAG-CED)",
-                "Economics (SOE)"
+                "Economics (SOE)",
+                "Science (COS)"
             ]
         },
         whoami: null,

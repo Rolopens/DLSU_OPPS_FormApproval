@@ -29,22 +29,27 @@ var formSchema = new Schema({
     online: Boolean,
     GOSM: Boolean,
     president: mongoose.Schema.Types.ObjectId,
-    status: String, //current status of the form
-    approvedDate: Date, //date and time when the form is approved
-    
+    college: String,
     context: [String],
     objectives: [String],
-    comments: String, //Comments given by the checker
+    
+    //Approval stuff
+    status: String, //current status of the form
+    approvedDate: Date, //date and time when the form is approved
+    canView: [mongoose.Schema.Types.ObjectId],
+    currentCheckers: [ mongoose.Schema.Types.ObjectId],
+    approvedBy: [ mongoose.Schema.Types.ObjectId],
     position: String, //Used for tracking the form
+    processType: String,
+    comments: String, //Comments given by the checker
+    
+    //tables
     projectHeads: [{
         name: String,
         contact_number: {
             type: Number
         }
     }],
-    currentCheckers: [ mongoose.Schema.Types.ObjectId],
-    approvedBy: [ mongoose.Schema.Types.ObjectId],
-    //tables
     program_flow: [{
         startTime: String, //for now (used to be date)
         endTime: String, //for now (used to be date)

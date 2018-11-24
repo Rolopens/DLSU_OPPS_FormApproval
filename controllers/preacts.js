@@ -109,6 +109,22 @@ module.exports.controller = function (app) {
             })
         })
     })
+    
+    //ajax request for checking a form
+    app.post("/preacts/check/:id", function (req, res) {
+        var id = req.params.id;
+        preactsService.findFormViaId(id).then((formData) => {
+            var form = formData;
+            form.status = "Checked";
+            preactsService.updateForm(form).then((updatedForm) => {
+                preactsService.findFormViaId(form._id).then((formData1) => {
+                    res.send({
+                        formData1
+                    })
+                })
+            })
+        })
+    })
 
     //ajax request for rejecting a form
     app.post("/preacts/reject/:id", function (req, res) {
