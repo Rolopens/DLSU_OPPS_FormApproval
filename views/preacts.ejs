@@ -161,7 +161,8 @@
                                     </div>
                                     <br/>
                                     
-                                    <form name="view-form" action="view-form" method="get">
+                                    <form name="view-form" action="view-form" method="post">
+                                        <input style="display:none;" :value="quickview._id" name="form_id">
                                         <button type="submit" class="hallow">View Activity</button>
                                     </form>
                                 </div>
@@ -169,11 +170,12 @@
                             <br/><br/>
                             <div class="row">
                                 <div class="column">
-                                    <p class="action positive" id="ApproveForm" v-on:click="approveForm(quickview._id)"><i class="fa fa-check-circle"></i> &nbsp; Approve Activity</p>
-                                </div>
-                                <div class="column">
                                     <p class="action negative" id="RejectForm" v-on:click="rejectForm(quickview._id)"><i class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
                                 </div>
+                                <div class="column">
+                                    <p class="action positive" id="ApproveForm" v-on:click="approveForm(quickview._id)"><i class="fa fa-check-circle"></i> &nbsp; Approve Activity</p>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,8 @@ var preacts_app = new Vue({
                 "Engineering (GCOE)",
                 "Business (RVM-COB)",
                 "Education (BAG-CED)",
-                "Economics (SOE)"
+                "Economics (SOE)",
+                "Science (COS)"
             ]
         },
         whoami: null,
@@ -27,14 +28,22 @@ var preacts_app = new Vue({
             .then((rows) => {
                 console.log(rows);
                 this.whoami = rows.data.user;
+                //console.log(this.whoami._id)
+            //this.whoami._id
+                axios.get('/preacts/getAllForms/forms').then((rows) => {
+                    console.log(rows);
+                    this.forms = rows.data.forms;
+                    return this.forms;
+                })
                 return this.whoami;
             })
-        
-        axios.get('/preacts/getAllForms/forms').then((rows)=>{
-                console.log(rows);
-                this.forms = rows.data.forms;
-                return this.forms;
-        })
+
+
+        //        axios.get('/preacts/getAllForms/forms/' + whoami._id).then((rows)=>{
+        //                console.log(rows);
+        //                this.forms = rows.data.forms;
+        //                return this.forms;
+        //        })
     },
     methods: {
         quickviewForm(_id) {
@@ -47,34 +56,34 @@ var preacts_app = new Vue({
                     }
                 })
         },
-        approveForm(_id){
+        approveForm(_id) {
             axios.post("/preacts/approve/" + _id)
-                .then((response)=>{
-                if (response.error != undefined)
+                .then((response) => {
+                    if (response.error != undefined)
                         $("#error_msg").html(response.error)
                     else {
                         Vue.set(preacts_app, 'quickview', response.data.formData1);
                     }
-            })
-            axios.get('/preacts/getAllForms/forms').then((rows)=>{
+                })
+            axios.get('/preacts/getAllForms/forms').then((rows) => {
                 console.log(rows);
                 this.forms = rows.data.forms;
-//                return this.forms;
+                //                return this.forms;
             })
         },
-        rejectForm(_id){
+        rejectForm(_id) {
             axios.post("/preacts/reject/" + _id)
-                .then((response)=>{
-                if (response.error != undefined)
+                .then((response) => {
+                    if (response.error != undefined)
                         $("#error_msg").html(response.error)
                     else {
                         Vue.set(preacts_app, 'quickview', response.data.formData1);
                     }
-            })
-            axios.get('/preacts/getAllForms/forms').then((rows)=>{
+                })
+            axios.get('/preacts/getAllForms/forms').then((rows) => {
                 console.log(rows);
                 this.forms = rows.data.forms;
-//                return this.forms;
+                //                return this.forms;
             })
         }
     }

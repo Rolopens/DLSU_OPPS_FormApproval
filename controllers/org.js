@@ -11,7 +11,7 @@ module.exports.controller = function (app) {
           if (!result) throw Error("User does not have org management rights");
           res.render('org-management', {
             preacts : true,
-            postacts : true,
+            preactsSubmission: false,
             accounts : true,
             organization : true
           });

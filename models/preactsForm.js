@@ -29,22 +29,27 @@ var formSchema = new Schema({
     online: Boolean,
     GOSM: Boolean,
     president: mongoose.Schema.Types.ObjectId,
-    status: String, //current status of the form
-    approvedDate: Date, //date and time when the form is approved
-    
+    college: String,
     context: [String],
     objectives: [String],
+    
+    //Approval stuff
+    status: String, //current status of the form
+    approvedDate: Date, //date and time when the form is approved
+    canView: [mongoose.Schema.Types.ObjectId],
+    currentCheckers: [ mongoose.Schema.Types.ObjectId],
+    approvedBy: [ mongoose.Schema.Types.ObjectId],
+    position: Number, //Used for tracking the form
+    processType: String,
     comments: String, //Comments given by the checker
-    position: String, //Used for tracking the form
+    
+    //tables
     projectHeads: [{
         name: String,
         contact_number: {
             type: Number
         }
     }],
-    currentCheckers: [ mongoose.Schema.Types.ObjectId],
-    approvedBy: [ mongoose.Schema.Types.ObjectId],
-    //tables
     program_flow: [{
         startTime: String, //for now (used to be date)
         endTime: String, //for now (used to be date)
@@ -89,16 +94,16 @@ var formSchema = new Schema({
     organizational_funds: {
         operational_fund: Number,
         depository_fund: Number,
-//        other_fund: Number,
+        other_fund: Number,
 //        accumulated_fund: Number,
         total_disbursement: Number,
         projected_expenses: Number,
         rem_balance: Number
     },
-    person_responsible: { // another person responsible aside from the submitter
+    person_responsible: [{ // another person responsible aside from the submitter
         name: String,
         position: String
-    },
+    }],
     archived: Boolean,
     creationDate: Date
 });

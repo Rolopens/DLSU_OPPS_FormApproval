@@ -3,7 +3,7 @@ var nav = new Vue({
     data: {
         active: {
             preacts: false,
-            postacts: false,
+            preactsSubmission: false,
             accounts: false,
             organization: false
         }
