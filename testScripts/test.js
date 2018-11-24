@@ -2,7 +2,7 @@ require("./../configuration/database.js")
 
 const userService = require("../models/userService.js")
 const roleService = require("../models/roleService.js")
-const orgService = require("./models/orgService.js")
+const orgService = require("../models/orgService.js")
 
 var promise1 = new Promise(
   function (resolve, reject) {
