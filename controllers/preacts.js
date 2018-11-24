@@ -155,13 +155,9 @@ module.exports.controller = function (app) {
                     res.send({
                         formData1
                     })
-                }).catch((err)=>{
-                    console.log(err)
-                })
+                }).catch(done)
             })
-        }).catch((err)=>{
-            console.log(err);
-        })
+        }).catch(done)
     })
 
     //ajax request for checking a form
