@@ -1,7 +1,7 @@
-body{
+body {
     padding: 20px;
     background-color: #26BE9B;
-    
+
 }
 
 .main {
@@ -16,30 +16,6 @@ body{
     font-size: 14px;
 }
 
-.others{
-    display:flex;
-/*    flex-direction: row;*/
-}
-
-.others input{
-    display: inline !important;
-}
-    
-.others2{
-    margin-top: 0px;
-    margin-right: 10px;
-    display: inline-block !important;
-    text-align: right !important;
-}
-
-.others-input{
-    border: none !important;
-    border-bottom: 1.5px solid !important;
-    border-bottom-color: #5e6479 !important;
-    border-radius: 0px !important;
-    height: 0px;
-}
-
 .inputron {
     margin-top: 10px;
     border: none;
@@ -48,26 +24,26 @@ body{
     width: 100%;
 }
 
-.inputron:focus{
+.inputron:focus {
     outline: none;
-    
+
 }
 
-.container-of-ENMP-ENP{
+.container-of-ENMP-ENP {
     display: flex;
     flex-direction: row;
 }
 
-.ENMP-holder{
+.ENMP-holder {
     margin-right: 10px;
     width: 50%;
 }
 
-.EMP-holder{
+.EMP-holder {
     width: 50%;
 }
 
-.submit-button{
+.submit-button {
     margin-top: 5%;
     background: white;
     border-color: #26BE9B;
@@ -79,20 +55,16 @@ body{
     font-weight: 700;
 }
 
-.next:hover{
+.next:hover {
     background: #26BE9B;
     border-color: white;
     color: white;
     border-style: solid;
 }
 
-.previous{
+.previous {
     border-color: #DCDCDC;
     color: #DCDCDC;
-}
-
-.red{
-    color:red;
 }
 
 input[type=number]::-webkit-inner-spin-button,
