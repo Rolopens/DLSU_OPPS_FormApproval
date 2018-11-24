@@ -130,6 +130,26 @@ module.exports.controller = function (app) {
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData;
             form.status = "Approved";
+            //***change form position***
+            var prevPosition = form.position, checked = false;
+            
+            for (var key in processes[form.processType]){
+                console.log(key)
+                console.log(form.position)
+                if (checked){
+                    form.position = key
+                    break;
+                }
+                if (prevPosition == key){
+                    checked = true;
+                }
+            }
+            //***update checkers***
+            
+            //look for users with user_roles found in process[form.processType][form.position]
+            
+            //put those ids into form.currentCheckers - still need to add dummy data
+            
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
                     res.send({
@@ -163,6 +183,8 @@ module.exports.controller = function (app) {
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Rejected"
+            
+            
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
                     res.send({
@@ -234,28 +256,11 @@ module.exports.controller = function (app) {
         } else {
             req.session.GOSM = false;
         }
-
-        //        console.log("FORM CREATION 1")
-        //        console.log (req.session.id)
-        //        console.log("DEBUG: " + req.session.title);
-        //        console.log("DEBUG: " + req.session.nature);
-        //        console.log("DEBUG: " + req.session.type);
-        //        console.log("DEBUG: " + req.session.startDate);
-        //        console.log("DEBUG: " + req.session.startTime);
-        //        console.log("DEBUG: " + req.session.endDate);
-        //        console.log("DEBUG: " + req.session.endTime);
-        //        console.log("DEBUG: " + req.session.venue);
-        //        console.log("DEBUG: " + req.session.enmp);
-        //        console.log("DEBUG: " + req.session.emp);
-        //        console.log("DEBUG: " + req.session.reach);
-        //        console.log("DEBUG: " + req.session.online);
-        //        console.log("DEBUG: " + req.session.GOSM);
         res.render('form2');
 
     });
 
     app.post('/create-form-2-confirm', function (req, res) {
-        //we need an ejs that allows them to view the form so they can confirm
         req.session.context1 = req.body.context1;
         req.session.context2 = req.body.context2;
         req.session.context3 = req.body.context3;
@@ -364,24 +369,25 @@ module.exports.controller = function (app) {
         }
         req.session.porjExpData = projExpData;
         req.session.projIncomeTotal = req.body.projIncomeTotal;
-        //        console.log("FROM CREATION PART 2")
-        //        console.log(req.session.programData);
-        //        console.log(req.session.breakdownOfExpenses);
-        //        console.log(req.session.organizational_funds);
 
-        //        console.log("DEBUG: " + req.session.objective1);
-        //        console.log("DEBUG: " + req.session.objective2);
-        //        console.log("DEBUG: " + req.session.objective3);
-        //        console.log("DEBUG: " + req.session.PR.name);
-        //        console.log("DEBUG: " + req.session.PR.position);
-        //        console.log("DEBUG PHEADATA " + pheadData[0].name);
-        var usersOrganization;
+        var usersOrganization, processType;
         userService.getUserWithId(req.session.uid).then((userObject) => {
             var org_id = userObject.user_roles[0].org_id;
-            //            console.log("LOG: USER OBJECT");
             return orgService.findSpecificOrg(org_id).then((orgObject) => {
                 usersOrganization = orgObject.name;
-                var processName = "ORGANIZATIONS_PROCESS-SLIFE"
+                // checker to see what process the form should go under - still in progress
+                if (orgObject.type == 'CSO'){
+                    processType = "ORGANIZATIONS_PROCESS"
+                    if (true){
+                        processType = processType + "-SLIFE"
+                    }
+                } else{
+                    processType = "GOVERNMENT_PROCESS"
+                    if (true){
+                        processType = processType + "-USG-SLIFE"
+                    }
+                }
+                //form creation
                 var form = new Form({
                     "title": req.session.title,
                     "nature": req.session.nature,
@@ -413,10 +419,10 @@ module.exports.controller = function (app) {
                     "position": null,
                     "creationDate": new Date,
                     "org": usersOrganization, //fix this later on to session
-                    "position": processes[processName][0],
+                    "position": 0,
                     "status": "Pending",
                     "user_id": req.session.uid,
-                    "processType": "ORGANIZATIONS_PROCESS-SLIFE",
+                    "processType": processType,
                 });
                 return preactsService.addForm(form).then((addedForm) => {
                     //                    console.log(addedForm);

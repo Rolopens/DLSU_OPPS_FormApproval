@@ -39,7 +39,7 @@ var formSchema = new Schema({
     canView: [mongoose.Schema.Types.ObjectId],
     currentCheckers: [ mongoose.Schema.Types.ObjectId],
     approvedBy: [ mongoose.Schema.Types.ObjectId],
-    position: String, //Used for tracking the form
+    position: Number, //Used for tracking the form
     processType: String,
     comments: String, //Comments given by the checker
     
