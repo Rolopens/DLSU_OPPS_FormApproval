@@ -1,9 +1,11 @@
 body {
     background-color: #26BE9B;
+    font-size: 14px;
 }
 
 table {
     width: 100%;
+    font-size: 14px;
     border: 2px solid black;
 }
 
@@ -39,7 +41,7 @@ h1 {
 .cell {
     text-align: center;
     padding: 2%;
-    border: 3px solid black;
+    border: 2px solid black;
     
 }
 
@@ -55,10 +57,6 @@ h1 {
     background-color: #b9b9b9;
 }
 
-button {
-    float: right;
-}
-
 .button {
     margin: 5px;
     padding: 1em;
@@ -66,6 +64,8 @@ button {
     border-radius: 3px;
     width: 20%;
     text-align: center;
+    float: right;
+    border: none;
 }
 
 .reject {
@@ -74,4 +74,12 @@ button {
 
 .approve {
     background-color: #2bd673;
+}
+
+.reject:hover {
+    color: white;
+}
+
+.approve:hover {
+    color: white;
 }

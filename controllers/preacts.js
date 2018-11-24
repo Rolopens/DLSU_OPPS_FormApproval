@@ -194,6 +194,20 @@ module.exports.controller = function (app) {
             })
         })
     })
+    
+    //updates the status from view form
+    app.post("/preacts/update/:id", function (req, res) {
+        var id = req.params.id
+
+        preactsService.findFormViaId(id).then((formData) => {
+            var form = formData
+            form.status = req.body.status;
+
+            preactsService.updateForm(form).then((updatedForm) => {
+                res.redirect('/preacts');
+            })
+        })
+    })
 
     //preacts page for submitters
     app.get('/preacts-submission', function (req, res) {
