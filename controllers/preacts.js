@@ -5,6 +5,7 @@ const userService = require(path.join(__dirname, "..", "models", "userService.js
 const roleService = require(path.join(__dirname, "..", "models", "roleService.js"));
 const orgService = require(path.join(__dirname, "..", "models", "orgService.js"));
 const preactsService = require(path.join(__dirname, "..", "models", "preactsService.js"));
+const processes = require(path.join(__dirname, "..", "configuration", "approvalProcess.json"))
 const {
     Form
 } = require(path.join(__dirname, "..", "models", "preactsForm.js"))
@@ -18,43 +19,64 @@ module.exports.controller = function (app) {
         var roleID;
         //      var canSee = false;
         if (!req.session.uid) res.redirect("/");
-        userService.getUserWithId(req.session.uid)
-            .then((result) => {
-                var rolePromises = [];
-                for (var i = 0; i < result.user_roles.length; i++) {
-                    roleID = result.user_roles[i].role_id;
-                    var p = roleService.getRoleWithId(roleID).then((result) => {
-                        if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                            canSee = true;
-                    });
-                    rolePromises.push(p);
+
+        userService.getUserWithId(req.session.uid).then((retUser) => {
+            var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
+            roleService.getRoleWithId(roleId).then((retRole) => {
+                if (retRole.name == "PROJECT_HEAD") {
+                    res.redirect('/preacts-submission');
+                } else {
+                    userService.getUserWithId(req.session.uid)
+                        .then((result) => {
+                            var rolePromises = [];
+                            for (var i = 0; i < result.user_roles.length; i++) {
+                                roleID = result.user_roles[i].role_id;
+                                var p = roleService.getRoleWithId(roleID).then((result) => {
+                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                        canSee = true;
+                                });
+                                rolePromises.push(p);
+                            }
+                            return Promise.all(rolePromises);
+                        })
+                        .then((result) => {
+                            res.render('preacts', {
+                                preacts: true,
+                                preactsSubmission: false,
+                                accounts: canSee,
+                                organization: canSee
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.redirect("/");
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        });
                 }
-                return Promise.all(rolePromises);
-            })
-            .then((result) => {
-                res.render('preacts', {
-                    preacts: true,
-                    accounts: canSee,
-                    organization: canSee
-                });
-            })
-            .catch((err) => {
+            }).catch((err) => {
+                console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
                 console.log(err);
-                res.redirect("/");
-            })
-            .catch((err) => {
-                console.log(err)
             });
+        }).catch((err) => {
+            console.log("ERROR MESSAGE: Cannot find user with id " + req.session.uid);
+            console.log(err);
+        });
+
+
     });
 
     //ajax request for getting orgs of user
-    app.get("/preacts/userOrgs/:id", function(req, res){
+    app.get("/preacts/userOrgs/:id", function (req, res) {
         userService.getUserWithId(req.paramas.id).then((userObject) => {
             var org_ids = userObject.user_roles;
             console.log("LOG: USER OBJECT")
             return orgService.findSpecificOrg(org_id).then((orgObject) => {
                 usersOrganization = orgObject.name;
-                res.send({org_ids})
+                res.send({
+                    org_ids
+                })
             }).catch((err) => {
                 console.log("ERROR: Failed to find organizations given org_id - " + org_id);
                 console.log(err);
@@ -64,7 +86,7 @@ module.exports.controller = function (app) {
             console.log(err);
         });
     });
-    
+
     //ajax request for quick view
     app.get("/preacts/:id", function (req, res) {
         var id = req.params.id
@@ -77,13 +99,21 @@ module.exports.controller = function (app) {
     });
 
     //ajax request for all the forms
-    app.get("/preacts/getAllForms/forms", function (req, res) {
-        preactsService.getAllForms().then((forms) => {
-            res.send({
-                forms
+        app.get("/preacts/getAllForms/forms", function (req, res) {
+            preactsService.getAllForms().then((forms) => {
+                res.send({
+                    forms
+                })
             })
-        })
-    });
+        });
+
+//    app.get("/preacts/getAllForms/forms/:id", function (req, res) {
+//        preactsService.getAllFormsViaCurrentCheckerID(req.params.id).then((forms) => {
+//            res.send({
+//                forms
+//            })
+//        })
+//    });
 
     //ajax request for all the forms owned by a user
     app.get("/preacts/getAllFormsOfUser/:id", function (req, res) {
@@ -109,7 +139,7 @@ module.exports.controller = function (app) {
             })
         })
     })
-    
+
     //ajax request for checking a form
     app.post("/preacts/check/:id", function (req, res) {
         var id = req.params.id;
@@ -145,12 +175,29 @@ module.exports.controller = function (app) {
 
     //preacts page for submitters
     app.get('/preacts-submission', function (req, res) {
-
-        res.render('preacts-submit', {
-            preacts: true,
-            accounts: canSee,
-            organization: canSee
+        if (!req.session.uid) res.redirect("/");
+        userService.getUserWithId(req.session.uid).then((retUser) => {
+            var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
+            roleService.getRoleWithId(roleId).then((retRole) => {
+                if (retRole.name != "PROJECT_HEAD") {
+                    res.redirect('/preacts');
+                } else {
+                    res.render('preacts-submit', {
+                        preacts: false,
+                        preactsSubmission: true,
+                        accounts: false,
+                        organization: false
+                    });
+                }
+            }).catch((err) => {
+                console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
+                console.log(err);
+            });
+        }).catch((err) => {
+            console.log("ERROR MESSAGE: Cannot find user with id " + req.session.uid);
+            console.log(err);
         });
+
     });
 
     //form page 1
@@ -331,9 +378,10 @@ module.exports.controller = function (app) {
         var usersOrganization;
         userService.getUserWithId(req.session.uid).then((userObject) => {
             var org_id = userObject.user_roles[0].org_id;
-//            console.log("LOG: USER OBJECT");
+            //            console.log("LOG: USER OBJECT");
             return orgService.findSpecificOrg(org_id).then((orgObject) => {
                 usersOrganization = orgObject.name;
+                var processName = "ORGANIZATIONS_PROCESS-SLIFE"
                 var form = new Form({
                     "title": req.session.title,
                     "nature": req.session.nature,
@@ -365,14 +413,15 @@ module.exports.controller = function (app) {
                     "position": null,
                     "creationDate": new Date,
                     "org": usersOrganization, //fix this later on to session
-                    "position": "Documents Committee",
+                    "position": processes[processName][0],
                     "status": "Pending",
-                    "user_id": req.session.uid
+                    "user_id": req.session.uid,
+                    "processType": "ORGANIZATIONS_PROCESS-SLIFE",
                 });
                 return preactsService.addForm(form).then((addedForm) => {
-//                    console.log(addedForm);
+                    //                    console.log(addedForm);
                     clearSessionForm(req);
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("ERROR: Failed to add form in database");
                     console.log(err);
                 });
@@ -419,13 +468,15 @@ module.exports.controller = function (app) {
         req.session.porjExpData = null;
         req.session.projIncomeTotal = null;
     }
-    
+
     app.post('/view-form', function (req, res) {
-        
+
         var id = req.body.form_id;
 
         preactsService.findFormViaId(id).then((form) => {
-            res.render('viewForm', {data:form});
+            res.render('viewForm', {
+                data: form
+            });
         }, (error) => {
             console.error(error);
         });

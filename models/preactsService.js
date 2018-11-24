@@ -81,6 +81,24 @@ module.exports.getAllForms = function (){
 }
 
 /*
+    Accepts: user id
+    return: new promise that resolves all forms in db
+    Gets all forms in the db that has user id in current checkers list
+*/
+module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id
+        }).then((results)=>{
+            //console.log(results)
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
     Accepts: user_id
     return: new promise that resolves all forms owned by 'user_id' in the db
     Gets all forms in the db owned by 'user_id'
