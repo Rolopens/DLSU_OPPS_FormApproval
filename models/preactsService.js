@@ -20,6 +20,9 @@ module.exports.addForm = function (form) {
             resolve(newForm)
         }, (err) => {
             reject(err)
+        }).catch((err)=>{
+            console.log(err)
+            reject(err)
         })
     })
 }
