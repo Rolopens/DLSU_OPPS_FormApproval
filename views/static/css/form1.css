@@ -1,7 +1,7 @@
 body{
     padding: 20px;
     background-color: #26BE9B;
-    
+
 }
 
 .main {
@@ -24,7 +24,7 @@ body{
 .others input{
     display: inline !important;
 }
-    
+
 .others2{
     margin-top: 0px;
     margin-right: 10px;
@@ -50,7 +50,7 @@ body{
 
 .inputron:focus{
     outline: none;
-    
+
 }
 
 .container-of-ENMP-ENP{

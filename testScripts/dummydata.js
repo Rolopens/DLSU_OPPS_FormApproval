@@ -6,7 +6,6 @@ document.getElementsByName("type")[8].checked = "checked";
 document.getElementsByName("venue")[0].value = "Henry Sy Sr. Hall";
 document.getElementsByName("startDate")[0].value = "November 20, 2018";
 document.getElementsByName("startTime")[0].value = "2:00 PM";
-document.getElementsByName("endDate")[0].value = "November 20, 2018";
 document.getElementsByName("endTime")[0].value = "5:00 PM";
 document.getElementsByName("enmp")[0].value = "100";
 document.getElementsByName("emp")[0].value = "60";

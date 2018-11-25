@@ -1,9 +1,22 @@
+:root{
+    --theme-button-color: #26BE9B;
+    --theme-button-accent: #48FFD5;
+    --theme-button-dark-color: #5E6479;
+    --theme-button-dark-accent: #3A3E4B;
+    --theme-button-light-color: white;
+    --theme-button-light-accent: #E7E7E7;
+
+    --theme-button-color-value: white;
+}
+
 body {
     background-color: #26BE9B;
+    font-size: 14px;
 }
 
 table {
     width: 100%;
+    font-size: 14px;
     border: 2px solid black;
 }
 
@@ -14,7 +27,7 @@ th {
 
 h1 {
     text-align: center;
-    column-span: all;
+    -webkit-column-span: all;
     padding-bottom: 3%;
 }
 
@@ -33,13 +46,13 @@ h1 {
 
 .box {
     padding: 3%;
-    border: solid black;
+    border: 2px solid black;
 }
 
 .cell {
     text-align: center;
     padding: 2%;
-    border: 1px solid black;
+    border: 2px solid black;
     
 }
 
@@ -55,7 +68,43 @@ h1 {
     background-color: #b9b9b9;
 }
 
-button {
+.button {
+    margin: 5px;
+    padding: 1em;
+	cursor: pointer;
+    border-radius: 3px;
+    width: 20%;
+    text-align: center;
     float: right;
+    border: none;
+}
+
+.reject {
+    background-color: #FF4F4F;
+}
+
+.approve {
+    background-color: #2bd673;
+}
+
+.done {
+    border: 1px solid;
+    border-color: var(--theme-button-color);
+    background-color: transparent;
+    color: var(--theme-button-color);
+}
+
+.reject:hover {
+    color: white;
+}
+
+.approve:hover {
+    color: white;
+}
+
+.done:hover {
+    background-color: var(--theme-button-color);
+    border-color: var(--theme-button-color);
+    color: var(--theme-button-color-value);
 }
 

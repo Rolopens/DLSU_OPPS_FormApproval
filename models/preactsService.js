@@ -20,6 +20,9 @@ module.exports.addForm = function (form) {
             resolve(newForm)
         }, (err) => {
             reject(err)
+        }).catch((err)=>{
+            console.log(err)
+            reject(err)
         })
     })
 }
@@ -72,6 +75,24 @@ module.exports.findFormViaId = function (_id) {
 module.exports.getAllForms = function (){
     return new Promise(function (resolve, reject) {
         Form.find().then((results)=>{
+            //console.log(results)
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: user id
+    return: new promise that resolves all forms in db
+    Gets all forms in the db that has user id in current checkers list
+*/
+module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id
+        }).then((results)=>{
             //console.log(results)
             resolve(results)
         }, (err)=> {

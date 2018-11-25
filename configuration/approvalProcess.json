@@ -1,6 +1,4 @@
 {
-    // change the role names later on in coordination with other module (user_roles)
-    
     "ORGANIZATIONS_PROCESS-SLIFE" : [
         "DOCU_OFFICER-CSO",
         "FIN_OFFICER-CSO",

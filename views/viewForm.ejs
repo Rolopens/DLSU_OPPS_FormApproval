@@ -5,7 +5,10 @@
         <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
         <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
         <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="css/viewForm.css">
+        <link rel="stylesheet" type="text/css" href="css/viewForm.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
     </head>
 
     <body>
@@ -40,23 +43,21 @@
             <br/>
             <table style="border: none">
                 <tr>
-                    <th>Start Date of the Activity:</th>
-                    <th>Start Time of the Activity:</th>
+                    <th>Date of the Activity:</th>
                 </tr>
                 <tr>
                     <td><%=data.startDate%></td>
-                    <td><%=data.startTime%></td>
                 </tr>
             </table>
 
             <br/>
             <table style="border: none">
                 <tr>
-                    <th>End Date of the Activity:</th>
+                    <th>Start Time of the Activity:</th>
                     <th>End Time of the Activity:</th>
                 </tr>
                 <tr>
-                    <td><%=data.endDate%></td>
+                    <td><%=data.startTime%></td>
                     <td><%=data.endTime%></td>
                 </tr>
             </table>
@@ -93,14 +94,14 @@
                 </tr>
                 <tr>
                     <%if(data.online == true) {%>
-                        <td>YES</td>
+                    <td>YES</td>
                     <%} else{%>
-                        <td>NO</td>
+                    <td>NO</td>
                     <%}%>
                     <%if(data.GOSM == true) {%>
-                        <td>YES</td>
+                    <td>YES</td>
                     <%} else{%>
-                        <td>NO</td>
+                    <td>NO</td>
                     <%}%>
                 </tr>
             </table>
@@ -145,10 +146,10 @@
                     <th class="cell">Contact Number</th>
                 </tr>
                 <%for(var i=0; i<data.projectHeads.length;i++) {%>
-                    <tr>
-                        <td class="cell left"><%=data.projectHeads[i].name%></td>
-                        <td class="cell left"><%=data.projectHeads[i].contact_number%></td>
-                    </tr>
+                <tr>
+                    <td class="cell left"><%=data.projectHeads[i].name%></td>
+                    <td class="cell left"><%=data.projectHeads[i].contact_number%></td>
+                </tr>
                 <%}%>   
             </table>
 
@@ -162,13 +163,13 @@
                     <th class="cell">Person-In-Charge</th>
                 </tr>
                 <%for(var i=0; i<data.program_flow.length;i++) {%>
-                    <tr>
-                        <td class="cell left"><%=data.program_flow[i].startTime%> to <%=data.program_flow[i].endTime%></td>
-                        <td class="cell left"><%=data.program_flow[i].duration%> mins</td>
-                        <td class="cell left"><%=data.program_flow[i].activity%></td>
-                        <td class="cell left"><%=data.program_flow[i].description%></td>
-                        <td class="cell left"><%=data.program_flow[i].person%></td>
-                    </tr>
+                <tr>
+                    <td class="cell left"><%=data.program_flow[i].startTime%> to <%=data.program_flow[i].endTime%></td>
+                    <td class="cell left"><%=data.program_flow[i].duration%> mins</td>
+                    <td class="cell left"><%=data.program_flow[i].activity%></td>
+                    <td class="cell left"><%=data.program_flow[i].description%></td>
+                    <td class="cell left"><%=data.program_flow[i].person%></td>
+                </tr>
                 <%}%>                
             </table>
 
@@ -182,14 +183,14 @@
                         <th class="cell">Total Cost</th>
                     </tr>
                     <%for(var i=0; i<data.breakdown_expenses.material.length;i++) {%>
-                        <tr>
-                            <td class="cell left"><%=data.breakdown_expenses.material[i].name%></td>
-                            <td class="cell left"><%=data.breakdown_expenses.material[i].quantity%></td>
-                            <td class="cell left"><%=data.breakdown_expenses.material[i].unit_cost%></td>
-                            <td class="cell left"><%=data.breakdown_expenses.material[i].total_cost%></td>
-                        </tr>
+                    <tr>
+                        <td class="cell left"><%=data.breakdown_expenses.material[i].name%></td>
+                        <td class="cell left"><%=data.breakdown_expenses.material[i].quantity%></td>
+                        <td class="cell left"><%=data.breakdown_expenses.material[i].unit_cost%></td>
+                        <td class="cell left"><%=data.breakdown_expenses.material[i].total_cost%></td>
+                    </tr>
                     <%}%> 
-                    
+
                 </tbody>
                 <tfoot>
                     <tr>
@@ -282,12 +283,12 @@
                         <th class="cell">Amount</th>
                     </tr>
                     <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
-                        <tr>
-                            <td class="cell left"><%=data.projected_income.revenue[i].item%></td>
-                            <td class="cell left"><%=data.projected_income.revenue[i].quantity%></td>
-                            <td class="cell left"><%=data.projected_income.revenue[i].price%></td>
-                            <td class="cell left">Php <%=data.projected_income.revenue[i].amount%></td>
-                        </tr>
+                    <tr>
+                        <td class="cell left"><%=data.projected_income.revenue[i].item%></td>
+                        <td class="cell left"><%=data.projected_income.revenue[i].quantity%></td>
+                        <td class="cell left"><%=data.projected_income.revenue[i].price%></td>
+                        <td class="cell left">Php <%=data.projected_income.revenue[i].amount%></td>
+                    </tr>
                     <%}%>
                     <tr>
                         <th colspan="4" class="cell left">Less: Projected Expenses</th>
@@ -299,14 +300,14 @@
                         <th class="cell">Amount</th>
                     </tr>
                     <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
-                        <tr>
-                            <td class="cell left"><%=data.projected_income.expenses[i].item%></td>
-                            <td class="cell left"><%=data.projected_income.expenses[i].quantity%></td>
-                            <td class="cell left"><%=data.projected_income.expenses[i].price%></td>
-                            <td class="cell left">Php <%=data.projected_income.expenses[i].amount%></td>
-                        </tr>
+                    <tr>
+                        <td class="cell left"><%=data.projected_income.expenses[i].item%></td>
+                        <td class="cell left"><%=data.projected_income.expenses[i].quantity%></td>
+                        <td class="cell left"><%=data.projected_income.expenses[i].price%></td>
+                        <td class="cell left">Php <%=data.projected_income.expenses[i].amount%></td>
+                    </tr>
                     <%}%>
-                    
+
                 </tbody>
                 <tfoot>
                     <tr>
@@ -325,19 +326,52 @@
                     <th>Position:</th>
                 </tr>
                 <tr>
-                    <td><%=data.person_responsible.name%></td>
-                    <td><%=data.person_responsible.position%></td>
+                    <td><%=data.person_responsible[0].name%></td>
+                    <td><%=data.person_responsible[0].position%></td>
                 </tr>
                 <tr>
-                    <td>{User 2}</td>
-                    <td>{Position}</td>
+                    <td><%=data.person_responsible[1].name%></td>
+                    <td><%=data.person_responsible[1].position%></td>
                 </tr>
             </table>
-            
+
             <br/>
-            <button>Accept</button>
-            <button>Reject</button>
+
+            <%if(button === true) {%>
+                <form id="status-form" action="/preacts/update/<%=data._id%>" method="post">
+                    <input id="status" style="display:none;" name="status">
+                    <input id="approve" type="submit" class="button approve" value="Approve">
+                    <input id="reject" type="submit" class="button reject" value="Reject">
+                </form>
+            <%} else {%>
+                <form id="status-form" action="/preacts" method="get">
+                    <input id="done" type="submit" class="button done" value="Done">
+                </form>
+            <%}%>
         </div>
+
+        <script>
+            
+            function approve() {
+                var status = document.getElementById('status');
+                status.setAttribute('value', 'Approved');
+            }
+            
+            function reject() {
+                var status = document.getElementById('status');
+                status.setAttribute('value', 'Rejected');
+            }
+            
+            $(document).ready(function() {
+                document.getElementById("approve").addEventListener("click", function() {
+                    approve();
+                });
+
+                document.getElementById("reject").addEventListener("click", function() {
+                    reject();
+                });
+            });
+        </script>
     </body>
 
 </html>

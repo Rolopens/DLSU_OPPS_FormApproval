@@ -1,10 +1,24 @@
 <div id="account" class="flex-end">
-            <div class="dropdown">
-                <span id="account-name">
-                    {{ whoami.firstname }} {{ whoami.lastname }} &nbsp; <i id="dropdownTab" class="fa fa-angle-down"></i>
-                </span>
-                <div class="dropdown-content">
-                  <div id="logout"><a href="/logout">Logout</a></div>
-                </div>
-            </div>
+  <div class="dropdown notification-space ">
+    <div class="redicon">
+
+    </div>
+      <img id="notification" src="https://image.flaticon.com/icons/svg/633/633584.svg" onmouseover="this.src='https://image.flaticon.com/icons/svg/633/633816.svg';" onmouseout="this.src='https://image.flaticon.com/icons/svg/633/633584.svg';" class="dropbtn">
+
+      <!--<button class="dropbtn">Dropdown</button>-->
+      <div class="dropdown-content">
+        <div> <a>ACTVITY NAME WEEW</a> </div>
+        <div> <a >ACTIVITY NAME WEW</a> </div>
+
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <span id="account-name">
+      {{ whoami.firstname }} {{ whoami.lastname }} &nbsp; <i id="dropdownTab" class="fa fa-angle-down"></i>
+    </span>
+    <div class="dropdown-content">
+      <div id="logout"><a >Logout</a></div>
+    </div>
+  </div>
 </div>

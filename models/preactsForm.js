@@ -39,7 +39,7 @@ var formSchema = new Schema({
     canView: [mongoose.Schema.Types.ObjectId],
     currentCheckers: [ mongoose.Schema.Types.ObjectId],
     approvedBy: [ mongoose.Schema.Types.ObjectId],
-    position: String, //Used for tracking the form
+    position: Number, //Used for tracking the form
     processType: String,
     comments: String, //Comments given by the checker
     
@@ -100,10 +100,10 @@ var formSchema = new Schema({
         projected_expenses: Number,
         rem_balance: Number
     },
-    person_responsible: { // another person responsible aside from the submitter
+    person_responsible: [{ // another person responsible aside from the submitter
         name: String,
         position: String
-    },
+    }],
     archived: Boolean,
     creationDate: Date
 });
