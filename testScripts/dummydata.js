@@ -32,6 +32,8 @@ document.getElementsByName("endTime0")[0].value = "17:00";
 document.getElementsByName("activity0")[0].value = "Entire Program";
 document.getElementsByName("description0")[0].value = "Make people run like Boruto's dad";
 document.getElementsByName("person0")[0].value = "Boruto";
+
+
 document.getElementsByName("material0")[0].value = "Kage Bunshin no Jutsu";
 document.getElementsByName("quantity0")[0].value = "231";
 document.getElementsByName("unit0")[0].value = "4";

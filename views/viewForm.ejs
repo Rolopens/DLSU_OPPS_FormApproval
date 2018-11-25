@@ -325,14 +325,12 @@
                     <th>Name:</th>
                     <th>Position:</th>
                 </tr>
+                <% for(var i = 0; i < data.person_responsible.length; i++) {%>
                 <tr>
-                    <td><%=data.person_responsible[0].name%></td>
-                    <td><%=data.person_responsible[0].position%></td>
+                    <td><%=data.person_responsible[i].name%></td>
+                    <td><%=data.person_responsible[i].position%></td>
                 </tr>
-                <tr>
-                    <td><%=data.person_responsible[1].name%></td>
-                    <td><%=data.person_responsible[1].position%></td>
-                </tr>
+                <% } %>
             </table>
 
             <br/>

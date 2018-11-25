@@ -238,6 +238,19 @@ function hasOrgManagementRights(_id){
   return hasUserManagementRights(_id);
 }
 
+function findUserByOrgAndRoleID(o_id, r_id){
+    return new Promise(
+        function (resolve, reject){
+            User.find({
+                user_roles: {$elemMatch: {
+                    org_id: o_id,
+                    role_id: r_id
+                }}}).then((users)=>{
+                resolve(users)
+            })
+        }
+    )
+}
 /*
 function userCanCreateUser(_id, role, org){
   return new Promise(
@@ -259,4 +272,4 @@ function userCanEditUser(){
 module.exports = {getUserWithId, getExpandedUserWithId,
   getAllUsers, getAllExpandedUsers, createUser, getUsersWithOrgType,
   getExpandedUsersWithOrgType, addRoleToUser,
-  hasUserManagementRights, hasOrgManagementRights};
+  hasUserManagementRights, hasOrgManagementRights, findUserByOrgAndRoleID};

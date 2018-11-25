@@ -147,7 +147,7 @@ function getAllOrgs(){
 function getOrgWithAbbrev(abbrev){
   return new Promise(
     function (resolve, reject){
-      Org.findOne({abbrev : abbrev.toUpperCase()})
+      Org.findOne({abbrev})
       .then((org)=>{
         if (org) resolve(org);
         else reject(Error("Org does not exist"));

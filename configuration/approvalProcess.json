@@ -1,35 +1,35 @@
 {
     "ORGANIZATIONS_PROCESS-SLIFE" : [
-        "DOCU_OFFICER-CSO",
-        "FIN_OFFICER-CSO",
-        "EXEC_CHECKER-CSO",
-        "PROJECT_HEAD-CSO",
-        "APPROVER-SLIFE"
+        "CSO-DOCU_OFFICER",
+        "CSO-FIN_OFFICER",
+        "CSO-EXEC_CHECKER",
+        "CSO-PROJECT_HEAD",
+        "SLIFE-APPROVER"
     ],
     "ORGANIZATIONS_PROCESS-CSO" : [
-        "DOCU_OFFICER-CSO",
-        "FIN_OFFICER-CSO",
-        "EXEC_CHECKER-CSO",
-        "PROJECT_HEAD-CSO",
+        "CSO-DOCU_OFFICER",
+        "CSO-FIN_OFFICER",
+        "CSO-EXEC_CHECKER",
+        "CSO-PROJECT_HEAD",
         "CSO-APS"
     ],
     "ORGANIZATIONS_PROCESS-DAAM" : [
-        "DOCU_OFFICER-CSO",
-        "FIN_OFFICER-CSO",
-        "EXEC_CHECKER-CSO",
-        "PROJECT_HEAD-CSO",
+        "CSO-DOCU_OFFICER",
+        "CSO-FIN_OFFICER",
+        "CSO-EXEC_CHECKER",
+        "CSO-PROJECT_HEAD",
         "DAAM-APS"
     ],
     "GOVERNMENT_PROCESS-USG-SLIFE" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-USG",
         "PRESIDENT-DLSU",
         "APPROVER-SLIFE"
     ],
     "GOVERNMENT_PROCESS-COLLEGE-SLIFE" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-COLLEGE",
         "PRESIDENT-USG",
         "APPROVER-SLIFE"
@@ -42,43 +42,43 @@
         "APPROVER-SLIFE"
     ],
     "GOVERNMENT_PROCESS-USG-CSO" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-USG",
         "PRESIDENT-DLSU",
         "CSO-APS"
     ],
     "GOVERNMENT_PROCESS-COLLEGE-CSO" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-COLLEGE",
         "PRESIDENT-USG",
         "CSO-APS"
     ],
     "GOVERNMENT_PROCESS-BATCH-CSO" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-BATCH",
         "PRESIDENT-COLLEGE",
         "CSO-APS"
     ],
     "GOVERNMENT_PROCESS-USG-DAAM" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-USG",
         "PRESIDENT-DLSU",
         "DAAM-APS"
     ],
     "GOVERNMENT_PROCESS-COLLEGE-DAAM" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-COLLEGE",
         "PRESIDENT-USG",
         "DAAM-APS"
     ],
     "GOVERNMENT_PROCESS-BATCH-DAAM" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-ORTEAS",
         "PRESIDENT-BATCH",
         "PRESIDENT-COLLEGE",
         "DAAM-APS"

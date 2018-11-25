@@ -30,7 +30,7 @@ var preacts_app = new Vue({
                 this.whoami = rows.data.user;
                 //console.log(this.whoami._id)
             //this.whoami._id
-                axios.get('/preacts/getAllForms/forms').then((rows) => {
+                axios.get('/preacts/getAllForms/forms/' + this.whoami._id).then((rows) => {
                     console.log(rows);
                     this.forms = rows.data.forms;
                     return this.forms;
@@ -63,6 +63,7 @@ var preacts_app = new Vue({
                         $("#error_msg").html(response.error)
                     else {
                         Vue.set(preacts_app, 'quickview', response.data.formData1);
+                        location.reload(true)
                     }
                 })
             axios.get('/preacts/getAllForms/forms').then((rows) => {

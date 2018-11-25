@@ -142,7 +142,8 @@ module.exports.updateForm = function (form) {
             status: form.status,
             comments: form.comments,
             position: form.position,
-            projectHeads: form.projectHeads
+            projectHeads: form.projectHeads,
+            currentCheckers: form.currentCheckers
 
         }).then((updatedForms) => {
             resolve(updatedForms)

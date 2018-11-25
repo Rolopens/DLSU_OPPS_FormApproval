@@ -44,6 +44,7 @@ module.exports.controller = function (app) {
             roleService.getRoleWithId(roleId).then((retRole)=>{
                 if(retRole.name == "PROJECT_HEAD"){
                     return res.redirect('/preacts-submission');
+                    
                 } else {
                     return res.redirect('/preacts');
                 }

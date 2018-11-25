@@ -23,37 +23,37 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name === "PROJECT HEAD") {
+                if (retRole.name === "PROJECT_HEAD") {
                     res.redirect('/preacts-submission');
                 } else {
                     userService.getUserWithId(req.session.uid)
                         .then((result) => {
-                        var rolePromises = [];
-                        for (var i = 0; i < result.user_roles.length; i++) {
-                            roleID = result.user_roles[i].role_id;
-                            var p = roleService.getRoleWithId(roleID).then((result) => {
-                                if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                                    canSee = true;
-                            });
-                            rolePromises.push(p);
-                        }
-                        return Promise.all(rolePromises);
-                    })
+                            var rolePromises = [];
+                            for (var i = 0; i < result.user_roles.length; i++) {
+                                roleID = result.user_roles[i].role_id;
+                                var p = roleService.getRoleWithId(roleID).then((result) => {
+                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                        canSee = true;
+                                });
+                                rolePromises.push(p);
+                            }
+                            return Promise.all(rolePromises);
+                        })
                         .then((result) => {
-                        res.render('preacts', {
-                            preacts: true,
-                            preactsSubmission: false,
-                            accounts: canSee,
-                            organization: canSee
+                            res.render('preacts', {
+                                preacts: true,
+                                preactsSubmission: false,
+                                accounts: canSee,
+                                organization: canSee
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.redirect("/");
+                        })
+                        .catch((err) => {
+                            console.log(err)
                         });
-                    })
-                        .catch((err) => {
-                        console.log(err);
-                        res.redirect("/");
-                    })
-                        .catch((err) => {
-                        console.log(err)
-                    });
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -99,21 +99,21 @@ module.exports.controller = function (app) {
     });
 
     //ajax request for all the forms
-    app.get("/preacts/getAllForms/forms", function (req, res) {
-        preactsService.getAllForms().then((forms) => {
-            res.send({
-                forms
-            })
-        })
-    });
-
-    //    app.get("/preacts/getAllForms/forms/:id", function (req, res) {
-    //        preactsService.getAllFormsViaCurrentCheckerID(req.params.id).then((forms) => {
+    //    app.get("/preacts/getAllForms/forms", function (req, res) {
+    //        preactsService.getAllForms().then((forms) => {
     //            res.send({
     //                forms
     //            })
     //        })
     //    });
+
+    app.get("/preacts/getAllForms/forms/:id", function (req, res) {
+        preactsService.getAllFormsViaCurrentCheckerID(req.params.id).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    });
 
     //ajax request for all the forms owned by a user
     app.get("/preacts/getAllFormsOfUser/:id", function (req, res) {
@@ -131,36 +131,55 @@ module.exports.controller = function (app) {
             var form = formData;
             form.status = "Approved";
             //***change form position***
-            var prevPosition = form.position, checked = false;
+            var prevPosition = form.position,
+                checked = false;
 
-            for (var key in processes[form.processType]){
+            for (var key in processes[form.processType]) {
                 console.log(key)
                 console.log(form.position)
-                if (checked){
+                if (checked) {
                     form.position = key
                     break;
                 }
-                if (prevPosition == key){
+                if (prevPosition == key) {
                     checked = true;
                 }
             }
             //***update checkers***
+            var nextRole, nextOrg, role1, org1;
 
-            //look for users with user_roles found in process[form.processType][form.position]
+            var temp = processes[form.processType][form.position].split("-", 2);
+            nextRole = temp[0];
+            nextOrg = temp[1];
 
-            //put those ids into form.currentCheckers - still need to add dummy data
-
-            preactsService.updateForm(form).then((updatedForm) => {
-                preactsService.findFormViaId(form._id).then((formData1) => {
-                    res.send({
-                        formData1
+            roleService.getRoleWithName(nextRole).then((retRole) => {
+                role1 = retRole
+                orgService.getOrgWithAbbrev(nextOrg).then((retOrg) => {
+                    org1 = retOrg
+                    userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
+                        var temp = form.currentCheckers
+                        form.currentCheckers = users
+                        preactsService.updateForm(form).then((updatedForm) => {
+                            preactsService.findFormViaId(form._id).then((formData1) => {
+//                                res.send({
+//                                    formData1
+//                                })
+                                res.redirect('/preacts')
+                            }).catch((err) => {
+                                console.log(err)
+                            })
+                        }).catch((err) => {
+                            console.log(err);
+                        })
                     })
-                }).catch((err)=>{
-                    console.log(err)
                 })
             })
-        }).catch((err)=>{
-            console.log(err);
+            //look for users with user_roles found in process[form.processType][form.position]
+            //put those ids into form.currentCheckers - still need to add dummy data
+
+
+            //update
+
         })
     })
 
@@ -219,7 +238,7 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name != "PROJECT HEAD") {
+                if (retRole.name != "PROJECT_HEAD") {
                     res.redirect('/preacts');
                 } else {
                     res.render('preacts-submit', {
@@ -276,7 +295,7 @@ module.exports.controller = function (app) {
         }
         res.render('form2');
     });
-    
+
     app.post('/create-form-3', function (req, res) {
         req.session.context1 = req.body.context1;
         req.session.context2 = req.body.context2;
@@ -318,24 +337,24 @@ module.exports.controller = function (app) {
             programData.push(rowdata);
         }
         req.session.programData = programData;
-        
+
         res.render('form3');
 
     });
 
     app.post('/create-form-3-confirm', function (req, res) {
-         req.session.PR = {
+        req.session.PR = {
             name: req.body.namePR,
             position: req.body.positionPR
         }
-        
+
         req.session.sourceFunds = {
             organization_funds: req.body.OrganizationalFunds,
             participants_fee: req.body.ParticipantsFee,
             others: req.body.OtherFunds,
             total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
         }
-        
+
         //accessing data from breakdown of expenses table
         var expensesData = [];
         var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
@@ -365,7 +384,8 @@ module.exports.controller = function (app) {
             rem_balance: parseFloat(req.body.OperationalFund) + parseFloat(req.body.DepositoryFund) + parseFloat(req.body.OtherFund) - totalExpenses
         }
         //accessing data from projected revenue table
-        var projRevData = [];
+        var projRevData = [],
+            totalRev = 0.00;
         var projRevlength = parseInt(req.body.dynamicTable4len, 10) + 1;
         for (var i = 0; i < projRevlength; i++) {
             var rowdata = {
@@ -374,12 +394,14 @@ module.exports.controller = function (app) {
                 price: req.body['price' + i],
                 amount: req.body['qty' + i] * req.body['price' + i]
             }
+            totalRev = totalRev + req.body['qty' + i] * req.body['price' + i];
             projRevData.push(rowdata);
         }
         req.session.projRevData = projRevData;
 
         //accessing data from projected expenses table
-        var projExpData = [];
+        var projExpData = [],
+            totalExp = 0;
         var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
         for (var i = 0; i < projExplength; i++) {
             var rowdata = {
@@ -388,81 +410,103 @@ module.exports.controller = function (app) {
                 price: req.body['pr' + i],
                 amount: req.body['qu' + i] * req.body['pr' + i]
             }
+            totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
             projExpData.push(rowdata);
         }
         req.session.porjExpData = projExpData;
-        req.session.projIncomeTotal = req.session.projRevData - req.session.porjExpData;
+        req.session.projIncomeTotal = totalRev - totalExp;
 
         var usersOrganization, processType;
         userService.getUserWithId(req.session.uid).then((userObject) => {
             var org_id = userObject.user_roles[0].org_id;
-            return orgService.findSpecificOrg(org_id).then((orgObject) => {
+            orgService.findSpecificOrg(org_id).then((orgObject) => {
                 usersOrganization = orgObject.name;
                 // checker to see what process the form should go under - still in progress
-                if (orgObject.type == 'CSO'){
+                if (orgObject.type == 'CSO') {
                     processType = "ORGANIZATIONS_PROCESS"
-                    if (true){
+                    if (true) {
                         processType = processType + "-SLIFE"
                     }
-                } else{
+                } else {
                     processType = "GOVERNMENT_PROCESS"
-                    if (true){
+                    if (true) {
                         processType = processType + "-USG-SLIFE"
                     }
                 }
+                var org, role, orgObj, roleObj;
+                var str = processes[processType][0];
+                console.log(str)
+                
+                var temp = str.split("-", 2);
+                console.log(temp)
+                org = temp[1];
+                role = temp[0];
+                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
+                roleService.getRoleWithName(role).then((retRole) => {
+                    roleObj = retRole;
+                    orgService.getOrgWithAbbrev(org).then((retOrg) => {
+                        orgObj = retOrg; 
+                        userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
+                            req.session.currentCheckers = retUsers
+                            roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                req.session.PR_2 = {
+                                    name: userObject.firstname + " " + userObject.lastname,
+                                    position: role.name
+                                }
+                                //form creation
+                                var form = new Form({
+                                    "title": req.session.title,
+                                    "nature": req.session.nature,
+                                    "typeOfActivity": req.session.type,
+                                    "enmp": req.session.enmp,
+                                    "enp": req.session.enp,
+                                    "startDate": req.session.startDate,
+                                    "startTime": req.session.startTime,
+                                    "endDate": req.session.endDate,
+                                    "endTime": req.session.endTime,
+                                    "venue": req.session.venue,
+                                    "reach": req.session.reach,
+                                    "GOSM": req.session.GOSM,
+                                    "online": req.session.online,
+                                    "context": [req.session.context1, req.session.context2, req.session.context3],
+                                    "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                    "person_responsible": [req.session.PR, req.session.PR_2],
+                                    "source_funds": req.session.sourceFunds,
+                                    "organizational_funds": req.session.organizational_funds,
+                                    "program_flow": req.session.programData,
+                                    "projectHeads": req.session.pheadData,
+                                    "breakdown_expenses": req.session.breakdownOfExpenses,
+                                    "projected_income": {
+                                        revenue: req.session.projRevData,
+                                        expenses: req.session.porjExpData,
+                                        total: req.session.projIncomeTotal
+                                    },
+                                    "comments": null,
+                                    "position": null,
+                                    "creationDate": new Date,
+                                    "org": usersOrganization, //fix this later on to session
+                                    "position": 0,
+                                    "status": "Pending",
+                                    "user_id": req.session.uid,
+                                    "processType": processType,
+                                    "currentCheckers" : req.session.currentCheckers
+                                });
+                                preactsService.addForm(form).then((addedForm) => {
+//                                                        console.log(addedForm);
+                                    clearSessionForm(req);
+                                }).catch((err) => {
+                                    console.log("ERROR: Failed to add form in database");
+                                    console.log(err);
+                                });
+                            }).catch((err) => {
+                                console.log(err);
+                            });
+                        }).catch((err)=>{
+                            console.log("PROBLEM WITH FUNCTION FIND USER BY ROLE AND ORGABBRV")
+                        })
+                    })
+                })
 
-                roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
-                    req.session.PR_2 = {
-                        name: userObject.firstname + " " + userObject.lastname,
-                        position: role.name
-                    }
-                    //form creation
-                    var form = new Form({
-                        "title": req.session.title,
-                        "nature": req.session.nature,
-                        "typeOfActivity": req.session.type,
-                        "enmp": req.session.enmp,
-                        "enp": req.session.enp,
-                        "startDate": req.session.startDate,
-                        "startTime": req.session.startTime,
-                        "endDate": req.session.endDate,
-                        "endTime": req.session.endTime,
-                        "venue": req.session.venue,
-                        "reach": req.session.reach,
-                        "GOSM": req.session.GOSM,
-                        "online": req.session.online,
-                        "context": [req.session.context1, req.session.context2, req.session.context3],
-                        "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
-                        "person_responsible": [req.session.PR, req.session.PR_2],
-                        "source_funds": req.session.sourceFunds,
-                        "organizational_funds": req.session.organizational_funds,
-                        "program_flow": req.session.programData,
-                        "projectHeads": req.session.pheadData,
-                        "breakdown_expenses": req.session.breakdownOfExpenses,
-                        "projected_income": {
-                            revenue: req.session.projRevData,
-                            expenses: req.session.porjExpData,
-                            total: req.session.projIncomeTotal
-                        },
-                        "comments": null,
-                        "position": null,
-                        "creationDate": new Date,
-                        "org": usersOrganization, //fix this later on to session
-                        "position": 0,
-                        "status": "Pending",
-                        "user_id": req.session.uid,
-                        "processType": processType,
-                    });
-                    return preactsService.addForm(form).then((addedForm) => {
-                        //                    console.log(addedForm);
-                        clearSessionForm(req);
-                    }).catch((err)=>{
-                        console.log("ERROR: Failed to add form in database");
-                        console.log(err);
-                    });
-                }).catch((err)=>{
-                    console.log(err);
-                });
             }).catch((err) => {
                 console.log("ERROR: Failed to find organization given org_id - " + org_id);
                 console.log(err);
@@ -535,6 +579,6 @@ module.exports.controller = function (app) {
 
                 }
             });
-        }); 
+        });
     });
 }
