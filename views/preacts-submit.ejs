@@ -188,7 +188,10 @@
                                     <p id="location">{{quickview.venue}}</p>
                                 </div>
                                 <br/>
-                                <button class="hallow">View Activity</button>
+                                <form name="view-form" action="view-form" method="post">
+                                    <input style="display:none;" :value="quickview._id" name="form_id">
+                                    <button type="submit" class="hallow">View Activity</button>
+                                </form>
                             </div>
                         </div>
                         <br/><br/>

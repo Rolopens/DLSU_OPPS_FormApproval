@@ -23,7 +23,7 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name == "PROJECT_HEAD") {
+                if (retRole.name == "PROJECT HEAD") {
                     res.redirect('/preacts-submission');
                 } else {
                     userService.getUserWithId(req.session.uid)
@@ -198,7 +198,7 @@ module.exports.controller = function (app) {
             })
         })
     })
-    
+
     //updates the status from view form
     app.post("/preacts/update/:id", function (req, res) {
         var id = req.params.id
@@ -219,16 +219,16 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name != "PROJECT_HEAD") {
-                    res.redirect('/preacts');
-                } else {
-                    res.render('preacts-submit', {
-                        preacts: false,
-                        preactsSubmission: true,
-                        accounts: false,
-                        organization: false
-                    });
-                }
+                // if (retRole.name != "PROJECT_HEAD") {
+                //   res.redirect('/preacts');
+                // } else {
+                res.render('preacts-submit', {
+                    preacts: false,
+                    preactsSubmission: true,
+                    accounts: false,
+                    organization: false
+                    //    });
+                });
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
                 console.log(err);
@@ -504,15 +504,32 @@ module.exports.controller = function (app) {
     }
 
     app.post('/view-form', function (req, res) {
-
         var id = req.body.form_id;
 
-        preactsService.findFormViaId(id).then((form) => {
-            res.render('viewForm', {
-                data: form
+        userService.getUserWithId(req.session.uid).then((retUser) => {
+            var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
+            roleService.getRoleWithId(roleId).then((retRole) => {
+                if (retRole.name === "PROJECT HEAD") {
+                    preactsService.findFormViaId(id).then((form) => {
+                        res.render('viewForm', {
+                            data: form,
+                            button: false
+                        });
+                    }, (error) => {
+                        console.error(error);
+                    });
+                } else {
+                    preactsService.findFormViaId(id).then((form) => {
+                        res.render('viewForm', {
+                            data: form,
+                            button: true
+                        });
+                    }, (error) => {
+                        console.error(error);
+                    });
+
+                }
             });
-        }, (error) => {
-            console.error(error);
-        });
+        }); 
     });
 }

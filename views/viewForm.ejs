@@ -6,6 +6,7 @@
         <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
         <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="css/viewForm.css">
+		<link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -43,23 +44,21 @@
             <br/>
             <table style="border: none">
                 <tr>
-                    <th>Start Date of the Activity:</th>
-                    <th>Start Time of the Activity:</th>
+                    <th>Date of the Activity:</th>
                 </tr>
                 <tr>
                     <td><%=data.startDate%></td>
-                    <td><%=data.startTime%></td>
                 </tr>
             </table>
 
             <br/>
             <table style="border: none">
                 <tr>
-                    <th>End Date of the Activity:</th>
+                    <th>Start Time of the Activity:</th>
                     <th>End Time of the Activity:</th>
                 </tr>
                 <tr>
-                    <td><%=data.endDate%></td>
+                    <td><%=data.startTime%></td>
                     <td><%=data.endTime%></td>
                 </tr>
             </table>
@@ -339,11 +338,17 @@
 
             <br/>
 
-            <form id="status-form" action="/preacts/update/<%=data._id%>" method="post">
-                <input id="status" style="display:none;" name="status">
-                <input id="approve" type="submit" class="button approve" value="Approve">
-                <input id="reject" type="submit" class="button reject" value="Reject">
-            </form>
+            <%if(button === true) {%>
+                <form id="status-form" action="/preacts/update/<%=data._id%>" method="post">
+                    <input id="status" style="display:none;" name="status">
+                    <input id="approve" type="submit" class="button approve" value="Approve">
+                    <input id="reject" type="submit" class="button reject" value="Reject">
+                </form>
+            <%} else {%>
+                <form id="status-form" action="/preacts" method="get">
+                    <input id="done" type="submit" class="hallow done" value="Done">
+                </form>
+            <%}%>
         </div>
 
         <script>

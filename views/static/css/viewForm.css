@@ -76,6 +76,10 @@ h1 {
     background-color: #2bd673;
 }
 
+.done {
+    float: right;
+}
+
 .reject:hover {
     color: white;
 }
@@ -83,3 +87,4 @@ h1 {
 .approve:hover {
     color: white;
 }
+
