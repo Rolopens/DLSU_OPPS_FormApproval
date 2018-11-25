@@ -10,9 +10,19 @@
     <div class="main ui text container">
         <div class="ui segments" style="padding-left: 1.2em; padding-right: 1.2em;">
             <form name="form2" action="create-form-3-confirm" method="post">
-                <br/>
+                <br>
+                <div class="ui grid">
+                    <div class="two column row">
+                        <div class="left floated column">
+                            <h1 class="ui header" style="margin-top: 0.65em;">Create Proposal Form</h1>
+                        </div>
+                        <div class="right floated column">
+                            <img src="assets/svg/logo_opps-logo-green.svg" />
+                        </div>
+                    </div>
+                </div>
                 <input style="display:none;" value='0' id="dynamicTable3length" name="dynamicTable3len">
-                <h3 class="labelHead ui header">Breakdown of Expenses <span class="red">*</span></h3>
+                <h3 class="labelHead ui header"><label>Breakdown of Expenses <span class="red">*</span></label></h3>
                 <table class="ui compact celled definition fixed table unstackable" id="dynamicTable3">
                     <thead class="full-width">
                         <tr style="text-align: center;">
@@ -54,12 +64,11 @@
                 <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button>
 
                 <br /><br />
-                <h3 class="labelHead ui header">Source of Funds <span class="red">*</span></h3>
+                <h3 class="labelHead ui header"><label>Source of Funds <span class="red">*</span></label></h3>
                 <table class="ui compact celled definition fixed table basic unstackable">
                     <thead class="full-width">
                         <tr style="text-align: center;">
-                            <!-- <th style="width: 40px;"></th> -->
-                            <th class="item" style="width: 50%">Source/s of Funds</th>
+                            <th class="item eleven wide">Source/s of Funds</th>
                             <th class="item three wide">Amount</th>
                         </tr>
                     </thead>
@@ -93,7 +102,7 @@
                 </table>
 
                 <br>
-                <h3 class="labelHead ui header">Organizational Funds <span class="red">*</span></h3>
+                <h3 class="labelHead ui header"><label>Organizational Funds <span class="red">*</span></label></h3>
                 <table class="ui compact celled definition fixed table basic unstackable">
                     <thead class="full-width">
                         <tr style="text-align: left;">
@@ -196,7 +205,7 @@
 
                 <br>
                 <input style="display:none;" value='0' id="dynamicTable4length" name="dynamicTable4len">
-                <h3 class="labelHead ui header">Projected Income <span class="red">*</span></h3>
+                <h3 class="labelHead ui header"><label>Projected Income <span class="red">*</span></label></h3>
                 <table class="ui compact celled definition fixed table unstackable" id="dynamicTable4">
                     <thead class="full-width">
                         <tr>
@@ -281,7 +290,7 @@
                 <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button>
 
                 <br /><br />
-                <h3 class="labelHead ui header">Provision for Profit and Loss</h3>
+                <h3 class="labelHead ui header"><label>Provision for Profit and Loss</label></h3>
                 The following people shall be held liable and will shoulder any remaining balance incurred
                 by the project.<br><br>
 
@@ -295,15 +304,25 @@
                 <br /><br />
 
                 <div class="ui grid">
+                    <div class="row"></div>
+                    <div class="row"></div>
                     <div class="row">
                         <div class="four wide left floated column">
                             <button type="submit" class="fluid submit-button previous">Previous</button>
                         </div>
-
+                        <div class="three wide centered column status">
+                            <div class="container">
+                                <!-- GO TO CORRESPONDING PAGE WHEN CLICKED? -->
+                                <a class="pagination"><span class="circle"></span></a>
+                                <a class="pagination"><span class="circle"></span></a>
+                                <a class="pagination"><span class="circle active"></span></a>
+                            </div>
+                        </div>
                         <div class="four wide right floated column">
                             <button type="submit" class="fluid submit-button next">Submit</button>
                         </div>
                     </div>
+                    <div class="row"></div>
                 </div>
             </form>
         </div>
