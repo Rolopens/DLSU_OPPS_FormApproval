@@ -226,3 +226,7 @@ input[type=number] {
     cursor: default;
     background: #777;
 }
+
+.ui.table.borderless tr td {
+    border-top: 0px !important;
+}

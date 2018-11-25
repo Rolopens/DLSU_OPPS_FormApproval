@@ -3,10 +3,7 @@
 <head>
     <title>Create Project Proposal</title>
     <%- include partials/scriptResources %>
-    <link rel="stylesheet" href="css/form2.css">
-    <link rel="stylesheet" href="css/form1.css">
-
-
+    <link rel="stylesheet" href="css/form.css">
 </head>
 
 <body>
@@ -37,10 +34,10 @@
                 <input class="inputron" type="text" name="title" required style="margin-top: -5px;">
                 <br /><br />
 
-                <div class="ui form">
+                <div class="ui large form">
+                    <h3 class="labelHead ui header"><label>Nature of the Activity <span class="red"> *</span></label></h3>
                     <div class="grouped fields">
-                        <h3 class="labelHead ui header"><label>Nature of the Activity <span class="red"> *</span></label></h3>
-                        <table>
+                        <table class="ui two column very basic table borderless">
                             <tr>
                                 <th>CSO and Special Groups</th>
                                 <th>USG</th>
@@ -162,11 +159,11 @@
                         </table>
                     </div>
                 </div>
-                <br />
-                <div class="ui form">
+
+                <div class="ui large form">
+                    <h3 class="labelHead ui header"><label>Type of the Activity <span class="red"> * </span></label></h3>
                     <div class="grouped fields">
-                        <h3 class="labelHead ui header"><label>Type of the Activity <span class="red"> * </span></label></h3>
-                        <table>
+                        <table class="ui very basic table borderless two column">
                             <tr>
                                 <th><b>Through CSO/DAAM</b></th>
                                 <th>Through SLIFE</th>
@@ -242,8 +239,8 @@
                                     <div class="field">
                                         <div class="ui radio checkbox">
                                             <div class="ui transparent input"><input type="radio" value="Others" name="type">
-                                                <label>Others</label><input type="text" name="typeOthers" style="margin-left: 10px; border-bottom: 1.5px solid !important;
-                                                        border-bottom-color: #5e6479 !important; border-radius: 0px !important;" /></div>
+                                                <label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
+                                                                        border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
                                         </div>
                                     </div>
                                 </td>
@@ -300,8 +297,8 @@
                                         <div class="ui radio checkbox">
                                             <input type="radio" value="Seminar with Distinguished Speakers/Outside Participants"
                                                 name="type">
-                                            <label>Seminar with Distinguished Speakers/Outside ParticipantsTV/Radio
-                                                Guesting</label>
+                                            <label>Seminar with Distinguished Speakers/Outside
+                                                Participants</label>
                                         </div>
                                     </div>
                                     <div class="field">
@@ -313,8 +310,8 @@
                                     <div class="field">
                                         <div class="ui radio checkbox">
                                             <div class="ui transparent input"><input type="radio" value="Others" name="type">
-                                                <label>Others</label><input type="text" name="typeOthers" style="margin-left: 10px; border-bottom: 1.5px solid !important;
-                                                        border-bottom-color: #5e6479 !important; border-radius: 0px !important;" /></div>
+                                                <label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
+                                                                        border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
                                         </div>
                                     </div>
                                 </td>
@@ -322,7 +319,7 @@
                         </table>
                     </div>
                 </div>
-                <br>
+                <br /><br>
                 <div class="ui two column grid">
                     <div class="row">
                         <div class="column">
@@ -481,8 +478,8 @@
     <script>
         $('.ui.radio.checkbox').checkbox();
 
-        $('.ui.sticky')
-            .sticky();
+        // $('.ui.sticky')
+        //     .sticky();
 
         $('#startdate').calendar({
             type: 'date'
