@@ -1,3 +1,14 @@
+:root{
+    --theme-button-color: #26BE9B;
+    --theme-button-accent: #48FFD5;
+    --theme-button-dark-color: #5E6479;
+    --theme-button-dark-accent: #3A3E4B;
+    --theme-button-light-color: white;
+    --theme-button-light-accent: #E7E7E7;
+
+    --theme-button-color-value: white;
+}
+
 body {
     background-color: #26BE9B;
     font-size: 14px;
@@ -77,7 +88,10 @@ h1 {
 }
 
 .done {
-    float: right;
+    border: 1px solid;
+    border-color: var(--theme-button-color);
+    background-color: transparent;
+    color: var(--theme-button-color);
 }
 
 .reject:hover {
@@ -86,5 +100,11 @@ h1 {
 
 .approve:hover {
     color: white;
+}
+
+.done:hover {
+    background-color: var(--theme-button-color);
+    border-color: var(--theme-button-color);
+    color: var(--theme-button-color-value);
 }
 

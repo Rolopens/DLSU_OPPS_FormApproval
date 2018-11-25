@@ -23,7 +23,7 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name == "PROJECT HEAD") {
+                if (retRole.name === "PROJECT HEAD") {
                     res.redirect('/preacts-submission');
                 } else {
                     userService.getUserWithId(req.session.uid)
@@ -219,16 +219,16 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                // if (retRole.name != "PROJECT_HEAD") {
-                //   res.redirect('/preacts');
-                // } else {
-                res.render('preacts-submit', {
-                    preacts: false,
-                    preactsSubmission: true,
-                    accounts: false,
-                    organization: false
-                    //    });
-                });
+                if (retRole.name != "PROJECT HEAD") {
+                    res.redirect('/preacts');
+                } else {
+                    res.render('preacts-submit', {
+                        preacts: false,
+                        preactsSubmission: true,
+                        accounts: false,
+                        organization: false
+                    });
+                }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
                 console.log(err);
@@ -275,27 +275,15 @@ module.exports.controller = function (app) {
             req.session.GOSM = false;
         }
         res.render('form2');
-
     });
-
-    app.post('/create-form-2-confirm', function (req, res) {
+    
+    app.post('/create-form-3', function (req, res) {
         req.session.context1 = req.body.context1;
         req.session.context2 = req.body.context2;
         req.session.context3 = req.body.context3;
         req.session.objective1 = req.body.objective1;
         req.session.objective2 = req.body.objective2;
         req.session.objective3 = req.body.objective3;
-        req.session.PR = {
-            name: req.body.namePR,
-            position: req.body.positionPR
-        }
-        req.session.sourceFunds = {
-            organization_funds: req.body.OrganizationalFunds,
-            participants_fee: req.body.ParticipantsFee,
-            others: req.body.OtherFunds,
-            total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
-        }
-
 
         //accessing data from project head table
         var pheadData = [];
@@ -330,7 +318,24 @@ module.exports.controller = function (app) {
             programData.push(rowdata);
         }
         req.session.programData = programData;
+        
+        res.render('form3');
 
+    });
+
+    app.post('/create-form-3-confirm', function (req, res) {
+         req.session.PR = {
+            name: req.body.namePR,
+            position: req.body.positionPR
+        }
+        
+        req.session.sourceFunds = {
+            organization_funds: req.body.OrganizationalFunds,
+            participants_fee: req.body.ParticipantsFee,
+            others: req.body.OtherFunds,
+            total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
+        }
+        
         //accessing data from breakdown of expenses table
         var expensesData = [];
         var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
@@ -386,7 +391,7 @@ module.exports.controller = function (app) {
             projExpData.push(rowdata);
         }
         req.session.porjExpData = projExpData;
-        req.session.projIncomeTotal = req.body.projIncomeTotal;
+        req.session.projIncomeTotal = req.session.projRevData - req.session.porjExpData;
 
         var usersOrganization, processType;
         userService.getUserWithId(req.session.uid).then((userObject) => {
