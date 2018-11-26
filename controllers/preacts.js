@@ -129,57 +129,59 @@ module.exports.controller = function (app) {
         var id = req.params.id;
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData;
-            form.status = "Approved";
-            //***change form position***
-            var prevPosition = form.position,
+            if (parseInt(form.position, 10) === (Object.keys(processes[form.processType]).length - 1)){
+                form.status = "Approved";
+            }   
+            else{
+                form.status = "Pending"
+                var prevPosition = form.position,
                 checked = false;
 
-            for (var key in processes[form.processType]) {
-                console.log(key)
-                console.log(form.position)
-                if (checked) {
-                    form.position = key
-                    break;
-                }
-                if (prevPosition == key) {
-                    checked = true;
+                for (var key in processes[form.processType]) {
+                    if (checked) {
+                        form.position = key
+                        break;
+                    }
+                    if (prevPosition == key) {
+                        checked = true;
+                    }
                 }
             }
-            //***update checkers***
             var nextRole, nextOrg, role1, org1;
 
-            var temp = processes[form.processType][form.position].split("-", 2);
-            nextRole = temp[0];
-            nextOrg = temp[1];
+                var temp = processes[form.processType][form.position].split("-", 2);
+                nextRole = temp[0];
+                nextOrg = temp[1];
 
-            roleService.getRoleWithName(nextRole).then((retRole) => {
-                role1 = retRole
-                orgService.getOrgWithAbbrev(nextOrg).then((retOrg) => {
-                    org1 = retOrg
-                    userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
-                        var temp = form.currentCheckers
-                        form.currentCheckers = users
-                        preactsService.updateForm(form).then((updatedForm) => {
-                            preactsService.findFormViaId(form._id).then((formData1) => {
-                                //                                res.send({
-                                //                                    formData1
-                                //                                })
-                                res.redirect('/preacts')
+                roleService.getRoleWithName(nextRole).then((retRole) => {
+                    role1 = retRole
+                    orgService.getOrgWithAbbrev(nextOrg).then((retOrg) => {
+                        org1 = retOrg
+                        userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
+                            var temp = form.currentCheckers
+                            console.log(form.status === "Approved")
+                            console.log(form.status == "Approved")
+                            if (form.status === "Approved"){
+                                form.currentCheckers = []; 
+                            } else {
+                                form.currentCheckers = users;
+                            }
+//                            form.currentCheckers = users
+                            preactsService.updateForm(form).then((updatedForm) => {
+                                preactsService.findFormViaId(form._id).then((formData1) => {
+                                    //                                res.send({
+                                    //                                    formData1
+                                    //                                })
+                                    res.redirect('/preacts')
+                                }).catch((err) => {
+                                    console.log(err)
+                                })
                             }).catch((err) => {
-                                console.log(err)
+                                console.log(err);
                             })
-                        }).catch((err) => {
-                            console.log(err);
                         })
                     })
                 })
-            })
-            //look for users with user_roles found in process[form.processType][form.position]
-            //put those ids into form.currentCheckers - still need to add dummy data
-
-
-            //update
-
         })
     })
 
@@ -443,13 +445,13 @@ module.exports.controller = function (app) {
                 }
                 var org, role, orgObj, roleObj;
                 var str = processes[processType][0];
-                console.log(str)
+//                console.log(str)
 
                 var temp = str.split("-", 2);
-                console.log(temp)
+//                console.log(temp)
                 org = temp[1];
                 role = temp[0];
-                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
+//                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
                 roleService.getRoleWithName(role).then((retRole) => {
                     roleObj = retRole;
                     orgService.getOrgWithAbbrev(org).then((retOrg) => {
@@ -500,7 +502,7 @@ module.exports.controller = function (app) {
                                     "currentCheckers" : req.session.currentCheckers
                                 });
                                 preactsService.addForm(form).then((addedForm) => {
-                                    console.log(addedForm);
+//                                    console.log(addedForm);
                                     clearSessionForm(req);
                                 }).catch((err) => {
                                     console.log("ERROR: Failed to add form in database");

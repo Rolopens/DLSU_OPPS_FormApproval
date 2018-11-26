@@ -5,7 +5,7 @@
         <!-- external links -->
         <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
 <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.coms/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
-		<link rel="stylesheet" href="lib/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/font-awesome.css" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
         <script src="lib/axios.min.js" type="application/javascript"> </script>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
                                     <div class="activity-wrapper flex-start">
-                                        <div class="activity-icon positive"><i class="fa fa-check"></i></div>
+                                        <div class="activity-icon positive"><i class="far fa-ellipsis-h"></i></div>
                                         <div class="activity">
                                             <h3 class="infoData" name="FormTitle">
                                                 {{form.title}}
