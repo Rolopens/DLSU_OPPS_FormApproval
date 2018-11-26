@@ -259,7 +259,7 @@ module.exports.controller = function (app) {
 
     });
 
-    //form page 1
+    //form
     app.get('/create-form', function (req, res) {
         if (!req.session.uid) res.redirect("/");
 
