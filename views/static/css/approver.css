@@ -439,6 +439,12 @@ header{
     text-align: center;
 }
 
+#quick-view .neutral, #modal-positive{
+    background-color: var(--theme-neutral);
+    border-color: var(--theme-neutral);
+    text-align: center;
+}
+
 #quick-view .negative, #modal-negative{
     background-color: var(--theme-rejection);
     border-color: var(--theme-rejection);
@@ -451,6 +457,12 @@ header{
 	background-color: transparent;
 }
 
+#main-content .content-wrapper .activity-icon.neutral{
+	color: var(--theme-neutral);
+	border: thin solid var(--theme-neutral);
+	background-color: transparent;
+}
+
 #main-content .content-wrapper .activity-icon.negative{
 	color: var(--theme-rejection);
 	border: thin solid var(--theme-rejection);
@@ -458,6 +470,10 @@ header{
 }
 
 .positive:hover{
+	color: white;
+}
+
+.neutral:hover{
 	color: white;
 }
 

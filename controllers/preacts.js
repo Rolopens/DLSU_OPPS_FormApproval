@@ -158,9 +158,7 @@ module.exports.controller = function (app) {
                     orgService.getOrgWithAbbrev(nextOrg).then((retOrg) => {
                         org1 = retOrg
                         userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
-                            var temp = form.currentCheckers
-                            console.log(form.status === "Approved")
-                            console.log(form.status == "Approved")
+                            var temp = form.currentCheckers;
                             if (form.status === "Approved"){
                                 form.currentCheckers = []; 
                             } else {
