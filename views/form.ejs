@@ -33,7 +33,7 @@
                         <br />
 
                         <h3 class="labelHead"><label>Title of the Activity <span class="red"> * </span></label></h3>
-                        <input class="inputron" type="text" name="title" required style="margin-top: -5px;">
+                        <input id="title" class="inputron" type="text" name="title" required style="margin-top: -5px;">
                         <br /><br />
 
                         <div class="ui large form">
@@ -330,7 +330,7 @@
                                     <span class="ui calendar" id="startdate">
                                         <div class="ui input left icon">
                                             <i class="calendar icon"></i>
-                                            <input type="text" name="startDate" placeholder="Start Date" autocomplete="off"
+                                            <input id="date" type="text" name="startDate" placeholder="Start Date" autocomplete="off"
                                                    required>
                                         </div>
                                     </span>
@@ -344,7 +344,7 @@
                                     <span class="ui calendar" id="starttime">
                                         <div class="ui input left icon">
                                             <i class="calendar icon"></i>
-                                            <input type="text" name="startTime" placeholder="Start Time" autocomplete="off"
+                                            <input id="startTime" type="text" name="startTime" placeholder="Start Time" autocomplete="off"
                                                    required>
                                         </div>
                                     </span>
@@ -356,7 +356,7 @@
                                     <span class="ui calendar" id="endtime">
                                         <div class="ui input left icon">
                                             <i class="calendar icon"></i>
-                                            <input type="text" name="endTime" placeholder="End Time" autocomplete="off"
+                                            <input id="endTime" type="text" name="endTime" placeholder="End Time" autocomplete="off"
                                                    required>
                                         </div>
                                     </span>
@@ -370,19 +370,19 @@
                                 <div class="nine wide column">
                                     <span class="labelHead"><label>Venue <span class="red"> * </span></label></span>
                                     <br />
-                                    <input class="inputron" name="venue" type="text" required>
+                                    <input id="venue" class="inputron" name="venue" type="text" required>
                                 </div>
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENMP <span class="red"> * </span></label></span>
                                     <br />
-                                    <input class="inputron" name="enmp" type="number" min="0" required>
+                                    <input id="enmp" class="inputron" name="enmp" type="number" min="0" required>
                                 </div>
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENP <span class="red"> * </span></label></span>
                                     <br />
-                                    <input class="inputron" name="enp" type="number" min="0" required>
+                                    <input id="enp" class="inputron" name="enp" type="number" min="0" required>
                                 </div>
                             </div>
                         </div>
@@ -475,7 +475,7 @@
                                         be
                                         supported with examples)</em></li>
                             </ol>
-                            <textarea name='context1' rows="2" style="resize: none;" required></textarea>
+                            <textarea id="context1" name='context1' rows="2" style="resize: none;" required></textarea>
                         </div>
                         <br>
 
@@ -490,7 +490,7 @@
                                     way?</li>
                                 <li value="-">What can we discover or realize?</li>
                             </ol>
-                            <textarea rows="2" name='context2' style="resize: none;" required></textarea>
+                            <textarea id="context2" rows="2" name='context2' style="resize: none;" required></textarea>
                         </div>
 
                         <br />
@@ -504,24 +504,24 @@
                                     in
                                     Part 2?</li>
                             </ol>
-                            <textarea rows="2" name='context3' style="resize: none;" required></textarea>
+                            <textarea id="context3" rows="2" name='context3' style="resize: none;" required></textarea>
                         </div>
 
                         <br />
                         <h3 class="labelHead ui header"><label>Objectives<span class="red"> *</span></label></h3>
                         <div class="field">
                             <label>1.</label>
-                            <input class="inputron" name='objective1' type="text" required>
+                            <input id="objective1" class="inputron" name='objective1' type="text" required>
                         </div>
                         <br /><br />
                         <div>
                             <label>2.</label>
-                            <input class="inputron" name='objective2' type="text" required>
+                            <input id="objective2" class="inputron" name='objective2' type="text" required>
                         </div>
                         <br /><br />
                         <div>
                             <label>3.</label>
-                            <input class="inputron" name='objective3' type="text" required>
+                            <input id="objective3" class="inputron" name='objective3' type="text" required>
                         </div>
                         <br /><br />
 
@@ -542,8 +542,8 @@
                                             <input type="checkbox" name="phead_check"><label></label>
                                         </div>
                                     </td>
-                                    <td><input class="inputron no-margin" name="phead_name0" type="text" required></td>
-                                    <td><input class="inputron no-margin" name="phead_number0" type="number" required></td>
+                                    <td><input id="phead_name0" class="inputron no-margin" name="phead_name0" type="text" required></td>
+                                    <td><input id="phead_number0" class="inputron no-margin" name="phead_number0" type="number" required></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -869,6 +869,12 @@
                         <br /><br />
                     </div>
 
+                    <div id="error" style="display: none;" class="ui red message">
+                        <div style="text-align: center;" class="header">
+                            Please fill out all the fields.
+                        </div>
+                    </div>
+
                     <div class="ui grid">
                         <div class="row"></div>
                         <div class="row">
@@ -878,6 +884,7 @@
                             </div>
                         </div>
                     </div>
+
 
 
                     <!-- Circles which indicates the steps of the form: -->
@@ -920,9 +927,14 @@
                 // This function will figure out which tab to display
                 var x = document.getElementsByClassName("tab");
                 // Exit the function if any field in the current tab is invalid:
-                
-                //if (n == 1 && !validateForm()) return false;
+
+                if (n == 1 && !validateForm()) {
+                    alert("ERROR")
+                    $('#error').show();
+                    return false;
+                }
                 // Hide the current tab:
+                $('#error').hide();
                 x[currentTab].style.display = "none";
                 // Increase or decrease the current tab by 1:
                 currentTab = currentTab + n;
@@ -936,28 +948,55 @@
                 showTab(currentTab);
             }
 
-            function validateForm(n) {
+            function validateForm() {
+                var valid = true;
 
-                var x, y, i, valid = true;
-                x = document.getElementsByClassName("tab");
-                y = x[currentTab].getElementsByTagName("input");
-
-                // A loop that checks every input field in the current tab:
-                for (i = 0; i < y.length; i++) {
-                    // If a field is empty...
-                    if (y[i].value == "") {
-                        // add an "invalid" class to the field:
-                        y[i].className += " invalid";
-                        // and set the current valid status to false:
+                if(currentTab == 0) {
+                    if($("#org").val() == "")
                         valid = false;
+                    if($("#title").val() == "")
+                        valid = false;
+                    if($("#date").val() == "")
+                        valid = false;
+                    if($("#startTime").val() == "")
+                        valid = false;
+                    if($("#endTime").val() == "")
+                        valid = false;
+                    if($("#venue").val() == "")
+                        valid = false;
+                    if($("#enmp").val() == "")
+                        valid = false;
+                    if($("#enp").val() == "")
+                        valid = false;
+
+                } else if (currentTab == 1) {
+                    if($("#context1").val() == "")
+                        valid = false;
+                    if($("#context2").val() == "")
+                        valid = false;
+                    if($("#context3").val() == "")
+                        valid = false;
+                    if($("#objective1").val() == "")
+                        valid = false;
+                    if($("#objective2").val() == "")
+                        valid = false;
+                    if($("#objective3").val() == "")
+                        valid = false;
+
+                    for (var i = 1; i < document.getElementById("dynamicTable1").rows.length; i++) {
+                        if ($('#phead_name'+i).val() == "" || $('#phead_number'+i).val() == "")
+                            valid = false;
                     }
+
+                } else if (currentTab == 2) {
+
                 }
-                 
-                // If the valid status is true, mark the step as finished and valid:
+
                 if (valid) {
                     document.getElementsByClassName("step")[currentTab].className += " finish";
                 }
-                return valid; // return the valid status
+
+                return valid;
 
 
             }
@@ -1016,6 +1055,7 @@
                 input2.setAttribute('type', 'text');
                 input2.setAttribute('required', true);
                 input2.setAttribute('name', 'phead_name' + tableLength.value);
+                input2.setAttribute('id', 'phead_name' + tableLength.value);
                 col2.append(input2);
 
                 var col3 = document.createElement("td");
@@ -1024,6 +1064,7 @@
                 input3.setAttribute('type', 'number');
                 input3.setAttribute('required', true);
                 input3.setAttribute('name', 'phead_number' + tableLength.value)
+                input3.setAttribute('id', 'phead_number' + tableLength.value)
                 col3.append(input3);
 
                 row.append(col1);
@@ -1647,7 +1688,6 @@
                         sum_OF = sum_OF + parseFloat($(this).val());
                     });
                     $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
-                    
                 });
 
                 function calculateSum() {
