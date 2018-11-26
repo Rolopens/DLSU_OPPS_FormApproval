@@ -1,24 +1,24 @@
 {
     "ORGANIZATIONS_PROCESS-SLIFE" : [
-        "CSO-DOCU_OFFICER",
-        "CSO-FIN_OFFICER",
-        "CSO-EXEC_CHECKER",
-        "CSO-PROJECT_HEAD",
-        "SLIFE-APPROVER"
+        "DOCU_OFFICER-CSO",
+        "FIN_OFFICER-CSO",
+        "EXEC_CHECKER-CSO",
+        "PROJECT_HEAD-CSO",
+        "APPROVER-SLIFE"
     ],
     "ORGANIZATIONS_PROCESS-CSO" : [
-        "CSO-DOCU_OFFICER",
-        "CSO-FIN_OFFICER",
-        "CSO-EXEC_CHECKER",
-        "CSO-PROJECT_HEAD",
-        "CSO-APS"
+        "DOCU_OFFICER-CSO",
+        "FIN_OFFICER-CSO",
+        "EXEC_CHECKER-CSO",
+        "PROJECT_HEAD-CSO",
+        "APS-CSO"
     ],
     "ORGANIZATIONS_PROCESS-DAAM" : [
-        "CSO-DOCU_OFFICER",
-        "CSO-FIN_OFFICER",
-        "CSO-EXEC_CHECKER",
-        "CSO-PROJECT_HEAD",
-        "DAAM-APS"
+        "DOCU_OFFICER-CSO",
+        "FIN_OFFICER-CSO",
+        "EXEC_CHECKER-CSO",
+        "PROJECT_HEAD-CSO",
+        "APS-DAAM"
     ],
     "GOVERNMENT_PROCESS-USG-SLIFE" : [
         "CHECKER-OPLOG",
