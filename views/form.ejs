@@ -9,7 +9,7 @@
 
         <div class="main ui text container">
             <div class="ui segments" style="padding: 1.2em;">
-                <form id="activityForm" action="/create-form-confirm" method="post">
+                <form class="ui form" id="activityForm" action="/create-form-confirm" method="post">
 
                     <div class="ui grid">
                         <div class="two column row">
@@ -490,7 +490,7 @@
                                     way?</li>
                                 <li value="-">What can we discover or realize?</li>
                             </ol>
-                            <textarea rows="2" name='context2' required></textarea>
+                            <textarea rows="2" name='context2' style="resize: none;" required></textarea>
                         </div>
 
                         <br />
@@ -504,7 +504,7 @@
                                     in
                                     Part 2?</li>
                             </ol>
-                            <textarea rows="2" name='context3' required></textarea>
+                            <textarea rows="2" name='context3' style="resize: none;" required></textarea>
                         </div>
 
                         <br />
@@ -1647,6 +1647,7 @@
                         sum_OF = sum_OF + parseFloat($(this).val());
                     });
                     $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
+                    
                 });
 
                 function calculateSum() {

@@ -1,33 +1,34 @@
 body {
-    background-color: #a3e2d5;
+    background-color: #a3e2d5 !important;
 }
 
 textarea {
-    margin: 0;
-    -webkit-appearance: none;
-    padding: .78571429em 1em;
-    background: #FFF;
-    border: 1px solid rgba(34, 36, 38, .15);
-    color: rgba(0, 0, 0, .87);
-    border-radius: .28571429rem;
-    -webkit-transition: color .1s ease, border-color .1s ease;
-    transition: color .1s ease, border-color .1s ease;
-    font-size: 1em;
-    line-height: 1.2857;
-    resize: none;
-    width: 100%;
+    margin: 0 !important;
+    -webkit-appearance: none !important;
+    padding: .78571429em 1em !important;
+    background: #FFF !important;
+    border: 1px solid rgba(34, 36, 38, .15) !important;
+    color: rgba(0, 0, 0, .87) !important;
+    border-radius: .28571429rem !important;
+    -webkit-transition: color .1s ease, border-color .1s ease !important;
+    transition: color .1s ease, border-color .1s ease !important;
+    font-size: 1em !important;
+    line-height: 1.2857 !important;
+    resize: none !important;
+    width: 100% !important;
 }
 
 .row-textarea {
-    border: none;
+    border: none !important;
+    resize: none !important;
 }
 
 .main {
-    background-color: white;
+    background-color: white !important;
 }
 
 .main .labelHead {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 .red {
@@ -39,39 +40,39 @@ i.blue {
 }
 
 .highlight {
-    background-color: lightyellow;
+    background-color: lightyellow !important;
     /* color: white; */
 }
 
 td.highlight input {
-    background-color: lightyellow;
+    background-color: lightyellow !important;
 }
 
 td.highlight textarea {
-    background-color: lightyellow;
+    background-color: lightyellow !important;
 }
 
 .inputron {
-    /* margin-top: 10px; */
-    border: none;
-    border-bottom: 1px solid rgba(34, 36, 38, .15);
-    padding: .5em .2em;
-    line-height: 1.2857;
-    width: 100%;
+    border: none !important;
+    border-bottom: 1px solid rgba(34, 36, 38, .15) !important;
+    padding: .5em .2em !important;
+    line-height: 1.2857 !important;
+    width: 100% !important;
+    border-radius: 0px !important;
 }
 
 .table_input {
-    margin-top: 0px;
-    width: 70%;
+    margin-top: 0px !important;
+    width: 70% !important;
 }
 
 .inputron:focus {
-    outline: none;
+    outline: none !important;
 }
 
 .no-margin {
-    border: none;
-    margin-top: -0.1em;
+    border: none !important;
+    margin-top: -0.1em !important;
 }
 
 .row-button {
@@ -121,28 +122,28 @@ td.highlight textarea {
 }
 
 .div-input {
-    display: flex;
-    flex-direction: row;
-    border: none;
-    border-bottom: 1.5px solid;
-    border-bottom-color: #5e6479;
+    display: flex !important;
+    flex-direction: row !important;
+    border: none !important;
+    border-bottom: 1.5px solid !important;
+    border-bottom-color: #5e6479 !important;
 }
 
 .total div {
-    position: relative;
-    right: 5px;
+    position: relative !important;
+    right: 5px !important;
 }
 
 .bold {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 .right {
-    text-align: right;
+    text-align: right !important;
 }
 
 .bg-gray {
-    background-color: #F7F7F7;
+    background-color: #F7F7F7 !important;
 }
 
 .pj-border {
@@ -151,86 +152,38 @@ td.highlight textarea {
 }
 
 .pwp {
-    white-space: pre;
+    white-space: pre !important;
 }
 
 .php {
-    width: auto;
-    display: flex;
-    flex-direction: row-reverse;
+    width: auto !important;
+    display: flex !important;
+    flex-direction: row-reverse !important;
 }
 
 .italics {
-    font-style: italic;
+    font-style: italic !important;
 }
 
 textarea {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    height: 107px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    height: 107px !important;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    -webkit-appearance: none !important;
+    margin: 0 !important;
 }
 
 input[type=number] {
-    -moz-appearance: textfield;
-}
-
-.status .container {
-    position: relative;
-    width: 100%;
-    margin-top: 25px;
-    box-sizing: border-box;
-}
-
-.status .pagination {
-    position: absolute;
-    left: 0;
-}
-
-.status .pagination:nth-child(2) {
-    left: 30px;
-}
-
-.status .pagination:nth-child(3) {
-    left: 60px;
-}
-
-.status .pagination:nth-child(4) {
-    left: 90px;
-}
-
-.status .circle {
-    position: absolute;
-    left: 0;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #777;
-    border-radius: 100%;
-}
-
-.status .circle:hover {
-    cursor: pointer;
-    background: rgba(0, 0, 0, .27);
-}
-
-.status .circle.active {
-    background: #777;
-}
-
-.status .circle.active:hover {
-    cursor: default;
-    background: #777;
+    -moz-appearance: textfield !important;
 }
 
 .ui.table.borderless tr td {
     border-top: 0px !important;
 }
-
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
