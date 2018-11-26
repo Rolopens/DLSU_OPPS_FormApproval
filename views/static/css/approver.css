@@ -433,13 +433,15 @@ header{
     width: 60%;
 }
 
-#quick-view .positive{
+#quick-view .positive, #modal-positive{
     background-color: var(--theme-approval);
+    border-color: var(--theme-approval);
     text-align: center;
 }
 
-#quick-view .negative{
+#quick-view .negative, #modal-negative{
     background-color: var(--theme-rejection);
+    border-color: var(--theme-rejection);
     text-align: center;
 }
 
