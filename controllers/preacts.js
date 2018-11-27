@@ -28,32 +28,32 @@ module.exports.controller = function (app) {
                 } else {
                     userService.getUserWithId(req.session.uid)
                         .then((result) => {
-                        var rolePromises = [];
-                        for (var i = 0; i < result.user_roles.length; i++) {
-                            roleID = result.user_roles[i].role_id;
-                            var p = roleService.getRoleWithId(roleID).then((result) => {
-                                if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                                    canSee = true;
-                            });
-                            rolePromises.push(p);
-                        }
-                        return Promise.all(rolePromises);
-                    })
+                            var rolePromises = [];
+                            for (var i = 0; i < result.user_roles.length; i++) {
+                                roleID = result.user_roles[i].role_id;
+                                var p = roleService.getRoleWithId(roleID).then((result) => {
+                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                        canSee = true;
+                                });
+                                rolePromises.push(p);
+                            }
+                            return Promise.all(rolePromises);
+                        })
                         .then((result) => {
-                        res.render('preacts', {
-                            preacts: true,
-                            preactsSubmission: false,
-                            accounts: canSee,
-                            organization: canSee
+                            res.render('preacts', {
+                                preacts: true,
+                                preactsSubmission: false,
+                                accounts: canSee,
+                                organization: canSee
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.redirect("/");
+                        })
+                        .catch((err) => {
+                            console.log(err)
                         });
-                    })
-                        .catch((err) => {
-                        console.log(err);
-                        res.redirect("/");
-                    })
-                        .catch((err) => {
-                        console.log(err)
-                    });
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -184,7 +184,55 @@ module.exports.controller = function (app) {
                     })
                 })
             } else if (nextOrg == 'COLLEGE') {
-
+                var collegeName;
+                userService.getUserWithId(req.session.uid).then((retUser) => {
+                    var curUser = retUser;
+                    roleService.getRoleWithName(nextRole).then((retRole) => {
+                        role1 = retRole;
+                        orgService.findSpecificOrg(curUser.user_roles[0].org_id).then((retOrg) => {
+                            org1 = retOrg;
+                            if (org1.abbrev.includes("BLAZE")) {
+                                collegeName = "COB_CG"
+                            } else if (org1.abbrev.includes("FAST")) {
+                                collegeName = "CLA_CG"
+                            } else if (org1.abbrev.includes("ENG")) {
+                                collegeName = "COE_CG"
+                            } else if (org1.abbrev.includes("CATCH")) {
+                                collegeName = "CCS_CG"
+                            } else if (org1.abbrev.includes("FOCUS")) {
+                                collegeName = "COS_CG"
+                            } else if (org1.abbrev.includes("EDGE")) {
+                                collegeName = "CED_CG"
+                            } else if (org1.abbrev.includes("EXCEL")) {
+                                collegeName = "SOE_CG"
+                            }
+                            orgService.getOrgWithAbbrev(collegeName).then((retOrg) => {
+                                org1 = retOrg;
+                                userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
+                                    var temp = form.currentCheckers;
+                                    if (form.status === "Approved") {
+                                        form.currentCheckers = [];
+                                    } else {
+                                        form.currentCheckers = users;
+                                    }
+                                    //                            form.currentCheckers = users
+                                    preactsService.updateForm(form).then((updatedForm) => {
+                                        preactsService.findFormViaId(form._id).then((formData1) => {
+                                            //                                res.send({
+                                            //                                    formData1
+                                            //                                })
+                                            res.redirect('/preacts')
+                                        }).catch((err) => {
+                                            console.log(err)
+                                        })
+                                    }).catch((err) => {
+                                        console.log(err);
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
             } else {
                 roleService.getRoleWithName(nextRole).then((retRole) => {
                     role1 = retRole
@@ -299,8 +347,13 @@ module.exports.controller = function (app) {
                     if (retRole.name != "PROJECT_HEAD") {
                         res.redirect('/preacts');
                     } else {
-                        var data = {type:orgObject.type, name:orgObject.name }
-                        res.render('form', {data:data});
+                        var data = {
+                            type: orgObject.type,
+                            name: orgObject.name
+                        }
+                        res.render('form', {
+                            data: data
+                        });
                     }
                 }).catch((err) => {
                     console.log("ERROR MESSAGE: Cannot find org with id " + orgId);
@@ -331,7 +384,7 @@ module.exports.controller = function (app) {
             }
         } else {
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers;
+                req.session.type = req.body.typeOthers2;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
