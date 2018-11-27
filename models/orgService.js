@@ -150,7 +150,7 @@ function getOrgWithAbbrev(abbrev){
       Org.findOne({abbrev})
       .then((org)=>{
         if (org) resolve(org);
-        else reject(Error("Org does not exist"));
+        else reject(Error(abbrev + " Org does not exist"));
       })
       .catch((err)=>{
         reject(err);

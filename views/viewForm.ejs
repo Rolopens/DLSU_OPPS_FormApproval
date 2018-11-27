@@ -336,11 +336,18 @@
             <br/>
 
             <%if(button === true) {%>
-                <form id="status-form" action="/preacts/update/<%=data._id%>" method="post">
-                    <input id="status" style="display:none;" name="status">
+                <div>
+                <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
+<!--                    <input id="status" style="display:none;" name="status">-->
                     <input id="approve" type="submit" class="button approve" value="Approve">
+<!--                    <input id="reject" type="submit" class="button reject" value="Reject">-->
+                </form>
+                <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+<!--                    <input id="status" style="display:none;" name="status">-->
+<!--                    <input id="approve" type="submit" class="button approve" value="Approve">-->
                     <input id="reject" type="submit" class="button reject" value="Reject">
                 </form>
+                </div>
             <%} else {%>
                 <form id="status-form" action="/preacts" method="get">
                     <input id="done" type="submit" class="button done" value="Done">

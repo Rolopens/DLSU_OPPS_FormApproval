@@ -246,13 +246,14 @@ module.exports.controller = function (app) {
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
                     
-                    if(req.body.status != undefined) {
-                        res.redirect('/preacts');
-                    } else {
-                        res.send({
-                            formData1
-                        })
-                    }
+//                    if(req.body.status != undefined) {
+//                        res.redirect('/preacts');
+//                    } else {
+//                        res.send({
+//                            formData1
+//                        })
+//                    }
+                    res.redirect('/preacts')
                 })
             })
         })
