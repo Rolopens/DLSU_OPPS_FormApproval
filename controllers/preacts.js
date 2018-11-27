@@ -245,24 +245,15 @@ module.exports.controller = function (app) {
 
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
-                    res.send({
-                        formData1
-                    })
+                    
+                    if(req.body.status != undefined) {
+                        res.redirect('/preacts');
+                    } else {
+                        res.send({
+                            formData1
+                        })
+                    }
                 })
-            })
-        })
-    })
-
-    //updates the status from view form
-    app.post("/preacts/update/:id", function (req, res) {
-        var id = req.params.id
-
-        preactsService.findFormViaId(id).then((formData) => {
-            var form = formData
-            form.status = req.body.status;
-
-            preactsService.updateForm(form).then((updatedForm) => {
-                res.redirect('/preacts');
             })
         })
     })
@@ -628,7 +619,7 @@ module.exports.controller = function (app) {
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name === "PROJECT HEAD") {
+                if (retRole.name === "PROJECT_HEAD") {
                     preactsService.findFormViaId(id).then((form) => {
                         res.render('viewForm', {
                             data: form,
