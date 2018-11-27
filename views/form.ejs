@@ -888,9 +888,8 @@
 
         <script>
             var currentTab = 0; // Current page is set to be the first page (0)
-            if(currentTab < 4) {
-                showTab(currentTab); // Display the current page
-            }
+            showTab(currentTab); // Display the current page
+            
 
             function showTab(n) {
                 // This function will display the specified page of the form ...
@@ -931,6 +930,7 @@
                 if (currentTab >= x.length) {
                     //...the form gets submitted:
                     document.getElementById("activityForm").submit();
+                    showTab(currentTab-1);
                     return false;
                 }
                 // Otherwise, display the correct tab:
@@ -1085,7 +1085,7 @@
                     } else if($('#positionPR').val() == "") {
                         valid = false;
                         $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the position of the person responsible.</div>");
-                    } else if {
+                    } else {
                     
                         for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
                             if ($('#item'+i).val() == "" || $('#qty'+i).val() == "" || $('#price'+i).val() == "") {
