@@ -28,32 +28,32 @@ module.exports.controller = function (app) {
                 } else {
                     userService.getUserWithId(req.session.uid)
                         .then((result) => {
-                        var rolePromises = [];
-                        for (var i = 0; i < result.user_roles.length; i++) {
-                            roleID = result.user_roles[i].role_id;
-                            var p = roleService.getRoleWithId(roleID).then((result) => {
-                                if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                                    canSee = true;
-                            });
-                            rolePromises.push(p);
-                        }
-                        return Promise.all(rolePromises);
-                    })
+                            var rolePromises = [];
+                            for (var i = 0; i < result.user_roles.length; i++) {
+                                roleID = result.user_roles[i].role_id;
+                                var p = roleService.getRoleWithId(roleID).then((result) => {
+                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                        canSee = true;
+                                });
+                                rolePromises.push(p);
+                            }
+                            return Promise.all(rolePromises);
+                        })
                         .then((result) => {
-                        res.render('preacts', {
-                            preacts: true,
-                            preactsSubmission: false,
-                            accounts: canSee,
-                            organization: canSee
+                            res.render('preacts', {
+                                preacts: true,
+                                preactsSubmission: false,
+                                accounts: canSee,
+                                organization: canSee
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.redirect("/");
+                        })
+                        .catch((err) => {
+                            console.log(err)
                         });
-                    })
-                        .catch((err) => {
-                        console.log(err);
-                        res.redirect("/");
-                    })
-                        .catch((err) => {
-                        console.log(err)
-                    });
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -129,13 +129,12 @@ module.exports.controller = function (app) {
         var id = req.params.id;
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData;
-            if (parseInt(form.position, 10) === (Object.keys(processes[form.processType]).length - 1)){
+            if (parseInt(form.position, 10) === (Object.keys(processes[form.processType]).length - 1)) {
                 form.status = "Approved";
-            }   
-            else{
+            } else {
                 form.status = "Pending"
                 var prevPosition = form.position,
-                checked = false;
+                    checked = false;
 
                 for (var key in processes[form.processType]) {
                     if (checked) {
@@ -149,22 +148,56 @@ module.exports.controller = function (app) {
             }
             var nextRole, nextOrg, role1, org1;
 
-                var temp = processes[form.processType][form.position].split("-", 2);
-                nextRole = temp[0];
-                nextOrg = temp[1];
+            var temp = processes[form.processType][form.position].split("-", 2);
+            nextRole = temp[0];
+            nextOrg = temp[1];
 
+            if (nextOrg == 'COLLEGE') {
+                userService.getUserWithId(req.session.uid).then((retUser) => {
+                    var curUser = retUser;
+                    roleService.getRoleWithName(nextRole).then((retrole) => {
+                        role1 = retrole;
+                        orgService.findSpecificOrg(curUser.user_roles[0].org_id).then((retOrg) => {
+                            org1 = retOrg;
+                            userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
+                                var temp = form.currentCheckers;
+                                if (form.status === "Approved") {
+                                    form.currentCheckers = [];
+                                } else {
+                                    form.currentCheckers = users;
+                                }
+                                //                            form.currentCheckers = users
+                                preactsService.updateForm(form).then((updatedForm) => {
+                                    preactsService.findFormViaId(form._id).then((formData1) => {
+                                        //                                res.send({
+                                        //                                    formData1
+                                        //                                })
+                                        res.redirect('/preacts')
+                                    }).catch((err) => {
+                                        console.log(err)
+                                    })
+                                }).catch((err) => {
+                                    console.log(err);
+                                })
+                            })
+                        })
+                    })
+                })
+            } else if (nextOrg == 'BATCH') {
+
+            } else {
                 roleService.getRoleWithName(nextRole).then((retRole) => {
                     role1 = retRole
                     orgService.getOrgWithAbbrev(nextOrg).then((retOrg) => {
                         org1 = retOrg
                         userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                             var temp = form.currentCheckers;
-                            if (form.status === "Approved"){
-                                form.currentCheckers = []; 
+                            if (form.status === "Approved") {
+                                form.currentCheckers = [];
                             } else {
                                 form.currentCheckers = users;
                             }
-//                            form.currentCheckers = users
+                            //                            form.currentCheckers = users
                             preactsService.updateForm(form).then((updatedForm) => {
                                 preactsService.findFormViaId(form._id).then((formData1) => {
                                     //                                res.send({
@@ -180,6 +213,8 @@ module.exports.controller = function (app) {
                         })
                     })
                 })
+            }
+
         })
     })
 
@@ -261,6 +296,7 @@ module.exports.controller = function (app) {
 
     //form
     app.get('/create-form', function (req, res) {
+
         if (!req.session.uid) res.redirect("/");
 
         userService.getUserWithId(req.session.uid).then((retUser) => {
@@ -283,15 +319,29 @@ module.exports.controller = function (app) {
 
     //confirm page
     app.post('/create-form-confirm', function (req, res) {
-
+        //        console.log(req.body)
+        var isSlife = false;
         req.session.title = req.body.title;
         req.session.nature = req.body.nature;
-        if (req.body.type == 'Others') {
-            req.session.type = req.body.typeOthers;
+        if (req.body.type.split("-")[0] == 'SLIFE') {
+            isSlife = true;
+            if (req.body.type.split("-")[1] == 'Others') {
+                req.session.type = req.body.typeOthers;
+            } else {
+                req.session.type = req.body.type.split("-")[1];
+            }
         } else {
-            req.session.type = req.body.type;
+            if (req.body.type.split("-")[1] == 'Others') {
+                req.session.type = req.body.typeOthers;
+            } else {
+                req.session.type = req.body.type.split("-")[1];
+            }
         }
-        
+        //        console.log(req.session.type)
+        //        console.log(req.body.type)
+        //        console.log(req.body.type.split("-")[0])
+        //        console.log(req.body.type.split("-")[1])
+        //        console.log("IS SLIFE? Answer:" + isSlife)
         req.session.startDate = req.body.startDate;
         req.session.startTime = req.body.startTime;
         req.session.endTime = req.body.endTime;
@@ -429,31 +479,44 @@ module.exports.controller = function (app) {
             var org_id = userObject.user_roles[0].org_id;
             orgService.findSpecificOrg(org_id).then((orgObject) => {
                 usersOrganization = orgObject.name;
-                // checker to see what process the form should go under - still in progress
+                var batchGovNames = ["CATCH", "BLAZE", "FAST", "ENG", "FOCUS", "EDGE", "EXCEL"]
+                //if statements to see what process the form should go under - still in progress
                 if (orgObject.type == 'CSO') {
                     processType = "ORGANIZATIONS_PROCESS"
-                    if (true) {
+                    if (isSlife) {
                         processType = processType + "-SLIFE"
+                    } else {
+                        processType = processType + "-CSO"
                     }
                 } else {
                     processType = "GOVERNMENT_PROCESS"
-                    if (true) {
-                        processType = processType + "-USG-SLIFE"
+                    if (orgObject.abbrev.includes(batchGovNames[0]) || orgObject.abbrev.includes(batchGovNames[1]) || orgObject.abbrev.includes(batchGovNames[2]) || orgObject.abbrev.includes(batchGovNames[3]) || orgObject.abbrev.includes(batchGovNames[4]) || orgObject.abbrev.includes(batchGovNames[5]) || orgObject.abbrev.includes(batchGovNames[6])) {
+                        processType = processType + "-BATCH"
+                    } else if (orgObject.abbrev.includes("CG")) {
+                        processType = processType + "-COLLEGE"
+                    } else {
+                        processType = processType + "-USG"
+                    }
+                    if (isSlife) {
+                        processType = processType + "-SLIFE"
+                    } else {
+                        processType = processType + "-DAAM"
                     }
                 }
+                console.log("DEBUG: PROCESS TYPE -> " + processType)
                 var org, role, orgObj, roleObj;
                 var str = processes[processType][0];
-//                console.log(str)
+                //                console.log(str)
 
                 var temp = str.split("-", 2);
-//                console.log(temp)
+                //                console.log(temp)
                 org = temp[1];
                 role = temp[0];
-//                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
+                //                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
                 roleService.getRoleWithName(role).then((retRole) => {
                     roleObj = retRole;
                     orgService.getOrgWithAbbrev(org).then((retOrg) => {
-                        orgObj = retOrg; 
+                        orgObj = retOrg;
                         userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
                             req.session.currentCheckers = retUsers
                             roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
@@ -497,10 +560,10 @@ module.exports.controller = function (app) {
                                     "status": "Pending",
                                     "user_id": req.session.uid,
                                     "processType": processType,
-                                    "currentCheckers" : req.session.currentCheckers
+                                    "currentCheckers": req.session.currentCheckers
                                 });
                                 preactsService.addForm(form).then((addedForm) => {
-//                                    console.log(addedForm);
+                                    //                                    console.log(addedForm);
                                     clearSessionForm(req);
                                 }).catch((err) => {
                                     console.log("ERROR: Failed to add form in database");
@@ -509,7 +572,7 @@ module.exports.controller = function (app) {
                             }).catch((err) => {
                                 console.log(err);
                             });
-                        }).catch((err)=>{
+                        }).catch((err) => {
                             console.log("PROBLEM WITH FUNCTION FIND USER BY ROLE AND ORGABBRV")
                         })
                     })

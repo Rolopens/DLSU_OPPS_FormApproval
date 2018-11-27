@@ -64,7 +64,7 @@ function getRoleWithName(name){
       Role.findOne({name})
       .then((role)=>{
         if (role) resolve(role);
-        else reject(Error("Role does not exist"));
+        else reject(Error(name + " Role does not exist"));
       })
       .catch((err)=>{
         reject(err);
