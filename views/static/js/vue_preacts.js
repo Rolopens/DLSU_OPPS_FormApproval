@@ -63,7 +63,7 @@ var preacts_app = new Vue({
                         $("#error_msg").html(response.error)
                     else {
                         Vue.set(preacts_app, 'quickview', response.data.formData1);
-                        location.reload(true)
+                        location.reload(true);
                     }
                 })
             axios.get('/preacts/getAllForms/forms').then((rows) => {
@@ -79,6 +79,7 @@ var preacts_app = new Vue({
                         $("#error_msg").html(response.error)
                     else {
                         Vue.set(preacts_app, 'quickview', response.data.formData1);
+                        location.reload(true);
                     }
                 })
             axios.get('/preacts/getAllForms/forms').then((rows) => {
