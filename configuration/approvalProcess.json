@@ -15,42 +15,42 @@
     ],
     "GOVERNMENT_PROCESS-USG-SLIFE" : [
         "CHECKER-OPLOG",
-        "CHECKER-ORTEAS",
+        "CHECKER-OTREAS",
         "PRESIDENT-USG",
         "PRESIDENT-DLSU",
         "APPROVER-SLIFE"
     ],
     "GOVERNMENT_PROCESS-COLLEGE-SLIFE" : [
         "CHECKER-OPLOG",
-        "CHECKER-ORTEAS",
+        "CHECKER-OTREAS",
         "PRESIDENT-COLLEGE",
         "PRESIDENT-USG",
         "APPROVER-SLIFE"
     ],
     "GOVERNMENT_PROCESS-BATCH-SLIFE" : [
-        "OPLOG-USG",
-        "ORTEAS-USG",
+        "CHECKER-OPLOG",
+        "CHECKER-OTREAS",
         "PRESIDENT-BATCH",
         "PRESIDENT-COLLEGE",
         "APPROVER-SLIFE"
     ],
     "GOVERNMENT_PROCESS-USG-DAAM" : [
         "CHECKER-OPLOG",
-        "CHECKER-ORTEAS",
+        "CHECKER-OTREAS",
         "PRESIDENT-USG",
         "PRESIDENT-DLSU",
         "APS-DAAM"
     ],
     "GOVERNMENT_PROCESS-COLLEGE-DAAM" : [
         "CHECKER-OPLOG",
-        "CHECKER-ORTEAS",
+        "CHECKER-OTREAS",
         "PRESIDENT-COLLEGE",
         "PRESIDENT-USG",
         "APS-DAAM"
     ],
     "GOVERNMENT_PROCESS-BATCH-DAAM" : [
         "CHECKER-OPLOG",
-        "CHECKER-ORTEAS",
+        "CHECKER-OTREAS",
         "PRESIDENT-BATCH",
         "PRESIDENT-COLLEGE",
         "APS-DAAM"

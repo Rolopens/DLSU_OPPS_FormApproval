@@ -152,7 +152,7 @@ module.exports.controller = function (app) {
             nextRole = temp[0];
             nextOrg = temp[1];
 
-            if (nextOrg == 'COLLEGE') {
+            if (nextOrg == 'BATCH') {
                 userService.getUserWithId(req.session.uid).then((retUser) => {
                     var curUser = retUser;
                     roleService.getRoleWithName(nextRole).then((retrole) => {
@@ -183,7 +183,7 @@ module.exports.controller = function (app) {
                         })
                     })
                 })
-            } else if (nextOrg == 'BATCH') {
+            } else if (nextOrg == 'COLLEGE') {
 
             } else {
                 roleService.getRoleWithName(nextRole).then((retRole) => {
