@@ -99,8 +99,8 @@
                     </div>
 					
 					<div class="content-feed">
-                        <div class="content-feed" v-if="forms.length == 0">
-                            No Submitted Forms Yet
+                        <div class="content-empty" v-if="forms.length == 0">
+                            No forms currently submitted.
                         </div>
                         <div v-else v-for="form in forms">
                             <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">

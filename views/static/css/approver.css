@@ -439,7 +439,7 @@ header{
     text-align: center;
 }
 
-#quick-view .neutral, #modal-positive{
+#quick-view .neutral{
     background-color: var(--theme-neutral);
     border-color: var(--theme-neutral);
     text-align: center;
