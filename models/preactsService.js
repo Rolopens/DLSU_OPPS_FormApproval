@@ -92,6 +92,8 @@ module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
             currentCheckers: user_id
+        }).sort({
+            creationDate: -1
         }).then((results)=>{
             //console.log(results)
             resolve(results)
@@ -108,7 +110,11 @@ module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
 */
 module.exports.getAllFormsOfOwner = function (id){
     return new Promise(function (resolve, reject) {
-        Form.find({user_id: id}).then((results)=>{
+        Form.find({
+            user_id: id
+        }).sort({
+            creationDate: -1
+        }).then((results)=>{
             //console.log(results)
             resolve(results)
         }, (err)=> {
