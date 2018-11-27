@@ -25,7 +25,7 @@
                     <!-- Page 1-->
                     <div class="tab">
                         <h3 class="labelHead"><label>Organization/Unit<span class="red"> * </span></label></h3>
-                        <label>{org}</label>
+                        <label><%=data.name%></label>
                         <br />
 
                         <h3 class="labelHead"><label>Title of the Activity <span class="red"> * </span></label></h3>
@@ -35,286 +35,275 @@
                         <div class="ui large form">
                             <h3 class="labelHead ui header"><label>Nature of the Activity <span class="red"> *</span></label></h3>
                             <div class="grouped fields">
-                                <table class="ui two column very basic table borderless">
-                                    <tr>
-                                        <th>CSO and Special Groups</th>
-                                        <th>USG</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Academic" name="nature" checked="checked">
-                                                    <label>Academic</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Special Interest" name="nature">
-                                                    <label>Special Interest</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Departmental Initiative" name="nature">
-                                                    <label>Departmental Initiative</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Fundraising" name="nature">
-                                                    <label>Fundraising</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Community Development" name="nature">
-                                                    <label>Community Development</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Organizational Development" name="nature">
-                                                    <label>Organizational Development</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Issue Advocacy" name="nature">
-                                                    <label>Issue Advocacy</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
-                                                    <label>Lasallian Formation/Spiritual Growth</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Outreach" name="nature">
-                                                    <label>Outreach</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Student Service" name="nature">
-                                                    <label>Student Service</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Student's Rights and Welfare" name="nature">
-                                                    <label>Student's Rights and Welfare</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Rules and Policies" name="nature">
-                                                    <label>Rules and Policies</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Fundraising" name="nature">
-                                                    <label>Fundraising</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Community Development" name="nature">
-                                                    <label>Community Development</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Organizational Development" name="nature">
-                                                    <label>Organizational Development</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Issue Advocacy" name="nature">
-                                                    <label>Issue Advocacy</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
-                                                    <label>Lasallian Formation/Spiritual Growth</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="Outreach" name="nature">
-                                                    <label>Outreach</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <%if(data.type == "CSO") {%>
+                                <h4>CSO and Special Groups</h4>
+
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Academic" name="nature" checked="checked">
+                                        <label>Academic</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Special Interest" name="nature">
+                                        <label>Special Interest</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Departmental Initiative" name="nature">
+                                        <label>Departmental Initiative</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Fundraising" name="nature">
+                                        <label>Fundraising</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Community Development" name="nature">
+                                        <label>Community Development</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Organizational Development" name="nature">
+                                        <label>Organizational Development</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Issue Advocacy" name="nature">
+                                        <label>Issue Advocacy</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
+                                        <label>Lasallian Formation/Spiritual Growth</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Outreach" name="nature">
+                                        <label>Outreach</label>
+                                    </div>
+                                </div>
+                                <%} else {%>
+                                <h4>USG</h4>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Student Service" name="nature">
+                                        <label>Student Service</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Student's Rights and Welfare" name="nature">
+                                        <label>Student's Rights and Welfare</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Rules and Policies" name="nature">
+                                        <label>Rules and Policies</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Fundraising" name="nature">
+                                        <label>Fundraising</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Community Development" name="nature">
+                                        <label>Community Development</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Organizational Development" name="nature">
+                                        <label>Organizational Development</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Issue Advocacy" name="nature">
+                                        <label>Issue Advocacy</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
+                                        <label>Lasallian Formation/Spiritual Growth</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="Outreach" name="nature">
+                                        <label>Outreach</label>
+                                    </div>
+                                </div>
+                                <%}%>
                             </div>
                         </div>
 
+                        <br/>
                         <div class="ui large form">
                             <h3 class="labelHead ui header"><label>Type of the Activity <span class="red"> * </span></label></h3>
                             <div class="grouped fields">
-                                <table class="ui very basic table borderless two column">
-                                    <tr>
-                                        <th><b>Through CSO/DAAM</b></th>
-                                        <th>Through SLIFE</th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked">
-                                                    <label>Assistance</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Awareness Campaign" name="type">
-                                                    <label>Awareness Campaign</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Contest" name="type">
-                                                    <label>Contest</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Distribution" name="type">
-                                                    <label>Distribution</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Focus Group Discussion" name="type">
-                                                    <label>Focus Group Discussion</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition" name="type">
-                                                    <label>General Assembly/Recognition</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Meeting" name="type">
-                                                    <label>Meeting</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Recreation" name="type">
-                                                    <label>Recreation</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type">
-                                                    <label>Recruitment/Audition/Election</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Seminar/Workshop" name="type">
-                                                    <label>Seminar/Workshop</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Spiritual Activity" name="type">
-                                                    <label>Spiritual Activity</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <div class="ui transparent input"><input type="radio" value="CSO/DAAM-Others" name="type">
-                                                        <label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
-                                                            border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Concerts/Parties" name="type">
-                                                    <label>Concerts/Parties</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Donation Drive" name="type">
-                                                    <label>Donation Drive</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Fundraising Activity" name="type">
-                                                    <label>Fundraising Activity</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-OCCS Sponsored Seminar" name="type">
-                                                    <label>OCCS Sponsored Seminar</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Off-Campus Activities" name="type">
-                                                    <label>Off-Campus Activities</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Outreach" name="type">
-                                                    <label>Outreach</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Tie-Up Activity (Internal/External)" name="type">
-                                                    <label>Tie-Up Activity (Internal/External)</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-TV/Radio Guesting" name="type">
-                                                    <label>TV/Radio Guesting</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Seminar with Distinguished Speakers/Outside Participants"
-                                                           name="type">
-                                                    <label>Seminar with Distinguished Speakers/Outside
-                                                        Participants</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <input type="radio" value="SLIFE-Solicitations/Sponsorships" name="type">
-                                                    <label>Solicitations/Sponsorships</label>
-                                                </div>
-                                            </div>
-                                            <div class="field">
-                                                <div class="ui radio checkbox">
-                                                    <div class="ui transparent input"><input type="radio" value="SLIFE-Others" name="type">
-                                                        <label>Others</label><input type="text" name="typeOthers2" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
-                                                            border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <%if(data.type == "CSO") {%>
+
+                                <h4>Through CSO/DAAM</h4>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked">
+                                        <label>Assistance</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Awareness Campaign" name="type">
+                                        <label>Awareness Campaign</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Contest" name="type">
+                                        <label>Contest</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Distribution" name="type">
+                                        <label>Distribution</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Focus Group Discussion" name="type">
+                                        <label>Focus Group Discussion</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition" name="type">
+                                        <label>General Assembly/Recognition</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Meeting" name="type">
+                                        <label>Meeting</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Recreation" name="type">
+                                        <label>Recreation</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type">
+                                        <label>Recruitment/Audition/Election</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Seminar/Workshop" name="type">
+                                        <label>Seminar/Workshop</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="CSO/DAAM-Spiritual Activity" name="type">
+                                        <label>Spiritual Activity</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <div class="ui transparent input"><input type="radio" value="CSO/DAAM-Others" name="type">
+                                            <label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
+                                                border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
+                                    </div>
+                                </div>
+                                <%} else {%>
+                                <h4>Through SLIFE</h4>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Concerts/Parties" name="type">
+                                        <label>Concerts/Parties</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Donation Drive" name="type">
+                                        <label>Donation Drive</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Fundraising Activity" name="type">
+                                        <label>Fundraising Activity</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-OCCS Sponsored Seminar" name="type">
+                                        <label>OCCS Sponsored Seminar</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Off-Campus Activities" name="type">
+                                        <label>Off-Campus Activities</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Outreach" name="type">
+                                        <label>Outreach</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Tie-Up Activity (Internal/External)" name="type">
+                                        <label>Tie-Up Activity (Internal/External)</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-TV/Radio Guesting" name="type">
+                                        <label>TV/Radio Guesting</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Seminar with Distinguished Speakers/Outside Participants"
+                                               name="type">
+                                        <label>Seminar with Distinguished Speakers/Outside
+                                            Participants</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" value="SLIFE-Solicitations/Sponsorships" name="type">
+                                        <label>Solicitations/Sponsorships</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <div class="ui transparent input"><input type="radio" value="SLIFE-Others" name="type">
+                                            <label>Others</label><input type="text" name="typeOthers2" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
+                                                border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
+                                    </div>
+                                </div>
+                                <%}%>
                             </div>
                         </div>
                         <br /><br>
@@ -889,7 +878,7 @@
         <script>
             var currentTab = 0; // Current page is set to be the first page (0)
             showTab(currentTab); // Display the current page
-            
+
 
             function showTab(n) {
                 // This function will display the specified page of the form ...
@@ -972,7 +961,7 @@
                     }
 
                 } else if (currentTab == 1) {
-                    
+
                     if($("#context1").val() == "") {
                         valid = false;
                         $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Part 1.</div>");
@@ -1013,15 +1002,15 @@
                                 valid = false;
                                 $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please complete the details of Comprehensice Program Design at row "+(i+1)+".</div>");
                                 return false;
-//                            } else {
-//                                var startTime = Date.parse($('#startTime'+i).val());
-//                                var endTime = Date.parse($('#endTime'+i).val());
-//                                
-//                                if (startTime >= endTime) {
-//                                    valid = false;
-//                                    $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>End time must be later than start time at row "+(i+1)+" in Comprehensive Program Design.</div>");
-//                                    return false;
-//                                }
+                                //                            } else {
+                                //                                var startTime = Date.parse($('#startTime'+i).val());
+                                //                                var endTime = Date.parse($('#endTime'+i).val());
+                                //                                
+                                //                                if (startTime >= endTime) {
+                                //                                    valid = false;
+                                //                                    $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>End time must be later than start time at row "+(i+1)+" in Comprehensive Program Design.</div>");
+                                //                                    return false;
+                                //                                }
                             }
                         }
                     }
@@ -1042,7 +1031,7 @@
                             return false;
                         }
                     }
-                    
+
                     if($('#OrganizationalFunds').val() == "") {
                         valid = false;
                         $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Organizational Funds of the Source of Funds.</div>");
@@ -1086,7 +1075,7 @@
                         valid = false;
                         $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the position of the person responsible.</div>");
                     } else {
-                    
+
                         for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
                             if ($('#item'+i).val() == "" || $('#qty'+i).val() == "" || $('#price'+i).val() == "") {
                                 valid = false;
@@ -1118,10 +1107,10 @@
                                 return false;
                             }
                         }
-                        
+
                     } 
                 }
-                
+
                 if (valid) {
                     document.getElementsByClassName("step")[currentTab].className += " finish";
                 }

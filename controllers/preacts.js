@@ -28,32 +28,32 @@ module.exports.controller = function (app) {
                 } else {
                     userService.getUserWithId(req.session.uid)
                         .then((result) => {
-                            var rolePromises = [];
-                            for (var i = 0; i < result.user_roles.length; i++) {
-                                roleID = result.user_roles[i].role_id;
-                                var p = roleService.getRoleWithId(roleID).then((result) => {
-                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                                        canSee = true;
-                                });
-                                rolePromises.push(p);
-                            }
-                            return Promise.all(rolePromises);
-                        })
-                        .then((result) => {
-                            res.render('preacts', {
-                                preacts: true,
-                                preactsSubmission: false,
-                                accounts: canSee,
-                                organization: canSee
+                        var rolePromises = [];
+                        for (var i = 0; i < result.user_roles.length; i++) {
+                            roleID = result.user_roles[i].role_id;
+                            var p = roleService.getRoleWithId(roleID).then((result) => {
+                                if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                    canSee = true;
                             });
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                            res.redirect("/");
-                        })
-                        .catch((err) => {
-                            console.log(err)
+                            rolePromises.push(p);
+                        }
+                        return Promise.all(rolePromises);
+                    })
+                        .then((result) => {
+                        res.render('preacts', {
+                            preacts: true,
+                            preactsSubmission: false,
+                            accounts: canSee,
+                            organization: canSee
                         });
+                    })
+                        .catch((err) => {
+                        console.log(err);
+                        res.redirect("/");
+                    })
+                        .catch((err) => {
+                        console.log(err)
+                    });
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -245,14 +245,14 @@ module.exports.controller = function (app) {
 
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
-                    
-//                    if(req.body.status != undefined) {
-//                        res.redirect('/preacts');
-//                    } else {
-//                        res.send({
-//                            formData1
-//                        })
-//                    }
+
+                    //                    if(req.body.status != undefined) {
+                    //                        res.redirect('/preacts');
+                    //                    } else {
+                    //                        res.send({
+                    //                            formData1
+                    //                        })
+                    //                    }
                     res.redirect('/preacts')
                 })
             })
@@ -293,12 +293,19 @@ module.exports.controller = function (app) {
 
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
+            var orgId = retUser.user_roles[0].org_id;
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name != "PROJECT_HEAD") {
-                    res.redirect('/preacts');
-                } else {
-                    res.render('form');
-                }
+                orgService.findSpecificOrg(orgId).then((orgObject) => {
+                    if (retRole.name != "PROJECT_HEAD") {
+                        res.redirect('/preacts');
+                    } else {
+                        var data = {type:orgObject.type, name:orgObject.name }
+                        res.render('form', {data:data});
+                    }
+                }).catch((err) => {
+                    console.log("ERROR MESSAGE: Cannot find org with id " + orgId);
+                    console.log(err);
+                });
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
                 console.log(err);
