@@ -9,7 +9,7 @@
 
         <div class="main ui text container">
             <div class="ui segments" style="padding: 1.2em;">
-                <form class="ui form" id="activityForm" action="/create-form-confirm" method="post">
+                <form id="activityForm" action="/create-form-confirm" method="post">
 
                     <div class="ui grid">
                         <div class="two column row">
@@ -25,11 +25,7 @@
                     <!-- Page 1-->
                     <div class="tab">
                         <h3 class="labelHead"><label>Organization/Unit<span class="red"> * </span></label></h3>
-                        <select required class="ui dropdown" name="org" id="org">
-                            <option value="">Organization/Unit</option>
-                            <option value="cso">CSO</option>
-                            <option value="usg">USG</option>
-                        </select>
+                        <label>{org}</label>
                         <br />
 
                         <h3 class="labelHead"><label>Title of the Activity <span class="red"> * </span></label></h3>
@@ -571,11 +567,11 @@
                                             <input type="checkbox"> <label></label>
                                         </div>
                                     </td>
-                                    <td><input class="inputron no-margin" type="time" name="startTime0" required>
-                                        <input class="inputron no-margin" type="time" name="endTime0" required></td>
-                                    <td><textarea class="row-textarea" name="activity0" required></textarea></td>
-                                    <td><textarea class="row-textarea" name="description0" required></textarea></td>
-                                    <td><textarea class="row-textarea" name="person0" required></textarea></td>
+                                    <td><input id="startTime0" class="inputron no-margin" type="time" name="startTime0" required>
+                                        <input id="endTime0" class="inputron no-margin" type="time" name="endTime0" required></td>
+                                    <td><textarea id="activity0" class="row-textarea" name="activity0" required></textarea></td>
+                                    <td><textarea id="description0" class="row-textarea" name="description0" required></textarea></td>
+                                    <td><textarea id="person0" class="row-textarea" name="person0" required></textarea></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -605,10 +601,10 @@
                                             <input type="checkbox"> <label></label>
                                         </div>
                                     </td>
-                                    <td><input class="inputron no-margin" type="text" name="material0" required></td>
-                                    <td><input class="inputron no-margin" type="number" name="quantity0" onkeyup="computeBOE()"
+                                    <td><input id="material0" class="inputron no-margin" type="text" name="material0" required></td>
+                                    <td><input id="quantity0" class="inputron no-margin" type="number" name="quantity0" onkeyup="computeBOE()"
                                                value=0 min=0 required></td>
-                                    <td><input class="inputron no-margin" type="number" name="unit0" onkeyup="computeBOE()"
+                                    <td><input id="unit0" class="inputron no-margin" type="number" name="unit0" onkeyup="computeBOE()"
                                                value=0.00 min=0 step=0.01 required></td>
                                     <td class="bg-gray" name="BOE_subtotal0">Php 0.00</td>
                                 </tr>
@@ -640,18 +636,15 @@
                             <tbody>
                                 <tr>
                                     <td>Organizational Funds</td>
-                                    <td>Php <input class="inputron no-margin table_input" name="OrganizationalFunds" type="number"
-                                                   value="0.00" min="0" step="0.01" required></td>
+                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="0.00" min="0" step="0.01" required></td>
                                 </tr>
                                 <tr>
                                     <td>Participants Fee</td>
-                                    <td>Php <input class="inputron no-margin table_input" name="ParticipantsFee" type="number"
-                                                   value="0.00" min="0" step="0.01" required></td>
+                                    <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee" type="number" value="0.00" min="0" step="0.01" required></td>
                                 </tr>
                                 <tr>
                                     <td>Others (i.e. Sponsorships)</td>
-                                    <td>Php <input class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00"
-                                                   min="0" step="0.01" required></td>
+                                    <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds" type="number" value="0.00" min="0" step="0.01" required></td>
                                 </tr>
                             </tbody>
                             <tfoot class="full-width">
@@ -687,8 +680,7 @@
                                             Operational Fund
                                         </div>
                                     </td>
-                                    <td>Php <input class="inputron no-margin table_input" name="OperationalFund" type="number"
-                                                   value="0.00" min="0" step="0.01" required></td>
+                                    <td>Php <input id="OperationalFund" class="inputron no-margin table_input" name="OperationalFund" type="number" value="0.00" min="0" step="0.01" required></td>
                                 </tr>
 
                                 <tr>
@@ -709,8 +701,7 @@
                                             Depository Fund
                                         </div>
                                     </td>
-                                    <td>Php <input class="inputron no-margin table_input" name="DepositoryFund" type="number"
-                                                   value="0.00" min="0" step="0.01" required></td>
+                                    <td>Php <input id="DepositoryFund" class="inputron no-margin table_input" name="DepositoryFund" type="number" value="0.00" min="0" step="0.01" required></td>
                                 </tr>
                                 <tr>
                                     <!-- <td class="collapsing">
@@ -729,8 +720,7 @@
                                             Participants Fee/Donation/Sponsorships
                                         </div>
                                     </td>
-                                    <td>Php <input class="inputron no-margin table_input" name="OtherFund" type="number" value="0.00"
-                                                   min="0" step="0.01" required></td>
+                                    <td>Php <input id="OtherFund" class="inputron no-margin table_input" name="OtherFund" type="number" value="0.00" min="0" step="0.01" required></td>
                                 </tr>
                                 <tr>
                                     <!-- <td class="collapsing">
@@ -795,11 +785,10 @@
                                             <input type="checkbox"> <label></label>
                                         </div>
                                     </td>
-                                    <td><input class="inputron no-margin" type="text" name="item0" required></td>
-                                    <td><input class="inputron no-margin" type="number" name="qty0" onkeyup="computeRev()"
+                                    <td><input id="item0" class="inputron no-margin" type="text" name="item0" required></td>
+                                    <td><input id="qty0" class="inputron no-margin" type="number" name="qty0" onkeyup="computeRev()"
                                                value="0" min="0"></td>
-                                    <td><input class="inputron no-margin" name="price0" onkeyup="computeRev()" type="number"
-                                               value="0.00" min="0" step="0.01" required></td>
+                                    <td><input id="price0" class="inputron no-margin" name="price0" onkeyup="computeRev()" type="number" value="0.00" min="0" step="0.01" required></td>
                                     <td class="bg-gray" name="amount0">Php 0.00</td>
                                 </tr>
                             </tbody>
@@ -830,11 +819,10 @@
                                             <input type="checkbox"> <label></label>
                                         </div>
                                     </td>
-                                    <td><input class="inputron no-margin" type="text" name="it0" required></td>
-                                    <td><input class="inputron no-margin" type="number" name="qu0" onkeyup="computeExp()"
+                                    <td><input id="it0" class="inputron no-margin" type="text" name="it0" required></td>
+                                    <td><input id="qu0" class="inputron no-margin" type="number" name="qu0" onkeyup="computeExp()"
                                                required value="0" min="0"></td>
-                                    <td><input class="inputron no-margin" name="pr0" type="number" onkeyup="computeExp()" value="0.00"
-                                               min="0" step="0.01" required></td>
+                                    <td><input id="pr0" class="inputron no-margin" name="pr0" type="number" onkeyup="computeExp()" value="0.00" min="0" step="0.01" required></td>
                                     <td class="bg-gray" name="am0">Php 0.00</td>
                                 </tr>
                             </tbody>
@@ -861,16 +849,16 @@
 
                         <span>Name of Person Responsible <em>(aside from you)</em><span class="red"> *</span></span>
                         <br />
-                        <input class="inputron" name='namePR' type="text" required>
+                        <input id="namePR" class="inputron" name='namePR' type="text" required>
                         <br /><br />
                         <span>Position of Person Responsible<span class="red"> *</span></span>
                         <br />
-                        <input class="inputron" name='positionPR' type="text" required>
+                        <input id="positionPR" class="inputron" name='positionPR' type="text" required>
                         <br /><br />
                     </div>
 
                     <div id="error" style="display: none;" class="ui red message">
-                        <div style="text-align: center;" class="header">
+                        <div id="error-message" style="text-align: center;" class="header">
                             Please fill out all the fields.
                         </div>
                     </div>
@@ -900,7 +888,9 @@
 
         <script>
             var currentTab = 0; // Current page is set to be the first page (0)
-            showTab(currentTab); // Display the current page
+            if(currentTab < 4) {
+                showTab(currentTab); // Display the current page
+            }
 
             function showTab(n) {
                 // This function will display the specified page of the form ...
@@ -929,7 +919,6 @@
                 // Exit the function if any field in the current tab is invalid:
 
                 if (n == 1 && !validateForm()) {
-                    alert("ERROR")
                     $('#error').show();
                     return false;
                 }
@@ -950,48 +939,189 @@
 
             function validateForm() {
                 var valid = true;
+                var here = true;
 
                 if(currentTab == 0) {
-                    if($("#org").val() == "")
+                    if($("#title").val() == "") {
                         valid = false;
-                    if($("#title").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the title.</div>");
+                    } else if($("#date").val() == "") {
                         valid = false;
-                    if($("#date").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the date.</div>");
+                    } else if($("#startTime").val() == "") {
                         valid = false;
-                    if($("#startTime").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the start time.</div>");
+                    } else if($("#endTime").val() == "") {
                         valid = false;
-                    if($("#endTime").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the end time.</div>");
+                    } else if($("#venue").val() == "") {
                         valid = false;
-                    if($("#venue").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the venue.</div>");
+                    } else if($("#enmp").val() == "") {
                         valid = false;
-                    if($("#enmp").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the ENMP.</div>");
+                    } else if($("#enmp").val() < 0) {
                         valid = false;
-                    if($("#enp").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for ENMP.</div>");
+                    } else if($("#enp").val() == "") {
                         valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the ENP.</div>");
+                    } else if($("#enp").val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for ENP.</div>");
+                    }
 
                 } else if (currentTab == 1) {
-                    if($("#context1").val() == "")
+                    
+                    if($("#context1").val() == "") {
                         valid = false;
-                    if($("#context2").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Part 1.</div>");
+                    } else if($("#context2").val() == "") {
                         valid = false;
-                    if($("#context3").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Part 2.</div>");
+                    } else if($("#context3").val() == "") {
                         valid = false;
-                    if($("#objective1").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Part 3.</div>");
+                    } else if($("#objective1").val() == "") {
                         valid = false;
-                    if($("#objective2").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Objective 1.</div>");
+                    } else if($("#objective2").val() == "") {
                         valid = false;
-                    if($("#objective3").val() == "")
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Objective 2.</div>");
+                    } else if($("#objective3").val() == "") {
                         valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out Objective 3.</div>");
+                    } else {
+                        for (var i = 0; i <= $("#dynamicTable1length").val(); i++) {
+                            if ($('#phead_name'+i).val() == "" || $('#phead_number'+i).val() == "") {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please complete the details of Project Head "+(i+1)+".</div>");
+                                return false;
+                            } else if($('#phead_number'+i).val() < 0) {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Invalid contact number at row "+(i+1)+".</div>");
+                                return false;
+                            } else if($('#phead_number'+i).val().toString().length != 11) {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Invalid contact number at row "+(i+1)+".</div>");
+                                return false;
+                            }
+                        }
 
-                    for (var i = 1; i < document.getElementById("dynamicTable1").rows.length; i++) {
-                        if ($('#phead_name'+i).val() == "" || $('#phead_number'+i).val() == "")
-                            valid = false;
+                        for (var i = 0; i <= $("#dynamicTable2length").val(); i++) {
+                            if ($('#startTime'+i).val() == "" || $('#endTime'+i).val() == "" || $('#activity'+i).val() == "" ||           $('#description'+i).val() == "" || $('#person'+i).val() == "") {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please complete the details of Comprehensice Program Design at row "+(i+1)+".</div>");
+                                return false;
+//                            } else {
+//                                var startTime = Date.parse($('#startTime'+i).val());
+//                                var endTime = Date.parse($('#endTime'+i).val());
+//                                
+//                                if (startTime >= endTime) {
+//                                    valid = false;
+//                                    $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>End time must be later than start time at row "+(i+1)+" in Comprehensive Program Design.</div>");
+//                                    return false;
+//                                }
+                            }
+                        }
                     }
 
                 } else if (currentTab == 2) {
+                    for (var i = 0; i <= $("#dynamicTable3length").val(); i++) {
+                        if ($('#material'+i).val() == "" || $('#quantity'+i).val() == "" || $('#unit'+i).val() == "") {
+                            valid = false;
+                            $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please complete the details of Breakdown of Expenses at row "+(i+1)+".</div>");
+                            return false;
+                        } else if ($('#quantity'+i).val() < 0) {
+                            valid = false;
+                            $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Quantity at row "+(i+1)+" cannot be negative.</div>");
+                            return false;
+                        } else if ($('#unit'+i).val() < 0) {
+                            valid = false;
+                            $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Unit cost at row "+(i+1)+" cannot be negative.</div>");
+                            return false;
+                        }
+                    }
+                    
+                    if($('#OrganizationalFunds').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Organizational Funds of the Source of Funds.</div>");
+                    } else if($('#OrganizationalFunds').val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for the Organizational Funds of the Source of Funds.</div>");
+                    } else if($('#ParticipantsFee').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Participants Fee of the Source of Funds.</div>");
+                    } else if($('#ParticipantsFee').val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for the Participants Fee of the Source of Funds.</div>");
+                    } else if($('#OtherFunds').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Other Funds of the Source of Funds.</div>");
+                    } else if($('#OtherFunds').val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for the Other Funds of the Source of Funds.</div>");
+                    } else if($('#OperationalFund').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Accumulated Operational Funds of the Organizational Funds.</div>");
+                    } else if($('#OperationalFund').val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for the Accumulated Operational Funds of the Organizational Funds.</div>");
+                    } else if($('#DepositoryFund').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Accumulated Depository Funds of the Organizational Funds.</div>");
+                    } else if($('#DepositoryFund').val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for the Accumulated Depository Funds of the Organizational Funds.</div>");
+                    } else if($('#OtherFund').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the Other Sources of Funds of the Organizational Funds.</div>");
+                    } else if($('#OtherFund').val() < 0) {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>No negative value for the Other Sources of Funds of the Organizational Funds.</div>");
+                    } else if($('#namePR').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the name of the person responsible.</div>");
+                    } else if($('#positionPR').val() == "") {
+                        valid = false;
+                        $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please fill out the position of the person responsible.</div>");
+                    } else if {
+                    
+                        for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
+                            if ($('#item'+i).val() == "" || $('#qty'+i).val() == "" || $('#price'+i).val() == "") {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Revenue at row "+(i+1)+".</div>");
+                                return false;
+                            } else if ($('#qty'+i).val() < 0) {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Revenue at row "+(i+1)+" cannot be negative.</div>");
+                                return false;
+                            } else if ($('#price'+i).val() < 0) {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Price in Projected Revenue at row "+(i+1)+" cannot be negative.</div>");
+                                return false;
+                            }
+                        }
 
+                        for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
+                            if ($('#it'+i).val() == "" || $('#qu'+i).val() == "" || $('#pr'+i).val() == "") {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row "+(i+1)+".</div>");
+                                return false;
+                            } else if ($('#qu'+i).val() < 0) {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row "+(i+1)+" cannot be negative.</div>");
+                                return false;
+                            } else if ($('#pr'+i).val() < 0) {
+                                valid = false;
+                                $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row "+(i+1)+" cannot be negative.</div>");
+                                return false;
+                            }
+                        }
+                        
+                    } 
                 }
-
+                
                 if (valid) {
                     document.getElementsByClassName("step")[currentTab].className += " finish";
                 }
@@ -1014,16 +1144,17 @@
             $('.ui.radio.checkbox').checkbox();
 
             $('#startdate').calendar({
-                type: 'date'
+                type: 'date',
+                minDate: new Date()
             });
             $('#starttime').calendar({
-                type: 'time'
-            });
-            $('#enddate').calendar({
-                type: 'date'
+                minDate: new Date(),
+                type: 'time',
+                endCalendar: $('#endtime')
             });
             $('#endtime').calendar({
-                type: 'time'
+                type: 'time',
+                startCalendar: $('#starttime')
             });
             $('.ui.dropdown').dropdown();
 
@@ -1131,11 +1262,13 @@
                 input2.setAttribute('type', 'time');
                 input2.setAttribute('required', true);
                 input2.setAttribute('name', 'startTime' + tableLength.value);
+                input2.setAttribute('id', 'startTime' + tableLength.value);
                 var input6 = document.createElement("input");
                 input6.className = "inputron no-margin";
                 input6.setAttribute('type', 'time');
                 input6.setAttribute('required', true);
                 input6.setAttribute('name', 'endTime' + tableLength.value);
+                input2.setAttribute('id', 'endTime' + tableLength.value);
                 col2.append(input2);
                 col2.append(input6);
 
@@ -1144,6 +1277,7 @@
                 input3.className = "row-textarea";
                 input3.setAttribute('required', true);
                 input3.setAttribute('name', 'activity' + tableLength.value);
+                input2.setAttribute('id', 'activity' + tableLength.value);
                 col3.append(input3);
 
                 var col4 = document.createElement("td");
@@ -1151,6 +1285,7 @@
                 input4.className = "row-textarea";
                 input4.setAttribute('required', true);
                 input4.setAttribute('name', 'description' + tableLength.value);
+                input4.setAttribute('id', 'description' + tableLength.value);
                 col4.append(input4);
 
                 var col5 = document.createElement("td");
@@ -1158,6 +1293,7 @@
                 input5.className = "row-textarea";
                 input5.setAttribute('required', true);
                 input5.setAttribute('name', 'person' + tableLength.value);
+                input5.setAttribute('id', 'person' + tableLength.value);
                 col5.append(input5);
 
                 row.append(col1);
@@ -1235,6 +1371,7 @@
                 input2.setAttribute('type', 'text');
                 input2.setAttribute('required', true);
                 input2.setAttribute('name', 'material' + tableLength.value);
+                input2.setAttribute('id', 'material' + tableLength.value);
                 col2.append(input2);
 
                 var col3 = document.createElement("td");
@@ -1246,6 +1383,7 @@
                 input3.setAttribute('min', 0);
                 input3.setAttribute('value', 0);
                 input3.setAttribute('name', 'quantity' + tableLength.value);
+                input3.setAttribute('id', 'quantity' + tableLength.value);
                 col3.append(input3);
 
                 var col4 = document.createElement("td");
@@ -1255,6 +1393,7 @@
                 input4.setAttribute('required', true);
                 input4.setAttribute('onkeyup', 'computeBOE()');
                 input4.setAttribute('name', 'unit' + tableLength.value);
+                input4.setAttribute('id', 'unit' + tableLength.value);
                 input4.setAttribute('min', 0);
                 input4.setAttribute('value', 0.00);
                 input4.setAttribute('step', 0.01)
@@ -1357,6 +1496,7 @@
                 input2.setAttribute('type', 'text');
                 input2.setAttribute('required', true);
                 input2.setAttribute('name', 'item' + tableLength.value);
+                input2.setAttribute('id', 'item' + tableLength.value);
                 col2.append(input2);
 
                 var col3 = document.createElement("td");
@@ -1365,6 +1505,7 @@
                 input3.setAttribute('type', 'number');
                 input3.setAttribute('required', true);
                 input3.setAttribute('name', 'qty' + tableLength.value);
+                input3.setAttribute('id', 'qty' + tableLength.value);
                 input3.setAttribute('onkeyup', 'computeRev()');
                 input3.setAttribute('min', 0);
                 input3.setAttribute('value', 0);
@@ -1376,6 +1517,7 @@
                 input4.setAttribute('type', 'number');
                 input4.setAttribute('required', true);
                 input4.setAttribute('name', 'price' + tableLength.value);
+                input4.setAttribute('id', 'price' + tableLength.value);
                 input4.setAttribute('onkeyup', 'computeRev()');
                 input4.setAttribute('min', 0);
                 input4.setAttribute('value', 0.00);
@@ -1534,6 +1676,7 @@
                 input2.setAttribute('type', 'text');
                 input2.setAttribute('required', true);
                 input2.setAttribute('name', 'it' + tableLength.value);
+                input2.setAttribute('id', 'it' + tableLength.value);
                 col2.append(input2);
 
                 var col3 = document.createElement("td");
@@ -1542,6 +1685,7 @@
                 input3.setAttribute('type', 'number');
                 input3.setAttribute('required', true);
                 input3.setAttribute('name', 'qu' + tableLength.value);
+                input3.setAttribute('id', 'qu' + tableLength.value);
                 input3.setAttribute('onkeyup', 'computeExp()');
                 input3.setAttribute('min', 0);
                 input3.setAttribute('value', 0);
@@ -1553,6 +1697,7 @@
                 input4.setAttribute('type', 'number');
                 input4.setAttribute('required', true);
                 input4.setAttribute('name', 'pr' + tableLength.value);
+                input4.setAttribute('id', 'pr' + tableLength.value);
                 input4.setAttribute('onkeyup', 'computeExp()');
                 input4.setAttribute('min', 0);
                 input4.setAttribute('value', 0.00);
