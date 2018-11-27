@@ -1,20 +1,16 @@
-/**Page 1**/
-
 document.getElementsByName("title")[0].value = "Run Like Boruto's Dad";
-document.getElementsByName("nature")[3].checked = "checked";
+document.getElementsByName("nature")[10].checked = "checked";
 document.getElementsByName("type")[8].checked = "checked";
 document.getElementsByName("venue")[0].value = "Henry Sy Sr. Hall";
 document.getElementsByName("startDate")[0].value = "November 20, 2018";
 document.getElementsByName("startTime")[0].value = "2:00 PM";
 document.getElementsByName("endTime")[0].value = "5:00 PM";
-document.getElementsByName("enmp")[0].value = "100";
-document.getElementsByName("emp")[0].value = "60";
+document.getElementsByName("enmp")[0].value = 100;
+document.getElementsByName("enp")[0].value = 60;
 document.getElementsByName("reach")[3].checked = "checked";
 document.getElementsByName("online")[1].checked = "checked";
 
-
-document.getElementsByClassName("submit-button next")[0].click();
-/**Page 2**/
+document.getElementById("nextBtn").click();
 
 document.getElementsByName("context1")[0].value = "Rolo1";
 document.getElementsByName("context2")[0].value = "Rolo2";
@@ -32,6 +28,7 @@ document.getElementsByName("endTime0")[0].value = "17:00";
 document.getElementsByName("activity0")[0].value = "Entire Program";
 document.getElementsByName("description0")[0].value = "Make people run like Boruto's dad";
 document.getElementsByName("person0")[0].value = "Boruto";
+
 
 
 document.getElementsByName("material0")[0].value = "Kage Bunshin no Jutsu";
@@ -52,7 +49,4 @@ document.getElementsByName("pr0")[0].value = "99";
 document.getElementsByName("namePR")[0].value = "Rolo";
 document.getElementsByName("positionPR")[0].value = "Lead Developer";
 
-/*
-Find out the automated unit tester for node.js
-Research, find out how it works and how it's coded
-*/
+document.getElementById("nextBtn").click();
