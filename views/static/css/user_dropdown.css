@@ -1,5 +1,5 @@
 .dropdown {
-    float: lef15
+    float: lef15;
     overflow: hidden;
 }
 
@@ -8,30 +8,33 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0.2em 0.7em 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-#notification{
-  margin-top: -2px;
-  width:20px;
-  height:20px;
+#notification {
+    margin-top: -2px;
+    width: 20px;
+    height: 20px;
+}
+
+#notification:hover {
+    cursor: pointer;
 }
 
 .redicon {
-  position: relative;
-  width: 6px;
-  height: 6px;
-  top: 9px;
-  left: 11.5px;
-  background: red;
-  padding:1px;
-
-  border-radius: 100%;
+    position: relative;
+    width: 6px;
+    height: 6px;
+    top: 9px;
+    left: 11.5px;
+    background: red;
+    padding: 1px;
+    border-radius: 100%;
 }
 
-.notification-space{
-  margin-right: 10px;
+.notification-space {
+    margin-right: 10px;
 }
 
 .dropdown-content a {
@@ -45,9 +48,11 @@
 
 .dropdown-content a:hover {
     color: var(--theme-color);
+    cursor: pointer;
+    background-color: #eeeeee;
 }
 
-.dropdown:hover .dropdown-content{
+.dropdown:hover .dropdown-content {
     display: block;
 
 }

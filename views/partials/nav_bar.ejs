@@ -2,19 +2,19 @@
 	<ul>
 		<% if (preacts) { %>
 		<a href="/preacts">
-			<li :class = "active['preacts'] ? 'active' : ''">
-				<i class="fa fa-file"> </i>
+			<li :class="active['preacts'] ? 'active' : ''">
+				<i class="fa fa-file"> </i>Text
 			</li>
 		</a>
 		<% } %>
-        <% if (preactsSubmission) { %>
+		<% if (preactsSubmission) { %>
 		<a href="/preacts-submission">
-			<li class = "active">
+			<li class="active">
 				<i class="fa fa-file"> </i>
 			</li>
 		</a>
 		<% } %>
-<!--
+		<!--
 		
 		<a href="/postacts">
 			<li :class = "active['postacts'] ? 'active' : ''">
@@ -24,14 +24,14 @@
 -->
 		<% if (accounts) { %>
 		<a href="/accounts">
-			<li :class = "active['accounts'] ? 'active' : ''">
+			<li :class="active['accounts'] ? 'active' : ''">
 				<i class="fa fa-user-o"> </i>
 			</li>
 		</a>
 		<% } %>
 		<% if (organization) { %>
 		<a href="/organization">
-			<li :class = "active['organization'] ? 'active' : ''">
+			<li :class="active['organization'] ? 'active' : ''">
 				<i class="fa fa-building-o"> </i>
 			</li>
 		</a>

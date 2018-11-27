@@ -1,233 +1,241 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Approver Dashboard</title>
-        <!-- external links -->
-        <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
-<!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.coms/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
-		<link rel="stylesheet" href="css/font-awesome.css" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
-        <script src="lib/axios.min.js" type="application/javascript"> </script>
 
-        <!-- stylesheet -->
-        <link rel="stylesheet" type="text/css" href="css/theme.css" />
-        <link rel="stylesheet" type="text/css" href="css/variables.css" />
-        <link rel="stylesheet" type="text/css" href="css/approver.css" />
-        <link rel="stylesheet" type="text/css" href="css/user_dropdown.css" />
-        <link rel="stylesheet" type="text/css" href="css/notificationStyle.css" />
-        <!-- element-stylesheet -->
-        <link rel="stylesheet" type="text/css" href="css/element-stylesheet/flex.css" />
-        <link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
-        <link rel="stylesheet" type="text/css" href="css/element-stylesheet/field.css" />
-        <link rel="stylesheet" type="text/css" href="css/bootstrap_modal_2.css" />
-        
-        <!-- javascript -->
-        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
-        <script src="js/approver.js" type="text/javascript"></script>
-        <script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>        
-    </head>
+<head>
+    <title>Approver Dashboard</title>
+    <!-- external links -->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
+    <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.coms/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" />
+    <script src="lib/axios.min.js" type="application/javascript"> </script>
 
-    <body>
-        <div id="preacts">
-            <%- include("nav_bar.ejs", this) %>
-                <nav id="secondary-nav">
-                    <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
-                    <br/><br/>
-                    <div class="filter-wrapper">
-                        <div class="filter-title">
-                            <i class="fa fa-filter fa-2x"></i>
-                            <span>&nbsp;&nbsp;&nbsp;College Filter:</span>
-                        </div>
-                        <hr/>
-                        <ul>
-                            <li v-for="item in filter.colleges">
-                                <label>
-                                    <input type="checkbox" />
-                                    <span class="checkmark"><i class="fa fa-check"></i></span>
-                                    <span>{{item}}</span>
-                                </label>
-                            </li>
-                        </ul>
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/variables.css" />
+    <link rel="stylesheet" type="text/css" href="css/approver.css" />
+    <link rel="stylesheet" type="text/css" href="css/user_dropdown.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/notificationStyle.css" /> -->
+    <!-- element-stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/element-stylesheet/flex.css" />
+    <link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
+    <link rel="stylesheet" type="text/css" href="css/element-stylesheet/field.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap_modal_2.css" />
+
+    <!-- javascript -->
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/approver.js" type="text/javascript"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="preacts">
+        <% include partials/nav_bar.ejs %>
+        <nav id="secondary-nav">
+            <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
+            <br /><br />
+            <div class="filter-wrapper">
+                <div class="filter-title">
+                    <i class="fa fa-filter fa-2x"></i>
+                    <span>&nbsp;&nbsp;&nbsp;College Filter:</span>
+                </div>
+                <hr />
+                <ul>
+                    <li v-for="item in filter.colleges">
+                        <label>
+                            <input type="checkbox" />
+                            <span class="checkmark"><i class="fa fa-check"></i></span>
+                            <span>{{item}}</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <header>
+            <%- include partials/user_dropdown %>
+
+            <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
+            <nav id="acts-nav">
+                <ul>
+                    <li class="active">All (243)</li>
+                    <li>Unreviewed (100)</li>
+                    <li>Approved (43)</li>
+                    <li>Rejected (50)</li>
+                    <li>Pending (50)</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main-bars">
+            <div id="main-content">
+                <div class="content-header">
+                    <div id="select-wrapper">
+                        <input id="search" type="text" name="search" placeholder="Search for an activity..." />
                     </div>
-                </nav>
-
-                <header>
-                    <%- include("user_dropdown.ejs") %>
-                  
-
-                        <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
-                        <nav id="acts-nav">
-                            <ul>
-                                <li class="active">All (243)</li>
-                                <li>Unreviewed (100)</li>
-                                <li>Approved (43)</li>
-                                <li>Rejected (50)</li>
-                                <li>Pending (50)</li>
-                            </ul>
-                        </nav>
-                </header>
-                <section id="main-bars">
-                    <div id="main-content">
-                        <div class="content-header">
-                            <div id="select-wrapper">
-                                <input id="search" type="text" name="search" placeholder="Search for an activity..." />
+                </div>
+                <div class="content-feed">
+                    <div class="content-empty" v-if="forms.length == 0">
+                        No forms currently submitted.
+                    </div>
+                    <div v-else v-for="form in forms">
+                        <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.org}} |
+                                        {{form.startDate}}
+                                    </p>
+                                </div>
                             </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                         </div>
-                        <div class="content-feed">
-                            <div class="content-empty" v-if="forms.length == 0">
-                                No forms currently submitted.
-                            </div>
-                            <div v-else v-for="form in forms">
-                                <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                    <div class="activity-wrapper flex-start">
-                                        <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
-                                        <div class="activity">
-                                            <h3 class="infoData" name="FormTitle">
-                                                {{form.title}}
-                                            </h3>
-                                            <p class="infoData" name="FormDetails">
-                                                {{form.org}} |
-                                                    {{form.startDate}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                                </div>
-                                <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                    <div class="activity-wrapper flex-start">
-                                        <div class="activity-icon negative"><i class="fa fa-times"></i></div>
-                                        <div class="activity">
-                                            <h3 class="infoData" name="FormTitle">
-                                                {{form.title}}
-                                            </h3>
-                                            <p class="infoData" name="FormDetails">
-                                                {{form.org}} |
-                                                    {{form.startDate}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                                </div>
-                                <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                    <div class="activity-wrapper flex-start">
-                                        <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
-                                        <div class="activity">
-                                            <h3 class="infoData" name="FormTitle">
-                                                {{form.title}}
-                                            </h3>
-                                            <p class="infoData" name="FormDetails">
-                                                {{form.org}} |
-                                                    {{form.startDate}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.org}} |
+                                        {{form.startDate}}
+                                    </p>
                                 </div>
                             </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        </div>
+                        <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.org}} |
+                                        {{form.startDate}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                         </div>
                     </div>
-                    <sec v-if="quickview">          
-                        <!-- Rejection modal -->
-                        <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            </div>
+            <sec v-if="quickview">
+                <!-- Rejection modal -->
+                <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
-                              </div>
-                              <div class="modal-body">
+                            </div>
+                            <div class="modal-body">
                                 You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Proceed?
-                              </div>
-                              <div class="modal-footer">
+                            </div>
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)" data-dismiss="modal">Reject</button>
-                              </div>
+                                <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
+                                    data-dismiss="modal">Reject</button>
                             </div>
-                          </div>
                         </div>
-                                                                           
-                        <!-- Approval modal -->
-                        <div class="modal fade" id="modalActivityApprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
-                              </div>
-                              <div class="modal-body">
-                                You are about to <b>approve</b> the activity <b>{{quickview.title}}</b>. Proceed?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="modal-positive" v-on:click="approveForm(quickview._id)" data-dismiss="modal">Approve</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div id="sidebar">
-                            <div class="content-header">
-                                <h3 class="action-title">Quick View</h3>
-                            </div>
-                            <div id="quick-view">
-                                <div class="row" data-id={{quickview._id}}>
-                                    <div class="column">
-                                        <div class="info">
-                                            <h4>Title</h4>
-                                            <p class="infoData" id="Title">{{quickview.title}}</p>
-                                        </div>
-                                        <div class="info">
-                                            <h4>Nature</h4>
-                                            <p class="infoData" id="Nature">{{quickview.nature}}</p>
-                                        </div>
-                                        <div class="info">
-                                            <h4>Type</h4>
-                                            <p class="infoData" id="Type">{{quickview.typeOfActivity}}</p>
-                                        </div>
-                                        <div class="info">
-                                            <h4>Status</h4>
-                                            <p class="infoData" id="status">{{quickview.status}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="column">
-                                        <div class="info">
-                                            <h4>Date</h4>
-                                            <p class="infoData" id="startDate">{{quickview.startDate}}</p>
-                                        </div>
-                                        <div class="info">
-                                            <h4>Time</h4>
-                                            <p class="infoData" id="startTime">{{quickview.startDate}}</p>
-                                        </div>
-                                        <div class="info">
-                                            <h4>Venue</h4>
-                                            <p class="infoData" id="location">{{quickview.venue}}</p>
-                                        </div>
-                                        <br/>
+                    </div>
+                </div>
 
-                                        <form name="view-form" action="view-form" method="post">
-                                            <input style="display:none;" :value="quickview._id" name="form_id">
-                                            <button type="submit" class="hallow">View Activity</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <br/><br/>
-                                <div class="row">
-                                    <div class="column">
-                                        <p class="action negative" id="RejectForm" data-toggle="modal" data-target="#modalActivityReject"><i class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
-                                    </div>
-                                    <div class="column">
-                                        <p class="action positive" id="ApproveForm" data-toggle="modal" data-target="#modalActivityApprove"><i class="fa fa-check-circle"></i> &nbsp; Approve Activity</p>
-                                    </div>
-                                </div>
+                <!-- Approval modal -->
+                <div class="modal fade" id="modalActivityApprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                            </div>
+                            <div class="modal-body">
+                                You are about to <b>approve</b> the activity <b>{{quickview.title}}</b>. Proceed?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="modal-positive" v-on:click="approveForm(quickview._id)"
+                                    data-dismiss="modal">Approve</button>
                             </div>
                         </div>
-                    </sec>
-                </section>
-        </div>
-    </body>
-        <script src="lib/vue.min.js" type="text/javascript"></script>
-        <script src="js/vue_preacts.js" type="text/javascript"></script>
+                    </div>
+                </div>
+
+                <div id="sidebar">
+                    <div class="content-header">
+                        <h3 class="action-title">Quick View</h3>
+                    </div>
+                    <div id="quick-view">
+                        <div class="row" data-id={{quickview._id}}>
+                            <div class="column">
+                                <div class="info">
+                                    <h4>Title</h4>
+                                    <p class="infoData" id="Title">{{quickview.title}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Nature</h4>
+                                    <p class="infoData" id="Nature">{{quickview.nature}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Type</h4>
+                                    <p class="infoData" id="Type">{{quickview.typeOfActivity}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Status</h4>
+                                    <p class="infoData" id="status">{{quickview.status}}</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="info">
+                                    <h4>Date</h4>
+                                    <p class="infoData" id="startDate">{{quickview.startDate}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Time</h4>
+                                    <p class="infoData" id="startTime">{{quickview.startDate}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Venue</h4>
+                                    <p class="infoData" id="location">{{quickview.venue}}</p>
+                                </div>
+                                <br />
+
+                                <form name="view-form" action="view-form" method="post">
+                                    <input style="display:none;" :value="quickview._id" name="form_id">
+                                    <button type="submit" class="hallow">View Activity</button>
+                                </form>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div class="column">
+                                <p class="action negative" id="RejectForm" data-toggle="modal" data-target="#modalActivityReject"><i
+                                        class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>
+                            </div>
+                            <div class="column">
+                                <p class="action positive" id="ApproveForm" data-toggle="modal" data-target="#modalActivityApprove"><i
+                                        class="fa fa-check-circle"></i> &nbsp; Approve Activity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </sec>
+        </section>
+    </div>
+</body>
+<script src="lib/vue.min.js" type="text/javascript"></script>
+<script src="js/vue_preacts.js" type="text/javascript"></script>
 
 
 </html>
