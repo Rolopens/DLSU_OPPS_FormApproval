@@ -20,7 +20,8 @@ var preacts_app = new Vue({
         },
         whoami: null,
         quickview: null,
-        forms: null
+        forms: null,
+        searchQuery: ''
     },
     created: function () {
         axios.get('/whoami')
@@ -36,8 +37,6 @@ var preacts_app = new Vue({
                 return this.forms;
                 })
             })
-        
-        
     },
     methods: {
         quickviewForm(_id) {
@@ -49,6 +48,34 @@ var preacts_app = new Vue({
                         Vue.set(preacts_app, 'quickview', response.data.form);
                     }
                 })
+        },    
+        removeSearchQuery: function() {
+          this.searchQuery = '';
+          this.isResult = false;
+//            console.log("test2");
+        },
+        submitSearch: function() {            
+            console.log(this.searchQuery);
+                        
+            axios.get('/whoami')
+                .then((rows) => {
+                    if(this.searchQuery == ""){                        
+                        this.whoami = rows.data.user;                        
+                        axios.get("/preacts/getAllFormsOfUser/"+ this.whoami._id).then((rows) => {
+                            this.forms = rows.data.forms;
+                            return this.forms;
+                        })  
+                    }
+                    else{
+                        this.whoami = rows.data.user;
+                        axios.get('/preacts/getAllOwnedFormsWithMatchingString/forms/' + this.whoami._id + '/' + this.searchQuery).then((rows) => {
+                            this.forms = rows.data.forms;
+                            return this.forms;
+                        })
+                    }
+                })
+              
+            console.log(this.forms);
         }
     }
 })

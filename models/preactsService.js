@@ -104,6 +104,56 @@ module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
 }
 
 /*
+    Accepts: string, user id
+    return: new promise that resolves all forms in db
+    Gets all forms in the db checked by a user containing a certain string
+*/
+module.exports.getAllFormsWithStringMatch = function(user_id, query){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id,
+//            title: /g/i
+//            title: query
+            title: new RegExp(query, "i")
+        }).sort({
+            creationDate: -1
+        }).then((results)=>{            
+            console.log(user_id);
+            console.log(query);
+            console.log(results)
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: string, user id
+    return: new promise that resolves all forms in db
+    Gets all forms in the db owned by a user containing a certain string
+*/
+module.exports.getAllOwnedFormsWithStringMatch = function(user_id, query){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            user_id,
+//            title: /g/i
+//            title: query
+            title: new RegExp(query, "i")
+        }).sort({
+            creationDate: -1
+        }).then((results)=>{            
+            console.log(user_id);
+            console.log(query);
+            console.log(results)
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
     Accepts: user_id
     return: new promise that resolves all forms owned by 'user_id' in the db
     Gets all forms in the db owned by 'user_id'

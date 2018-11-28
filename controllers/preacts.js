@@ -124,6 +124,24 @@ module.exports.controller = function (app) {
         })
     })
 
+    //ajax request for all the forms checked by a user with a matching string in activity name
+    app.get("/preacts/getAllFormsWithMatchingString/forms/:id/:searchQuery", function (req, res) {
+        preactsService.getAllFormsWithStringMatch(req.params.id, req.params.searchQuery).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    });
+
+    //ajax request for all the forms owned by a user with a matching string in activity name
+    app.get("/preacts/getAllOwnedFormsWithMatchingString/forms/:id/:searchQuery", function (req, res) {
+        preactsService.getAllOwnedFormsWithStringMatch(req.params.id, req.params.searchQuery).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    });
+        
     //ajax request for approving a form
     app.post("/preacts/approve/:id", function (req, res) {
         var id = req.params.id;

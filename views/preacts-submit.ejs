@@ -102,13 +102,17 @@
             <div id="main-content">
                 <div class="content-header">
                     <div id="select-wrapper">
-                        <input id="search" type="text" name="search" placeholder="Search for an activity..." />
+                        <div class="liveSearchArea">
+                            <form class="searchForm" v-on:submit.prevent="submitSearch">
+                                <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..." @keyup="submitSearch">
+<!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
+                            </form>
+                        </div>
                     </div>
                 </div>
-
                 <div class="content-feed">
                     <div class="content-empty" v-if="forms.length == 0">
-                        No forms currently submitted.
+                        No forms found.
                     </div>
                     <div v-else v-for="form in forms">
                         <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
