@@ -157,7 +157,7 @@ module.exports.controller = function (app) {
                     var curUser = retUser;
                     roleService.getRoleWithName(nextRole).then((retrole) => {
                         role1 = retrole;
-                        orgService.findSpecificOrg(curUser.user_roles[0].org_id).then((retOrg) => {
+                        orgService.getOrgWithAbbrev(form.org).then((retOrg) => {
                             org1 = retOrg;
                             userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                                 var temp = form.currentCheckers;
@@ -189,7 +189,7 @@ module.exports.controller = function (app) {
                     var curUser = retUser;
                     roleService.getRoleWithName(nextRole).then((retRole) => {
                         role1 = retRole;
-                        orgService.findSpecificOrg(curUser.user_roles[0].org_id).then((retOrg) => {
+                        orgService.getOrgWithAbbrev(form.org).then((retOrg) => {
                             org1 = retOrg;
                             if (org1.abbrev.includes("BLAZE")) {
                                 collegeName = "COB_CG"
@@ -289,7 +289,7 @@ module.exports.controller = function (app) {
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Rejected"
-
+            form.currentCheckers = []
 
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {

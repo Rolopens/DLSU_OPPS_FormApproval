@@ -33,7 +33,7 @@ var promise1 = new Promise(
             .then((retRole1) => {
                 role1 = retRole1;
                 return userService.createUser({
-                    email: "abcd@dlsu.edu.ph",
+                    email: "OPLOG_CHECKER@dlsu.edu.ph",
                     password: "password",
                     firstname: "Romeo",
                     lastname: "Narvasa",
@@ -53,7 +53,7 @@ var promise1 = new Promise(
             .then((retOrg3) => {
                 org3 = retOrg3;
                 return userService.createUser({
-                    email: "abcd1@dlsu.edu.ph",
+                    email: "OTREAS_CHECKER@dlsu.edu.ph",
                     password: "password",
                     firstname: "Romeo",
                     lastname: "Manuel",
@@ -89,7 +89,7 @@ var promise2 = new Promise(
             .then((retRole1) => {
                 role1 = retRole1;
                 return userService.createUser({
-                    email: "abcd2@dlsu.edu.ph",
+                    email: "USG_PRESIDENTs@dlsu.edu.ph",
                     password: "password",
                     firstname: "Romeo",
                     lastname: "Pena",
@@ -109,7 +109,7 @@ var promise2 = new Promise(
             .then((retOrg3) => {
                 org3 = retOrg3;
                 return userService.createUser({
-                    email: "abcd3@dlsu.edu.ph",
+                    email: "DLSU_PRESIDENT3@dlsu.edu.ph",
                     password: "password",
                     firstname: "Romeo",
                     lastname: "Pedro",
@@ -146,7 +146,7 @@ var promise3 = new Promise(
             .then((retRole) => {
                 role = retRole;
                 return userService.createUser({
-                    email: "abcd4@dlsu.edu.ph",
+                    email: "SLIFE_APPROVER@dlsu.edu.ph",
                     password: "password",
                     firstname: "Romeo",
                     lastname: "Kalalo",
@@ -191,7 +191,7 @@ var promise4 = new Promise(
             .then((retOrg2) => {
                 org2 = retOrg2;
                 return userService.createUser({
-                    email: "abc4@dlsu.edu.ph",
+                    email: "PHEAD_GAS@dlsu.edu.ph",
                     password: "password",
                     firstname: "Eugene",
                     lastname: "Krabs",
@@ -219,7 +219,7 @@ var promise4 = new Promise(
             .then((retOrg3) => {
                 org3 = retOrg3;
                 return userService.createUser({
-                    email: "abc5@dlsu.edu.ph",
+                    email: "PHEAD_CATCH@dlsu.edu.ph",
                     password: "password",
                     firstname: "Sheldon",
                     lastname: "Plankton",
