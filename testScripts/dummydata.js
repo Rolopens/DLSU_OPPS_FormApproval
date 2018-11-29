@@ -1,6 +1,6 @@
-document.getElementsByName("title")[0].value = "Run Like Boruto's Dad";
-document.getElementsByName("nature")[10].checked = "checked";
-document.getElementsByName("type")[8].checked = "checked";
+javascript: (function(){document.getElementsByName("title")[0].value = "Run Like Boruto's Dad";
+document.getElementsByName("nature")[4].checked = "checked";
+document.getElementsByName("type")[7].checked = "checked";
 document.getElementsByName("venue")[0].value = "Henry Sy Sr. Hall";
 document.getElementsByName("startDate")[0].value = "November 20, 2018";
 document.getElementsByName("startTime")[0].value = "2:00 PM";
@@ -19,10 +19,10 @@ document.getElementsByName("objective1")[0].value = "For students to have new fr
 document.getElementsByName("objective2")[0].value = "To create a strong bond between students";
 document.getElementsByName("objective3")[0].value = "To act as a stress reliever for students";
 document.getElementsByName("phead_name0")[0].value = "Boruto's Dad";
-document.getElementsByName("phead_number0")[0].value = "1234567890";
+document.getElementsByName("phead_number0")[0].value = "09023451167";
 document.getElementById("btnAddPhead").click();
 document.getElementsByName("phead_name1")[0].value = "Boruto";
-document.getElementsByName("phead_number1")[0].value = "1250";
+document.getElementsByName("phead_number1")[0].value = "09023454456";
 document.getElementsByName("startTime0")[0].value = "14:00";
 document.getElementsByName("endTime0")[0].value = "17:00";
 document.getElementsByName("activity0")[0].value = "Entire Program";
@@ -49,4 +49,4 @@ document.getElementsByName("pr0")[0].value = "99";
 document.getElementsByName("namePR")[0].value = "Rolo";
 document.getElementsByName("positionPR")[0].value = "Lead Developer";
 
-document.getElementById("nextBtn").click();
+document.getElementById("nextBtn").click();})();
