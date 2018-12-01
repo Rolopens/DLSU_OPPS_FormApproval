@@ -12,5 +12,12 @@
         "mongoose": "^5.3.3",
         "simple-node-logger": "^0.93.37",
         "sqlite3": "^4.0.4"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^5.2.0"
+    },
+    "scripts": {
+        "test": "mocha || true"
     }
 }
