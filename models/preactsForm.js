@@ -105,7 +105,8 @@ var formSchema = new Schema({
         position: String
     }],
     archived: Boolean,
-    creationDate: Date
+    creationDate: Date,
+    prevForm_id: mongoose.Schema.Types.ObjectId
 });
 
 var Form = mongoose.model("Form", formSchema);

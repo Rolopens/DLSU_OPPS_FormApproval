@@ -630,7 +630,9 @@ module.exports.controller = function (app) {
                                     "status": "Pending",
                                     "user_id": req.session.uid,
                                     "processType": processType,
-                                    "currentCheckers": req.session.currentCheckers
+                                    "currentCheckers": req.session.currentCheckers,
+                                    "archived": false,
+                                    "prevForm_id": null
                                 });
                                 preactsService.addForm(form).then((addedForm) => {
                                     //                                    console.log(addedForm);
