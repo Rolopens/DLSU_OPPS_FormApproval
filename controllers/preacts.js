@@ -169,8 +169,11 @@ module.exports.controller = function (app) {
             var temp = processes[form.processType][form.position].split("-", 2);
             nextRole = temp[0];
             nextOrg = temp[1];
+            if (nextOrg === 'ORG'){
+                nextOrg = form.org;
+            }
 
-            if (nextOrg == 'BATCH') {
+            if (nextOrg === 'BATCH') {
                 userService.getUserWithId(req.session.uid).then((retUser) => {
                     var curUser = retUser;
                     roleService.getRoleWithName(nextRole).then((retrole) => {
@@ -201,7 +204,7 @@ module.exports.controller = function (app) {
                         })
                     })
                 })
-            } else if (nextOrg == 'COLLEGE') {
+            } else if (nextOrg === 'COLLEGE') {
                 var collegeName;
                 userService.getUserWithId(req.session.uid).then((retUser) => {
                     var curUser = retUser;

@@ -3,14 +3,14 @@
         "DOCU_OFFICER-CSO",
         "FIN_OFFICER-CSO",
         "EXEC_CHECKER-CSO",
-        "PROJECT_HEAD-CSO",
+        "PRESIDENT-ORG",
         "APPROVER-SLIFE"
     ],
     "ORGANIZATIONS_PROCESS-CSO" : [
         "DOCU_OFFICER-CSO",
         "FIN_OFFICER-CSO",
         "EXEC_CHECKER-CSO",
-        "PROJECT_HEAD-CSO",
+        "PRESIDENT-ORG",
         "APS-CSO"
     ],
     "GOVERNMENT_PROCESS-USG-SLIFE" : [
