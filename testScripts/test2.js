@@ -170,16 +170,19 @@ var promise2 = new Promise(
                             enabled: true
                         });
                     })
-//                    .then((retUser) => {
-//                        return orgService.createOrg({
-//                            name: "CATCH2T20",
-//                            abbrev: "CATCH2T20",
-//                            type: "USG",
-//                            enabled: true
-//                        });
-//                    })
-                    .then((retOrg3) => {
-                        og3 = retOrg3;
+                    .then((retUser) => {
+                        return userService.createUser({
+                            email: "PRESIDENT_GAS@dlsu.edu.ph",
+                            password: "password",
+                            firstname: "Yabuki",
+                            lastname: "Nako",
+                            initialOrgId: og1._id,
+                            initialRoleId: role1._id,
+                            initialEnabled: true,
+                        })
+                    })
+                    .then((retUser) => {
+                        
                         return userService.createUser({
                             email: "PHEAD_CATCH@dlsu.edu.ph",
                             password: "password",
@@ -276,74 +279,8 @@ var promise3 = new Promise(
 
 //var promise4 = new Promise(
 //    function (resolve, reject) {
-//        var org1, role1, org2, org3;
-//        orgService.createOrg({
-//                name: "Gakuen Anime Shoshiki",
-//                abbrev: "GAS",
-//                type: "CSO",
-//                enabled: true
-//            })
-//            .then((retOrg1) => {
-//                org1 = retOrg1;
-//                return roleService.createRole({
-//                    name: "PROJECT_HEAD"
-//                });
-//            })
-//            .then((retRole1) => {
-//                role1 = retRole1;
-//                return orgService.createOrg({
-//                    name: "La Salle Computer Society",
-//                    abbrev: "LSCS",
-//                    type: "CSO",
-//                    enabled: true
-//                });
-//            })
-//            .then((retOrg2) => {
-//                org2 = retOrg2;
-//                return userService.createUser({
-//                    email: "PHEAD_GAS@dlsu.edu.ph",
-//                    password: "password",
-//                    firstname: "Eugene",
-//                    lastname: "Krabs",
-//                    initialOrgId: org1._id,
-//                    initialRoleId: role1._id,
-//                    initialEnabled: true,
-//                })
-//            })
-//            .then((retUser) => {
-//                return userService.addRoleToUser({
-//                    user_id: retUser._id,
-//                    org_id: org2._id,
-//                    role_id: role1._id,
-//                    enabled: true
-//                });
-//            })
-//            .then((retUser) => {
-//                return orgService.createOrg({
-//                    name: "CATCH2T20",
-//                    abbrev: "CATCH2T20",
-//                    type: "USG",
-//                    enabled: true
-//                });
-//            })
-//            .then((retOrg3) => {
-//                org3 = retOrg3;
-//                return userService.createUser({
-//                    email: "PHEAD_CATCH@dlsu.edu.ph",
-//                    password: "password",
-//                    firstname: "Sheldon",
-//                    lastname: "Plankton",
-//                    initialOrgId: org3._id,
-//                    initialRoleId: role1._id,
-//                    initialEnabled: true
-//                });
-//            })
-//            .then((retUser) => {
-//                resolve(retUser);
-//            })
-//            .catch((err) => {
-//                reject(err);
-//            });
+//        
+//        
 //    }
 //);
 
@@ -373,6 +310,84 @@ var promise5 = new Promise(
                     initialRoleId: role._id,
                     initialEnabled: true,
                 })
+            })
+            .then((retUser)=>{
+                var org1, role1, role2, role3, role4;
+                return orgService.createOrg({
+                    name: "CSO Main",
+                    abbrev: "CSO",
+                    type: "CSO",
+                    enabled: true
+                })
+                .then((retOrg1) => {
+                    org1 = retOrg1;
+                    return roleService.createRole({
+                        name: "DOCU_OFFICER"
+                    });
+                })
+                .then((retRole1) => {
+                    role1 = retRole1;
+                    return userService.createUser({
+                        email: "DOCU_CSO@dlsu.edu.ph",
+                        password: "password",
+                        firstname: "Jordan",
+                        lastname: "Deja",
+                        initialOrgId: org1._id,
+                        initialRoleId: role1._id,
+                        initialEnabled: true,
+                    })
+                })
+                .then((retUser) => {
+                    return roleService.createRole({
+                        name: "FIN_OFFICER"
+                    });
+                })
+                .then((retRole2) => {
+                    role2 = retRole2;
+                    return userService.createUser({
+                        email: "FIN_CSO@dlsu.edu.ph",
+                        password: "password",
+                        firstname: "Jordan",
+                        lastname: "Deja",
+                        initialOrgId: org1._id,
+                        initialRoleId: role2._id,
+                        initialEnabled: true,
+                    })
+                })
+                .then((retUser) => {
+                    return roleService.createRole({
+                        name: "EXEC_CHECKER"
+                    });
+                })
+                .then((retRole3) => {
+                    role3 = retRole3;
+                    return userService.createUser({
+                        email: "EXEC_CSO@dlsu.edu.ph",
+                        password: "password",
+                        firstname: "Jordan",
+                        lastname: "Deja",
+                        initialOrgId: org1._id,
+                        initialRoleId: role3._id,
+                        initialEnabled: true,
+                    })
+                })
+                .then((retUser) => {
+                    return userService.createUser({
+                        email: "APS_CSO@dlsu.edu.ph",
+                        password: "password",
+                        firstname: "Jordan",
+                        lastname: "Deja",
+                        initialOrgId: org1._id,
+                        initialRoleId: role._id,
+                        initialEnabled: true,
+                    })
+                })
+                .then((retUser) => {
+                    resolve(retUser);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
             })
             .then((retUser) => {
                 resolve(retUser);

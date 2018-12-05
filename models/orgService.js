@@ -159,6 +159,21 @@ function getOrgWithAbbrev(abbrev){
   );
 }
 
+function getOrgWithName(name){
+    return new Promise(
+    function (resolve, reject){
+      Org.findOne({name})
+      .then((org)=>{
+        if (org) resolve(org);
+        else reject(Error(abbrev + " Org does not exist"));
+      })
+      .catch((err)=>{
+        reject(err);
+      });
+    }
+  );
+}
+
 module.exports = {activateOrg, deactivateOrg, findSpecificOrg, orgExists,
   deleteOrg, updateOrg, createOrg, changeOrgStatus, getOrgsWithOrgType,
-  getAllOrgs, getOrgWithAbbrev};
+  getAllOrgs, getOrgWithAbbrev, getOrgWithName};

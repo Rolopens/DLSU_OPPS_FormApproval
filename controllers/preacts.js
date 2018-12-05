@@ -169,9 +169,7 @@ module.exports.controller = function (app) {
             var temp = processes[form.processType][form.position].split("-", 2);
             nextRole = temp[0];
             nextOrg = temp[1];
-            if (nextOrg === 'ORG'){
-                nextOrg = form.org;
-            }
+            
 
             if (nextOrg === 'BATCH') {
                 userService.getUserWithId(req.session.uid).then((retUser) => {
@@ -250,6 +248,34 @@ module.exports.controller = function (app) {
                                         console.log(err);
                                     })
                                 })
+                            })
+                        })
+                    })
+                })
+            } else if (nextOrg === 'ORG'){ 
+                roleService.getRoleWithName(nextRole).then((retRole) => {
+                    role1 = retRole
+                    orgService.getOrgWithName(form.org).then((retOrg) => {
+                        org1 = retOrg
+                        userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
+                            var temp = form.currentCheckers;
+                            if (form.status === "Approved") {
+                                form.currentCheckers = [];
+                            } else {
+                                form.currentCheckers = users;
+                            }
+                            //                            form.currentCheckers = users
+                            preactsService.updateForm(form).then((updatedForm) => {
+                                preactsService.findFormViaId(form._id).then((formData1) => {
+                                    //                                res.send({
+                                    //                                    formData1
+                                    //                                })
+                                    res.redirect('/preacts')
+                                }).catch((err) => {
+                                    console.log(err)
+                                })
+                            }).catch((err) => {
+                                console.log(err);
                             })
                         })
                     })
