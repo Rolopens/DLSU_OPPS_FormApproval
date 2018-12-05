@@ -29,45 +29,45 @@
 <body>
     <div id="preacts">
         <% include partials/nav_bar.ejs %>
-        <nav id="secondary-nav">
-            <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
-            <br /><br />
-            <div class="filter-wrapper">
-                <div class="filter-title">
-                    <i class="fa fa-filter fa-2x"></i>
-                    <span>&nbsp;&nbsp;&nbsp;Sort By:</span>
-                </div>
-                <hr />
-                <ul>
-                    <li>
-                        <label>
+            <nav id="secondary-nav">
+                <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
+                <br /><br />
+                <div class="filter-wrapper">
+                    <div class="filter-title">
+                        <i class="fa fa-filter fa-2x"></i>
+                        <span>&nbsp;&nbsp;&nbsp;Sort By:</span>
+                    </div>
+                    <hr />
+                    <ul>
+                        <li>
+                            <label>
                             <input type="checkbox" />
                             <span class="checkmark"><i class="fa fa-check"></i></span>
                             <span>Alphabetical</span>
                             
                         </label>
-                    </li>
-                    <li>
-                        <label>
+                        </li>
+                        <li>
+                            <label>
                             <input type="checkbox" />
                             <span class="checkmark"><i class="fa fa-check"></i></span>
                             <span>Date Created</span>
                             
                         </label>
-                    </li>
-                    <li>
-                        <label>
+                        </li>
+                        <li>
+                            <label>
                             <input type="checkbox" />
                             <span class="checkmark"><i class="fa fa-check"></i></span>
                             <span>Events Happening Soon</span>
                         </label>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-        <header>
-            <!--
+            <header>
+                <!--
 				<div id="account" class="flex-end">
 					<span id="account-name">
 						Timmy Tiberius Turner &nbsp; <i class="fa fa-angle-down"></i>
@@ -75,147 +75,144 @@
 				</div>
 -->
 
-            <!-- <div class="column"> -->
-            <%- include partials/user_dropdown %>
-            <!-- </div> -->
-            <!-- <div class="column"> -->
-            <div class="flex-start">
-                <h1 id="board-title">
-                    <i class="fa fa-file"></i> &nbsp; Pre-Activities Submission
-                </h1>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <form action="create-form" method="get">
-                    <button class="hallow"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Form</button>
-                </form>
-            </div>
-            <!-- </div> -->
-            <!-- <div class="row"> -->
-            <nav id="acts-nav">
-                <ul>
-                    <li class="active">All (243)</li>
-                    <li>Approved (200)</li>
-                    <li>Pending (43)</li>
-                    <li>Rejected (10)</li>
-                </ul>
-            </nav>
-            <!-- </div> -->
-        </header>
-        <section>
-            <div id="main-content">
-                <div class="content-header">
-                    <div id="select-wrapper">
-                        <div class="liveSearchArea">
-                            <form class="searchForm" v-on:submit.prevent="submitSearch">
-                                <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..." @keyup="submitSearch">
-<!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
-                            </form>
+                <!-- <div class="column"> -->
+                <%- include partials/user_dropdown %>
+                    <!-- </div> -->
+                    <!-- <div class="column"> -->
+                    <div class="flex-start">
+                        <h1 id="board-title">
+                            <i class="fa fa-file"></i> &nbsp; Pre-Activities Submission
+                        </h1>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <form action="create-form" method="get">
+                            <button class="hallow"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Form</button>
+                        </form>
+                    </div>
+                    <!-- </div> -->
+                    <!-- <div class="row"> -->
+                    <nav id="acts-nav">
+                        <ul>
+                            <li class="active">All (243)</li>
+                            <li>Approved (200)</li>
+                            <li>Pending (43)</li>
+                            <li>Rejected (10)</li>
+                        </ul>
+                    </nav>
+                    <!-- </div> -->
+            </header>
+            <section>
+                <div id="main-content">
+                    <div class="content-header">
+                        <div id="select-wrapper">
+                            <div class="liveSearchArea">
+                                <form class="searchForm" v-on:submit.prevent="submitSearch">
+                                    <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..." @keyup="submitSearch">
+                                    <!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-feed">
-                    <div class="content-empty" v-if="forms.length == 0">
-                        No forms found.
-                    </div>
-                    <div v-else v-for="form in forms">
-                        <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
-                                        {{form.title}}
-                                    </h3>
-                                    <p class="infoData" name="FormDetails">
-                                        {{form.org}} |
-                                        {{form.startDate}}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                    <div class="content-feed">
+                        <div class="content-empty" v-if="forms.length == 0">
+                            No forms found.
                         </div>
-                        <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
-                                        {{form.title}}
-                                    </h3>
-                                    <p class="infoData" name="FormDetails">
-                                        {{form.org}} |
-                                        {{form.startDate}}
-                                    </p>
+                        <div v-else v-for="form in forms">
+                            <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                                <div class="activity-wrapper flex-start">
+                                    <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
+                                    <div class="activity">
+                                        <h3 class="infoData" name="FormTitle">
+                                            {{form.title}}
+                                        </h3>
+                                        <p class="infoData" name="FormDetails">
+                                            {{form.startDate}} | {{form.org}} 
+                                        </p>
+                                    </div>
                                 </div>
+                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                             </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                        </div>
-                        <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
-                                        {{form.title}}
-                                    </h3>
-                                    <p class="infoData" name="FormDetails">
-                                        {{form.org}} |
-                                        {{form.startDate}}
-                                    </p>
+                            <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                                <div class="activity-wrapper flex-start">
+                                    <div class="activity-icon negative"><i class="fa fa-times"></i></div>
+                                    <div class="activity">
+                                        <h3 class="infoData" name="FormTitle">
+                                            {{form.title}}
+                                        </h3>
+                                        <p class="infoData" name="FormDetails">
+                                            {{form.startDate}} | {{form.org}} 
+                                        </p>
+                                    </div>
                                 </div>
+                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                             </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                                <div class="activity-wrapper flex-start">
+                                    <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                    <div class="activity">
+                                        <h3 class="infoData" name="FormTitle">
+                                            {{form.title}}
+                                        </h3>
+                                        <p class="infoData" name="FormDetails">
+                                            {{form.startDate}} | {{form.org}} 
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            <div id="sidebar">
-                <div class="content-header">
-                    <h3 class="action-title">Quick View</h3>
                 </div>
-                <div id="quick-view" v-if="quickview">
-                    <div class="row" data-id={{quickview._id}}>
-                        <div class="column">
-                            <div class="info">
-                                <h4>Title</h4>
-                                <p id="Title">{{quickview.title}}</p>
-                            </div>
-                            <div class="info">
-                                <h4>Nature</h4>
-                                <p id="Nature">{{quickview.nature}}</p>
-                            </div>
-                            <div class="info">
-                                <h4>Type</h4>
-                                <p id="Type">{{quickview.typeOfActivity}}</p>
-                            </div>
-                            <div class="info">
-                                <h4>Status</h4>
-                                <p id="status">{{quickview.status}}</p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="info">
-                                <h4>Date</h4>
-                                <p id="startDate">{{quickview.startDate}}</p>
-                            </div>
-                            <div class="info">
-                                <h4>Time</h4>
-                                <p id="startTime">{{quickview.startDate}}</p>
-                            </div>
-                            <div class="info">
-                                <h4>Venue</h4>
-                                <p id="location">{{quickview.venue}}</p>
-                            </div>
-                            <br />
-                            <form name="view-form" action="view-form" method="post">
-                                <input style="display:none;" :value="quickview._id" name="form_id">
-                                <button type="submit" class="hallow">View Activity</button>
-                            </form>
-                        </div>
+                <div id="sidebar">
+                    <div class="content-header">
+                        <h3 class="action-title">Quick View</h3>
                     </div>
-                    <br /><br />
-                    <br />
-                    <br />
+                    <div id="quick-view" v-if="quickview">
+                        <div class="row" data-id={{quickview._id}}>
+                            <div class="column">
+                                <div class="info">
+                                    <h4>Title</h4>
+                                    <p id="Title">{{quickview.title}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Nature</h4>
+                                    <p id="Nature">{{quickview.nature}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Type</h4>
+                                    <p id="Type">{{quickview.typeOfActivity}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Status</h4>
+                                    <p id="status">{{quickview.status}}</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="info">
+                                    <h4>Date of Activity</h4>
+                                    <p class="infoData" id="startDate">{{quickview.startDate}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Time</h4>
+                                    <p class="infoData" id="startTime">{{quickview.startTime}} - {{quickview.endTime}}</p>
+                                </div>
+                                <div class="info">
+                                    <h4>Venue</h4>
+                                    <p id="location">{{quickview.venue}}</p>
+                                </div>
+                                <br />
+                                <form name="view-form" action="view-form" method="post">
+                                    <input style="display:none;" :value="quickview._id" name="form_id">
+                                    <button type="submit" class="hallow">View Activity</button>
+                                </form>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <br />
+                        <br />
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
     </div>
 </body>
 
