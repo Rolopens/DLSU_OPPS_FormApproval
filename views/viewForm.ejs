@@ -1,3 +1,5 @@
+<% include ./functions.ejs %>
+
 <html>
 
 <head>
@@ -247,11 +249,11 @@
                     <td class="cell left">
                         <%=data.breakdown_expenses.material[i].quantity%>
                     </td>
-                    <td class="cell left">
-                        <%=data.breakdown_expenses.material[i].unit_cost%>
+                    <td class="cell left">Php
+                        <%=toProperPHP(data.breakdown_expenses.material[i].unit_cost)%>
                     </td>
-                    <td class="cell left">
-                        <%=data.breakdown_expenses.material[i].total_cost%>
+                    <td class="cell left">Php
+                        <%=toProperPHP(data.breakdown_expenses.material[i].total_cost)%>
                     </td>
                 </tr>
                 <%}%>
@@ -261,7 +263,7 @@
                 <tr>
                     <th colspan="3" class="cell right"> Total:</th>
                     <th class="cell left">Php
-                        <%=data.breakdown_expenses.total_expense%>
+                        <%=toProperPHP(data.breakdown_expenses.total_expense)%>
                     </th>
                 </tr>
             </tfoot>
@@ -277,19 +279,19 @@
                 <tr>
                     <td class="cell right">Organizational Funds</td>
                     <td class="cell left">Php
-                        <%=data.source_funds.organization_funds%>
+                        <%=toProperPHP(data.source_funds.organization_funds)%>
                     </td>
                 </tr>
                 <tr>
                     <td class="cell right">Participants Fee</td>
                     <td class="cell left">Php
-                        <%=data.source_funds.participants_fee%>
+                        <%=toProperPHP(data.source_funds.participants_fee)%>
                     </td>
                 </tr>
                 <tr>
                     <td class="cell right">Others (i.e. Sponsorships)</td>
                     <td class="cell left">Php
-                        <%=data.source_funds.others%>
+                        <%=toProperPHP(data.source_funds.others)%>
                     </td>
                 </tr>
             </tbody>
@@ -297,7 +299,7 @@
                 <tr>
                     <th class="cell right"> Total:</th>
                     <th class="cell left">Php
-                        <%=data.source_funds.total%>
+                        <%=toProperPHP(data.source_funds.total)%>
                     </th>
                 </tr>
             </tfoot>
@@ -312,7 +314,7 @@
                 <tr>
                     <td class="cell right">Operational Fund</td>
                     <td class="cell left">Php
-                        <%=data.organizational_funds.operational_fund%>
+                        <%=toProperPHP(data.organizational_funds.operational_fund)%>
                     </td>
                 </tr>
                 <tr>
@@ -321,7 +323,7 @@
                 <tr>
                     <td class="cell right">Depository Fund</td>
                     <td class="cell left">Php
-                        <%=data.organizational_funds.depository_fund%>
+                        <%=toProperPHP(data.organizational_funds.depository_fund)%>
                     </td>
                 </tr>
                 <tr>
@@ -330,19 +332,19 @@
                 <tr>
                     <td class="cell right">Participants Fee/Donation/Sponsorships</td>
                     <td class="cell left">Php
-                        <%=data.organizational_funds.other_fund%>
+                        <%=toProperPHP(data.organizational_funds.other_fund)%>
                     </td>
                 </tr>
                 <tr>
                     <td class="cell right gray-bg"><b>Total Cash For Disbursement</b></td>
                     <td class="cell left gray-bg">Php
-                        <%=data.organizational_funds.total_disbursement%>
+                        <%=toProperPHP(data.organizational_funds.total_disbursement)%>
                     </td>
                 </tr>
                 <tr>
                     <td class="cell right"><b>Less: Total Projected Expenses</b></td>
                     <td class="cell left">Php
-                        <%=data.organizational_funds.projected_expenses%>
+                        <%=toProperPHP(data.organizational_funds.projected_expenses)%>
                     </td>
                 </tr>
 
@@ -351,7 +353,7 @@
                 <tr>
                     <th class="cell right gray-bg">REMAINING BALANCE</th>
                     <th class="cell left gray-bg">Php
-                        <%=data.organizational_funds.rem_balance%>
+                        <%=toProperPHP(data.organizational_funds.rem_balance)%>
                     </th>
                 </tr>
             </tfoot>
@@ -377,11 +379,11 @@
                     <td class="cell left">
                         <%=data.projected_income.revenue[i].quantity%>
                     </td>
-                    <td class="cell left">
-                        <%=data.projected_income.revenue[i].price%>
+                    <td class="cell left">Php
+                        <%=toProperPHP(data.projected_income.revenue[i].price)%>
                     </td>
                     <td class="cell left">Php
-                        <%=data.projected_income.revenue[i].amount%>
+                        <%=toProperPHP(data.projected_income.revenue[i].amount)%>
                     </td>
                 </tr>
                 <%}%>
@@ -402,11 +404,11 @@
                     <td class="cell left">
                         <%=data.projected_income.expenses[i].quantity%>
                     </td>
-                    <td class="cell left">
-                        <%=data.projected_income.expenses[i].price%>
+                    <td class="cell left">Php
+                        <%=toProperPHP(data.projected_income.expenses[i].price)%>
                     </td>
                     <td class="cell left">Php
-                        <%=data.projected_income.expenses[i].amount%>
+                        <%=toProperPHP(data.projected_income.expenses[i].amount)%>
                     </td>
                 </tr>
                 <%}%>
@@ -416,7 +418,7 @@
                 <tr>
                     <th colspan="3" class="cell right gray-bg">TOTAL PROJECTED INCOME</th>
                     <th class="cell left gray-bg">Php
-                        <%=data.projected_income.total%>
+                        <%=toProperPHP(data.projected_income.total)%>
                     </th>
                 </tr>
             </tfoot>
