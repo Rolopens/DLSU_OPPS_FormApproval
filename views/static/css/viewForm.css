@@ -109,3 +109,6 @@ h1 {
     border-color: var(--theme-button-color);
     color: var(--theme-button-color-value);
 }
+.obj{
+    word-wrap: break-word;
+}
