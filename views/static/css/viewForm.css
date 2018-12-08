@@ -47,12 +47,14 @@ h1 {
 .box {
     padding: 3%;
     border: 2px solid black;
+    word-wrap: break-word;
 }
 
 .cell {
     text-align: center;
     padding: 2%;
     border: 2px solid black;
+    word-wrap: break-word;
 
 }
 
