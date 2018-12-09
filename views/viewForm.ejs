@@ -12,7 +12,7 @@
 
         <div class="main ui text container">
             <div class="ui segments" style="padding: 1.2em;">
-                <form id="activityForm" action="/preacts" method="post">
+                <form id="activityForm" action="/preacts" method="get">
                     <div class="ui grid">
                         <div class="two column row">
                             <div class="left floated column">
@@ -388,7 +388,7 @@
                         <%if(button === true) {%>
                         <div>
                             <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
-                                <input id="approve" type="submit" class="button approve" value="Approve" formaction="/preacts/approve/<%=data._id%>">
+                                <input id="approve" type="submit" class="button approve" value="Approve" >
                             </form>
                             <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
                                 <input id="reject" type="submit" class="button reject" value="Reject">
