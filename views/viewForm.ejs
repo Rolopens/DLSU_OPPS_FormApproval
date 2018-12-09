@@ -15,10 +15,10 @@
                 <form id="activityForm" action="/preacts" method="get">
                     <div class="ui grid">
                         <div class="two column row">
-                            <div class="left floated column">
+                            <div class="left floated column1">
                                 <h1 class="ui header" style="margin-top: 0.65em;text-align:left;"><%=data.title%></h1>
                             </div>
-                            <div class="right floated column">
+                            <div class="right floated column2">
                                 <img src="assets/svg/logo_opps-logo-green.svg" />
                             </div>
                         </div>
@@ -234,7 +234,12 @@
                                 <tr>
                                     <th colspan="1" class="total">
                                         <div class="ui right floated small primary labeled">
-                                            Total:
+                                            <%{%>
+                                                <%var dateSub = data.creationDate + "";%>
+                                                <%var array = dateSub.split(" ");%>
+                                                <%var date = array[1] + " " + array[2] + " " + array[3];%>
+                                            <%}%>
+                                            As of (<%=date%>) Total:
                                         </div>
                                     </th>
                                     <th class="result" name="totalSource">Php <%=toProperPHP(data.source_funds.total)%></th>
@@ -395,6 +400,14 @@
                             </form>
                         </div>
                         <br/><br/>
+                        <%} else {%>
+                            <%if(data.status == "Rejected") {%>
+                                <div>
+                                    <form id="form" method="get">
+                                        <input id="edit" type="submit" class="fluid submit-button next" value="Edit">
+                                    </form>
+                                </div>
+                            <%}%>
                         <%}%>
                     </div>
                     <br/>

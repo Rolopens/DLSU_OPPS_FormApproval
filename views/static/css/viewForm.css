@@ -31,6 +31,15 @@ h1 {
     padding-bottom: 3%;
 }
 
+.column1 {
+    padding-left: 2%;
+    width: 70% !important;
+}
+
+.column2 {
+    width: 30% !important;
+}
+
 .center {
     display: flex !important;
     justify-content: center !important;
