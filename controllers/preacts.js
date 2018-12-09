@@ -363,12 +363,40 @@ module.exports.controller = function (app) {
                 if (retRole.name != "PROJECT_HEAD") {
                     res.redirect('/preacts');
                 } else {
-                    res.render('preacts-submit', {
-                        preacts: false,
-                        preactsSubmission: true,
-                        accounts: false,
-                        organization: false
-                    });
+                    if (req.session.submissionError == true){
+                        res.render('preacts-submit', {
+                                preacts: false,
+                                preactsSubmission: true,
+                                accounts: false,
+                                organization: false,
+                                submitSuccess: false,
+                                submissionError: true
+                            });
+                        req.session.submissionError = false;
+                    } else {
+                       if(req.session.submissionValue==true){
+                            res.render('preacts-submit', {
+                                preacts: false,
+                                preactsSubmission: true,
+                                accounts: false,
+                                organization: false,
+                                submitSuccess: true,
+                                submissionError: false
+                            });
+                            req.session.submissionValue=false;
+                        } else {
+                            res.render('preacts-submit', {
+                                preacts: false,
+                                preactsSubmission: true,
+                                accounts: false,
+                                organization: false,
+                                submitSuccess: false,
+                                submissionError: false
+                            });
+                        } 
+                    }
+                    
+                    
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -420,6 +448,7 @@ module.exports.controller = function (app) {
     app.post('/create-form-confirm', function (req, res) {
         //        console.log(req.body)
         var isSlife = false;
+        req.session.submissionValue = false;
         req.session.title = req.body.title;
         req.session.nature = req.body.nature;
         if (req.body.type.split("-")[0] == 'SLIFE') {
@@ -666,29 +695,43 @@ module.exports.controller = function (app) {
                                 preactsService.addForm(form).then((addedForm) => {
                                     //                                    console.log(addedForm);
                                     clearSessionForm(req);
+                                    res.redirect('/preacts-submission');
+                                    
                                 }).catch((err) => {
                                     console.log("ERROR: Failed to add form in database");
                                     console.log(err);
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
                                 });
                             }).catch((err) => {
                                 console.log(err);
+                                req.session.submissionError = true;
+                                res.redirect('/preacts-submission');
                             });
                         }).catch((err) => {
-                            console.log("PROBLEM WITH FUNCTION FIND USER BY ROLE AND ORGABBRV")
+                            req.session.submissionError = true;
+                            res.redirect('/preacts-submission');
                         })
-                    })
+                    }).catch((err) => {
+                            req.session.submissionError = true;
+                            res.redirect('/preacts-submission');
+                        })
                 })
 
             }).catch((err) => {
                 console.log("ERROR: Failed to find organization given org_id - " + org_id);
                 console.log(err);
+                req.session.submissionError = true;
+                res.redirect('/preacts-submission');
             });
         }).catch((err) => {
             console.log("ERROR: Failed to find user given user_id - " + req.session.uid);
             console.log(err);
+            req.session.submissionError = true;
+            res.redirect('/preacts-submission');
         });
 
-        res.redirect('/preacts-submission');
+        
     });
 
     var clearSessionForm = function (req) {
@@ -721,6 +764,7 @@ module.exports.controller = function (app) {
         req.session.projRevData = null;
         req.session.porjExpData = null;
         req.session.projIncomeTotal = null;
+        req.session.submissionValue = true;
     }
 
     app.post('/view-form', function (req, res) {
