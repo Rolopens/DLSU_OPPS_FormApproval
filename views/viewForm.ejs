@@ -7,6 +7,8 @@
         <%- include partials/scriptResources %>
         <link rel="stylesheet" href="css/form.css">
         <link rel="stylesheet" href="css/viewForm.css">
+        <link rel="stylesheet" href="css/variables.css" />
+        <link rel="stylesheet" href="css/bootstrap_modal_2.css" />
     </head>
     <body>
 
@@ -421,23 +423,65 @@
                 </form>
                 <%if(button === true) {%>
                     <div>
-                        <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
-                            <input id="approve" type="submit" class="button approve" value="Approve" >
-                        </form>
-                        <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
-                            <input id="reject" type="submit" class="button reject" value="Reject">
-                        </form>
-                    </div>
-                    <br/><br/>
-                    <%} else {%>
-                        <%if(data.status == "Rejected") {%>
-                            <div>
-                                <form id="form" method="get">
-                                    <input id="edit" type="submit" class="fluid submit-button next" value="Edit">
-                                </form>
+                        <!-- Rejection modal -->
+                        <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        You are about to <b>reject</b> the activity <b><%=data.title%></b>. Proceed?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                          
+                                        <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+                                            <button type="submit" class="btn btn-primary" id="reject">Reject</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                        <%}%>
+                        </div>
+
+                        <!-- Approval modal -->
+                        <div class="modal fade" id="modalActivityApprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        You are about to <b>approve</b> the activity <b><%=data.title%></b>. Proceed?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                            
+                                        <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
+                                            <button type="submit" class="btn btn-primary" id="approve">Approve</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <input id="approve" type="submit" class="button approve" value="Approve" data-toggle="modal" data-target="#modalActivityApprove">
+                        <input id="reject" type="submit" class="button reject" value="Reject" data-toggle="modal" data-target="#modalActivityReject">  
+                    </div>
+                <br/><br/>
+                <%} else {%>
+                    <%if(data.status == "Rejected") {%>
+                        <div>
+                            <form id="form" method="get">
+                                <input id="edit" type="submit" class="fluid submit-button next" value="Edit">
+                            </form>
+                        </div>
                     <%}%>
+                <%}%>
             </div>
         </div>
 

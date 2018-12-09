@@ -43,8 +43,8 @@
 }
 
 .modal-dialog-centered {
-  display: -ms-flexbox;
-  display: flex;
+/*  display: -ms-flexbox;*/
+/*  display: flex;*/
   -ms-flex-align: center;
   align-items: center;
   min-height: calc(100% - (0.5rem * 2));
@@ -166,3 +166,24 @@
 .btn-default{color:#333;background-color:#fff;border-color:#ccc;width:120px}.btn-default.active,.btn-default.focus,.btn-default:active,.btn-default:focus,.btn-default:hover,.open>.dropdown-toggle.btn-default{color:#333;background-color:#e6e6e6;border-color:#adadad}.btn-default.active,.btn-default:active,.open>.dropdown-toggle.btn-default{background-image:none}.btn-default.disabled,.btn-default.disabled.active,.btn-default.disabled.focus,.btn-default.disabled:active,.btn-default.disabled:focus,.btn-default.disabled:hover,.btn-default[disabled],.btn-default[disabled].active,.btn-default[disabled].focus,.btn-default[disabled]:active,.btn-default[disabled]:focus,.btn-default[disabled]:hover,fieldset[disabled] .btn-default,fieldset[disabled] .btn-default.active,fieldset[disabled] .btn-default.focus,fieldset[disabled] .btn-default:active,fieldset[disabled] .btn-default:focus,fieldset[disabled] .btn-default:hover{background-color:#fff;border-color:#ccc}.btn-default .badge{color:#fff;background-color:#333}
 
 .btn-primary{color:#fff;background-color:#337ab7;border-color:#2e6da4;width:120px}.btn-primary.active,.btn-primary.focus,.btn-primary:active,.btn-primary:focus,.btn-primary:hover,.open>.dropdown-toggle.btn-primary{color:#fff;background-color:#286090;border-color:#204d74}.btn-primary.active,.btn-primary:active,.open>.dropdown-toggle.btn-primary{background-image:none}.btn-primary.disabled,.btn-primary.disabled.active,.btn-primary.disabled.focus,.btn-primary.disabled:active,.btn-primary.disabled:focus,.btn-primary.disabled:hover,.btn-primary[disabled],.btn-primary[disabled].active,.btn-primary[disabled].focus,.btn-primary[disabled]:active,.btn-primary[disabled]:focus,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary,fieldset[disabled] .btn-primary.active,fieldset[disabled] .btn-primary.focus,fieldset[disabled] .btn-primary:active,fieldset[disabled] .btn-primary:focus,fieldset[disabled] .btn-primary:hover{background-color:#337ab7;border-color:#2e6da4}.btn-primary .badge{color:#337ab7;background-color:#fff}
+
+.modal-footer button {
+/*    margin: 5px;*/
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-radius: 3px;
+    width: 20%;
+    text-align: center;
+    border: solid #ccc 1px;
+    display:inline-block;
+}
+
+.modal-content #reject {
+    background-color: var(--theme-rejection);
+    border-color: var(--theme-rejection);
+}
+
+.modal-content #approve {
+    background-color: var(--theme-approval);
+    border-color: var(--theme-approval);
+}
