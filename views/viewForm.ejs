@@ -436,9 +436,9 @@
                                     <div class="modal-body">
                                         You are about to <b>reject</b> the activity <b><%=data.title%></b>. Proceed?
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                          
+                                    <div class="modal-footer">                          
                                         <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary" id="reject">Reject</button>
                                         </form>
                                     </div>
@@ -459,10 +459,10 @@
                                     <div class="modal-body">
                                         You are about to <b>approve</b> the activity <b><%=data.title%></b>. Proceed?
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                            
+                                    <div class="modal-footer">                           
                                         <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
-                                            <button type="submit" class="btn btn-primary" id="approve">Approve</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" id="approve">Approve</button> 
                                         </form>
                                     </div>
                                 </div>
