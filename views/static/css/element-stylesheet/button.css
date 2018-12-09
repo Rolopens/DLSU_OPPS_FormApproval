@@ -44,7 +44,8 @@ button, input[type="button"], input[type="submit"]{
     font-family: 'Lato', sans-serif;
     cursor: pointer;
     border-radius: 3px;
-    font-size: 0.85em;
+    font-size: 0.90em;
+    font-weight: 800;
     margin: 0;
     outline: none;
     letter-spacing: 0.5px;
@@ -79,8 +80,8 @@ button.hallow {
 
 /* transparent background color, themed button */
 button.hallow, input[type="button"].hallow, input[type="submit"].hallow{
-    background-color: transparent;
-    color: var(--theme-button-color);
+    background-color: var(--theme-button-color);
+    color: white;
     border-color: var(--theme-button-color);
 }
 
@@ -108,9 +109,9 @@ button:hover, input[type="button"]:hover, input[type="submit"]:hover{
 }
 
 button.hallow:hover, input[type="button"].hallow:hover, input[type="submit"].hallow:hover{
-    background-color: var(--theme-button-color);
+    background-color: var(--theme-button-color-value);
     border-color: var(--theme-button-color);
-    color: var(--theme-button-color-value);
+    color: var(--theme-button-color);
 }
 
 button.white:hover, input[type="button"].white:hover, input[type="submit"].white:hover{

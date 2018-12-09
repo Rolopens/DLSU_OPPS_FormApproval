@@ -2,491 +2,574 @@
 
 <html>
 
-<head>
-    <title>View Form</title>
+    <head>
+        <title>View Project Proposal</title>
+        <%- include partials/scriptResources %>
+        <link rel="stylesheet" href="css/form.css">
+        <link rel="stylesheet" href="css/viewForm.css">
+    </head>
+    <body>
 
-<!--    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>-->
-    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
-    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
-        rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/viewForm.css">
+        <div class="main ui text container">
+            <div class="ui segments" style="padding: 1.2em;">
+                <form id="activityForm" action="/preacts" method="get">
+                    <div class="ui grid">
+                        <div class="two column row">
+                            <div class="left floated column">
+                                <h1 class="ui header" style="margin-top: 0.65em;text-align:left;"><%=data.title%></h1>
+                            </div>
+                            <div class="right floated column">
+                                <img src="assets/svg/logo_opps-logo-green.svg" />
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <%if(prevForm != null) {%>
+                    <div class="ui buttons center">
+                        <button id="newButton" class="ui teal button active" type="button">New Version</button>
+                        <button id="oldButton" class="ui teal basic button" type="button">Old Version</button>
+                    </div>
+                    <br/>
+                    <%}%>
 
-<!--
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
--->
-    <script src=static/lib/jquery-3.3.1.min.js ></script>
+                    <!-- Page 1-->
+                    <div class="tab">
+                        <h3 class="labelHead"><label>Organization/Unit</label></h3>
+                        <label><%=org.name%></label>
+                        <br />
 
-</head>
+                        <h3 class="labelHead ui header"><label>Project Head/s</label></h3>
+                        <table id="pheads" class="ui compact celled definition fixed table unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th class="item">Name</th>
+                                    <th class="item">Contact Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.projectHeads.length;i++) {%>
+                                <tr>
+                                    <td style="background:none;font-weight:1;"><%=data.projectHeads[i].name%></td>
+                                    <td>0<%=data.projectHeads[i].contact_number%></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
 
-<body>
+                        <br/>
+                        <table style="border: none">
+                            <tr>
+                                <td class="cell2 left"><h3>Nature of the Activity</h3></td>
+                                <td class="cell2 left"><h3>Type of the Activity</h3></td>
+                            </tr>
+                            <tr>
+                                <td id="nature" class="cell2 left"><%=data.nature%></td>
+                                <td id="type" class="cell2 left"><%=data.typeOfActivity%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 cell3 left"><h3 class="labelHead ui header"><label>Date of the Activity</label></h3></td>
+                            </tr>
+                            <tr>
+                                <td id="date" class="cell2 left"><%=data.startDate%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 left"><h3>Start Time of the Activity</h3></td>
+                                <td class="cell2 left"><h3>End Time of the Activity</h3></td>
+                            </tr>
+                            <tr>
+                                <td id="startTime" class="cell2 left"><%=data.startTime%></td>
+                                <td id="endTime" class="cell2 left"><%=data.endTime%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 cell3 left"><h3>Venue</h3></td>
+                            </tr>
+                            <tr>
+                                <td id="venue" class="cell2 left"><%=data.venue%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 left"><h3>ENMP</h3></td>
+                                <td class="cell2 left"><h3>ENP</h3></td>
+                            </tr>
+                            <tr>
+                                <td id="enmp" class="cell2 left"><%=data.enmp%></td>
+                                <td id="enp" class="cell2 left"><%=data.enp%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 cell3 left"><h3>Reach of the Activity</h3></td>
+                            </tr>
+                            <tr>
+                                <td id="reach" class="cell2 left"><%=data.reach%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 left"><h3>Online Activity</h3></td>
+                                <td class="cell2 left"><h3>Activity in GOSM</h3></td>
+                            </tr>
+                            <tr id="online_gosm">
+                                <%if(data.online == true) {%>
+                                <td class="cell2 left">YES</td>
+                                <%} else{%>
+                                <td class="cell2 left">NO</td>
+                                <%}%>
+                                <%if(data.GOSM == true) {%>
+                                <td class="cell2 left">YES</td>
+                                <%} else{%>
+                                <td class="cell2 left">NO</td>
+                                <%}%>
+                            </tr>
+                        </table>
+                    </div>
 
-    <div id="main">
-        <h1 class="ui header">Project Proposal</h1>
-        <!-- <div class="right floated column"><img src="assets/svg/logo_opps-logo-green.svg" /></div> -->
-        <div class="row"></div>
+                    <!-- Page 2-->
+                    <div class="tab">
+                        <h3 class="labelHead ui header">Brief Context /
+                            Perspective of the Activity</h3>
 
-        <table style="border: none">
-            <tr>
-                <th>Organization:</th>
-                <th>Title of the Activity:</th>
-            </tr>
-            <tr>
-                <td>
-                    <%=data.org%>
-                </td>
-                <td>
-                    <%=data.title%>
-                </td>
-            </tr>
-        </table>
+                        <div id="context" class=box>
+                            <%=data.context[0]%> <br/><br/>
+                            <%=data.context[1]%> <br/><br/>
+                            <%=data.context[2]%> 
+                        </div>
 
-        <br />
-        <table style="border: none">
-            <tr>
-                <th>Nature of the Activity:</th>
-                <th>Type of the Activity:</th>
-            </tr>
-            <tr>
-                <td>
-                    <%=data.nature%>
-                </td>
-                <td>
-                    <%=data.typeOfActivity%>
-                </td>
-            </tr>
-        </table>
+                        <br />
+                        <h3 class="labelHead ui header"><label>Objectives</label></h3>
+                        <div id="objectives">
+                            <div class="field">
+                                <label>1. <%=data.objectives[0]%></label>
+                            </div>
+                            <br />
+                            <div>
+                                <label>2. <%=data.objectives[1]%></label>
+                            </div>
+                            <br />
+                            <div>
+                                <label>3. <%=data.objectives[2]%></label>
+                            </div>
+                        </div>
+                        <br />
 
-        <br />
-        <table style="border: none">
-            <tr>
-                <th>Date of the Activity:</th>
-            </tr>
-            <tr>
-                <td>
-                    <%=data.startDate%>
-                </td>
-            </tr>
-        </table>
+                        <h3 class="labelHead ui header"><label>Comprehensive Program Design</label></h3>
+                        <table id="cpd" class="ui compact celled definition fixed table unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th class="item">Start Time to End Time</th>
+                                    <th class="item">Duration</th>
+                                    <th class="item">Activity</th>
+                                    <th class="item five wide">Brief Description of the Activity</th>
+                                    <th class="item">Person-in-charge</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.program_flow.length;i++) {%>
+                                <tr>
+                                    <td style="background:none;font-weight:1;"><%=data.program_flow[i].startTime%> to
+                                        <%=data.program_flow[i].endTime%></td>
+                                    <td><%=data.program_flow[i].duration%> mins</td>
+                                    <td><%=data.program_flow[i].activity%></td>
+                                    <td><%=data.program_flow[i].description%></td>
+                                    <td><%=data.program_flow[i].person%></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </div>
 
-        <br />
-        <table style="border: none">
-            <tr>
-                <th>Start Time of the Activity:</th>
-                <th>End Time of the Activity:</th>
-            </tr>
-            <tr>
-                <td>
-                    <%=data.startTime%>
-                </td>
-                <td>
-                    <%=data.endTime%>
-                </td>
-            </tr>
-        </table>
+                    <!--Page 3-->
+                    <div class="tab">
+                        <h3 class="labelHead ui header"><label>Breakdown of Expenses</label></h3>
+                        <table id="boe" class="ui compact celled definition fixed table unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th class="item">Materials</th>
+                                    <th class="item">Quantity</th>
+                                    <th class="item">Unit Cost</th>
+                                    <th class="item">Total Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.breakdown_expenses.material.length;i++) {%>
+                                <tr>
+                                    <td style="background:none;font-weight:1;"><%=data.breakdown_expenses.material[i].name%></td>
+                                    <td><%=data.breakdown_expenses.material[i].quantity%></td>
+                                    <td>Php <%=toProperPHP(data.breakdown_expenses.material[i].unit_cost)%></td>
+                                    <td>Php <%=toProperPHP(data.breakdown_expenses.material[i].total_cost)%></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2" class="total" style="border-left:none;">
+                                        <div class="ui right floated small primary labeled">
+                                            Total:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="boeTotal">Php <%=toProperPHP(data.breakdown_expenses.total_expense)%></th>
+                                </tr>
+                            </tfoot>
+                        </table>
 
-        <br />
-        <table style="border: none">
-            <tr>
-                <th>ENMP:</th>
-                <th>ENP:</th>
-            </tr>
-            <tr>
-                <td>
-                    <%=data.enmp%>
-                </td>
-                <td>
-                    <%=data.enp%>
-                </td>
-            </tr>
-        </table>
+                        <h3 class="labelHead ui header"><label>Source of Funds</label></h3>
+                        <table id="sof" class="ui compact celled definition fixed table unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th class="item eleven wide">Source/s of Funds</th>
+                                    <th class="item three wide">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Organizational Funds</td>
+                                    <td style="background:none;font-weight:1;">Php <%=toProperPHP(data.source_funds.organization_funds)%></td>
+                                </tr>
+                                <tr>
+                                    <td>Participants Fee</td>
+                                    <td style="background:none;font-weight:1;">Php <%=toProperPHP(data.source_funds.participants_fee)%>
+                                </tr>
+                                <tr>
+                                    <td>Others (i.e. Sponsorships)</td>
+                                    <td style="background:none;font-weight:1;">Php <%=toProperPHP(data.source_funds.others)%>
+                                </tr>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th colspan="1" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            Total:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="totalSource">Php <%=toProperPHP(data.source_funds.total)%></th>
+                                </tr>
+                            </tfoot>
+                        </table>
 
-        <br />
-        <table style="border: none">
-            <tr>
-                <th>Venue of the Activity:</th>
-                <th>Reach of the Activity:</th>
-            </tr>
-            <tr>
-                <td>
-                    <%=data.venue%>
-                </td>
-                <td>
-                    <%=data.reach%>
-                </td>
-            </tr>
-        </table>
+                        <h3 class="labelHead ui header"><label>Organizational Funds</label></h3>
+                        <table id="of" class="ui compact celled definition fixed table basic unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: left;">
+                                    <th class="item eleven wide" style="border-right: none;">Accumulated Operational Funds</th>
+                                    <th class="item four wide" style="border-left: none;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="right">
+                                            Operational Fund
+                                        </div>
+                                    </td>
+                                    <td>Php <%=toProperPHP(data.organizational_funds.operational_fund)%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Accumulated
+                                        Depository Funds</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="right">
+                                            Depository Fund
+                                        </div>
+                                    </td>
+                                    <td>Php <%=toProperPHP(data.organizational_funds.depository_fund)%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other
+                                        Sources of Funds</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="right">
+                                            Participants Fee/Donation/Sponsorships
+                                        </div>
+                                    </td>
+                                    <td>Php <%=toProperPHP(data.organizational_funds.other_fund)%></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-gray bold">
+                                        <div class="right italics">
+                                            Total Cash For Disbursement
+                                        </div>
+                                    </td>
+                                    <td style="background-color: #F7F7F7;" name="totalDisbursement">Php <%=toProperPHP(data.organizational_funds.total_disbursement)%></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="right bold">
+                                            Less: Total Projected Expenses
+                                        </div>
+                                    </td>
+                                    <td style="background-color: #F7F7F7;">Php <%=toProperPHP(data.organizational_funds.projected_expenses)%></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-gray">
+                                        <div class="right bold">
+                                            REMAINING BALANCE
+                                        </div>
+                                    </td>
+                                    <td style="background-color: #F7F7F7;">Php <%=toProperPHP(data.organizational_funds.rem_balance)%></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-        <br />
-        <table style="border: none">
-            <tr>
-                <th>Online Activity:</th>
-                <th>Activity in GOSM:</th>
-            </tr>
-            <tr>
-                <%if(data.online == true) {%>
-                <td>YES</td>
-                <%} else{%>
-                <td>NO</td>
-                <%}%>
-                <%if(data.GOSM == true) {%>
-                <td>YES</td>
-                <%} else{%>
-                <td>NO</td>
-                <%}%>
-            </tr>
-        </table>
+                        <h3 class="labelHead ui header"><label>Projected Income</label></h3>
+                        <table id="pi" class="ui compact celled definition fixed table unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: left;">
+                                    <th colspan="4">Projected Revenue</th>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <th class="item">Item</th>
+                                    <th class="item">Qty</th>
+                                    <th class="item">Selling Price</th>
+                                    <th class="item">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
+                                <tr>
+                                    <td style="background:none;font-weight:1;"><%=data.projected_income.revenue[i].item%></td>
+                                    <td><%=data.projected_income.revenue[i].quantity%></td>
+                                    <td>Php <%=toProperPHP(data.projected_income.revenue[i].price)%></td>
+                                    <td>Php <%=toProperPHP(data.projected_income.revenue[i].amount)%></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <thead class="full-width">
+                                <tr style="text-align: left;">
+                                    <th colspan="4">Less: Projected Expenses</th>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <th class="item">Item</th>
+                                    <th class="item">Qty</th>
+                                    <th class="item">Selling Price</th>
+                                    <th class="item">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.projected_income.expenses.length;i++) {%>
+                                <tr>
+                                    <td style="background:none;font-weight:1;"><%=data.projected_income.expenses[i].item%></td>
+                                    <td><%=data.projected_income.expenses[i].quantity%></td>
+                                    <td>Php <%=toProperPHP(data.projected_income.expenses[i].price)%></td>
+                                    <td>Php <%=toProperPHP(data.projected_income.expenses[i].amount)%></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2" class="total" style="border-left:none;">
+                                        <div class="ui right floated small primary labeled">
+                                            TOTAL PROJECTED INCOME:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="boeTotal">Php <%=toProperPHP(data.projected_income.total)%></th>
+                                </tr>
+                            </tfoot> 
+                        </table>
 
-        <br />
-        <h3>Brief Context/Perspective of the Activity</h3>
-        <label>Part 1</label>
-        <ul>
-            <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
-            <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
-                supported with examples)</li>
-        </ul>
-        <div class="box">
-            <%=data.context[0]%>
+                        <h3 class="labelHead ui header"><label>Provision for Profit and Loss</label></h3>
+                        The following people shall be held liable and will shoulder any remaining balance incurred
+                        by the project.<br><br>
+
+                        <table id="provision" style="border: none">
+                            <tr>
+                                <td class="cell2 left"><h3>Name</h3></td>
+                                <td class="cell2 left"><h3>Position</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 left"><%=data.person_responsible[0].name%></td>
+                                <td class="cell2 left"><%=data.person_responsible[0].position%></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 left"><%=data.person_responsible[1].name%></td>
+                                <td class="cell2 left"><%=data.person_responsible[1].position%></td>
+                            </tr>
+                        </table>
+                        <%if(button === true) {%>
+                        <div>
+                            <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
+                                <input id="approve" type="submit" class="button approve" value="Approve" formaction="/preacts/approve/<%=data._id%>">
+                            </form>
+                            <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+                                <input id="reject" type="submit" class="button reject" value="Reject">
+                            </form>
+                        </div>
+                        <br/><br/>
+                        <%}%>
+                    </div>
+                    <br/>
+
+                    <div class="ui grid">
+                        <div class="row"></div>
+                        <div class="three column row">
+                            <div class="four wide left floated column">
+                                <button class="fluid submit-button previous" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                            </div>
+                            <div class="three wide column">
+                                <!-- Circles which indicates the steps of the form -->
+                                <div class="ui items">
+                                    <div class="item">
+                                        <div class="content" style="margin-top: 1.3em; margin-left: 0.5em;">
+
+                                            <button type="button" class="step" onclick="goToTab(0)"></button>
+                                            <button type="button" class="step" onclick="goToTab(1)"></button>
+                                            <button type="button" class="step" onclick="goToTab(2)"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="four wide right floated column">
+                                <button class="fluid submit-button next" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <br />
-        <label>Part 2</label>
-        <ul>
-            <li>What situation do you see (observation/s) in your organization, university, society, or our world?</li>
-            <li>What certain experiences, problems, or questions do you have in relation to what you see? (May be
-                supported with examples)</li>
-        </ul>
-        <div class="box">
-            <%=data.context[1]%>
-        </div>
+        <script>
+            var newVersion = true;
+            var currentTab = 0; // Current page is set to be the first page (0)
+            showTab(currentTab); // Display the current page
 
-        <br />
-        <label>Part 3</label>
-        <ul>
-            <li>Out of all the possible projects, activities, and solutions, why this?</li>
-            <li>As an organization, what will you commit as a response to what you have started in Part 2?</li>
-        </ul>
-        <div class="box">
-            <%=data.context[2]%>
-        </div>
 
-        <br />
-        <h3>Objectives</h3>
-        <ol>
-            <li class="obj">
-                <%=data.objectives[0]%>
-            </li>
-            <li class="obj">
-                <%=data.objectives[1]%>
-            </li>
-            <li class="obj">
-                <%=data.objectives[2]%>
-            </li>
-        </ol>
+            function showTab(n) {
+                // This function will display the specified page of the form ...
+                var x = document.getElementsByClassName("tab");
 
-        <h3>Project Heads</h3>
-        <table>
-            <tr>
-                <th class="cell">Name</th>
-                <th class="cell">Contact Number</th>
-            </tr>
-            <%for(var i=0; i<data.projectHeads.length;i++) {%>
-            <tr>
-                <td class="cell left">
-                    <%=data.projectHeads[i].name%>
-                </td>
-                <td class="cell left">
-                    <%=data.projectHeads[i].contact_number%>
-                </td>
-            </tr>
-            <%}%>
-        </table>
+                x[n].style.display = "block";
+                // ... and fix the Previous/Next buttons:
+                if (n == 0) {
+                    document.getElementById("prevBtn").style.display = "none";
+                } else {
+                    document.getElementById("prevBtn").style.display = "inline";
+                }
 
-        <h3>Comprehensive Program Design</h3>
-        <table>
-            <tr>
-                <th class="cell">Time</th>
-                <th class="cell">Duration</th>
-                <th class="cell">Activity</th>
-                <th class="cell">Brief Description</th>
-                <th class="cell">Person-In-Charge</th>
-            </tr>
-            <%for(var i=0; i<data.program_flow.length;i++) {%>
-            <tr>
-                <td class="cell left">
-                    <%=data.program_flow[i].startTime%> to
-                    <%=data.program_flow[i].endTime%>
-                </td>
-                <td class="cell left">
-                    <%=data.program_flow[i].duration%> mins</td>
-                <td class="cell left">
-                    <%=data.program_flow[i].activity%>
-                </td>
-                <td class="cell left">
-                    <%=data.program_flow[i].description%>
-                </td>
-                <td class="cell left">
-                    <%=data.program_flow[i].person%>
-                </td>
-            </tr>
-            <%}%>
-        </table>
+                if (n == (x.length - 1)) {
+                    document.getElementById("nextBtn").innerHTML = "Done";
+                } else {
+                    document.getElementById("nextBtn").innerHTML = "Next";
+                }
 
-        <h3>Breakdown of Expenses</h3>
-        <table>
-            <tbody>
-                <tr>
-                    <th class="cell">Materials</th>
-                    <th class="cell">Quantity</th>
-                    <th class="cell">Unit Cost</th>
-                    <th class="cell">Total Cost</th>
-                </tr>
-                <%for(var i=0; i<data.breakdown_expenses.material.length;i++) {%>
-                <tr>
-                    <td class="cell left">
-                        <%=data.breakdown_expenses.material[i].name%>
-                    </td>
-                    <td class="cell left">
-                        <%=data.breakdown_expenses.material[i].quantity%>
-                    </td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.breakdown_expenses.material[i].unit_cost)%>
-                    </td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.breakdown_expenses.material[i].total_cost)%>
-                    </td>
-                </tr>
+                // ... and run a function that displays the correct step indicator:
+                fixStepIndicator(n)
+            }
+
+            function nextPrev(n) {
+                // This function will figure out which tab to display
+                var x = document.getElementsByClassName("tab");
+                // Exit the function if any field in the current tab is invalid:
+
+                x[currentTab].style.display = "none";
+                // Increase or decrease the current tab by 1:
+                currentTab = currentTab + n;
+                // if you have reached the end of the form... :
+                if (currentTab >= x.length) {
+                    //...the form gets submitted:
+                    document.getElementById("activityForm").submit();
+                    showTab(currentTab - 1);
+                    return false;
+                }
+                // Otherwise, display the correct tab:
+                showTab(currentTab);
+                changeContent();
+            }
+
+            function goToTab(n) {
+                var x = document.getElementsByClassName("tab");
+
+                x[currentTab].style.display = "none";
+                currentTab = n;
+
+                showTab(currentTab);
+                changeContent();
+            }
+
+            function fixStepIndicator(n) {
+                // This function removes the "active" class of all steps...
+                var i, x = document.getElementsByClassName("step");
+                for (i = 0; i < x.length; i++) {
+                    x[i].className = x[i].className.replace(" active", "");
+                }
+                //... and adds the "active" class to the current step:
+                x[n].className += " active";
+            }
+
+            function changeContent() {
+                <%if(prevForm != null) {%>
+                if(newVersion) {
+                    if(currentTab == 0) {
+                        $("table#pheads").replaceWith(
+                            '<table id="pheads" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item">Name</th><th class="item">Contact Number</th></tr></thead><tbody><div id="pheads"><%for(var i=0; i<data.projectHeads.length;i++){%><tr><td style="background:none;font-weight:1;"><%=data.projectHeads[i].name%></td><td>0<%=data.projectHeads[i].contact_number%></td></tr><%}%></div></tbody></table>');
+                        $("td#nature").replaceWith('<td id="nature" class="cell2 left"><%=data.nature%></td>');
+                        $("td#type").replaceWith('<td id="type" class="cell2 left"><%=data.typeOfActivity%></td>');
+                        $("td#date").replaceWith('<td id="date" class="cell2 left"><%=data.startDate%></td>');
+                        $("td#startTime").replaceWith('<td id="startTime" class="cell2 left"><%=data.startTime%></td>');
+                        $("td#endTime").replaceWith('<td id="endTime" class="cell2 left"><%=data.endTime%></td>');
+                        $("td#venue").replaceWith('<td id="venue" class="cell2 left"><%=data.venue%></td>');
+                        $("td#enmp").replaceWith('<td id="enmp" class="cell2 left"><%=data.enmp%></td>');
+                        $("td#enp").replaceWith('<td id="enp" class="cell2 left"><%=data.enp%></td>');
+                        $("td#reach").replaceWith('<td id="reach" class="cell2 left"><%=data.reach%></td>');
+                        $("tr#online_gosm").replaceWith('<tr id="online_gosm"><%if(data.online == true) {%><td class="cell2 left">YES</td><%} else{%><td class="cell2 left">NO</td><%}%><%if(data.GOSM == true) {%><td class="cell2 left">YES</td><%} else{%><td class="cell2 left">NO</td><%}%></tr>');            
+                    } else if(currentTab == 1) {
+                        $("div#context").replaceWith('<div id="context" class=box><%=data.context[0]%><br/><br/><%=data.context[1]%> <br/><br/><%=data.context[2]%></div>');
+                        $("div#objectives").replaceWith('<div id="objectives"><div class="field"><label>1. <%=data.objectives[0]%></label></div><br /><div><label>2. <%=data.objectives[1]%></label></div><br /><div><label>3. <%=data.objectives[2]%></label></div></div>');
+                        $("table#cpd").replaceWith('<table id="cpd" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item">Start Time to End Time</th><th class="item">Duration</th><th class="item">Activity</th><th class="item five wide">Brief Description of the Activity</th><th class="item">Person-in-charge</th></tr></thead><tbody><%for(var i=0; i<data.program_flow.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=data.program_flow[i].startTime%> to <%=data.program_flow[i].endTime%></td><td><%=data.program_flow[i].duration%> mins</td><td><%=data.program_flow[i].activity%></td><td><%=data.program_flow[i].description%></td><td><%=data.program_flow[i].person%></td></tr><%}%></tbody></table>');
+                    } else if(currentTab == 2) {
+                        $("table#boe").replaceWith('<table id="boe" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item">Materials</th><th class="item">Quantity</th><th class="item">Unit Cost</th><th class="item">Total Cost</th></tr></thead><tbody><%for(var i=0; i<data.breakdown_expenses.material.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=data.breakdown_expenses.material[i].name%></td><td><%=data.breakdown_expenses.material[i].quantity%></td><td>Php <%=toProperPHP(data.breakdown_expenses.material[i].unit_cost)%></td><td>Php <%=toProperPHP(data.breakdown_expenses.material[i].total_cost)%></td></tr><%}%></tbody><tfoot class="full-width"><tr><th></th><th colspan="2" class="total" style="border-left:none;"><div class="ui right floated small primary labeled">Total:</div></th><th class="result" name="boeTotal">Php <%=toProperPHP(data.breakdown_expenses.total_expense)%></th></tr></tfoot></table>');
+                        $("table#sof").replaceWith('<table id="sof" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item eleven wide">Source/s of Funds</th><th class="item three wide">Amount</th></tr></thead><tbody><tr><td>Organizational Funds</td><td style="background:none;font-weight:1;">Php <%=toProperPHP(data.source_funds.organization_funds)%></td></tr><tr><td>Participants Fee</td><td style="background:none;font-weight:1;">Php <%=toProperPHP(data.source_funds.participants_fee)%></tr><tr><td>Others (i.e. Sponsorships)</td><td style="background:none;font-weight:1;">Php <%=toProperPHP(data.source_funds.others)%></tr></tbody><tfoot class="full-width"><tr><th colspan="1" class="total"><div class="ui right floated small primary labeled">Total:</div></th><th class="result" name="totalSource">Php <%=toProperPHP(data.source_funds.total)%></th></tr></tfoot></table>');
+                        $("table#of").replaceWith('<table id="of" class="ui compact celled definition fixed table basic unstackable"><thead class="full-width"><tr style="text-align: left;"><th class="item eleven wide" style="border-right: none;">Accumulated Operational Funds</th><th class="item four wide" style="border-left: none;"></th></tr></thead><tbody><tr><td><div class="right">Operational Fund</div></td><td>Php <%=toProperPHP(data.organizational_funds.operational_fund)%></td></tr><tr><td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Accumulated Depository Funds</td></tr><tr><td><div class="right">Depository Fund</div></td><td>Php <%=toProperPHP(data.organizational_funds.depository_fund)%></td></tr><tr><td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other Sources of Funds</td></tr><tr><td><div class="right">Participants Fee/Donation/Sponsorships</div></td><td>Php <%=toProperPHP(data.organizational_funds.other_fund)%></td></tr><tr><td class="bg-gray bold"><div class="right italics">Total Cash For Disbursement</div></td><td style="background-color: #F7F7F7;" name="totalDisbursement">Php <%=toProperPHP(data.organizational_funds.total_disbursement)%></td></tr><tr><td><div class="right bold">Less: Total Projected Expenses</div></td><td style="background-color: #F7F7F7;">Php <%=toProperPHP(data.organizational_funds.projected_expenses)%></td></tr><tr><td class="bg-gray"><div class="right bold">REMAINING BALANCE</div></td><td style="background-color: #F7F7F7;">Php <%=toProperPHP(data.organizational_funds.rem_balance)%></td></tr></tbody></table>');
+                        $("table#pi").replaceWith('<table id="pi" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: left;"><th colspan="4">Projected Revenue</th></tr><tr style="text-align: center;"><th class="item">Item</th><th class="item">Qty</th><th class="item">Selling Price</th><th class="item">Amount</th></tr></thead><tbody><%for(var i=0; i<data.projected_income.revenue.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=data.projected_income.revenue[i].item%></td><td><%=data.projected_income.revenue[i].quantity%></td><td>Php <%=toProperPHP(data.projected_income.revenue[i].price)%></td><td>Php <%=toProperPHP(data.projected_income.revenue[i].amount)%></td></tr><%}%></tbody><thead class="full-width"><tr style="text-align: left;"><th colspan="4">Less: Projected Expenses</th></tr><tr style="text-align: center;"><th class="item">Item</th><th class="item">Qty</th><th class="item">Selling Price</th><th class="item">Amount</th></tr></thead><tbody><%for(var i=0; i<data.projected_income.expenses.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=data.projected_income.expenses[i].item%></td><td><%=data.projected_income.expenses[i].quantity%></td><td>Php <%=toProperPHP(data.projected_income.expenses[i].price)%></td><td>Php <%=toProperPHP(data.projected_income.expenses[i].amount)%></td></tr><%}%></tbody><tfoot class="full-width"><tr><th></th><th colspan="2" class="total" style="border-left:none;"><div class="ui right floated small primary labeled">TOTAL PROJECTED INCOME:</div></th><th class="result" name="boeTotal">Php <%=toProperPHP(data.projected_income.total)%></th></tr></tfoot></table>');
+                        $("table#provision").replaceWith('<table id="provision" style="border: none"><tr><td class="cell2 left"><h3>Name</h3></td><td class="cell2 left"><h3>Position</h3></td></tr><tr><td class="cell2 left"><%=data.person_responsible[0].name%></td><td class="cell2 left"><%=data.person_responsible[0].position%></td></tr><tr><td class="cell2 left"><%=data.person_responsible[1].name%></td><td class="cell2 left"><%=data.person_responsible[1].position%></td></tr></table>');
+                    }
+                } else {
+                    if(currentTab == 0) {
+                        $("table#pheads").replaceWith(
+                            '<table id="pheads" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item">Name</th><th class="item">Contact Number</th></tr></thead><tbody><div id="pheads">' + '<%for(var i=0; i<prevForm.projectHeads.length;i++){%>' + '<tr><td style="background:none;font-weight:1;">' + '<%=prevForm.projectHeads[i].name%>' + '</td><td>0' + '<%=prevForm.projectHeads[i].contact_number%>' + '</td></tr>' + '<%}%>' + '</div></tbody></table>');
+                        $("td#nature").replaceWith('<td id="nature" class="cell2 left"><%=prevForm.nature%></td>');
+                        $("td#type").replaceWith('<td id="type" class="cell2 left"><%=prevForm.typeOfActivity%></td>');
+                        $("td#date").replaceWith('<td id="date" class="cell2 left"><%=prevForm.startDate%></td>');
+                        $("td#startTime").replaceWith('<td id="startTime" class="cell2 left"><%=prevForm.startTime%></td>');
+                        $("td#endTime").replaceWith('<td id="endTime" class="cell2 left"><%=prevForm.endTime%></td>');
+                        $("td#venue").replaceWith('<td id="venue" class="cell2 left"><%=prevForm.venue%></td>');
+                        $("td#enmp").replaceWith('<td id="enmp" class="cell2 left"><%=prevForm.enmp%></td>');
+                        $("td#enp").replaceWith('<td id="enp" class="cell2 left"><%=prevForm.enp%></td>');
+                        $("td#reach").replaceWith('<td id="reach" class="cell2 left"><%=prevForm.reach%></td>');
+                        $("tr#online_gosm").replaceWith('<tr id="online_gosm"><%if(prevForm.online == true) {%><td class="cell2 left">YES</td><%} else{%><td class="cell2 left">NO</td><%}%><%if(prevForm.GOSM == true) {%><td class="cell2 left">YES</td><%} else{%><td class="cell2 left">NO</td><%}%></tr>');                  
+                    } else if(currentTab == 1) {
+                        $("div#context").replaceWith('<div id="context" class=box><%=prevForm.context[0]%><br/><br/><%=prevForm.context[1]%><br/><br/><%=prevForm.context[2]%></div>');
+                        $("div#objectives").replaceWith('<div id="objectives"><div class="field"><label>1. <%=prevForm.objectives[0]%></label></div><br /><div><label>2. <%=prevForm.objectives[1]%></label></div><br /><div><label>3. <%=prevForm.objectives[2]%></label></div></div>');
+                        $("table#cpd").replaceWith('<table id="cpd" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item">Start Time to End Time</th><th class="item">Duration</th><th class="item">Activity</th><th class="item five wide">Brief Description of the Activity</th><th class="item">Person-in-charge</th></tr></thead><tbody><%for(var i=0; i<prevForm.program_flow.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=prevForm.program_flow[i].startTime%> to <%=prevForm.program_flow[i].endTime%></td><td><%=prevForm.program_flow[i].duration%> mins</td><td><%=prevForm.program_flow[i].activity%></td><td><%=prevForm.program_flow[i].description%></td><td><%=prevForm.program_flow[i].person%></td></tr><%}%></tbody></table>');
+                    } else if(currentTab == 2) {
+                        $("table#boe").replaceWith('<table id="boe" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item">Materials</th><th class="item">Quantity</th><th class="item">Unit Cost</th><th class="item">Total Cost</th></tr></thead><tbody><%for(var i=0; i<prevForm.breakdown_expenses.material.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=prevForm.breakdown_expenses.material[i].name%></td><td><%=prevForm.breakdown_expenses.material[i].quantity%></td><td>Php <%=toProperPHP(prevForm.breakdown_expenses.material[i].unit_cost)%></td><td>Php <%=toProperPHP(prevForm.breakdown_expenses.material[i].total_cost)%></td></tr><%}%></tbody><tfoot class="full-width"><tr><th></th><th colspan="2" class="total" style="border-left:none;"><div class="ui right floated small primary labeled">Total:</div></th><th class="result" name="boeTotal">Php <%=toProperPHP(prevForm.breakdown_expenses.total_expense)%></th></tr></tfoot></table>');
+                        $("table#sof").replaceWith('<table id="sof" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: center;"><th class="item eleven wide">Source/s of Funds</th><th class="item three wide">Amount</th></tr></thead><tbody><tr><td>Organizational Funds</td><td style="background:none;font-weight:1;">Php <%=toProperPHP(prevForm.source_funds.organization_funds)%></td></tr><tr><td>Participants Fee</td><td style="background:none;font-weight:1;">Php <%=toProperPHP(prevForm.source_funds.participants_fee)%></tr><tr><td>Others (i.e. Sponsorships)</td><td style="background:none;font-weight:1;">Php <%=toProperPHP(prevForm.source_funds.others)%></tr></tbody><tfoot class="full-width"><tr><th colspan="1" class="total"><div class="ui right floated small primary labeled">Total:</div></th><th class="result" name="totalSource">Php <%=toProperPHP(prevForm.source_funds.total)%></th></tr></tfoot></table>');
+                        $("table#of").replaceWith('<table id="of" class="ui compact celled definition fixed table basic unstackable"><thead class="full-width"><tr style="text-align: left;"><th class="item eleven wide" style="border-right: none;">Accumulated Operational Funds</th><th class="item four wide" style="border-left: none;"></th></tr></thead><tbody><tr><td><div class="right">Operational Fund</div></td><td>Php <%=toProperPHP(prevForm.organizational_funds.operational_fund)%></td></tr><tr><td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Accumulated Depository Funds</td></tr><tr><td><div class="right">Depository Fund</div></td><td>Php <%=toProperPHP(prevForm.organizational_funds.depository_fund)%></td></tr><tr><td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other Sources of Funds</td></tr><tr><td><div class="right">Participants Fee/Donation/Sponsorships</div></td><td>Php <%=toProperPHP(prevForm.organizational_funds.other_fund)%></td></tr><tr><td class="bg-gray bold"><div class="right italics">Total Cash For Disbursement</div></td><td style="background-color: #F7F7F7;" name="totalDisbursement">Php <%=toProperPHP(prevForm.organizational_funds.total_disbursement)%></td></tr><tr><td><div class="right bold">Less: Total Projected Expenses</div></td><td style="background-color: #F7F7F7;">Php <%=toProperPHP(prevForm.organizational_funds.projected_expenses)%></td></tr><tr><td class="bg-gray"><div class="right bold">REMAINING BALANCE</div></td><td style="background-color: #F7F7F7;">Php <%=toProperPHP(prevForm.organizational_funds.rem_balance)%></td></tr></tbody></table>');
+                        $("table#pi").replaceWith('<table id="pi" class="ui compact celled definition fixed table unstackable"><thead class="full-width"><tr style="text-align: left;"><th colspan="4">Projected Revenue</th></tr><tr style="text-align: center;"><th class="item">Item</th><th class="item">Qty</th><th class="item">Selling Price</th><th class="item">Amount</th></tr></thead><tbody><%for(var i=0; i<prevForm.projected_income.revenue.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=prevForm.projected_income.revenue[i].item%></td><td><%=prevForm.projected_income.revenue[i].quantity%></td><td>Php <%=toProperPHP(prevForm.projected_income.revenue[i].price)%></td><td>Php <%=toProperPHP(prevForm.projected_income.revenue[i].amount)%></td></tr><%}%></tbody><thead class="full-width"><tr style="text-align: left;"><th colspan="4">Less: Projected Expenses</th></tr><tr style="text-align: center;"><th class="item">Item</th><th class="item">Qty</th><th class="item">Selling Price</th><th class="item">Amount</th></tr></thead><tbody><%for(var i=0; i<prevForm.projected_income.expenses.length;i++) {%><tr><td style="background:none;font-weight:1;"><%=prevForm.projected_income.expenses[i].item%></td><td><%=prevForm.projected_income.expenses[i].quantity%></td><td>Php <%=toProperPHP(prevForm.projected_income.expenses[i].price)%></td><td>Php <%=toProperPHP(prevForm.projected_income.expenses[i].amount)%></td></tr><%}%></tbody><tfoot class="full-width"><tr><th></th><th colspan="2" class="total" style="border-left:none;"><div class="ui right floated small primary labeled">TOTAL PROJECTED INCOME:</div></th><th class="result" name="boeTotal">Php <%=toProperPHP(prevForm.projected_income.total)%></th></tr></tfoot></table>');
+                        $("table#provision").replaceWith('<table id="provision" style="border: none"><tr><td class="cell2 left"><h3>Name</h3></td><td class="cell2 left"><h3>Position</h3></td></tr><tr><td class="cell2 left"><%=prevForm.person_responsible[0].name%></td><td class="cell2 left"><%=prevForm.person_responsible[0].position%></td></tr><tr><td class="cell2 left"><%=prevForm.person_responsible[1].name%></td><td class="cell2 left"><%=prevForm.person_responsible[1].position%></td></tr></table>');
+                    }
+                }
                 <%}%>
+            }
 
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="3" class="cell right"> Total:</th>
-                    <th class="cell left">Php
-                        <%=toProperPHP(data.breakdown_expenses.total_expense)%>
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-
-        <h3>Source of Funds</h3>
-        <table>
-            <tbody>
-                <tr>
-                    <th class="cell">Sources of Funds</th>
-                    <th class="cell">Amount</th>
-                </tr>
-                <tr>
-                    <td class="cell right">Organizational Funds</td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.source_funds.organization_funds)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cell right">Participants Fee</td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.source_funds.participants_fee)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cell right">Others (i.e. Sponsorships)</td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.source_funds.others)%>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class="cell right"> Total:</th>
-                    <th class="cell left">Php
-                        <%=toProperPHP(data.source_funds.total)%>
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-
-        <h3>Organizational Funds</h3>
-        <table>
-            <tbody>
-                <tr>
-                    <th colspan="2" class="cell left">Accumulated Operational Funds</th>
-                </tr>
-                <tr>
-                    <td class="cell right">Operational Fund</td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.organizational_funds.operational_fund)%>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2" class="cell left">Accumulated Depository Funds</th>
-                </tr>
-                <tr>
-                    <td class="cell right">Depository Fund</td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.organizational_funds.depository_fund)%>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2" class="cell left">Other Sources of Funds</th>
-                </tr>
-                <tr>
-                    <td class="cell right">Participants Fee/Donation/Sponsorships</td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.organizational_funds.other_fund)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cell right gray-bg"><b>Total Cash For Disbursement</b></td>
-                    <td class="cell left gray-bg">Php
-                        <%=toProperPHP(data.organizational_funds.total_disbursement)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cell right"><b>Less: Total Projected Expenses</b></td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.organizational_funds.projected_expenses)%>
-                    </td>
-                </tr>
-
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class="cell right gray-bg">REMAINING BALANCE</th>
-                    <th class="cell left gray-bg">Php
-                        <%=toProperPHP(data.organizational_funds.rem_balance)%>
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-
-        <h3>Projected Income</h3>
-        <table>
-            <tbody>
-                <tr>
-                    <th colspan="4" class="cell left">Projected Revenue</th>
-                </tr>
-                <tr>
-                    <th class="cell">Item</th>
-                    <th class="cell">Quantity</th>
-                    <th class="cell">Selling Price</th>
-                    <th class="cell">Amount</th>
-                </tr>
-                <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
-                <tr>
-                    <td class="cell left">
-                        <%=data.projected_income.revenue[i].item%>
-                    </td>
-                    <td class="cell left">
-                        <%=data.projected_income.revenue[i].quantity%>
-                    </td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.projected_income.revenue[i].price)%>
-                    </td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.projected_income.revenue[i].amount)%>
-                    </td>
-                </tr>
-                <%}%>
-                <tr>
-                    <th colspan="4" class="cell left">Less: Projected Expenses</th>
-                </tr>
-                <tr>
-                    <th class="cell">Item</th>
-                    <th class="cell">Quantity</th>
-                    <th class="cell">Selling Price</th>
-                    <th class="cell">Amount</th>
-                </tr>
-                <%for(var i=0; i<data.projected_income.revenue.length;i++) {%>
-                <tr>
-                    <td class="cell left">
-                        <%=data.projected_income.expenses[i].item%>
-                    </td>
-                    <td class="cell left">
-                        <%=data.projected_income.expenses[i].quantity%>
-                    </td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.projected_income.expenses[i].price)%>
-                    </td>
-                    <td class="cell left">Php
-                        <%=toProperPHP(data.projected_income.expenses[i].amount)%>
-                    </td>
-                </tr>
-                <%}%>
-
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="3" class="cell right gray-bg">TOTAL PROJECTED INCOME</th>
-                    <th class="cell left gray-bg">Php
-                        <%=toProperPHP(data.projected_income.total)%>
-                    </th>
-                </tr>
-            </tfoot>
-        </table>
-
-        <h3>Provision for Profit and Loss</h3>
-        <p>The following people shall be held liable and will shoulder any remaining balance incurred by the project.</p>
-
-        <table style="border: none">
-            <tr>
-                <th>Name:</th>
-                <th>Position:</th>
-            </tr>
-            <% for(var i = 0; i < data.person_responsible.length; i++) {%>
-            <tr>
-                <td>
-                    <%=data.person_responsible[i].name%>
-                </td>
-                <td>
-                    <%=data.person_responsible[i].position%>
-                </td>
-            </tr>
-            <% } %>
-        </table>
-
-        <br />
-
-        <%if(button === true) {%>
-        <div>
-            <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
-                <!--                    <input id="status" style="display:none;" name="status">-->
-                <input id="approve" type="submit" class="button approve" value="Approve">
-                <!--                    <input id="reject" type="submit" class="button reject" value="Reject">-->
-            </form>
-            <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
-                <!--                    <input id="status" style="display:none;" name="status">-->
-                <!--                    <input id="approve" type="submit" class="button approve" value="Approve">-->
-                <input id="reject" type="submit" class="button reject" value="Reject">
-            </form>
-        </div>
-        <%} else {%>
-        <form id="status-form" action="/preacts" method="get">
-            <input id="done" type="submit" class="button done" value="Done">
-        </form>
-        <%}%>
-    </div>
-
-    <script>
-        function approve() {
-            var status = document.getElementById('status');
-            status.setAttribute('value', 'Approved');
-        }
-
-        function reject() {
-            var status = document.getElementById('status');
-            status.setAttribute('value', 'Rejected');
-        }
-
-        $(document).ready(function () {
-            document.getElementById("approve").addEventListener("click", function () {
-                approve();
+            $('#newButton, #oldButton').click(function () {
+                if (this.id == 'newButton') {
+                    newVersion = true;
+                    $("#newButton").addClass("active");
+                    $("#newButton").removeClass("basic");
+                    $("#oldButton").removeClass("active");
+                    $("#oldButton").addClass("basic");
+                    changeContent();
+                }
+                else if (this.id == 'oldButton') {
+                    newVersion = false;
+                    $("#oldButton").addClass("active");
+                    $("#oldButton").removeClass("basic");
+                    $("#newButton").removeClass("active");
+                    $("#newButton").addClass("basic");
+                    changeContent();
+                }
             });
-
-            document.getElementById("reject").addEventListener("click", function () {
-                reject();
-            });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 
 </html>

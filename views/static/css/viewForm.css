@@ -31,17 +31,9 @@ h1 {
     padding-bottom: 3%;
 }
 
-#main {
-    width: 90%;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    padding: 3%;
-    column-count: 2;
-    column-gap: 5em;
-    background-color: white;
-    column-rule: 0px solid black;
-
+.center {
+    display: flex !important;
+    justify-content: center !important;
 }
 
 .box {
@@ -55,7 +47,17 @@ h1 {
     padding: 2%;
     border: 2px solid black;
     word-wrap: break-word;
+}
 
+.cell2 {
+    text-align: center;
+    padding: 1%;
+    word-wrap: break-word;
+    font-size: 18px;
+}
+
+.cell3 {
+    padding-top: 5%;
 }
 
 .right {
