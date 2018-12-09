@@ -390,25 +390,7 @@
                                 <td class="cell2 left"><%=data.person_responsible[1].position%></td>
                             </tr>
                         </table>
-                        <%if(button === true) {%>
-                        <div>
-                            <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
-                                <input id="approve" type="submit" class="button approve" value="Approve" >
-                            </form>
-                            <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
-                                <input id="reject" type="submit" class="button reject" value="Reject">
-                            </form>
-                        </div>
-                        <br/><br/>
-                        <%} else {%>
-                            <%if(data.status == "Rejected") {%>
-                                <div>
-                                    <form id="form" method="get">
-                                        <input id="edit" type="submit" class="fluid submit-button next" value="Edit">
-                                    </form>
-                                </div>
-                            <%}%>
-                        <%}%>
+                        
                     </div>
                     <br/>
 
@@ -437,6 +419,25 @@
                         </div>
                     </div>
                 </form>
+                <%if(button === true) {%>
+                    <div>
+                        <form id="status-form" action="/preacts/approve/<%=data._id%>" method="post">
+                            <input id="approve" type="submit" class="button approve" value="Approve" >
+                        </form>
+                        <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+                            <input id="reject" type="submit" class="button reject" value="Reject">
+                        </form>
+                    </div>
+                    <br/><br/>
+                    <%} else {%>
+                        <%if(data.status == "Rejected") {%>
+                            <div>
+                                <form id="form" method="get">
+                                    <input id="edit" type="submit" class="fluid submit-button next" value="Edit">
+                                </form>
+                            </div>
+                        <%}%>
+                    <%}%>
             </div>
         </div>
 
