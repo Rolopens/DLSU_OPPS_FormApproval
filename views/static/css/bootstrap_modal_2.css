@@ -90,7 +90,8 @@
 }
 
 .modal-header .close {
-    margin-top: -1.4rem;
+    margin-top: -0.8rem;
+    margin-right: -0.5rem;
 }
 
 .modal-title {

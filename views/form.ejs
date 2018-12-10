@@ -3,9 +3,9 @@
 <head>
     <title>Create Project Proposal</title>
     <%- include partials/scriptResources %>
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap_modal_2.css">
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/bootstrap_modal_2.css">
     <link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
 </head>
 
@@ -16,6 +16,26 @@
         <!-- <i class="fas fa-2x fa-home"></i>Home -->
     </div>
     <div class="main ui text container">
+        <!-- Approval modal -->
+        <div class="modal fade" id="modalActivitySubmit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                    </div>
+                    <div class="modal-body">
+                        You are about to <b>submit</b> these activity details. Proceed?
+                    </div>
+                    <div class="modal-footer">                           
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="approve" onclick="submitForm()">Submit</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="ui segments" style="padding: 1.2em;">
 
@@ -1066,13 +1086,25 @@
             currentTab = currentTab + n;
             // if you have reached the end of the form... :
             if (currentTab >= x.length) {
-                //the form gets submitted
-                submitForm();
-                showTab(currentTab - 1);
+                // toggle modal to confirm 
+//                    document.getElementById("nextBtn").setAttribute('onclick','modalTrigger()');
+                document.getElementById("nextBtn").setAttribute('data-toggle','modal');
+                document.getElementById("nextBtn").setAttribute('data-target','#modalActivitySubmit');
+                currentTab = currentTab - 1;
+                showTab(currentTab);
                 return false;
             }
             // Otherwise, display the correct tab:
-            showTab(currentTab);
+            document.getElementById("nextBtn").setAttribute('data-toggle','');
+            document.getElementById("nextBtn").setAttribute('data-target','');
+            showTab(currentTab);      
+        }
+            
+        function submitForm() {
+                //...the form gets submitted:
+            showTab(currentTab - 1);
+            document.getElementById("activityForm").submit();
+            return false;
         }
 
         function validateForm() {
