@@ -28,32 +28,32 @@ module.exports.controller = function (app) {
                 } else {
                     userService.getUserWithId(req.session.uid)
                         .then((result) => {
-                            var rolePromises = [];
-                            for (var i = 0; i < result.user_roles.length; i++) {
-                                roleID = result.user_roles[i].role_id;
-                                var p = roleService.getRoleWithId(roleID).then((result) => {
-                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                                        canSee = true;
-                                });
-                                rolePromises.push(p);
-                            }
-                            return Promise.all(rolePromises);
-                        })
-                        .then((result) => {
-                            res.render('preacts', {
-                                preacts: true,
-                                preactsSubmission: false,
-                                accounts: canSee,
-                                organization: canSee
+                        var rolePromises = [];
+                        for (var i = 0; i < result.user_roles.length; i++) {
+                            roleID = result.user_roles[i].role_id;
+                            var p = roleService.getRoleWithId(roleID).then((result) => {
+                                if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                    canSee = true;
                             });
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                            res.redirect("/");
-                        })
-                        .catch((err) => {
-                            console.log(err)
+                            rolePromises.push(p);
+                        }
+                        return Promise.all(rolePromises);
+                    })
+                        .then((result) => {
+                        res.render('preacts', {
+                            preacts: true,
+                            preactsSubmission: false,
+                            accounts: canSee,
+                            organization: canSee
                         });
+                    })
+                        .catch((err) => {
+                        console.log(err);
+                        res.redirect("/");
+                    })
+                        .catch((err) => {
+                        console.log(err)
+                    });
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -141,7 +141,7 @@ module.exports.controller = function (app) {
             })
         })
     });
-        
+
     //ajax request for approving a form
     app.post("/preacts/approve/:id", function (req, res) {
         var id = req.params.id;
@@ -169,7 +169,7 @@ module.exports.controller = function (app) {
             var temp = processes[form.processType][form.position].split("-", 2);
             nextRole = temp[0];
             nextOrg = temp[1];
-            
+
 
             if (nextOrg === 'BATCH') {
                 userService.getUserWithId(req.session.uid).then((retUser) => {
@@ -363,12 +363,40 @@ module.exports.controller = function (app) {
                 if (retRole.name != "PROJECT_HEAD") {
                     res.redirect('/preacts');
                 } else {
-                    res.render('preacts-submit', {
-                        preacts: false,
-                        preactsSubmission: true,
-                        accounts: false,
-                        organization: false
-                    });
+                    if (req.session.submissionError == true){
+                        res.render('preacts-submit', {
+                                preacts: false,
+                                preactsSubmission: true,
+                                accounts: false,
+                                organization: false,
+                                submitSuccess: false,
+                                submissionError: true
+                            });
+                        req.session.submissionError = false;
+                    } else {
+                       if(req.session.submissionValue==true){
+                            res.render('preacts-submit', {
+                                preacts: false,
+                                preactsSubmission: true,
+                                accounts: false,
+                                organization: false,
+                                submitSuccess: true,
+                                submissionError: false
+                            });
+                            req.session.submissionValue=false;
+                        } else {
+                            res.render('preacts-submit', {
+                                preacts: false,
+                                preactsSubmission: true,
+                                accounts: false,
+                                organization: false,
+                                submitSuccess: false,
+                                submissionError: false
+                            });
+                        } 
+                    }
+                    
+                    
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -420,6 +448,7 @@ module.exports.controller = function (app) {
     app.post('/create-form-confirm', function (req, res) {
         //        console.log(req.body)
         var isSlife = false;
+        req.session.submissionValue = false;
         req.session.title = req.body.title;
         req.session.nature = req.body.nature;
         if (req.body.type.split("-")[0] == 'SLIFE') {
@@ -666,29 +695,43 @@ module.exports.controller = function (app) {
                                 preactsService.addForm(form).then((addedForm) => {
                                     //                                    console.log(addedForm);
                                     clearSessionForm(req);
+                                    res.redirect('/preacts-submission');
+                                    
                                 }).catch((err) => {
                                     console.log("ERROR: Failed to add form in database");
                                     console.log(err);
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
                                 });
                             }).catch((err) => {
                                 console.log(err);
+                                req.session.submissionError = true;
+                                res.redirect('/preacts-submission');
                             });
                         }).catch((err) => {
-                            console.log("PROBLEM WITH FUNCTION FIND USER BY ROLE AND ORGABBRV")
+                            req.session.submissionError = true;
+                            res.redirect('/preacts-submission');
                         })
-                    })
+                    }).catch((err) => {
+                            req.session.submissionError = true;
+                            res.redirect('/preacts-submission');
+                        })
                 })
 
             }).catch((err) => {
                 console.log("ERROR: Failed to find organization given org_id - " + org_id);
                 console.log(err);
+                req.session.submissionError = true;
+                res.redirect('/preacts-submission');
             });
         }).catch((err) => {
             console.log("ERROR: Failed to find user given user_id - " + req.session.uid);
             console.log(err);
+            req.session.submissionError = true;
+            res.redirect('/preacts-submission');
         });
 
-        res.redirect('/preacts-submission');
+        
     });
 
     var clearSessionForm = function (req) {
@@ -721,35 +764,72 @@ module.exports.controller = function (app) {
         req.session.projRevData = null;
         req.session.porjExpData = null;
         req.session.projIncomeTotal = null;
+        req.session.submissionValue = true;
     }
 
     app.post('/view-form', function (req, res) {
+
+        if (!req.session.uid) res.redirect("/");
+
         var id = req.body.form_id;
 
         userService.getUserWithId(req.session.uid).then((retUser) => {
             var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
+            var orgId = retUser.user_roles[0].org_id;
             roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name === "PROJECT_HEAD") {
+                orgService.findSpecificOrg(orgId).then((orgObject) => {
+                    var data = {type: orgObject.type, name: orgObject.name}
                     preactsService.findFormViaId(id).then((form) => {
-                        res.render('viewForm', {
-                            data: form,
-                            button: false
-                        });
-                    }, (error) => {
-                        console.error(error);
-                    });
-                } else {
-                    preactsService.findFormViaId(id).then((form) => {
-                        res.render('viewForm', {
-                            data: form,
-                            button: true
-                        });
+                        if(form.prevForm_id != null) {
+                            preactsService.findFormViaId(form.prevForm_id).then((form2) => {
+                                if (retRole.name === "PROJECT_HEAD") {
+                                    res.render('viewForm', {
+                                        prevForm: form2,
+                                        org: data,
+                                        data: form,
+                                        button: false
+                                    });
+                                } else {
+                                    res.render('viewForm', {
+                                        prevForm: form2,
+                                        org: data,
+                                        data: form,
+                                        button: true
+                                    });
+                                }
+                            })
+                        } else {
+                            if (retRole.name === "PROJECT_HEAD") {
+                                    res.render('viewForm', {
+                                        prevForm: null,
+                                        org: data,
+                                        data: form,
+                                        button: false
+                                    });
+                                } else {
+                                    res.render('viewForm', {
+                                        prevForm: null,
+                                        org: data,
+                                        data: form,
+                                        button: true
+                                    });
+                                }
+                        }
                     }, (error) => {
                         console.error(error);
                     });
 
-                }
+                }).catch((err) => {
+                    console.log("ERROR MESSAGE: Cannot find org with id " + orgId);
+                    console.log(err);
+                });
+            }).catch((err) => {
+                console.log("ERROR MESSAGE: Cannot find role with id " + orgId);
+                console.log(err);
             });
+        }).catch((err) => {
+            console.log("ERROR MESSAGE: Cannot find user with id " + orgId);
+            console.log(err);
         });
     });
 }

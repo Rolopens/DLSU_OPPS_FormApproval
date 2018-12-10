@@ -11,6 +11,7 @@
     <script src="lib/axios.min.js" type="application/javascript"></script>
 
     <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.css" />
     <link rel="stylesheet" type="text/css" href="css/theme.css" />
     <link rel="stylesheet" type="text/css" href="css/variables.css" />
     <link rel="stylesheet" type="text/css" href="css/approver.css" />
@@ -22,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="css/element-stylesheet/field.css" />
 
     <!-- javascript -->
+    <script src="js/sweetalert2.js" type="text/javascript"></script>
     <script src="lib/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="js/approver.js" type="text/javascript"></script>
 </head>
@@ -172,19 +174,19 @@
                             <div class="column">
                                 <div class="info">
                                     <h4>Title</h4>
-                                    <p id="Title">{{quickview.title}}</p>
+                                    <p class="infoData" id="Title">{{quickview.title}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Nature</h4>
-                                    <p id="Nature">{{quickview.nature}}</p>
+                                    <p class="infoData" id="Nature">{{quickview.nature}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Type</h4>
-                                    <p id="Type">{{quickview.typeOfActivity}}</p>
+                                    <p class="infoData" id="Type">{{quickview.typeOfActivity}}</p>
                                 </div>
                                 <div class="info">
                                     <h4>Status</h4>
-                                    <p id="status">{{quickview.status}}</p>
+                                    <p class="infoData" id="status">{{quickview.status}}</p>
                                 </div>
                             </div>
                             <div class="column">
@@ -198,7 +200,7 @@
                                 </div>
                                 <div class="info">
                                     <h4>Venue</h4>
-                                    <p id="location">{{quickview.venue}}</p>
+                                    <p class="infoData" id="location">{{quickview.venue}}</p>
                                 </div>
                                 <br />
                                 <form name="view-form" action="view-form" method="post">
@@ -214,6 +216,36 @@
                 </div>
             </section>
     </div>
+    <script>
+       
+        <%if(submitSuccess){%>
+            Swal({
+              type: 'success',
+              title: 'Form Submission Success',
+              showConfirmButton: false,
+              timer: 1500
+            }) 
+        <%}%>
+        <%if(submissionError){%>
+            Swal({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              timer: 1500
+            })
+        <%}%>
+    </script>
+
+    <script>
+        
+        
+        $('').toggle(
+            function() {
+            $('#B').css('right', '0')
+            }, function() {
+            $('#B').css('right', 'calc(100% - calc(100% - 600px))')
+        })
+    </script>
 </body>
 
 <script src="lib/vue.min.js" type="text/javascript"></script>
