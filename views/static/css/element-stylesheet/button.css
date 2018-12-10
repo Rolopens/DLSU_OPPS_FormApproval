@@ -16,7 +16,7 @@
  *
  */
 
-:root{
+:root {
     --theme-button-color: #26BE9B;
     --theme-button-accent: #48FFD5;
     --theme-button-dark-color: #5E6479;
@@ -27,16 +27,22 @@
     --theme-button-color-value: white;
 }
 
-button.radius-5, input[type="button"].radius-5, input[type="submit"].radius-5{
+button.radius-5,
+input[type="button"].radius-5,
+input[type="submit"].radius-5 {
     border-radius: 5px;
 }
 
-button.radius-full, input[type="button"].radius-full, input[type="submit"].radius-full{
+button.radius-full,
+input[type="button"].radius-full,
+input[type="submit"].radius-full {
     border-radius: 200px;
 }
 
 /* default look of a button */
-button, input[type="button"], input[type="submit"]{
+button,
+input[type="button"],
+input[type="submit"] {
     padding: 10px 30px;
     background-color: var(--theme-button-color);
     border: thin solid var(--theme-button-color);
@@ -44,7 +50,7 @@ button, input[type="button"], input[type="submit"]{
     font-family: 'Lato', sans-serif;
     cursor: pointer;
     border-radius: 3px;
-    font-size: 0.85em;
+    font-size: 0.90em;
     margin: 0;
     outline: none;
     letter-spacing: 0.5px;
@@ -58,7 +64,9 @@ button, input[type="button"], input[type="submit"]{
 }
 
 /* white default look of a button */
-button.white, input[type="button"].white, input[type="submit"].white{
+button.white,
+input[type="button"].white,
+input[type="submit"].white {
     background-color: var(--theme-button-color-value);
     border: thin solid var(--theme-button-color-value);
     color: var(--theme-button-color);
@@ -66,33 +74,41 @@ button.white, input[type="button"].white, input[type="submit"].white{
 }
 
 /* dark default look of a button */
-button.dark, input[type="button"].dark, input[type="submit"].dark{
+button.dark,
+input[type="button"].dark,
+input[type="submit"].dark {
     background-color: var(--theme-button-dark-color);
     border: thin solid var(--theme-button-dark-color);
     color: var(--theme-button-color-value);
 }
 
 button.hallow {
-    width:100%;
-    max-width:212px;
+    width: 100%;
+    max-width: 212px;
 }
 
 /* transparent background color, themed button */
-button.hallow, input[type="button"].hallow, input[type="submit"].hallow{
+button.hallow,
+input[type="button"].hallow,
+input[type="submit"].hallow {
     background-color: transparent;
     color: var(--theme-button-color);
     border-color: var(--theme-button-color);
 }
 
 /* tranparent background color, white button */
-button.hallow-white, input[type="button"].hallow-white, input[type="submit"].hallow-white{
+button.hallow-white,
+input[type="button"].hallow-white,
+input[type="submit"].hallow-white {
     background-color: transparent;
     color: var(--theme-button-light-color);
     border-color: var(--theme-button-light-color);
 }
 
 /* tranparent background color, dark button */
-button.hallow-dark, input[type="button"].hallow-dark, input[type="submit"].hallow-dark{
+button.hallow-dark,
+input[type="button"].hallow-dark,
+input[type="submit"].hallow-dark {
     background-color: transparent;
     color: var(--theme-button-dark-color);
     border-color: var(--theme-button-dark-color);
@@ -101,37 +117,49 @@ button.hallow-dark, input[type="button"].hallow-dark, input[type="submit"].hallo
 
 
 /************** pseudoclasses **************/
-button:hover, input[type="button"]:hover, input[type="submit"]:hover{
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
     background-color: var(--theme-button-accent);
     border-color: var(--theme-button-accent);
     color: var(--theme-button-color-value);
 }
 
-button.hallow:hover, input[type="button"].hallow:hover, input[type="submit"].hallow:hover{
+button.hallow:hover,
+input[type="button"].hallow:hover,
+input[type="submit"].hallow:hover {
     background-color: var(--theme-button-color);
     border-color: var(--theme-button-color);
     color: var(--theme-button-color-value);
 }
 
-button.white:hover, input[type="button"].white:hover, input[type="submit"].white:hover{
+button.white:hover,
+input[type="button"].white:hover,
+input[type="submit"].white:hover {
     background-color: var(--theme-button-light-accent);
     border-color: var(--theme-button-light-accent);
     color: var(--theme-button-color);
 }
 
-button.dark:hover, input[type="button"].dark:hover, input[type="submit"].dark:hover{
+button.dark:hover,
+input[type="button"].dark:hover,
+input[type="submit"].dark:hover {
     background-color: var(--theme-button-dark-accent);
     border-color: var(--theme-button-dark-accent);
     color: var(--theme-button-color-value);
 }
 
-button.hallow-white:hover, input[type="button"].hallow-white:hover, input[type="submit"].white:hover{
+button.hallow-white:hover,
+input[type="button"].hallow-white:hover,
+input[type="submit"].white:hover {
     background-color: transparent;
     border-color: var(--theme-button-light-accent);
     color: var(--theme-button-light-accent);
 }
 
-button.hallow-dark:hover, input[type="button"].hallow-dark:hover, input[type="submit"].hallow-dark:hover{
+button.hallow-dark:hover,
+input[type="button"].hallow-dark:hover,
+input[type="submit"].hallow-dark:hover {
     background-color: transparent;
     border-color: var(--theme-button-dark-accent);
     color: var(--theme-button-dark-accent);

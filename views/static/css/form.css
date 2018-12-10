@@ -33,6 +33,25 @@ textarea {
 
 .red {
     color: #CA1010;
+    display: none;
+}
+
+.tooltip {
+    color: rgba(0, 0, 0, .47);
+}
+
+.tooltip:hover {
+    cursor: help;
+}
+
+.ui.toggle.checkbox[class*="right floated"] {
+    float: right !important;
+    margin-right: 0.5em !important;
+    /* margin-left: 1em !important; */
+}
+
+.fas:hover {
+    cursor: pointer;
 }
 
 i.blue {
@@ -78,13 +97,12 @@ td.highlight textarea {
 .row-button {
     float: right;
     margin-bottom: 20px;
-    margin-left: 10px;
     background: white;
     border-color: #26BE9B;
     border-style: solid;
     color: #26BE9B;
     border-radius: 5px;
-    height: 40px;
+    padding: 7px 30px;
     font-weight: 700;
 }
 
@@ -102,6 +120,11 @@ td.highlight textarea {
     width: 100%;
 }
 
+.submit-button span:after {
+    float: right;
+    padding-left: 1em;
+}
+
 .next:hover {
     background: #26BE9B;
     border-color: #26BE9B;
@@ -115,13 +138,6 @@ td.highlight textarea {
 }
 
 .previous:hover {
-    background: #CA1010;
-    border-color: #CA1010;
-    color: white;
-    border-style: solid;
-}
-
-button.delete-hover {
     background: #CA1010;
     border-color: #CA1010;
     color: white;
@@ -192,9 +208,111 @@ input[type=number] {
     border-top: 0px !important;
 }
 
+.ui.toggle.checkbox input:focus:checked~.box:before,
+.ui.toggle.checkbox input:focus:checked~label:before {
+    background-color: #26BE9B !important
+}
+
+.ui.toggle.checkbox .box:before,
+.ui.toggle.checkbox label:before {
+    background-color: #D9D9D9;
+}
+
+.ui.toggle.checkbox input:checked~.box:before,
+.ui.toggle.checkbox input:checked~label:before {
+    background-color: #26BE9B !important;
+}
+
+.go-back {
+    top: 0;
+    position: fixed;
+    /* background-color: #34495e; */
+    color: white;
+    width: auto;
+    left: 0;
+    /* text-align: center; */
+    z-index: 2;
+    padding: 0.8rem;
+}
+
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
     background-color: #ffdddd;
+}
+
+.ui.red.message .header {
+    font-weight: 100 !important;
+}
+
+.ui.red.message div {
+    margin-bottom: 0.5em;
+}
+
+#error.shake {
+    -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+@-webkit-keyframes shake {
+
+    10%,
+    90% {
+        -webkit-transform: translate3d(-1px, 0, 0);
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        -webkit-transform: translate3d(2px, 0, 0);
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translate3d(-4px, 0, 0);
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        -webkit-transform: translate3d(4px, 0, 0);
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        -webkit-transform: translate3d(-1px, 0, 0);
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        -webkit-transform: translate3d(2px, 0, 0);
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translate3d(-4px, 0, 0);
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        -webkit-transform: translate3d(4px, 0, 0);
+        transform: translate3d(4px, 0, 0);
+    }
 }
 
 /* Hide all steps by default: */
@@ -203,7 +321,7 @@ input.invalid {
 }
 
 /* Make circles that indicate the steps of the form: */
-.step {
+/* .step {
     height: 15px;
     width: 15px;
     margin: 0 2px;
@@ -212,14 +330,14 @@ input.invalid {
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
-}
+} */
 
 /* Mark the active step: */
-.step.active {
+/* .step.active {
     opacity: 1;
-}
+} */
 
 /* Mark the steps that are finished and valid: */
-.step.finish {
+/* .step.finish {
     background-color: #4CAF50;
-}
+} */
