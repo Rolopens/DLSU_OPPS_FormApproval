@@ -897,7 +897,7 @@ module.exports.controller = function (app) {
                 req.session.type = req.body.type.split("-")[1];
             }
         }
-        
+
         req.session.startDate = req.body.startDate;
         req.session.startTime = req.body.startTime;
         req.session.endTime = req.body.endTime;
@@ -1073,6 +1073,8 @@ module.exports.controller = function (app) {
                 //                console.log(temp)
                 org = temp[1];
                 role = temp[0];
+
+
                 //                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
                 roleService.getRoleWithName(role).then((retRole) => {
                     roleObj = retRole;
@@ -1081,66 +1083,65 @@ module.exports.controller = function (app) {
                         userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
                             req.session.currentCheckers = retUsers
                             roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
-                                preactsService.findFormViaId(oldForm).then((formData) => {
-                                    var form = formData
-                                    form.archived = true
-
-                                    preactsService.updateForm(form).then((updatedForm) => {
-                                        preactsService.findFormViaId(form._id).then((formData1) => {
-                                            var form = new Form({
-                                                "title": req.session.title,
-                                                "nature": req.session.nature,
-                                                "typeOfActivity": req.session.type,
-                                                "enmp": req.session.enmp,
-                                                "enp": req.session.enp,
-                                                "startDate": req.session.startDate,
-                                                "startTime": req.session.startTime,
-                                                "endDate": req.session.endDate,
-                                                "endTime": req.session.endTime,
-                                                "venue": req.session.venue,
-                                                "reach": req.session.reach,
-                                                "GOSM": req.session.GOSM,
-                                                "online": req.session.online,
-                                                "context": [req.session.context1, req.session.context2, req.session.context3],
-                                                "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
-                                                "person_responsible": [req.session.PR, req.session.PR_2],
-                                                "source_funds": req.session.sourceFunds,
-                                                "organizational_funds": req.session.organizational_funds,
-                                                "program_flow": req.session.programData,
-                                                "projectHeads": req.session.pheadData,
-                                                "breakdown_expenses": req.session.breakdownOfExpenses,
-                                                "projected_income": {
-                                                    revenue: req.session.projRevData,
-                                                    expenses: req.session.porjExpData,
-                                                    total: req.session.projIncomeTotal
-                                                },
-                                                "comments": null,
-                                                "position": null,
-                                                "creationDate": new Date,
-                                                "org": usersOrganization, //fix this later on to session
-                                                "position": 0,
-                                                "status": "Pending",
-                                                "user_id": req.session.uid,
-                                                "processType": processType,
-                                                "currentCheckers": req.session.currentCheckers,
-                                                "archived": false,
-                                                "prevForm_id": oldForm
-                                            });
-                                            preactsService.addForm(form).then((addedForm) => {
-                                                //                                    console.log(addedForm);
-                                                clearSessionForm(req);
+                                var form = new Form({
+                                    "title": req.session.title,
+                                    "nature": req.session.nature,
+                                    "typeOfActivity": req.session.type,
+                                    "enmp": req.session.enmp,
+                                    "enp": req.session.enp,
+                                    "startDate": req.session.startDate,
+                                    "startTime": req.session.startTime,
+                                    "endDate": req.session.endDate,
+                                    "endTime": req.session.endTime,
+                                    "venue": req.session.venue,
+                                    "reach": req.session.reach,
+                                    "GOSM": req.session.GOSM,
+                                    "online": req.session.online,
+                                    "context": [req.session.context1, req.session.context2, req.session.context3],
+                                    "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                    "person_responsible": [req.session.PR, req.session.PR_2],
+                                    "source_funds": req.session.sourceFunds,
+                                    "organizational_funds": req.session.organizational_funds,
+                                    "program_flow": req.session.programData,
+                                    "projectHeads": req.session.pheadData,
+                                    "breakdown_expenses": req.session.breakdownOfExpenses,
+                                    "projected_income": {
+                                        revenue: req.session.projRevData,
+                                        expenses: req.session.porjExpData,
+                                        total: req.session.projIncomeTotal
+                                    },
+                                    "comments": null,
+                                    "position": null,
+                                    "creationDate": new Date,
+                                    "org": usersOrganization, //fix this later on to session
+                                    "position": 0,
+                                    "status": "Pending",
+                                    "user_id": req.session.uid,
+                                    "processType": processType,
+                                    "currentCheckers": req.session.currentCheckers,
+                                    "archived": false,
+                                    "prevForm_id": oldForm
+                                });
+                                preactsService.addForm(form).then((addedForm) => {
+                                    //archive not updating================================
+                                    preactsService.findFormViaId(oldForm).then((old) => {
+                                        old.archived = true;
+                                        preactsService.updateForm(old).then((updatedForm) => {
+                                            preactsService.findFormViaId(old._id).then((formData1) => {
+                                                console.log(formData1.archived);
                                                 res.redirect('/preacts-submission');
+                                            })
 
-                                            }).catch((err) => {
-                                                console.log("ERROR: Failed to add form in database");
-                                                console.log(err);
-                                                req.session.submissionError = true;
-                                                res.redirect('/preacts-submission');
-                                            });
                                         })
-                                    })
-                                })
+                                    });
 
+                                    clearSessionForm(req);
+                                }).catch((err) => {
+                                    console.log("ERROR: Failed to add form in database");
+                                    console.log(err);
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
+                                });
                             }).catch((err) => {
                                 console.log(err);
                                 req.session.submissionError = true;

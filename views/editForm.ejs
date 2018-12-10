@@ -74,24 +74,24 @@
                                 </thead>
                                 <tbody>
                                     <%for(var i=0; i<data.form.projectHeads.length;i++) {%>
-                                        <%var phead = "phead_name" + i;%>
-                                        <%var num = "phead_number" + i;%>
-                                        <tr value=i>
-                                            <td class="collapsing">
-                                                <div class="ui fitted">
+                                    <%var phead = "phead_name" + i;%>
+                                    <%var num = "phead_number" + i;%>
+                                    <tr value=i>
+                                        <td class="collapsing">
+                                            <div class="ui fitted">
                                                 <%if(i!=0){%>
                                                 <i class="fas fa-trash-alt" onclick="deletePhead(this)"></i>
                                                 <%}%>
-                                                </div>
-                                            </td>
-                                            <td><input id="<%=phead%>" class="inputron no-margin" name="<%=phead%>" value="<%=data.form.projectHeads[i].name%>" type="text"></td>
-                                            <td><input id="<%=num%>" class="inputron no-margin" name="<%=num%>" value="0<%=data.form.projectHeads[i].contact_number%>" type="number"></td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                        <td><input id="<%=phead%>" class="inputron no-margin" name="<%=phead%>" value="<%=data.form.projectHeads[i].name%>" type="text"></td>
+                                        <td><input id="<%=num%>" class="inputron no-margin" name="<%=num%>" value="0<%=data.form.projectHeads[i].contact_number%>" type="number"></td>
+                                    </tr>
                                     <%}%>
                                 </tbody>
                             </table>
                             <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
-                            
+
                             <br>
                             <h3 class="labelHead ui header"><label>Nature of the Activity <span class="red"> *</span></label></h3>
                             <div class="grouped fields">
@@ -226,74 +226,74 @@
                                         <td id="activityType">
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked">
+                                                    <input id="Assistance_CSO" type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked">
                                                     <label>Assistance</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Awareness Campaign" name="type">
+                                                    <input id="Awareness_Campaign"_CSO type="radio" value="CSO/DAAM-Awareness Campaign" name="type">
                                                     <label>Awareness Campaign</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Contest" name="type">
+                                                    <input id="Contest_CSO" type="radio" value="CSO/DAAM-Contest" name="type">
                                                     <label>Contest</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Distribution" name="type">
+                                                    <input id="Distribution_CSO" type="radio" value="CSO/DAAM-Distribution" name="type">
                                                     <label>Distribution</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Focus Group Discussion" name="type">
+                                                    <input id="Focus_Group_Discussion_CSO" type="radio" value="CSO/DAAM-Focus Group Discussion" name="type">
                                                     <label>Focus Group Discussion</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition"
+                                                    <input id="General_Assembly/Recognition_CSO" type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition"
                                                            name="type">
                                                     <label>General Assembly/Recognition</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Meeting" name="type">
+                                                    <input id="Meeting_CSO" type="radio" value="CSO/DAAM-Meeting" name="type">
                                                     <label>Meeting</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Recreation" name="type">
+                                                    <input id="Recreation_CSO" type="radio" value="CSO/DAAM-Recreation" name="type">
                                                     <label>Recreation</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type">
+                                                    <input id="Recruitment/Audition/Election_CSO" type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type">
                                                     <label>Recruitment/Audition/Election</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Seminar/Workshop" name="type">
+                                                    <input id="Seminar/Workshop_CSO" type="radio" value="CSO/DAAM-Seminar/Workshop" name="type">
                                                     <label>Seminar/Workshop</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <input type="radio" value="CSO/DAAM-Spiritual Activity" name="type">
+                                                    <input id="Spiritual_Activity" type="radio" value="CSO/DAAM-Spiritual Activity" name="type">
                                                     <label>Spiritual Activity</label>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="ui radio checkbox">
-                                                    <div class="ui transparent input"><input type="radio" value="CSO/DAAM-Others"
+                                                    <div class="ui transparent input"><input id="Others_CSO" type="radio" value="CSO/DAAM-Others"
                                                                                              name="type">
                                                         <label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;
                                                             border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div>
@@ -529,13 +529,13 @@
                             </thead>
                             <tbody>
                                 <%for(var i=0; i<data.form.program_flow.length;i++) {%>
-                                    <%var start = "startTime" + i;%>
-                                    <%var end = "endTime" + i;%>
-                                    <%var act = "activity" + i;%>
-                                    <%var des = "description" + i;%>
-                                    <%var per = "person" + i;%>
+                                <%var start = "startTime" + i;%>
+                                <%var end = "endTime" + i;%>
+                                <%var act = "activity" + i;%>
+                                <%var des = "description" + i;%>
+                                <%var per = "person" + i;%>
                                 <tr value=i>
-                                    
+
                                     <td class="collapsing">
                                         <div class="ui fitted">
                                             <%if(i!=0){%>
@@ -544,7 +544,7 @@
                                         </div>
                                     </td>
                                     <td><input id="<%=start%>" class="inputron no-margin" type="time" name="<%=start%>"
-                                         value="<%=data.form.program_flow[i].startTime%>" required>
+                                               value="<%=data.form.program_flow[i].startTime%>" required>
                                         <input id="<%=end%>" class="inputron no-margin" type="time" value="<%=data.form.program_flow[i].endTime%>" name="<%=end%>"
                                                required></td>
                                     <td><textarea id="<%=act%>" class="row-textarea" name="<%=act%>" required><%=data.form.program_flow[i].activity%></textarea></td>
@@ -579,10 +579,10 @@
                             </thead>
                             <tbody>
                                 <%for(var i=0; i<data.form.breakdown_expenses.material.length;i++) {%>
-                                    <%var mat = "material"+i;%>
-                                    <%var qua = "quantity"+i;%>
-                                    <%var unit = "unit"+i;%>
-                                    <%var sub = "BOE_subtotal"+i;%>
+                                <%var mat = "material"+i;%>
+                                <%var qua = "quantity"+i;%>
+                                <%var unit = "unit"+i;%>
+                                <%var sub = "BOE_subtotal"+i;%>
                                 <tr>
                                     <td class="collapsing">
                                         <div class="ui fitted">
@@ -774,10 +774,10 @@
                             </thead>
                             <tbody>
                                 <%for(var i=0; i<data.form.projected_income.revenue.length;i++) {%>
-                                    <%var item = "item"+i;%>
-                                    <%var qty = "qty"+i;%>
-                                    <%var price = "price"+i;%>
-                                    <%var amount = "amount"+i;%>
+                                <%var item = "item"+i;%>
+                                <%var qty = "qty"+i;%>
+                                <%var price = "price"+i;%>
+                                <%var amount = "amount"+i;%>
                                 <tr>
                                     <td class="collapsing">
                                         <div class="ui fitted">
@@ -816,10 +816,10 @@
                             </thead>
                             <tbody>
                                 <%for(var i=0; i<data.form.projected_income.expenses.length;i++) {%>
-                                    <%var it = "it"+i;%>
-                                    <%var qu = "qu"+i;%>
-                                    <%var pr = "pr"+i;%>
-                                    <%var am = "am"+i;%>
+                                <%var it = "it"+i;%>
+                                <%var qu = "qu"+i;%>
+                                <%var pr = "pr"+i;%>
+                                <%var am = "am"+i;%>
                                 <tr>
                                     <td class="collapsing">
                                         <div class="ui fitted">
@@ -2115,16 +2115,16 @@
                 for(var i=0; i < array.length; i++) {
                     nature += array[i] + "_";
                 }
-                
+
                 <%if(data.type == "CSO") {%>
-                    nature += "CSO";
+                nature += "CSO";
                 <%} else {%>
-                    nature += "USG";
+                nature += "USG";
                 <%}%>
-                
+
                 nature = "#"+nature;
                 $(nature).prop( "checked", true );
-                
+
                 //reach
                 var reach = "";
                 var array2 = "<%=data.form.reach%>".split(" ");
@@ -2134,25 +2134,62 @@
                     else 
                         reach += array2[i] + "_";
                 }
-                
+
                 reach = "#"+reach;
                 $(reach).prop( "checked", true);
-                
+                //                alert("%=data.form.typeOfActivity%>");
+
                 //online
                 var online = "Online_" + <%=data.form.online%>;
                 online = "#"+online;
                 $(online).prop( "checked", true);
-                
+
                 //GOSM
                 var gosm = "GOSM_" + <%=data.form.GOSM%>;
                 gosm = "#"+gosm;
                 $(gosm).prop( "checked", true);
-                
+
+                //type
+                var cso = ["Assistance", "Awareness Campaign", "Contest", "Distribution", "Focus Group Discussion", "General Assembly/Recognition", "Meeting", "Recreation", "Recruitment/Audition/Election", "Seminar/Workshop", "Spiritual Activity"];
+
+                var type = "<%=data.form.typeOfActivity%>";
+
+
+                if(cso.includes(type)) {
+                    $("#toa").val('cso').change();
+                    $('#activityType').replaceWith('<td id="activityType"><div class="field"><div class="ui radio checkbox"><input id="Assistance_CSO" type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked"><label>Assistance</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Awareness_Campaign_CSO" type="radio" value="CSO/DAAM-Awareness Campaign" name="type"><label>Awareness Campaign</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Contest_CSO" type="radio" value="CSO/DAAM-Contest" name="type"><label>Contest</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Distribution_CSO" type="radio" value="CSO/DAAM-Distribution" name="type"><label>Distribution</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Focus_Group_Discussion_CSO" type="radio" value="CSO/DAAM-Focus Group Discussion" name="type"><label>Focus Group Discussion</label></div></div><div class="field"><div class="ui radio checkbox"><input id="General Assembly/Recognition_CSO" type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition" name="type"><label>General Assembly/Recognition</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Meeting_CSO" type="radio" value="CSO/DAAM-Meeting" name="type"><label>Meeting</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Recreation_CSO" type="radio" value="CSO/DAAM-Recreation" name="type"><label>Recreation</label></div></div><div class="field"><div class="ui radio checkbox"> <input id="Recruitment/Audition/Election_CSO" type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type"><label>Recruitment/Audition/Election</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Seminar/Workshop_CSO" type="radio" value="CSO/DAAM-Seminar/Workshop" name="type"><label>Seminar/Workshop</label></div></div> <div class="field"><div class="ui radio checkbox"><input id="Spiritual_Activity_CSO" type="radio" value="CSO/DAAM-Spiritual Activity" name="type"><label>Spiritual Activity</label></div></div><div class="field"><div class="ui radio checkbox"><div class="ui transparent input"><input id="Others_CSO" type="radio" value="CSO/DAAM-Others" name="type"><label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div></div></div></td>');
+
+                    type = "";
+                    var array3 = "<%=data.form.typeOfActivity%>".split(" ");
+                    for(var i=0; i < array3.length; i++) {
+                        type += array3[i] + "_";
+                    }
+
+                    type += "CSO";
+
+                    type = "#"+type;
+                    $(type).prop( "checked", true );
+                } else {
+                    $("#toa").val('slife').change();
+                    $('#activityType').replaceWith('<td id="activityType"><div class="field"><div class="ui radio checkbox"><input id="Concerts/Parties_SLIFE" type="radio" value="SLIFE-Concerts/Parties" name="type" checked><label>Concerts/Parties</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Donation Drive_SLIFE" type="radio" value="SLIFE-Donation Drive" name="type"><label>Donation Drive</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Fundraising_Activity_SLIFE" type="radio" value="SLIFE-Fundraising Activity" name="type"><label>Fundraising Activity</label></div></div><div class="field"><div class="ui radio checkbox"><input id="OCCS_Sponsored_Seminar_SLIFE" type="radio" value="SLIFE-OCCS Sponsored Seminar" name="type"><label>OCCS Sponsored Seminar</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Off-Campus_Activities_SLIFE" type="radio" value="SLIFE-Off-Campus Activities" name="type"><label>Off-Campus Activities</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Outreach_SLIFE" type="radio" value="SLIFE-Outreach" name="type"><label>Outreach</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Tie-Up_Activity_(Internal/External)_SLIFE" type="radio" value="SLIFE-Tie-Up Activity (Internal/External)" name="type"><label>Tie-Up Activity (Internal/External)</label></div></div><div class="field"><div class="ui radio checkbox"><input id="TV/Radio_Guesting_SLIFE" type="radio" value="SLIFE-TV/Radio Guesting" name="type"><label>TV/Radio Guesting</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Seminar_with_Distinguished_Speakers/Outside_Participants_SLIFE" type="radio" value="SLIFE-Seminar with Distinguished Speakers/Outside Participants" name="type"><label>Seminar with Distinguished Speakers/Outside Participants</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Solicitations/Sponsorships_SLIFE" type="radio" value="SLIFE-Solicitations/Sponsorships" name="type"><label>Solicitations/Sponsorships</label></div></div><div class="field"><div class="ui radio checkbox"><div class="ui transparent input"><input id="Others_SLIFE" type="radio" value="SLIFE-Others" name="type"><label>Others</label><input type="text" name="typeOthers2" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div></div></div></td>');
+                    
+                    type = "";
+                    var array3 = "<%=data.form.typeOfActivity%>".split(" ");
+                    for(var i=0; i < array3.length; i++) {
+                        type += array3[i] + "_";
+                    }
+
+                    type += "SLIFE";
+
+                    type = "#"+type;
+                    $(type).prop( "checked", true );
+                }
+
                 $("#toa").on('change', function() {
                     if ($(this).val() == 'cso'){
-                        $('#activityType').replaceWith('<td id="activityType"><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked"><label>Assistance</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Awareness Campaign" name="type"><label>Awareness Campaign</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Contest" name="type"><label>Contest</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Distribution" name="type"><label>Distribution</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Focus Group Discussion" name="type"><label>Focus Group Discussion</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition" name="type"><label>General Assembly/Recognition</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Meeting" name="type"><label>Meeting</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Recreation" name="type"><label>Recreation</label></div></div><div class="field"><div class="ui radio checkbox"> <input type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type"><label>Recruitment/Audition/Election</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Seminar/Workshop" name="type"><label>Seminar/Workshop</label></div></div> <div class="field"><div class="ui radio checkbox"><input type="radio" value="CSO/DAAM-Spiritual Activity" name="type"><label>Spiritual Activity</label></div></div><div class="field"><div class="ui radio checkbox"><div class="ui transparent input"><input type="radio" value="CSO/DAAM-Others" name="type"><label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div></div></div></td>');
+                        $('#activityType').replaceWith('<td id="activityType"><div class="field"><div class="ui radio checkbox"><input id="Assistance_CSO" type="radio" value="CSO/DAAM-Assistance" name="type" checked="checked"><label>Assistance</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Awareness_Campaign_CSO" type="radio" value="CSO/DAAM-Awareness Campaign" name="type"><label>Awareness Campaign</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Contest_CSO" type="radio" value="CSO/DAAM-Contest" name="type"><label>Contest</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Distribution_CSO" type="radio" value="CSO/DAAM-Distribution" name="type"><label>Distribution</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Focus_Group_Discussion_CSO" type="radio" value="CSO/DAAM-Focus Group Discussion" name="type"><label>Focus Group Discussion</label></div></div><div class="field"><div class="ui radio checkbox"><input id="General Assembly/Recognition_CSO" type="radio" value="CSO/DAAM-CSO/DAAM-General Assembly/Recognition" name="type"><label>General Assembly/Recognition</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Meeting_CSO" type="radio" value="CSO/DAAM-Meeting" name="type"><label>Meeting</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Recreation_CSO" type="radio" value="CSO/DAAM-Recreation" name="type"><label>Recreation</label></div></div><div class="field"><div class="ui radio checkbox"> <input id="Recruitment/Audition/Election_CSO" type="radio" value="CSO/DAAM-Recruitment/Audition/Election" name="type"><label>Recruitment/Audition/Election</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Seminar/Workshop_CSO" type="radio" value="CSO/DAAM-Seminar/Workshop" name="type"><label>Seminar/Workshop</label></div></div> <div class="field"><div class="ui radio checkbox"><input id="Spiritual_Activity_CSO" type="radio" value="CSO/DAAM-Spiritual Activity" name="type"><label>Spiritual Activity</label></div></div><div class="field"><div class="ui radio checkbox"><div class="ui transparent input"><input id="Others_CSO" type="radio" value="CSO/DAAM-Others" name="type"><label>Others</label><input type="text" name="typeOthers" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div></div></div></td>');
                     } else {
-                        $('#activityType').replaceWith('<td id="activityType"><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Concerts/Parties" name="type" checked><label>Concerts/Parties</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Donation Drive" name="type"><label>Donation Drive</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Fundraising Activity" name="type"><label>Fundraising Activity</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-OCCS Sponsored Seminar" name="type"><label>OCCS Sponsored Seminar</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Off-Campus Activities" name="type"><label>Off-Campus Activities</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Outreach" name="type"><label>Outreach</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Tie-Up Activity (Internal/External)" name="type"><label>Tie-Up Activity (Internal/External)</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-TV/Radio Guesting" name="type"><label>TV/Radio Guesting</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Seminar with Distinguished Speakers/Outside Participants" name="type"><label>Seminar with Distinguished Speakers/Outside Participants</label></div></div><div class="field"><div class="ui radio checkbox"><input type="radio" value="SLIFE-Solicitations/Sponsorships" name="type"><label>Solicitations/Sponsorships</label></div></div><div class="field"><div class="ui radio checkbox"><div class="ui transparent input"><input type="radio" value="SLIFE-Others" name="type"><label>Others</label><input type="text" name="typeOthers2" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div></div></div></td>');
+                        $('#activityType').replaceWith('<td id="activityType"><div class="field"><div class="ui radio checkbox"><input id="Concerts/Parties_SLIFE" type="radio" value="SLIFE-Concerts/Parties" name="type" checked><label>Concerts/Parties</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Donation Drive_SLIFE" type="radio" value="SLIFE-Donation Drive" name="type"><label>Donation Drive</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Fundraising_Activity_SLIFE" type="radio" value="SLIFE-Fundraising Activity" name="type"><label>Fundraising Activity</label></div></div><div class="field"><div class="ui radio checkbox"><input id="OCCS_Sponsored_Seminar_SLIFE" type="radio" value="SLIFE-OCCS Sponsored Seminar" name="type"><label>OCCS Sponsored Seminar</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Off-Campus_Activities_SLIFE" type="radio" value="SLIFE-Off-Campus Activities" name="type"><label>Off-Campus Activities</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Outreach_SLIFE" type="radio" value="SLIFE-Outreach" name="type"><label>Outreach</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Tie-Up_Activity_(Internal/External)_SLIFE" type="radio" value="SLIFE-Tie-Up Activity (Internal/External)" name="type"><label>Tie-Up Activity (Internal/External)</label></div></div><div class="field"><div class="ui radio checkbox"><input id="TV/Radio_Guesting_SLIFE" type="radio" value="SLIFE-TV/Radio Guesting" name="type"><label>TV/Radio Guesting</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Seminar_with_Distinguished_Speakers/Outside_Participants_SLIFE" type="radio" value="SLIFE-Seminar with Distinguished Speakers/Outside Participants" name="type"><label>Seminar with Distinguished Speakers/Outside Participants</label></div></div><div class="field"><div class="ui radio checkbox"><input id="Solicitations/Sponsorships_SLIFE" type="radio" value="SLIFE-Solicitations/Sponsorships" name="type"><label>Solicitations/Sponsorships</label></div></div><div class="field"><div class="ui radio checkbox"><div class="ui transparent input"><input id="Others_SLIFE" type="radio" value="SLIFE-Others" name="type"><label>Others</label><input type="text" name="typeOthers2" style="width: 80%; margin-left: 10px; border-bottom: 1.5px solid !important;border-bottom-color: rgba(34, 36, 38, .15) !important; border-radius: 0px !important;" /></div></div></div></td>');
                     }
                 });
 
