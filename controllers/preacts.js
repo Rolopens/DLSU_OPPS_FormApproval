@@ -375,6 +375,7 @@ module.exports.controller = function (app) {
                         req.session.submissionError = false;
                     } else {
                         if(req.session.submissionValue==true){
+                            req.session.submissionValue=false;
                             res.render('preacts-submit', {
                                 preacts: false,
                                 preactsSubmission: true,
@@ -383,7 +384,7 @@ module.exports.controller = function (app) {
                                 submitSuccess: true,
                                 submissionError: false
                             });
-                            req.session.submissionValue=false;
+                            
                         } else {
                             res.render('preacts-submit', {
                                 preacts: false,
