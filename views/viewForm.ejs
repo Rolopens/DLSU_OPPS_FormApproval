@@ -134,7 +134,7 @@
 
                         <br />
                         <h3 class="labelHead ui header"><label>Objectives</label></h3>
-                        <div id="objectives">
+                        <div id="objectives" class="box">
                             <div class="field">
                                 <label>1. <%=data.objectives[0]%></label>
                             </div>
@@ -476,7 +476,8 @@
                 <%} else {%>
                     <%if(data.status == "Rejected") {%>
                         <div>
-                            <form id="form" method="get">
+                            <form id="form" action="/editForm" method="post">
+                                <input style="display:none;" value="<%=data._id%>" name="form_id">
                                 <input id="edit" type="submit" class="fluid submit-button next" value="Edit">
                             </form>
                         </div>

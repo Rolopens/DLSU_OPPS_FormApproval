@@ -38,8 +38,8 @@
 
             <div class="ui segments" style="padding: 1.2em;">
 
-                <form id="activityForm" action="/create-form-confirm" method="post">
-
+                <form id="activityForm" action="/edit-form-confirm" method="post">
+                    <input style="display:none;" value='<%=data.form._id%>' name="oldForm_id">
                     <div class="ui grid">
                         <div class="two column row" style="margin-bottom: 1em;">
                             <div class="left floated column">
@@ -59,10 +59,10 @@
                         <br />
                         <h3 class="labelHead ui header">I. Activity Details</h3>
                         <h2 class="labelHead"><label>Title of the Activity <span class="red"> * </span></label></h2>
-                        <input id="title" class="inputron" type="text" name="title" required style="margin-top: -5px;">
+                        <input id="title" class="inputron" type="text" name="title" value="<%=data.form.title%>" style="margin-top: -5px;">
 
                         <div class="ui large form">
-                            <input style="display:none;" value='0' id="dynamicTable1length" name="dynamicTable1len">
+                            <input style="display:none;" value=<%=data.form.projectHeads.length-1%> id="dynamicTable1length" name="dynamicTable1len">
                             <h3 class="labelHead ui header"><label>Project Head/s <span class="red"> *</span></label></h3>
                             <table class="ui compact celled definition fixed table unstackable" id="dynamicTable1">
                                 <thead class="full-width">
@@ -73,21 +73,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr value=0>
-                                        <td class="collapsing">
-                                            <div class="ui fitted">
-                                            </div>
-                                        </td>
-                                        <td><input id="phead_name0" class="inputron no-margin" name="phead_name0" type="text"
-                                                   placeholder="ex. Juan Dela Cruz" required></td>
-                                        <td><input id="phead_number0" class="inputron no-margin" name="phead_number0" type="number"
-                                                   placeholder="ex. 09xxxxxxxxx" required></td>
-                                    </tr>
+                                    <%for(var i=0; i<data.form.projectHeads.length;i++) {%>
+                                        <%var phead = "phead_name" + i;%>
+                                        <%var num = "phead_number" + i;%>
+                                        <tr value=i>
+                                            <td class="collapsing">
+                                                <div class="ui fitted">
+                                                <%if(i!=0){%>
+                                                <i class="fas fa-trash-alt" onclick="deletePhead(this)"></i>
+                                                <%}%>
+                                                </div>
+                                            </td>
+                                            <td><input id="<%=phead%>" class="inputron no-margin" name="<%=phead%>" value="<%=data.form.projectHeads[i].name%>" type="text"></td>
+                                            <td><input id="<%=num%>" class="inputron no-margin" name="<%=num%>" value="0<%=data.form.projectHeads[i].contact_number%>" type="number"></td>
+                                        </tr>
+                                    <%}%>
                                 </tbody>
                             </table>
                             <button type="button" class="row-button next" id="btnAddPhead">Add Row</button>
-                            <!-- <button type="button" class="row-button previous" id="btnDeletePhead">Delete
-Row</button> -->
+                            
                             <br>
                             <h3 class="labelHead ui header"><label>Nature of the Activity <span class="red"> *</span></label></h3>
                             <div class="grouped fields">
@@ -96,55 +100,55 @@ Row</button> -->
 
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Academic" name="nature" checked="checked">
+                                        <input id="Academic_CSO" type="radio" value="Academic" name="nature" checked="checked">
                                         <label>Academic</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Special Interest" name="nature">
+                                        <input id="Special_Interest_CSO" type="radio" value="Special Interest" name="nature">
                                         <label>Special Interest</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Departmental Initiative" name="nature">
+                                        <input id="Departmental_Initiative_CSO" type="radio" value="Departmental Initiative" name="nature">
                                         <label>Departmental Initiative</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Fundraising" name="nature">
+                                        <input id="Fundraising_CSO" type="radio" value="Fundraising" name="nature">
                                         <label>Fundraising</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Community Development" name="nature">
+                                        <input id="Community_Development_CSO" type="radio" value="Community Development" name="nature">
                                         <label>Community Development</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Organizational Development" name="nature">
+                                        <input id="Organizational_Development_CSO" type="radio" value="Organizational Development" name="nature">
                                         <label>Organizational Development</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Issue Advocacy" name="nature">
+                                        <input id="Issue_Advocacy_CSO" type="radio" value="Issue Advocacy" name="nature">
                                         <label>Issue Advocacy</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
+                                        <input id="Lasallian_Formation/Spiritual_Growth_CSO" type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
                                         <label>Lasallian Formation/Spiritual Growth</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Outreach" name="nature">
+                                        <input id="Outreach_CSO" type="radio" value="Outreach" name="nature">
                                         <label>Outreach</label>
                                     </div>
                                 </div>
@@ -152,55 +156,55 @@ Row</button> -->
                                 <h4>USG</h4>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Student Service" name="nature" checked="checked">
+                                        <input id="Student_Service_USG" type="radio" value="Student Service" name="nature" checked="checked">
                                         <label>Student Service</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Student's Rights and Welfare" name="nature">
+                                        <input id="Student's_Rights_and_Welfare_USg" type="radio" value="Student's Rights and Welfare" name="nature">
                                         <label>Student's Rights and Welfare</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Rules and Policies" name="nature">
+                                        <input id="Rules_and_Policies_USG" type="radio" value="Rules and Policies" name="nature">
                                         <label>Rules and Policies</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Fundraising" name="nature">
+                                        <input id="Fundraising_USG" type="radio" value="Fundraising" name="nature">
                                         <label>Fundraising</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Community Development" name="nature">
+                                        <input id="Community_Development_USG" type="radio" value="Community Development" name="nature">
                                         <label>Community Development</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Organizational Development" name="nature">
+                                        <input id="Organizational_Development_USG" type="radio" value="Organizational Development" name="nature">
                                         <label>Organizational Development</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Issue Advocacy" name="nature">
+                                        <input id="Issue_Advocacy_USG" type="radio" value="Issue Advocacy" name="nature">
                                         <label>Issue Advocacy</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
+                                        <input id="Lasallian_Formation/Spiritual_Growth_USG" type="radio" value="Lasallian Formation/Spiritual Growth" name="nature">
                                         <label>Lasallian Formation/Spiritual Growth</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Outreach" name="nature">
+                                        <input id="Outreach_USG" type="radio" value="Outreach" name="nature">
                                         <label>Outreach</label>
                                     </div>
                                 </div>
@@ -211,6 +215,7 @@ Row</button> -->
                         <br />
                         <div class="ui large form">
                             <h3 class="labelHead ui header"><label>Type of the Activity <span class="red"> * </span></label></h3>
+
                             <select id="toa" class="ui dropdown">
                                 <option value="cso">Through CSO/DAAM</option>
                                 <option value="slife">Through SLIFE</option>
@@ -308,7 +313,7 @@ Row</button> -->
                                     <span class="ui calendar" id="startdate">
                                         <div class="ui input left icon">
                                             <i class="calendar icon"></i>
-                                            <input id="date" type="text" name="startDate" placeholder="Date" autocomplete="off"
+                                            <input id="date" type="text" name="startDate" value="<%=data.form.startDate%>" autocomplete="off"
                                                    required>
                                         </div>
                                     </span>
@@ -322,7 +327,7 @@ Row</button> -->
                                     <span class="ui calendar" id="starttime">
                                         <div class="ui input left icon">
                                             <i class="calendar icon"></i>
-                                            <input id="startTime" type="text" name="startTime" placeholder="Start Time"
+                                            <input id="startTime" type="text" name="startTime" value="<%=data.form.startTime%>"
                                                    autocomplete="off" required>
                                         </div>
                                     </span>
@@ -334,7 +339,7 @@ Row</button> -->
                                     <span class="ui calendar" id="endtime">
                                         <div class="ui input left icon">
                                             <i class="calendar icon"></i>
-                                            <input id="endTime" type="text" name="endTime" placeholder="End Time"
+                                            <input id="endTime" type="text" name="endTime" value="<%=data.form.endTime%>"
                                                    autocomplete="off" required>
                                         </div>
                                     </span>
@@ -349,21 +354,21 @@ Row</button> -->
                                     <span class="labelHead"><label>Venue </label> <i class="ui tooltip far fa-question-circle"
                                                                                      data-content="If online activity, put N/A" data-position="bottom center"></i></span>
                                     <br />
-                                    <input id="venue" class="inputron" name="venue" type="text" required>
+                                    <input id="venue" class="inputron" name="venue" type="text" value="<%=data.form.venue%>" required>
                                 </div>
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENMP </label> <i class="ui tooltip far fa-question-circle"
                                                                                     data-content="If N/A, put 0" data-position="bottom center"></i></span>
                                     <br />
-                                    <input id="enmp" class="inputron" name="enmp" type="number" min="0" required>
+                                    <input id="enmp" class="inputron" name="enmp" type="number" min="0" value="<%=data.form.enmp%>" required>
                                 </div>
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENP <i class="ui tooltip far fa-question-circle"
                                                                           data-content="If N/A, put 0" data-position="bottom center"></i></label></span>
                                     <br />
-                                    <input id="enp" class="inputron" name="enp" type="number" min="0" required>
+                                    <input id="enp" class="inputron" name="enp" type="number" min="0" value="<%=data.form.enp%>" required>
                                 </div>
                             </div>
                         </div>
@@ -374,25 +379,25 @@ Row</button> -->
                                 <h3 class="labelHead ui header"><label>Reach of the Activity <span class="red"> * </span></label></h3>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Batch Wide" name="reach" checked="checked">
+                                        <input id="Batch_Wide" type="radio" value="Batch Wide" name="reach" checked="checked">
                                         <label>Batch Wide</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="College Wide" name="reach">
+                                        <input id="College_Wide" type="radio" value="College Wide" name="reach">
                                         <label>College Wide</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="Organization Wide" name="reach">
+                                        <input id="Organization_Wide" type="radio" value="Organization Wide" name="reach">
                                         <label>Organization Wide</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="University Wide" name="reach">
+                                        <input id="University_Wide" type="radio" value="University Wide" name="reach">
                                         <label>University Wide</label>
                                     </div>
                                 </div>
@@ -405,13 +410,13 @@ Row</button> -->
                                 <h3 class="labelHead ui header"><label>Online Activity? <span class="red"> * </span></label></h3>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="yes" name="online" checked="checked">
+                                        <input id="Online_true" type="radio" value="yes" name="online" checked="checked">
                                         <label>Yes</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="no" name="online">
+                                        <input id="Online_false" type="radio" value="no" name="online">
                                         <label>No</label>
                                     </div>
                                 </div>
@@ -424,13 +429,13 @@ Row</button> -->
                                 <h3 class="labelHead ui header"><label>Activity in GOSM? <span class="red"> * </span></label></h3>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="yes" name="GOSM" checked="checked">
+                                        <input id="GOSM_true" type="radio" value="yes" name="GOSM" checked="checked">
                                         <label>Yes</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="no" name="GOSM">
+                                        <input id="GOSM_false" type="radio" value="no" name="GOSM">
                                         <label>No</label>
                                     </div>
                                 </div>
@@ -457,7 +462,7 @@ Row</button> -->
                                         be
                                         supported with examples)</em></li>
                             </ol>
-                            <textarea id="context1" name='context1' rows="2" style="resize: none;" required></textarea>
+                            <textarea id="context1" name='context1' rows="2" style="resize: none;" required><%=data.form.context[0]%></textarea>
                         </div>
                         <br>
 
@@ -472,7 +477,7 @@ Row</button> -->
                                     way?</li>
                                 <li value="-">What can we discover or realize?</li>
                             </ol>
-                            <textarea id="context2" rows="2" name='context2' style="resize: none;" required></textarea>
+                            <textarea id="context2" rows="2" name='context2' style="resize: none;" required><%=data.form.context[1]%></textarea>
                         </div>
 
                         <br />
@@ -486,7 +491,7 @@ Row</button> -->
                                     in
                                     Paragraph 2?</li>
                             </ol>
-                            <textarea id="context3" rows="2" name='context3' style="resize: none;" required></textarea>
+                            <textarea id="context3" rows="2" name='context3' style="resize: none;" required><%=data.form.context[2]%></textarea>
                         </div>
 
                         <br />
@@ -495,20 +500,20 @@ Row</button> -->
                                                                                            data-position="bottom center"></i></h3>
                         <div class="field">
                             <label>1.</label>
-                            <input id="objective1" class="inputron" name='objective1' type="text" required>
+                            <input id="objective1" class="inputron" name='objective1' type="text" value="<%=data.form.objectives[0]%>" required>
                         </div>
                         <br /><br />
                         <div>
                             <label>2.</label>
-                            <input id="objective2" class="inputron" name='objective2' type="text" required>
+                            <input id="objective2" class="inputron" name='objective2' type="text" value="<%=data.form.objectives[1]%>" required>
                         </div>
                         <br /><br />
                         <div>
                             <label>3.</label>
-                            <input id="objective3" class="inputron" name='objective3' type="text" required>
+                            <input id="objective3" class="inputron" name='objective3' type="text" value="<%=data.form.objectives[2]%>" required>
                         </div>
                         <br /><br />
-                        <input style="display:none;" value='0' id="dynamicTable2length" name="dynamicTable2len">
+                        <input style="display:none;" value=<%=data.form.program_flow.length-1%> id="dynamicTable2length" name="dynamicTable2len">
                         <h3 class="labelHead ui header"><label>IV. Comprehensive Program Design </label> <i class="ui tooltip far fa-question-circle"
                                                                                                             data-content="List the actual activities that will happen ON THE DAY of the program/project implementation."
                                                                                                             data-position="bottom center"></i></h3>
@@ -523,19 +528,30 @@ Row</button> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr value=0>
+                                <%for(var i=0; i<data.form.program_flow.length;i++) {%>
+                                    <%var start = "startTime" + i;%>
+                                    <%var end = "endTime" + i;%>
+                                    <%var act = "activity" + i;%>
+                                    <%var des = "description" + i;%>
+                                    <%var per = "person" + i;%>
+                                <tr value=i>
+                                    
                                     <td class="collapsing">
                                         <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteCPD(this)"></i>
+                                            <%}%>
                                         </div>
                                     </td>
-                                    <td><input id="startTime0" class="inputron no-margin" type="time" name="startTime0"
-                                               required>
-                                        <input id="endTime0" class="inputron no-margin" type="time" value="00:00" name="endTime0"
+                                    <td><input id="<%=start%>" class="inputron no-margin" type="time" name="<%=start%>"
+                                         value="<%=data.form.program_flow[i].startTime%>" required>
+                                        <input id="<%=end%>" class="inputron no-margin" type="time" value="<%=data.form.program_flow[i].endTime%>" name="<%=end%>"
                                                required></td>
-                                    <td><textarea id="activity0" class="row-textarea" name="activity0" required></textarea></td>
-                                    <td><textarea id="description0" class="row-textarea" name="description0" required></textarea></td>
-                                    <td><textarea id="person0" class="row-textarea" name="person0" required></textarea></td>
+                                    <td><textarea id="<%=act%>" class="row-textarea" name="<%=act%>" required><%=data.form.program_flow[i].activity%></textarea></td>
+                                    <td><textarea id="<%=des%>" class="row-textarea" name="<%=des%>" required><%=data.form.program_flow[i].description%></textarea></td>
+                                    <td><textarea id="<%=per%>" class="row-textarea" name="<%=per%>" required><%=data.form.program_flow[i].person%></textarea></td>
                                 </tr>
+                                <%}%>
                             </tbody>
                         </table>
                         <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
@@ -545,13 +561,9 @@ Row</button> -->
 
                     <!--Page 3-->
                     <div class="tab">
-                        <input style="display:none;" value='0' id="dynamicTable3length" name="dynamicTable3len">
+                        <input style="display:none;" value=<%=data.form.breakdown_expenses.material.length-1%> id="dynamicTable3length" name="dynamicTable3len">
                         <h3 class="labelHead ui header"><label>V. Breakdown of Expenses </label> <i class="ui tooltip far fa-question-circle"
                                                                                                     data-content="If applicable, list ALL projected expenses." data-position="bottom center"></i>
-                            <div class="ui toggle checkbox right floated">
-                                <input name="public" type="checkbox" checked id="hasExpenses">
-                                <label>Has expenses</label>
-                            </div>
                         </h3>
                         <span class="hiddenText" style="display: none;">The activity will not incur any expenses.</span>
 
@@ -566,19 +578,27 @@ Row</button> -->
                                 </tr>
                             </thead>
                             <tbody>
+                                <%for(var i=0; i<data.form.breakdown_expenses.material.length;i++) {%>
+                                    <%var mat = "material"+i;%>
+                                    <%var qua = "quantity"+i;%>
+                                    <%var unit = "unit"+i;%>
+                                    <%var sub = "BOE_subtotal"+i;%>
                                 <tr>
                                     <td class="collapsing">
                                         <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteBOE(this)"></i>
+                                            <%}%>
                                         </div>
                                     </td>
-                                    <td><input id="material0" class="inputron no-margin" type="text" name="material0"
-                                               required></td>
-                                    <td><input id="quantity0" class="inputron no-margin" type="number" name="quantity0"
-                                               onkeyup="computeBOE()" value=0 min=0 required></td>
-                                    <td><input id="unit0" class="inputron no-margin" type="number" name="unit0" onkeyup="computeBOE()"
-                                               value=0.00 min=0 step=0.01 required></td>
-                                    <td class="bg-gray" name="BOE_subtotal0">Php 0.00</td>
+                                    <td><input id="<%=mat%>" class="inputron no-margin" type="text" name="<%=mat%>"
+                                               value="<%=data.form.breakdown_expenses.material[i].name%>" required></td>
+                                    <td><input id="<%=qua%>" class="inputron no-margin" type="number" name="<%=qua%>"
+                                               onkeyup="computeBOE()" value=0 min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>" required></td>
+                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>" onkeyup="computeBOE()" value=0.00 min=0 step=0.01 value="Php <%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>" required></td>
+                                    <td class="bg-gray" name="<%=sub%>">Php <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%></td>
                                 </tr>
+                                <%}%>
                             </tbody>
                             <tfoot class="full-width">
                                 <tr>
@@ -588,7 +608,7 @@ Row</button> -->
                                             Total:
                                         </div>
                                     </th>
-                                    <th class="result" name="boeTotal">Php 0.00</th>
+                                    <th class="result" name="boeTotal">Php <%=toProperPHP(data.form.breakdown_expenses.total_expense)%></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -611,18 +631,17 @@ Row</button> -->
                             <tbody>
                                 <tr>
                                     <td>Organizational Funds</td>
-                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds"
-                                                   type="number" value="0.00" min="0" step="0.01" onkeyup="computeSOF()" required></td>
+                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="<%=toProperPHP(data.form.source_funds.organization_funds)%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Participants Fee</td>
                                     <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
-                                                   type="number" value="0.00" min="0" step="0.01" onkeyup="computeSOF()" required></td>
+                                                   type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee)%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Others (i.e. Sponsorships)</td>
                                     <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds"
-                                                   type="number" value="0.00" min="0" step="0.01" onkeyup="computeSOF()" required></td>
+                                                   type="number" value="<%=toProperPHP(data.form.source_funds.others)%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                             </tbody>
                             <tfoot class="full-width">
@@ -632,7 +651,7 @@ Row</button> -->
                                             Total:
                                         </div>
                                     </th>
-                                    <th class="result" name="totalSource">Php 0.00</th>
+                                    <th class="result" name="totalSource">Php <%=toProperPHP(data.form.source_funds.total)%></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -652,48 +671,33 @@ Row</button> -->
                             </thead>
                             <tbody>
                                 <tr>
-                                    <!-- <td class="collapsing">
-
-</td> -->
                                     <td>
                                         <div class="right">
                                             Operational Fund
                                         </div>
                                     </td>
                                     <td>Php <input id="OperationalFund" class="inputron no-margin table_input" name="OperationalFund"
-                                                   type="number" value="0.00" min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                                   type="number" value="<%=toProperPHP(data.form.organizational_funds.operational_fund)%>" min="0" step="0.01" onkeyup="computeOF()" required></td>
                                 </tr>
 
                                 <tr>
-                                    <!-- <td class="collapsing">
-
-</td> -->
                                     <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Accumulated
                                         Depository Funds</td>
-
-                                    <!-- <td></td> -->
                                 </tr>
                                 <tr>
-                                    <!-- <td class="collapsing">
-
-</td> -->
                                     <td>
                                         <div class="right">
                                             Depository Fund
                                         </div>
                                     </td>
                                     <td>Php <input id="DepositoryFund" class="inputron no-margin table_input" name="DepositoryFund"
-                                                   type="number" value="0.00" min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                                   type="number" value="<%=toProperPHP(data.form.organizational_funds.depository_fund)%>" min="0" step="0.01" onkeyup="computeOF()" required></td>
                                 </tr>
                                 <tr>
-                                    <!-- <td class="collapsing">
-
-</td> -->
                                     <!-- TODO: FIX TOOLTIP HERE -->
                                     <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other
                                         Sources of Funds <i class="ui tooltip far fa-question-circle" data-content="If N/A, put 0"
                                                             data-position="right center" data-variation="tiny"></i></td>
-                                    <!-- <td></td> -->
                                 </tr>
                                 <tr>
                                     <!-- <td class="collapsing">
@@ -705,7 +709,7 @@ Row</button> -->
                                         </div>
                                     </td>
                                     <td>Php <input id="OtherFund" class="inputron no-margin table_input" name="OtherFund"
-                                                   type="number" value="0.00" min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                                   type="number" value="<%=toProperPHP(data.form.organizational_funds.other_fund)%>" min="0" step="0.01" onkeyup="computeOF()" required></td>
                                 </tr>
                                 <tr>
                                     <!-- <td class="collapsing">
@@ -716,7 +720,7 @@ Row</button> -->
                                             Total Cash For Disbursement
                                         </div>
                                     </td>
-                                    <td style="background-color: #F7F7F7;" name="totalDisbursement">Php 0.00</td>
+                                    <td style="background-color: #F7F7F7;" name="totalDisbursement">Php <%=toProperPHP(data.form.organizational_funds.total_disbursement)%></td>
                                 </tr>
                                 <tr>
                                     <!-- <td class="collapsing">
@@ -727,7 +731,7 @@ Row</button> -->
                                             Less: Total Projected Expenses
                                         </div>
                                     </td>
-                                    <td style="background-color: #F7F7F7;" name="lessExp">Php 0.00</td>
+                                    <td style="background-color: #F7F7F7;" name="lessExp">Php <%=toProperPHP(data.form.organizational_funds.projected_expenses)%></td>
                                 </tr>
                                 <tr>
                                     <!-- <td class="collapsing">
@@ -738,19 +742,15 @@ Row</button> -->
                                             REMAINING BALANCE
                                         </div>
                                     </td>
-                                    <td style="background-color: #F7F7F7;" name="remBalance">Php 0.00</td>
+                                    <td style="background-color: #F7F7F7;" name="remBalance">Php <%=toProperPHP(data.form.organizational_funds.rem_balance)%></td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <br /><br>
-                        <input style="display:none;" value='0' id="dynamicTable4length" name="dynamicTable4len">
+                        <input style="display:none;" value=<%=data.form.projected_income.revenue.length-1%> id="dynamicTable4length" name="dynamicTable4len">
                         <h3 class="labelHead ui header"><label>VIII. Projected Income </label> <i class="ui tooltip far fa-question-circle"
                                                                                                   data-content="This is a requirement for fund-raising and selling activities." data-position="bottom center"></i>
-                            <div class="ui toggle checkbox right floated">
-                                <input name="public" type="checkbox" checked id="hasIncome">
-                                <label>Has income</label>
-                            </div>
                         </h3>
                         <span class="hiddenText" style="display: none;">The activity is not a fundraising/selling activity;
                             thus, it will not incur
@@ -773,25 +773,31 @@ Row</button> -->
                                 </tr>
                             </thead>
                             <tbody>
+                                <%for(var i=0; i<data.form.projected_income.revenue.length;i++) {%>
+                                    <%var item = "item"+i;%>
+                                    <%var qty = "qty"+i;%>
+                                    <%var price = "price"+i;%>
+                                    <%var amount = "amount"+i;%>
                                 <tr>
                                     <td class="collapsing">
                                         <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
+                                            <%}%>
                                         </div>
                                     </td>
-                                    <td><input id="item0" class="inputron no-margin" type="text" name="item0" required></td>
-                                    <td><input id="qty0" class="inputron no-margin" type="number" name="qty0" onkeyup="computeRev()"
-                                               value="0" min="0"></td>
-                                    <td><input id="price0" class="inputron no-margin" name="price0" onkeyup="computeRev()"
-                                               type="number" value="0.00" min="0" step="0.01" required></td>
-                                    <td class="bg-gray" name="amount0">Php 0.00</td>
+                                    <td><input id="<%=item%>" class="inputron no-margin" type="text" name="<%=item%>" value="<%=data.form.projected_income.revenue[i].item%>" required></td>
+                                    <td><input id="<%=qty%>" class="inputron no-margin" type="number" name="<%=qty%>" onkeyup="computeRev()" value="<%=data.form.projected_income.revenue[i].quantity%>" min="0"></td>
+                                    <td><input id="<%=price%>" class="inputron no-margin" name="<%=price%>" onkeyup="computeRev()"
+                                               type="number" value="<%=toProperPHP(data.form.projected_income.revenue[i].price)%>" min="0" step="0.01" required></td>
+                                    <td class="bg-gray" name="<%=amount%>">Php <%=toProperPHP(data.form.projected_income.revenue[i].amount)%></td>
                                 </tr>
+                                <%}%>
                             </tbody>
                         </table>
                         <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
-                        <!-- <button type="button" class="row-button previous" id="btnDeleteProjRev">Delete Row</button> -->
 
-                        <!-- <br><br> -->
-                        <input style="display:none;" value='0' id="dynamicTable5length" name="dynamicTable5len">
+                        <input style="display:none;" value=<%=data.form.projected_income.expenses.length-1%> id="dynamicTable5length" name="dynamicTable5len">
                         <table class="ui compact celled definition fixed table unstackable" id="dynamicTable5">
                             <thead class="full-width">
                                 <tr>
@@ -809,18 +815,26 @@ Row</button> -->
                                 </tr>
                             </thead>
                             <tbody>
+                                <%for(var i=0; i<data.form.projected_income.expenses.length;i++) {%>
+                                    <%var it = "it"+i;%>
+                                    <%var qu = "qu"+i;%>
+                                    <%var pr = "pr"+i;%>
+                                    <%var am = "am"+i;%>
                                 <tr>
                                     <td class="collapsing">
                                         <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
+                                            <%}%>
                                         </div>
                                     </td>
-                                    <td><input id="it0" class="inputron no-margin" type="text" name="it0" required></td>
-                                    <td><input id="qu0" class="inputron no-margin" type="number" name="qu0" onkeyup="computeExp()"
-                                               required value="0" min="0"></td>
-                                    <td><input id="pr0" class="inputron no-margin" name="pr0" type="number" onkeyup="computeExp()"
-                                               value="0.00" min="0" step="0.01" required></td>
-                                    <td class="bg-gray" name="am0">Php 0.00</td>
+                                    <td><input id="<%=it%>" class="inputron no-margin" type="text" name="<%=it%>" value="<%=data.form.projected_income.expenses[i].item%>" required></td>
+                                    <td><input id="<%=qu%>" class="inputron no-margin" type="number" name="<%=qu%>" onkeyup="computeExp()" value="<%=data.form.projected_income.expenses[i].quantity%>" min="0"></td>
+                                    <td><input id="<%=pr%>" class="inputron no-margin" name="<%=pr%>" onkeyup="computeExp()"
+                                               type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price)%>" min="0" step="0.01" required></td>
+                                    <td class="bg-gray" name="<%=am%>">Php <%=toProperPHP(data.form.projected_income.expenses[i].amount)%></td>
                                 </tr>
+                                <%}%>
                             </tbody>
                             <tfoot class="full-width">
                                 <tr>
@@ -831,7 +845,7 @@ Row</button> -->
                                             Total Projected Income:
                                         </div>
                                     </th>
-                                    <th name="projIncomeTotal">Php 0.00</th>
+                                    <th name="projIncomeTotal">Php <%=toProperPHP(data.form.projected_income.total)%></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -847,19 +861,19 @@ Row</button> -->
                             <div class="two column row">
                                 <div class="left floated column">
                                     <label>Name of Person Responsible</label><br />
-                                    <input id="namePR1" class="inputron" name='namePR' type="text" required>
+                                    <input id="namePR1" class="inputron" name='namePR' type="text" value="<%=data.form.person_responsible[0].name%>" required>
                                     <br /><br />
                                     <label>Position</label><br>
-                                    <input id="positionPR" class="inputron" name='positionPR' type="text" required>
+                                    <input id="positionPR" class="inputron" name='positionPR' type="text" value="<%=data.form.person_responsible[0].position%>" required>
                                     <br /><br />
                                 </div>
                                 <div class="right floated column">
                                     <label style="float: left;">Name of Person Responsible</label>
                                     <br />
-                                    <input id="namePR2" class="inputron" name='namePR2' type="text" required><br /><br />
+                                    <input id="namePR2" class="inputron" name='namePR2' type="text" value="<%=data.form.person_responsible[1].name%>" required><br /><br />
                                     <label style="float: left;">Position</label>
                                     <br />
-                                    <input id="positionPR2" class="inputron" name='positionPR2' type="text" required>
+                                    <input id="positionPR2" class="inputron" name='positionPR2' type="text" value="<%=data.form.person_responsible[1].position%>" required>
                                     <br /><br />
                                 </div>
                             </div>
@@ -966,17 +980,6 @@ Row</button> -->
                 // ... and run a function that displays the correct step indicator:
                 fixStepIndicator(n)
 
-                if (n == 1) {
-                    var startTime = $("#startTime").val();
-                    var endTime = $("#endTime").val();
-
-                    // console.log("I'M ON SECOND PAGE, time is: " + get24htime(time));
-                    var input = $("#dynamicTable2 tr:last").children().eq(1).find('input:last')
-                    $(input).attr('value', get24htime(
-                        endTime))
-
-                    document.getElementById('startTime0').setAttribute('value', get24htime(startTime));
-                }
                 //scrolls the page to top
                 $(window).scrollTop(0);
             }
@@ -1737,8 +1740,8 @@ Row</button> -->
 
             function computeRB() {
 
-                var sourceVal = ($("th[name=totalDisbursement]").text()).substring(4)
-                var boeVal = ($("th[name=lessExp]").text()).substring(4);
+                var sourceVal = ($("th[name=totalSource]").text()).substring(4)
+                var boeVal = ($("th[name=boeTotal]").text()).substring(4);
 
                 var sum = parseFloat(sourceVal) - parseFloat(boeVal);
                 // console.log("SOF")
@@ -2106,6 +2109,44 @@ Row</button> -->
             }
 
             $(document).ready(function () {
+                //nature
+                var nature = "";
+                var array = "<%=data.form.nature%>".split(" ");
+                for(var i=0; i < array.length; i++) {
+                    nature += array[i] + "_";
+                }
+                
+                <%if(data.type == "CSO") {%>
+                    nature += "CSO";
+                <%} else {%>
+                    nature += "USG";
+                <%}%>
+                
+                nature = "#"+nature;
+                $(nature).prop( "checked", true );
+                
+                //reach
+                var reach = "";
+                var array2 = "<%=data.form.reach%>".split(" ");
+                for(var i=0; i < array2.length; i++) {
+                    if(i==array2.length-1)
+                        reach += array2[i];
+                    else 
+                        reach += array2[i] + "_";
+                }
+                
+                reach = "#"+reach;
+                $(reach).prop( "checked", true);
+                
+                //online
+                var online = "Online_" + <%=data.form.online%>;
+                online = "#"+online;
+                $(online).prop( "checked", true);
+                
+                //GOSM
+                var gosm = "GOSM_" + <%=data.form.GOSM%>;
+                gosm = "#"+gosm;
+                $(gosm).prop( "checked", true);
                 
                 $("#toa").on('change', function() {
                     if ($(this).val() == 'cso'){
