@@ -39,7 +39,8 @@ module.exports.findFormViaTitle = function (title) {
         Form.find({
             title: {
                 $regex: title
-            }
+            },
+            archived: false
         }).then((similarForm) => {
             resolve(similarForm)
         }, (err) => {
@@ -91,7 +92,8 @@ module.exports.getAllForms = function (){
 module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id
+            currentCheckers: user_id,
+            archived: false,
         }).sort({
             creationDate: -1
         }).then((results)=>{
@@ -112,6 +114,7 @@ module.exports.getAllFormsWithStringMatch = function(user_id, query){
     return new Promise(function (resolve, reject) {
         Form.find({
             currentCheckers: user_id,
+            archived: false,
 //            title: /g/i
 //            title: query
             title: new RegExp(query, "i")
@@ -137,6 +140,7 @@ module.exports.getAllOwnedFormsWithStringMatch = function(user_id, query){
     return new Promise(function (resolve, reject) {
         Form.find({
             user_id,
+            archived: false,
 //            title: /g/i
 //            title: query
             title: new RegExp(query, "i")
@@ -161,7 +165,8 @@ module.exports.getAllOwnedFormsWithStringMatch = function(user_id, query){
 module.exports.getAllFormsOfOwner = function (id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            user_id: id
+            user_id: id,
+            archived: false
         }).sort({
             creationDate: -1
         }).then((results)=>{
