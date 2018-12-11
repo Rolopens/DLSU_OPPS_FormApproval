@@ -12,9 +12,21 @@
     <body>
         <div class="go-back">
             <a href="/"><button class="dark" style="display: inline;"><i class="left chevron icon" style="float: left; margin-left: -1.5rem; margin-right: 1.3rem; margin-top: 0.1rem;"></i>
-                Go home</button></a>
+                Home</button></a>
             <!-- <i class="fas fa-2x fa-home"></i>Home -->
         </div>
+        
+        <%if(data.form.comments!=null){%>
+            <div class="ui segments commentBox">
+                <div class="ui segment">
+                    <p>Comments</p>
+                </div>
+                <div class="ui secondary segment">
+                    <p><%=data.form.comments%></p>
+                </div>
+            </div>
+        <%}%>
+        
         <div class="main ui text container">
             <!-- Approval modal -->
             <div class="modal fade" id="modalActivitySubmit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -74,8 +86,8 @@
                                 </thead>
                                 <tbody>
                                     <%for(var i=0; i<data.form.projectHeads.length;i++) {%>
-                                    <%var phead = "phead_name" + i;%>
-                                    <%var num = "phead_number" + i;%>
+                                        <%var phead = "phead_name" + i;%>
+                                        <%var num = "phead_number" + i;%>
                                     <tr value=i>
                                         <td class="collapsing">
                                             <div class="ui fitted">
@@ -535,7 +547,6 @@
                                 <%var des = "description" + i;%>
                                 <%var per = "person" + i;%>
                                 <tr value=i>
-
                                     <td class="collapsing">
                                         <div class="ui fitted">
                                             <%if(i!=0){%>
@@ -594,8 +605,8 @@
                                     <td><input id="<%=mat%>" class="inputron no-margin" type="text" name="<%=mat%>"
                                                value="<%=data.form.breakdown_expenses.material[i].name%>" required></td>
                                     <td><input id="<%=qua%>" class="inputron no-margin" type="number" name="<%=qua%>"
-                                               onkeyup="computeBOE()" value=0 min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>" required></td>
-                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>" onkeyup="computeBOE()" value=0.00 min=0 step=0.01 value="Php <%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>" required></td>
+                                               onkeyup="computeBOE()" min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>" required></td>
+                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>" onkeyup="computeBOE()" min=0 step=0.01 value="<%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>" required></td>
                                     <td class="bg-gray" name="<%=sub%>">Php <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%></td>
                                 </tr>
                                 <%}%>
@@ -631,7 +642,7 @@
                             <tbody>
                                 <tr>
                                     <td>Organizational Funds</td>
-                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="<%=toProperPHP(data.form.source_funds.organization_funds)%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
+                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds" type="number" value="<%=data.form.source_funds.organization_funds%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Participants Fee</td>
@@ -691,7 +702,7 @@
                                         </div>
                                     </td>
                                     <td>Php <input id="DepositoryFund" class="inputron no-margin table_input" name="DepositoryFund"
-                                                   type="number" value="<%=toProperPHP(data.form.organizational_funds.depository_fund)%>" min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                                   type="number" value="<%=data.form.organizational_funds.depository_fund%>" min="0" step="0.01" onkeyup="computeOF()" required></td>
                                 </tr>
                                 <tr>
                                     <!-- TODO: FIX TOOLTIP HERE -->

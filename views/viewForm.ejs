@@ -5,13 +5,30 @@
     <head>
         <title>View Project Proposal</title>
         <%- include partials/scriptResources %>
+        <link rel="stylesheet" type="text/css" href="css/element-stylesheet/button.css" />
         <link rel="stylesheet" href="css/form.css">
         <link rel="stylesheet" href="css/viewForm.css">
         <link rel="stylesheet" href="css/variables.css" />
         <link rel="stylesheet" href="css/bootstrap_modal_2.css" />
     </head>
     <body>
+        <div class="go-back">
+            <a href="/"><button class="dark" style="display: inline;"><i class="left chevron icon" style="float: left; margin-left: -1.5rem; margin-right: 1.3rem; margin-top: 0.1rem;"></i>
+                Home</button></a>
+            <!-- <i class="fas fa-2x fa-home"></i>Home -->
+        </div>
 
+        <%if(data.comments!=null){%>
+            <div class="ui segments commentBox">
+                <div class="ui segment">
+                    <p>Comments</p>
+                </div>
+                <div class="ui secondary segment">
+                    <p><%=data.comments%></p>
+                </div>
+            </div>
+        <%}%>
+        
         <div class="main ui text container">
             <div class="ui segments" style="padding: 1.2em;">
                 <form id="activityForm" action="/preacts" method="get">
@@ -380,15 +397,19 @@
 
                         <table id="provision" style="border: none">
                             <tr>
-                                <td class="cell2 left"><h3>Name</h3></td>
-                                <td class="cell2 left"><h3>Position</h3></td>
+                                <td class="cell2 left"><h3>Name of Person Responsible</h3></td>
+                                <td class="cell2 left"><h3>Name of Person Responsible</h3></td>
                             </tr>
                             <tr>
                                 <td class="cell2 left"><%=data.person_responsible[0].name%></td>
-                                <td class="cell2 left"><%=data.person_responsible[0].position%></td>
+                                <td class="cell2 left"><%=data.person_responsible[1].name%></td>
                             </tr>
                             <tr>
-                                <td class="cell2 left"><%=data.person_responsible[1].name%></td>
+                                <td class="cell2 left"><h3>Position</h3></td>
+                                <td class="cell2 left"><h3>Position</h3></td>
+                            </tr>
+                            <tr>
+                                <td class="cell2 left"><%=data.person_responsible[0].position%></td>
                                 <td class="cell2 left"><%=data.person_responsible[1].position%></td>
                             </tr>
                         </table>
@@ -453,17 +474,19 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                                 aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                                        <h4 class="modal-title" id="myModalLabel">Comments for Revision</h4>
                                     </div>
-                                    <div class="modal-body">
-                                        You are about to <b>reject for revisions</b> the activity <b><%=data.title%></b>. Proceed?
-                                    </div>
-                                    <div class="modal-footer">                          
-                                        <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" id="reject">Reject</button>
-                                        </form>
-                                    </div>
+                                    <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+                                        <div class="modal-body">
+                                            You are about to <b>reject for revisions</b> the activity <b><%=data.title%></b>. Please state your reasons.
+                                            <textarea name="comments" required></textarea>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary" id="reject">Reject</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -577,6 +600,10 @@
                 x[n].className += " active";
             }
 
+            function addComment() {
+                document.getElementsById("commentBox").style.display = "block";
+            }
+            
             function changeContent() {
                 <%if(prevForm != null) {%>
                 if(newVersion) {
@@ -651,6 +678,8 @@
                     changeContent();
                 }
             });
+                            
+                            
         </script>
     </body>
 

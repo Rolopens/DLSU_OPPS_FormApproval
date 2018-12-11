@@ -123,3 +123,21 @@ h1 {
 .obj{
     word-wrap: break-word;
 }
+
+.commentButton {
+    top: 0;
+    position: fixed;
+    color: white;
+    right:0;
+    z-index: 2;
+    padding: 0.8rem;
+}
+
+.commentBox {
+    margin: 5% !important;
+    font-size: 18px !important;
+    width: 300px !important;
+    position: fixed !important;
+    z-index: 3 !important;
+    overflow-y: scroll !important;
+}
