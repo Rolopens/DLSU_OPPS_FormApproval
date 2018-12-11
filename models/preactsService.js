@@ -336,7 +336,7 @@ module.exports.sortFormDateDesc = function (id){
 module.exports.sortEventDateAscChecked = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id,
+            $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false
         }).sort({
             startDate: 1
@@ -356,7 +356,7 @@ module.exports.sortEventDateAscChecked = function (user_id){
 module.exports.sortEventDateDescChecked = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id,
+            $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false
         }).sort({
             startDate: -1
@@ -376,7 +376,7 @@ module.exports.sortEventDateDescChecked = function (user_id){
 module.exports.sortFormDateAscChecked = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id,
+            $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false
         }).sort({
             creationDate: 1
@@ -396,7 +396,7 @@ module.exports.sortFormDateAscChecked = function (user_id){
 module.exports.sortFormDateDescChecked = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id,
+            $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false
         }).sort({
             creationDate: -1
