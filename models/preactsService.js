@@ -92,7 +92,7 @@ module.exports.getAllForms = function (){
 module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id,
+            $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false,
         }).sort({
             creationDate: -1
@@ -113,7 +113,7 @@ module.exports.getAllFormsViaCurrentCheckerID = function (user_id){
 module.exports.getAllFormsWithStringMatch = function(user_id, query){
     return new Promise(function (resolve, reject) {
         Form.find({
-            currentCheckers: user_id,
+            $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false,
 //            title: /g/i
 //            title: query
@@ -220,7 +220,8 @@ module.exports.updateForm = function (form) {
             org: form.org, 
             processType: form.processType,
             archived: form.archived,
-            prevForm_id: form.prevForm_id
+            prevForm_id: form.prevForm_id,
+            currentViewers: form.currentViewers
 
         }).then((updatedForms) => {
             resolve(updatedForms)

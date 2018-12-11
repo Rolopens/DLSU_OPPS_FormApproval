@@ -260,6 +260,9 @@ module.exports.controller = function (app) {
                             org1 = retOrg;
                             userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                                 var temp = form.currentCheckers;
+                                form.currentCheckers.forEach(function(item){
+                                    form.currentViewers.push(item)
+                                })
                                 if (form.status === "Approved") {
                                     form.currentCheckers = [];
                                 } else {
@@ -309,6 +312,9 @@ module.exports.controller = function (app) {
                                 org1 = retOrg;
                                 userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                                     var temp = form.currentCheckers;
+                                    form.currentCheckers.forEach(function(item){
+                                        form.currentViewers.push(item)
+                                    })
                                     if (form.status === "Approved") {
                                         form.currentCheckers = [];
                                     } else {
@@ -339,6 +345,9 @@ module.exports.controller = function (app) {
                         org1 = retOrg
                         userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                             var temp = form.currentCheckers;
+                            form.currentViewers.forEach(function(item){
+                                form.currentCheckers.push(item)
+                            })
                             if (form.status === "Approved") {
                                 form.currentCheckers = [];
                             } else {
@@ -367,6 +376,9 @@ module.exports.controller = function (app) {
                         org1 = retOrg
                         userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                             var temp = form.currentCheckers;
+                            form.currentCheckers.forEach(function(item){
+                                form.currentViewers.push(item)
+                            })
                             if (form.status === "Approved") {
                                 form.currentCheckers = [];
                             } else {
@@ -417,6 +429,9 @@ module.exports.controller = function (app) {
             var form = formData
             form.status = "Rejected"
             form.comments = req.body.comments;
+            form.currentCheckers.forEach(function(item){
+                form.currentViewers.push(item)
+            })
             form.currentCheckers = []
 
             preactsService.updateForm(form).then((updatedForm) => {
@@ -798,6 +813,7 @@ module.exports.controller = function (app) {
                                         "user_id": req.session.uid,
                                         "processType": processType,
                                         "currentCheckers": req.session.currentCheckers,
+                                        "currentViewers": [],
                                         "archived": false,
                                         "prevForm_id": null
                                     });
@@ -873,6 +889,7 @@ module.exports.controller = function (app) {
                                         "user_id": req.session.uid,
                                         "processType": processType,
                                         "currentCheckers": req.session.currentCheckers,
+                                        "currentViewers": [],
                                         "archived": false,
                                         "prevForm_id": null
                                     });
@@ -978,14 +995,16 @@ module.exports.controller = function (app) {
                                         prevForm: form2,
                                         org: data,
                                         data: form,
-                                        button: false
+                                        button: false,
+                                        curUser: null
                                     });
                                 } else {
                                     res.render('viewForm', {
                                         prevForm: form2,
                                         org: data,
                                         data: form,
-                                        button: true
+                                        button: true,
+                                        curUser: req.session.uid
                                     });
                                 }
                             })
@@ -995,14 +1014,16 @@ module.exports.controller = function (app) {
                                     prevForm: null,
                                     org: data,
                                     data: form,
-                                    button: false
+                                    button: false,
+                                    curUser: null
                                 });
                             } else {
                                 res.render('viewForm', {
                                     prevForm: null,
                                     org: data,
                                     data: form,
-                                    button: true
+                                    button: true,
+                                    curUser: req.session.uid
                                 });
                             }
                         }
@@ -1312,6 +1333,7 @@ module.exports.controller = function (app) {
                                                 "user_id": req.session.uid,
                                                 "processType": processType,
                                                 "currentCheckers": req.session.currentCheckers,
+                                                "currentViewers": old.currentViewers,
                                                 "archived": false,
                                                 "prevForm_id": oldForm
                                             });
@@ -1397,6 +1419,7 @@ module.exports.controller = function (app) {
                                                 "user_id": req.session.uid,
                                                 "processType": processType,
                                                 "currentCheckers": req.session.currentCheckers,
+                                                "currentViewers": old.currentViewers,
                                                 "archived": false,
                                                 "prevForm_id": oldForm
                                             });
@@ -1499,6 +1522,7 @@ module.exports.controller = function (app) {
                                                     "user_id": req.session.uid,
                                                     "processType": processType,
                                                     "currentCheckers": req.session.currentCheckers,
+                                                    "currentViewers": old.currentViewers,
                                                     "archived": false,
                                                     "prevForm_id": oldForm
                                                 });
@@ -1589,6 +1613,7 @@ module.exports.controller = function (app) {
                                                 "user_id": req.session.uid,
                                                 "processType": processType,
                                                 "currentCheckers": req.session.currentCheckers,
+                                                "currentViewers": old.currentViewers,
                                                 "archived": false,
                                                 "prevForm_id": oldForm
                                             });

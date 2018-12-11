@@ -224,7 +224,7 @@
                             </div>
                         </div>
                         <br /><br />
-                        <div class="row">
+                        <div class="row" v-if="quickview.currentCheckers.includes(whoami._id)">
                             <div class="column">
                                 <p class="action negative" id="RejectForm" data-toggle="modal" data-target="#modalActivityReject"><i
                                         class="fa fa-times-circle"></i> &nbsp; Reject Activity</p>

@@ -38,6 +38,7 @@ var formSchema = new Schema({
     approvedDate: Date, //date and time when the form is approved
     canView: [mongoose.Schema.Types.ObjectId],
     currentCheckers: [ mongoose.Schema.Types.ObjectId],
+    currentViewers: [ mongoose.Schema.Types.ObjectId],
     approvedBy: [ mongoose.Schema.Types.ObjectId],
     position: Number, //Used for tracking the form
     processType: String,

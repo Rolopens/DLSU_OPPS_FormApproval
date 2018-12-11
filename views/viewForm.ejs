@@ -514,10 +514,11 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <%if(data.currentCheckers.includes(curUser)) {%>
                         <input id="approve" type="submit" class="button approve" value="Approve" data-toggle="modal" data-target="#modalActivityApprove">
                         <input id="reject" type="submit" class="button reject" value="Reject" data-toggle="modal" data-target="#modalActivityReject">
                         <input id="reject" type="submit" class="button reject" value="Full Reject" data-toggle="modal" data-target="#modalActivityFullReject"> 
+                        <%}%>
                     </div>
                 <br/><br/>
                 <%} else {%>
