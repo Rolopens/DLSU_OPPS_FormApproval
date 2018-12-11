@@ -107,10 +107,11 @@
                     <!-- <div class="row"> -->
                     <nav id="acts-nav">
                         <ul>
-                            <li class="active">All (243)</li>
-                            <li>Approved (200)</li>
-                            <li>Pending (43)</li>
-                            <li>Rejected (10)</li>
+                            <li class="active" v-on:click="allFilter">All</li>
+                            <li v-on:click="approvedFilter()">Approved</li>
+                            <li v-on:click="pendingFilter()">Pending</li>
+                            <li v-on:click="rejectedFilter()">Rejected</li>
+                            <li v-on:click="unreviewedFilter()">Unreviewed</li>
                         </ul>
                     </nav>
                     <!-- </div> -->
@@ -131,7 +132,7 @@
                         <div class="content-empty" v-if="forms.length == 0">
                             No forms found.
                         </div>
-                        <div v-else v-for="form in forms">
+                        <div v-else v-for="form in show">
                             <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
                                 <div class="activity-wrapper flex-start">
                                     <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>

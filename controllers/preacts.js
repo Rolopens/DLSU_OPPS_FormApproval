@@ -1212,99 +1212,388 @@ module.exports.controller = function (app) {
                         processType = processType + "-DAAM"
                     }
                 }
-                console.log("DEBUG: PROCESS TYPE -> " + processType)
-                var org, role, orgObj, roleObj;
-                var str = processes[processType][0];
-                //                console.log(str)
-
-                var temp = str.split("-", 2);
-                //                console.log(temp)
-                org = temp[1];
-                role = temp[0];
 
 
-                //                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
-                roleService.getRoleWithName(role).then((retRole) => {
-                    roleObj = retRole;
-                    orgService.getOrgWithAbbrev(org).then((retOrg) => {
-                        orgObj = retOrg;
-                        userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
-                            req.session.currentCheckers = retUsers
-                            roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
-                                var form = new Form({
-                                    "title": req.session.title,
-                                    "nature": req.session.nature,
-                                    "typeOfActivity": req.session.type,
-                                    "enmp": req.session.enmp,
-                                    "enp": req.session.enp,
-                                    "startDate": req.session.startDate,
-                                    "startTime": req.session.startTime,
-                                    "endDate": req.session.endDate,
-                                    "endTime": req.session.endTime,
-                                    "venue": req.session.venue,
-                                    "reach": req.session.reach,
-                                    "GOSM": req.session.GOSM,
-                                    "online": req.session.online,
-                                    "context": [req.session.context1, req.session.context2, req.session.context3],
-                                    "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
-                                    "person_responsible": [req.session.PR, req.session.PR_2],
-                                    "source_funds": req.session.sourceFunds,
-                                    "organizational_funds": req.session.organizational_funds,
-                                    "program_flow": req.session.programData,
-                                    "projectHeads": req.session.pheadData,
-                                    "breakdown_expenses": req.session.breakdownOfExpenses,
-                                    "projected_income": {
-                                        revenue: req.session.projRevData,
-                                        expenses: req.session.porjExpData,
-                                        total: req.session.projIncomeTotal
-                                    },
-                                    "comments": null,
-                                    "position": null,
-                                    "creationDate": new Date,
-                                    "org": usersOrganization, //fix this later on to session
-                                    "position": 0,
-                                    "status": "Pending",
-                                    "user_id": req.session.uid,
-                                    "processType": processType,
-                                    "currentCheckers": req.session.currentCheckers,
-                                    "archived": false,
-                                    "prevForm_id": oldForm
-                                });
-                                preactsService.addForm(form).then((addedForm) => {
-                                    //archive not updating================================
-                                    preactsService.findFormViaId(oldForm).then((old) => {
-                                        old.archived = true;
-                                        preactsService.updateForm(old).then((updatedForm) => {
-                                            preactsService.findFormViaId(old._id).then((formData1) => {
-                                                console.log(formData1.archived);
+                preactsService.findFormViaId(oldForm).then((old) => {
+                    console.log("DEBUG: PROCESS TYPE -> " + processType)
+                    var org, role, orgObj, roleObj;
+                    var str = processes[processType][old.position];
+                    //                console.log(str)
+
+                    var temp = str.split("-", 2);
+                    //                console.log(temp)
+                    org = temp[1];
+                    role = temp[0];
+
+                    if (org == 'ORG') {
+                        roleService.getRoleWithName(role).then((retRole) => {
+                            roleObj = retRole;
+                            orgService.getOrgWithName(usersOrganization).then((retOrg) => {
+                                orgObj = retOrg;
+                                userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
+                                    req.session.currentCheckers = retUsers
+                                    roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                        preactsService.findFormViaId(oldForm).then((old) => {
+                                            var form = new Form({
+                                                "title": req.session.title,
+                                                "nature": req.session.nature,
+                                                "typeOfActivity": req.session.type,
+                                                "enmp": req.session.enmp,
+                                                "enp": req.session.enp,
+                                                "startDate": req.session.startDate,
+                                                "startTime": req.session.startTime,
+                                                "endDate": req.session.endDate,
+                                                "endTime": req.session.endTime,
+                                                "venue": req.session.venue,
+                                                "reach": req.session.reach,
+                                                "GOSM": req.session.GOSM,
+                                                "online": req.session.online,
+                                                "context": [req.session.context1, req.session.context2, req.session.context3],
+                                                "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                                "person_responsible": [req.session.PR, req.session.PR_2],
+                                                "source_funds": req.session.sourceFunds,
+                                                "organizational_funds": req.session.organizational_funds,
+                                                "program_flow": req.session.programData,
+                                                "projectHeads": req.session.pheadData,
+                                                "breakdown_expenses": req.session.breakdownOfExpenses,
+                                                "projected_income": {
+                                                    revenue: req.session.projRevData,
+                                                    expenses: req.session.porjExpData,
+                                                    total: req.session.projIncomeTotal
+                                                },
+                                                "comments": null,
+                                                "position": null,
+                                                "creationDate": new Date,
+                                                "org": usersOrganization, //fix this later on to session
+                                                "position": old.position,
+                                                "status": "Pending",
+                                                "user_id": req.session.uid,
+                                                "processType": processType,
+                                                "currentCheckers": req.session.currentCheckers,
+                                                "archived": false,
+                                                "prevForm_id": oldForm
+                                            });
+                                            preactsService.addForm(form).then((addedForm) => {
+                                                old.archived = true;
+                                                preactsService.updateForm(old).then((updatedForm) => {
+                                                    preactsService.findFormViaId(old._id).then((formData1) => {
+                                                        console.log(formData1.archived);
+                                                        clearSessionForm(req);
+                                                        res.redirect('/preacts-submission');
+                                                    })
+                                                });
+                                            }).catch((err) => {
+                                                console.log("ERROR: Failed to add form in database");
+                                                console.log(err);
+                                                req.session.submissionError = true;
+                                                res.redirect('/preacts-submission');
+                                            });
+
+
+                                        }).catch((err) => {
+                                            console.log(err);
+                                            req.session.submissionError = true;
+                                            res.redirect('/preacts-submission');
+                                        })
+
+                                    }).catch((err) => {
+                                        console.log(err);
+                                        req.session.submissionError = true;
+                                        res.redirect('/preacts-submission');
+                                    });
+                                }).catch((err) => {
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
+                                })
+                            }).catch((err) => {
+                                req.session.submissionError = true;
+                                res.redirect('/preacts-submission');
+                            })
+                        })
+                    } else if (org == 'BATCH') {
+                        roleService.getRoleWithName(role).then((retRole) => {
+                            roleObj = retRole;
+                            orgService.getOrgWithName(usersOrganization).then((retOrg) => {
+                                orgObj = retOrg;
+                                userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
+                                    req.session.currentCheckers = retUsers
+                                    roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                        preactsService.findFormViaId(oldForm).then((old) => {
+                                            var form = new Form({
+                                                "title": req.session.title,
+                                                "nature": req.session.nature,
+                                                "typeOfActivity": req.session.type,
+                                                "enmp": req.session.enmp,
+                                                "enp": req.session.enp,
+                                                "startDate": req.session.startDate,
+                                                "startTime": req.session.startTime,
+                                                "endDate": req.session.endDate,
+                                                "endTime": req.session.endTime,
+                                                "venue": req.session.venue,
+                                                "reach": req.session.reach,
+                                                "GOSM": req.session.GOSM,
+                                                "online": req.session.online,
+                                                "context": [req.session.context1, req.session.context2, req.session.context3],
+                                                "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                                "person_responsible": [req.session.PR, req.session.PR_2],
+                                                "source_funds": req.session.sourceFunds,
+                                                "organizational_funds": req.session.organizational_funds,
+                                                "program_flow": req.session.programData,
+                                                "projectHeads": req.session.pheadData,
+                                                "breakdown_expenses": req.session.breakdownOfExpenses,
+                                                "projected_income": {
+                                                    revenue: req.session.projRevData,
+                                                    expenses: req.session.porjExpData,
+                                                    total: req.session.projIncomeTotal
+                                                },
+                                                "comments": null,
+                                                "position": null,
+                                                "creationDate": new Date,
+                                                "org": usersOrganization, //fix this later on to session
+                                                "position": old.position,
+                                                "status": "Pending",
+                                                "user_id": req.session.uid,
+                                                "processType": processType,
+                                                "currentCheckers": req.session.currentCheckers,
+                                                "archived": false,
+                                                "prevForm_id": oldForm
+                                            });
+                                            preactsService.addForm(form).then((addedForm) => {
+                                                old.archived = true;
+                                                preactsService.updateForm(old).then((updatedForm) => {
+                                                    preactsService.findFormViaId(old._id).then((formData1) => {
+                                                        console.log(formData1.archived);
+                                                        clearSessionForm(req);
+                                                        res.redirect('/preacts-submission');
+                                                    })
+                                                });
+                                            }).catch((err) => {
+                                                console.log("ERROR: Failed to add form in database");
+                                                console.log(err);
+                                                req.session.submissionError = true;
+                                                res.redirect('/preacts-submission');
+                                            });
+
+
+                                        }).catch((err) => {
+                                            console.log(err);
+                                            req.session.submissionError = true;
+                                            res.redirect('/preacts-submission');
+                                        })
+
+                                    }).catch((err) => {
+                                        console.log(err);
+                                        req.session.submissionError = true;
+                                        res.redirect('/preacts-submission');
+                                    });
+                                }).catch((err) => {
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
+                                })
+                            }).catch((err) => {
+                                req.session.submissionError = true;
+                                res.redirect('/preacts-submission');
+                            })
+                        })
+                    } else if (org == 'COLLEGE') {
+                        var collegeName;
+                        roleService.getRoleWithName(role).then((retRole) => {
+                            roleObj = retRole;
+                            orgService.getOrgWithName(usersOrganization).then((retOrg) => {
+                                orgObj = retOrg;
+                                if (orgObj.abbrev.includes("BLAZE")) {
+                                    collegeName = "COB_CG"
+                                } else if (orgObj.abbrev.includes("FAST")) {
+                                    collegeName = "CLA_CG"
+                                } else if (orgObj.abbrev.includes("ENG")) {
+                                    orgObj = "COE_CG"
+                                } else if (orgObj.abbrev.includes("CATCH")) {
+                                    collegeName = "CCS_CG"
+                                } else if (orgObj.abbrev.includes("FOCUS")) {
+                                    collegeName = "COS_CG"
+                                } else if (orgObj.abbrev.includes("EDGE")) {
+                                    collegeName = "CED_CG"
+                                } else if (orgObj.abbrev.includes("EXCEL")) {
+                                    collegeName = "SOE_CG"
+                                }
+                                orgService.getOrgWithAbbrev(collegeName).then((retuOrg)=>{
+                                    userService.findUserByOrgAndRoleID(retuOrg._id, roleObj._id).then((retUsers) => {
+                                        req.session.currentCheckers = retUsers
+                                        roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                            preactsService.findFormViaId(oldForm).then((old) => {
+                                                var form = new Form({
+                                                    "title": req.session.title,
+                                                    "nature": req.session.nature,
+                                                    "typeOfActivity": req.session.type,
+                                                    "enmp": req.session.enmp,
+                                                    "enp": req.session.enp,
+                                                    "startDate": req.session.startDate,
+                                                    "startTime": req.session.startTime,
+                                                    "endDate": req.session.endDate,
+                                                    "endTime": req.session.endTime,
+                                                    "venue": req.session.venue,
+                                                    "reach": req.session.reach,
+                                                    "GOSM": req.session.GOSM,
+                                                    "online": req.session.online,
+                                                    "context": [req.session.context1, req.session.context2, req.session.context3],
+                                                    "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                                    "person_responsible": [req.session.PR, req.session.PR_2],
+                                                    "source_funds": req.session.sourceFunds,
+                                                    "organizational_funds": req.session.organizational_funds,
+                                                    "program_flow": req.session.programData,
+                                                    "projectHeads": req.session.pheadData,
+                                                    "breakdown_expenses": req.session.breakdownOfExpenses,
+                                                    "projected_income": {
+                                                        revenue: req.session.projRevData,
+                                                        expenses: req.session.porjExpData,
+                                                        total: req.session.projIncomeTotal
+                                                    },
+                                                    "comments": null,
+                                                    "position": null,
+                                                    "creationDate": new Date,
+                                                    "org": usersOrganization, //fix this later on to session
+                                                    "position": old.position,
+                                                    "status": "Pending",
+                                                    "user_id": req.session.uid,
+                                                    "processType": processType,
+                                                    "currentCheckers": req.session.currentCheckers,
+                                                    "archived": false,
+                                                    "prevForm_id": oldForm
+                                                });
+                                                preactsService.addForm(form).then((addedForm) => {
+                                                    old.archived = true;
+                                                    preactsService.updateForm(old).then((updatedForm) => {
+                                                        preactsService.findFormViaId(old._id).then((formData1) => {
+                                                            console.log(formData1.archived);
+                                                            clearSessionForm(req);
+                                                            res.redirect('/preacts-submission');
+                                                        })
+                                                    });
+                                                }).catch((err) => {
+                                                    console.log("ERROR: Failed to add form in database");
+                                                    console.log(err);
+                                                    req.session.submissionError = true;
+                                                    res.redirect('/preacts-submission');
+                                                });
+
+
+                                            }).catch((err) => {
+                                                console.log(err);
+                                                req.session.submissionError = true;
                                                 res.redirect('/preacts-submission');
                                             })
 
-                                        })
-                                    });
-
-                                    clearSessionForm(req);
-                                }).catch((err) => {
-                                    console.log("ERROR: Failed to add form in database");
-                                    console.log(err);
+                                        }).catch((err) => {
+                                            console.log(err);
+                                            req.session.submissionError = true;
+                                            res.redirect('/preacts-submission');
+                                        });
+                                    }).catch((err) => {
+                                        req.session.submissionError = true;
+                                        res.redirect('/preacts-submission');
+                                    })
+                                }).catch((err)=>{
                                     req.session.submissionError = true;
-                                    res.redirect('/preacts-submission');
-                                });
+                                    res.redirect('/preacts-submission')
+                                })
+                                
                             }).catch((err) => {
-                                console.log(err);
                                 req.session.submissionError = true;
                                 res.redirect('/preacts-submission');
-                            });
-                        }).catch((err) => {
-                            req.session.submissionError = true;
-                            res.redirect('/preacts-submission');
+                            })
                         })
-                    }).catch((err) => {
-                        req.session.submissionError = true;
-                        res.redirect('/preacts-submission');
-                    })
-                })
+                    } else {
+                        roleService.getRoleWithName(role).then((retRole) => {
+                            roleObj = retRole;
+                            orgService.getOrgWithAbbrev(org).then((retOrg) => {
+                                orgObj = retOrg;
+                                userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
+                                    req.session.currentCheckers = retUsers
+                                    roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                        preactsService.findFormViaId(oldForm).then((old) => {
+                                            var form = new Form({
+                                                "title": req.session.title,
+                                                "nature": req.session.nature,
+                                                "typeOfActivity": req.session.type,
+                                                "enmp": req.session.enmp,
+                                                "enp": req.session.enp,
+                                                "startDate": req.session.startDate,
+                                                "startTime": req.session.startTime,
+                                                "endDate": req.session.endDate,
+                                                "endTime": req.session.endTime,
+                                                "venue": req.session.venue,
+                                                "reach": req.session.reach,
+                                                "GOSM": req.session.GOSM,
+                                                "online": req.session.online,
+                                                "context": [req.session.context1, req.session.context2, req.session.context3],
+                                                "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                                "person_responsible": [req.session.PR, req.session.PR_2],
+                                                "source_funds": req.session.sourceFunds,
+                                                "organizational_funds": req.session.organizational_funds,
+                                                "program_flow": req.session.programData,
+                                                "projectHeads": req.session.pheadData,
+                                                "breakdown_expenses": req.session.breakdownOfExpenses,
+                                                "projected_income": {
+                                                    revenue: req.session.projRevData,
+                                                    expenses: req.session.porjExpData,
+                                                    total: req.session.projIncomeTotal
+                                                },
+                                                "comments": null,
+                                                "position": null,
+                                                "creationDate": new Date,
+                                                "org": usersOrganization, //fix this later on to session
+                                                "position": old.position,
+                                                "status": "Pending",
+                                                "user_id": req.session.uid,
+                                                "processType": processType,
+                                                "currentCheckers": req.session.currentCheckers,
+                                                "archived": false,
+                                                "prevForm_id": oldForm
+                                            });
+                                            preactsService.addForm(form).then((addedForm) => {
+                                                old.archived = true;
+                                                preactsService.updateForm(old).then((updatedForm) => {
+                                                    preactsService.findFormViaId(old._id).then((formData1) => {
+                                                        console.log(formData1.archived);
+                                                        clearSessionForm(req);
+                                                        res.redirect('/preacts-submission');
+                                                    })
+                                                });
+                                            }).catch((err) => {
+                                                console.log("ERROR: Failed to add form in database");
+                                                console.log(err);
+                                                req.session.submissionError = true;
+                                                res.redirect('/preacts-submission');
+                                            });
 
+
+                                        }).catch((err) => {
+                                            console.log(err);
+                                            req.session.submissionError = true;
+                                            res.redirect('/preacts-submission');
+                                        })
+
+                                    }).catch((err) => {
+                                        console.log(err);
+                                        req.session.submissionError = true;
+                                        res.redirect('/preacts-submission');
+                                    });
+                                }).catch((err) => {
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
+                                })
+                            }).catch((err) => {
+                                req.session.submissionError = true;
+                                res.redirect('/preacts-submission');
+                            })
+                        })
+                    }
+                }).catch((err) => {
+
+                    console.log(err);
+                    req.session.submissionError = true;
+                    res.redirect('/preacts-submission');
+                });
             }).catch((err) => {
                 console.log("ERROR: Failed to find organization given org_id - " + org_id);
                 console.log(err);
@@ -1316,8 +1605,6 @@ module.exports.controller = function (app) {
             console.log(err);
             req.session.submissionError = true;
             res.redirect('/preacts-submission');
-        });
-
-
+        })
     });
 }
