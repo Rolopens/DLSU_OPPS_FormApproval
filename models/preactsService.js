@@ -251,7 +251,7 @@ module.exports.deleteFormViaId = function (_id) {
 /*
     Accepts: nothing
     return: new promise that resolves all forms in db
-    Gets all forms in the db owned by 'user_id', sorted by date of creation (ascending)
+    Gets all forms in the db owned by 'user_id', sorted by date of event (ascending)
 */
 module.exports.sortEventDateAsc = function (id){
     return new Promise(function (resolve, reject) {
@@ -259,7 +259,7 @@ module.exports.sortEventDateAsc = function (id){
             user_id: id,
             archived: false
         }).sort({
-            startDate: 1
+            startDateAlt: 1
         }).then((results)=>{
             resolve(results)
         }, (err)=> {
@@ -271,7 +271,7 @@ module.exports.sortEventDateAsc = function (id){
 /*
     Accepts: nothing
     return: new promise that resolves all forms in db
-    Gets all forms in the db owned by 'user_id', sorted by date of creation (descending)
+    Gets all forms in the db owned by 'user_id', sorted by date of event (descending)
 */
 module.exports.sortEventDateDesc = function (id){
     return new Promise(function (resolve, reject) {
@@ -279,7 +279,7 @@ module.exports.sortEventDateDesc = function (id){
             user_id: id,
             archived: false
         }).sort({
-            startDate: -1
+            startDateAlt: -1
         }).then((results)=>{
             resolve(results)
         }, (err)=> {
@@ -331,7 +331,7 @@ module.exports.sortFormDateDesc = function (id){
 /*
     Accepts: nothing
     return: new promise that resolves all forms in db
-    Gets all forms in the db checked by 'user_id', sorted by date of creation (ascending)
+    Gets all forms in the db checked by 'user_id', sorted by date of event (ascending)
 */
 module.exports.sortEventDateAscChecked = function (user_id){
     return new Promise(function (resolve, reject) {
@@ -339,7 +339,7 @@ module.exports.sortEventDateAscChecked = function (user_id){
             $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false
         }).sort({
-            startDate: 1
+            startDateAlt: 1
         }).then((results)=>{
             resolve(results)
         }, (err)=> {
@@ -351,7 +351,7 @@ module.exports.sortEventDateAscChecked = function (user_id){
 /*
     Accepts: nothing
     return: new promise that resolves all forms in db
-    Gets all forms in the db checked by 'user_id', sorted by date of creation (descending)
+    Gets all forms in the db checked by 'user_id', sorted by date of event (descending)
 */
 module.exports.sortEventDateDescChecked = function (user_id){
     return new Promise(function (resolve, reject) {
@@ -359,7 +359,7 @@ module.exports.sortEventDateDescChecked = function (user_id){
             $or: [{currentCheckers: user_id},{currentViewers: user_id}],
             archived: false
         }).sort({
-            startDate: -1
+            startDateAlt: -1
         }).then((results)=>{
             resolve(results)
         }, (err)=> {

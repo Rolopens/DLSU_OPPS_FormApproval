@@ -15,6 +15,7 @@ var formSchema = new Schema({
     startDate: {
         type: String
     },
+    startDateAlt: Date,
     endDate: {
         type: String
     },

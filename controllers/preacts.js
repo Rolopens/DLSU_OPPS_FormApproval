@@ -609,6 +609,40 @@ module.exports.controller = function (app) {
         } else {
             req.session.GOSM = false;
         }
+        
+        var dateString = req.body.startDate;
+        dateString.replace(',', '');
+        var stringArray = dateString.split(" ");
+        var monthString;
+        switch (stringArray[0]) {
+            case "January": monthString = "01";
+                     break;
+            case "February": monthString = "02";
+                     break;
+            case "March": monthString = "03";
+                     break;
+            case "April": monthString = "04";
+                     break;
+            case "May": monthString = "05";
+                     break;
+            case "June": monthString = "06";
+                     break;
+            case "July": monthString = "07";
+                     break;
+            case "August": monthString = "08";
+                     break;
+            case "September": monthString = "09";
+                     break;
+            case "October": monthString = "10";
+                     break;
+            case "November": monthString = "11";
+                     break;
+            case "December": monthString = "12";
+                     break;
+            default: break;
+        }
+        var dateFormat = new Date(monthString + "/" + stringArray[1] + "/" + stringArray[2]);
+        req.session.startDateAlt = dateFormat;
 
         req.session.context1 = req.body.context1;
         req.session.context2 = req.body.context2;
@@ -784,6 +818,7 @@ module.exports.controller = function (app) {
                                         "enmp": req.session.enmp,
                                         "enp": req.session.enp,
                                         "startDate": req.session.startDate,
+                                        "startDateAlt": req.session.startDateAlt,
                                         "startTime": req.session.startTime,
                                         "endDate": req.session.endDate,
                                         "endTime": req.session.endTime,
@@ -860,6 +895,7 @@ module.exports.controller = function (app) {
                                         "enmp": req.session.enmp,
                                         "enp": req.session.enp,
                                         "startDate": req.session.startDate,
+                                        "startDateAlt": req.session.startDateAlt,
                                         "startTime": req.session.startTime,
                                         "endDate": req.session.endDate,
                                         "endTime": req.session.endTime,
@@ -1336,6 +1372,7 @@ module.exports.controller = function (app) {
                                                 "enmp": req.session.enmp,
                                                 "enp": req.session.enp,
                                                 "startDate": req.session.startDate,
+                                                "startDateAlt": req.session.startDateAlt,
                                                 "startTime": req.session.startTime,
                                                 "endDate": req.session.endDate,
                                                 "endTime": req.session.endTime,
@@ -1422,6 +1459,7 @@ module.exports.controller = function (app) {
                                                 "enmp": req.session.enmp,
                                                 "enp": req.session.enp,
                                                 "startDate": req.session.startDate,
+                                                "startDateAlt": req.session.startDateAlt,
                                                 "startTime": req.session.startTime,
                                                 "endDate": req.session.endDate,
                                                 "endTime": req.session.endTime,
@@ -1525,6 +1563,7 @@ module.exports.controller = function (app) {
                                                     "enmp": req.session.enmp,
                                                     "enp": req.session.enp,
                                                     "startDate": req.session.startDate,
+                                                    "startDateAlt": req.session.startDateAlt,
                                                     "startTime": req.session.startTime,
                                                     "endDate": req.session.endDate,
                                                     "endTime": req.session.endTime,
@@ -1616,6 +1655,7 @@ module.exports.controller = function (app) {
                                                 "enmp": req.session.enmp,
                                                 "enp": req.session.enp,
                                                 "startDate": req.session.startDate,
+                                                "startDateAlt": req.session.startDateAlt,
                                                 "startTime": req.session.startTime,
                                                 "endDate": req.session.endDate,
                                                 "endTime": req.session.endTime,
