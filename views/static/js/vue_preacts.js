@@ -22,7 +22,8 @@ var preacts_app = new Vue({
         whoami: null,
         quickview: null,
         forms: null,
-        searchQuery: ''
+        searchQuery: '',
+        show: null
     },
     created: function () {
         axios.get('/whoami')
@@ -34,6 +35,7 @@ var preacts_app = new Vue({
                 axios.get('/preacts/getAllForms/forms/' + this.whoami._id).then((rows) => {
                     console.log(rows);
                     this.forms = rows.data.forms;
+                    this.show = this.forms
                     return this.forms;
                 })
                 return this.whoami;
@@ -157,6 +159,50 @@ var preacts_app = new Vue({
                         return this.forms;
                     })  
                 })              
+        },
+        allFilter(){
+            this.show = this.forms
+            this.quickview = null;
+        },
+        approvedFilter(){
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Approved'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.show = listForms
+            this.quickview = null;
+        },
+        pendingFilter(){
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Pending'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.show = listForms
+            this.quickview = null;
+        },
+        rejectedFilter(){
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Fully Rejected'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.show = listForms
+            this.quickview = null;
+        },
+        unreviewedFilter(){
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Rejected'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.show = listForms
+            this.quickview = null;
         }
     }
 })
