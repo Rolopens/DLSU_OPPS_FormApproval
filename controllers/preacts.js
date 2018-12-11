@@ -996,16 +996,27 @@ module.exports.controller = function (app) {
                                         org: data,
                                         data: form,
                                         button: false,
-                                        curUser: null
+                                        curUser: false
                                     });
                                 } else {
-                                    res.render('viewForm', {
-                                        prevForm: form2,
-                                        org: data,
-                                        data: form,
-                                        button: true,
-                                        curUser: req.session.uid
-                                    });
+                                    if (isInList(form.currentCheckers, req.session.uid)){
+                                        res.render('viewForm', {
+                                            prevForm: form2,
+                                            org: data,
+                                            data: form,
+                                            button: true,
+                                            curUser: true
+                                        });
+                                    } else {
+                                        res.render('viewForm', {
+                                            prevForm: form2,
+                                            org: data,
+                                            data: form,
+                                            button: true,
+                                            curUser: false
+                                        });
+                                    }
+                                    
                                 }
                             })
                         } else {
@@ -1018,13 +1029,24 @@ module.exports.controller = function (app) {
                                     curUser: null
                                 });
                             } else {
-                                res.render('viewForm', {
-                                    prevForm: null,
-                                    org: data,
-                                    data: form,
-                                    button: true,
-                                    curUser: req.session.uid
-                                });
+                                if (isInList(form.currentCheckers, req.session.uid)){
+                                    res.render('viewForm', {
+                                        prevForm: null,
+                                        org: data,
+                                        data: form,
+                                        button: true,
+                                        curUser: true
+                                    });
+                                } else {
+                                    res.render('viewForm', {
+                                        prevForm: null,
+                                        org: data,
+                                        data: form,
+                                        button: true,
+                                        curUser: false
+                                    });
+                                }
+                                
                             }
                         }
                     }, (error) => {
@@ -1044,6 +1066,16 @@ module.exports.controller = function (app) {
             console.log(err);
         });
     });
+    
+    function isInList(someList, value){
+        var truth = false;
+        someList.forEach(function(item){
+            if (item == value){
+                truth = true;
+            }
+        })
+        return true;
+    }
 
     app.post('/editForm', function (req, res) {
         if (!req.session.uid) res.redirect("/");
