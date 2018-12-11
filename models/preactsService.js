@@ -189,7 +189,6 @@ module.exports.updateForm = function (form) {
             title: form.title,
             nature: form.nature,
             typeOfActivity: form.typeOfActivity,
-            date: form.date,
             enmp: form.enmp,
             enp: form.enp,
             venue: form.venue,
@@ -199,7 +198,24 @@ module.exports.updateForm = function (form) {
             comments: form.comments,
             position: form.position,
             projectHeads: form.projectHeads,
-            currentCheckers: form.currentCheckers
+            currentCheckers: form.currentCheckers,
+            startDate: form.startDate,
+            startTime: form.startTime,
+            //endDate: form.endDate,
+            endTime: form.endTime,
+            reach: form.reach,
+            GOSM: form.GOSM,
+            online: form.online,
+            person_responsible: form.person_responsible,
+            sourceFunds: form.sourceFunds,
+            organizational_funds: form.organizational_funds,
+            program_flow: form.program_flow,
+            breakdown_expenses: form.breakdown_expenses,
+            projected_income: form.projected_income,
+            org: form.org, 
+            processType: form.processType,
+            archived: form.archived,
+            prevForm_id: form.prevForm_id
 
         }).then((updatedForms) => {
             resolve(updatedForms)
