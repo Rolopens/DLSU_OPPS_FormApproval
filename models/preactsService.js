@@ -327,3 +327,83 @@ module.exports.sortFormDateDesc = function (id){
     })
 }
 
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db checked by 'user_id', sorted by date of creation (ascending)
+*/
+module.exports.sortEventDateAscChecked = function (user_id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id,
+            archived: false
+        }).sort({
+            startDate: 1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db checked by 'user_id', sorted by date of creation (descending)
+*/
+module.exports.sortEventDateDescChecked = function (user_id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id,
+            archived: false
+        }).sort({
+            startDate: -1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db checked by 'user_id', sorted by date of form submission (ascending)
+*/
+module.exports.sortFormDateAscChecked = function (user_id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id,
+            archived: false
+        }).sort({
+            creationDate: 1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db checked by 'user_id', sorted by date of form submission (descending)
+*/
+module.exports.sortFormDateDescChecked = function (user_id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            currentCheckers: user_id,
+            archived: false
+        }).sort({
+            creationDate: -1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+

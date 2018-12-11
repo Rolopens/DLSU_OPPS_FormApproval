@@ -181,6 +181,46 @@ module.exports.controller = function (app) {
             })
         })
     })
+    
+    //ajax request for all the forms checked by a user, sorted by date of event (ascending)
+    app.get("/preacts/sortEventDateAscChecked/:id", function (req, res) {
+        console.log("Test");
+        preactsService.sortEventDateAscChecked(req.params.id).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    })
+
+    //ajax request for all the forms checked by a user, sorted by date of event (descending)
+    app.get("/preacts/sortEventDateDescChecked/:id", function (req, res) {
+        console.log("Test2");
+        preactsService.sortEventDateDescChecked(req.params.id).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    })
+
+    //ajax request for all the forms checked by a user, sorted by date of form submission (ascending)
+    app.get("/preacts/sortFormDateAscChecked/:id", function (req, res) {
+        console.log("Test3");
+        preactsService.sortFormDateAscChecked(req.params.id).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    })
+
+    //ajax request for all the forms checked by a user, sorted by date of form submission (descending)
+    app.get("/preacts/sortFormDateDescChecked/:id", function (req, res) {
+        console.log("Test4");
+        preactsService.sortFormDateDescChecked(req.params.id).then((forms) => {
+            res.send({
+                forms
+            })
+        })
+    })
 
     //ajax request for approving a form
     app.post("/preacts/approve/:id", function (req, res) {

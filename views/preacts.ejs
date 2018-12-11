@@ -35,22 +35,22 @@
         <nav id="secondary-nav">
             <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
             <br /><br />
-            <div class="filter-wrapper">
-                <div class="filter-title">
-                    <i class="fa fa-filter fa-2x"></i>
-                    <span>&nbsp;&nbsp;&nbsp;College Filter:</span>
+                <div class="filter-wrapper">
+                    <div class="filter-title">
+                        <i class="fa fa-filter fa-2x"></i>
+                        <span>&nbsp;&nbsp;&nbsp;Sort Forms by:</span>
+                    </div>
+                    <hr />
+                    <ul>
+                        <form action="">
+                            <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
+                            <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
+                            <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
+                            <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>                            
+<!--                            <span class="checkmark"><i class="fa fa-check"></i></span>-->
+                        </form>
+                    </ul>
                 </div>
-                <hr />
-                <ul>
-                    <li v-for="item in filter.colleges">
-                        <label>
-                            <input type="checkbox" />
-                            <span class="checkmark"><i class="fa fa-check"></i></span>
-                            <span>{{item}}</span>
-                        </label>
-                    </li>
-                </ul>
-            </div>
         </nav>
 
         <header>

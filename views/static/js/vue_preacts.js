@@ -117,6 +117,46 @@ var preacts_app = new Vue({
                 })
               
             console.log(this.forms);
+        },
+        sortEventDateAsc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortEventDateAscChecked/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
+        },
+        sortEventDateDesc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortEventDateDescChecked/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
+        },
+        sortFormDateAsc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortFormDateAscChecked/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
+        },
+        sortFormDateDesc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortFormDateDescChecked/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
         }
     }
 })
