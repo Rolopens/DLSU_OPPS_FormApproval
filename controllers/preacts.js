@@ -412,16 +412,11 @@ module.exports.controller = function (app) {
     //ajax request for rejecting a form
     app.post("/preacts/reject/:id", function (req, res) {
         var id = req.params.id
-        console.log(req.body.comments);
 
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData
-            if(req.body.comments == null)
-                form.status = "Fully Rejected"
-            else {
-                form.status = "Rejected"
-                form.comments = req.body.comments;
-            }
+            form.status = "Rejected"
+            form.comments = req.body.comments;
             form.currentCheckers = []
 
             preactsService.updateForm(form).then((updatedForm) => {
@@ -446,6 +441,7 @@ module.exports.controller = function (app) {
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Fully Rejected"
+            form.comments = req.body.comments;
             form.currentCheckers = []
 
             preactsService.updateForm(form).then((updatedForm) => {

@@ -134,7 +134,8 @@ h1 {
 }
 
 .commentBox {
-    margin: 5% !important;
+    margin: 2% !important;
+    margin-top: 5% !important;
     font-size: 18px !important;
     width: 300px !important;
     position: fixed !important;
