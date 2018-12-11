@@ -28,32 +28,32 @@ module.exports.controller = function (app) {
                 } else {
                     userService.getUserWithId(req.session.uid)
                         .then((result) => {
-                        var rolePromises = [];
-                        for (var i = 0; i < result.user_roles.length; i++) {
-                            roleID = result.user_roles[i].role_id;
-                            var p = roleService.getRoleWithId(roleID).then((result) => {
-                                if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
-                                    canSee = true;
-                            });
-                            rolePromises.push(p);
-                        }
-                        return Promise.all(rolePromises);
-                    })
+                            var rolePromises = [];
+                            for (var i = 0; i < result.user_roles.length; i++) {
+                                roleID = result.user_roles[i].role_id;
+                                var p = roleService.getRoleWithId(roleID).then((result) => {
+                                    if (result.name === "DIRECTOR" || result.name === "HEAD" || result.name === "PRESIDENT")
+                                        canSee = true;
+                                });
+                                rolePromises.push(p);
+                            }
+                            return Promise.all(rolePromises);
+                        })
                         .then((result) => {
-                        res.render('preacts', {
-                            preacts: true,
-                            preactsSubmission: false,
-                            accounts: canSee,
-                            organization: canSee
+                            res.render('preacts', {
+                                preacts: true,
+                                preactsSubmission: false,
+                                accounts: canSee,
+                                organization: canSee
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.redirect("/");
+                        })
+                        .catch((err) => {
+                            console.log(err)
                         });
-                    })
-                        .catch((err) => {
-                        console.log(err);
-                        res.redirect("/");
-                    })
-                        .catch((err) => {
-                        console.log(err)
-                    });
                 }
             }).catch((err) => {
                 console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
@@ -252,7 +252,7 @@ module.exports.controller = function (app) {
                         })
                     })
                 })
-            } else if (nextOrg === 'ORG'){ 
+            } else if (nextOrg === 'ORG') {
                 roleService.getRoleWithName(nextRole).then((retRole) => {
                     role1 = retRole
                     orgService.getOrgWithName(form.org).then((retOrg) => {
@@ -354,6 +354,30 @@ module.exports.controller = function (app) {
         })
     })
 
+    app.post("/preacts/fullReject/:id", function (req, res) {
+        var id = req.params.id
+
+        preactsService.findFormViaId(id).then((formData) => {
+            var form = formData
+            form.status = "Fully Rejected"
+            form.currentCheckers = []
+
+            preactsService.updateForm(form).then((updatedForm) => {
+                preactsService.findFormViaId(form._id).then((formData1) => {
+
+                    //                    if(req.body.status != undefined) {
+                    //                        res.redirect('/preacts');
+                    //                    } else {
+                    //                        res.send({
+                    //                            formData1
+                    //                        })
+                    //                    }
+                    res.redirect('/preacts')
+                })
+            })
+        })
+    })
+
     //preacts page for submitters
     app.get('/preacts-submission', function (req, res) {
         if (!req.session.uid) res.redirect("/");
@@ -363,7 +387,7 @@ module.exports.controller = function (app) {
                 if (retRole.name != "PROJECT_HEAD") {
                     res.redirect('/preacts');
                 } else {
-                    if (req.session.submissionError == true){
+                    if (req.session.submissionError == true) {
                         res.render('preacts-submit', {
                             preacts: false,
                             preactsSubmission: true,
@@ -374,8 +398,8 @@ module.exports.controller = function (app) {
                         });
                         req.session.submissionError = false;
                     } else {
-                        if(req.session.submissionValue==true){
-                            req.session.submissionValue=false;
+                        if (req.session.submissionValue == true) {
+                            req.session.submissionValue = false;
                             res.render('preacts-submit', {
                                 preacts: false,
                                 preactsSubmission: true,
@@ -384,7 +408,7 @@ module.exports.controller = function (app) {
                                 submitSuccess: true,
                                 submissionError: false
                             });
-                            
+
                         } else {
                             res.render('preacts-submit', {
                                 preacts: false,
@@ -394,7 +418,7 @@ module.exports.controller = function (app) {
                                 submitSuccess: false,
                                 submissionError: false
                             });
-                        } 
+                        }
                     }
 
 
@@ -514,8 +538,8 @@ module.exports.controller = function (app) {
         var programData = [];
         var programlength = parseInt(req.body.dynamicTable2len, 10) + 1;
         for (var i = 0; i < programlength; i++) {
-            var start = req.body['startTime'+i].split(":");
-            var end = req.body['endTime'+i].split(":");
+            var start = req.body['startTime' + i].split(":");
+            var end = req.body['endTime' + i].split(":");
             var dur = new duration(new Date(0, 0, 0, start[0], start[1], 0, 0), new Date(0, 0, 0, end[0], end[1], 0, 0));
 
             var rowdata = {
@@ -647,60 +671,66 @@ module.exports.controller = function (app) {
                 org = temp[1];
                 role = temp[0];
                 //                console.log(org + "BEFORE THE PROMISES PLEASE HELP ME")
-                roleService.getRoleWithName(role).then((retRole) => {
-                    roleObj = retRole;
-                    orgService.getOrgWithAbbrev(org).then((retOrg) => {
-                        orgObj = retOrg;
-                        userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
-                            req.session.currentCheckers = retUsers
-                            roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
-                                //form creation
-                                var form = new Form({
-                                    "title": req.session.title,
-                                    "nature": req.session.nature,
-                                    "typeOfActivity": req.session.type,
-                                    "enmp": req.session.enmp,
-                                    "enp": req.session.enp,
-                                    "startDate": req.session.startDate,
-                                    "startTime": req.session.startTime,
-                                    "endDate": req.session.endDate,
-                                    "endTime": req.session.endTime,
-                                    "venue": req.session.venue,
-                                    "reach": req.session.reach,
-                                    "GOSM": req.session.GOSM,
-                                    "online": req.session.online,
-                                    "context": [req.session.context1, req.session.context2, req.session.context3],
-                                    "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
-                                    "person_responsible": [req.session.PR, req.session.PR_2],
-                                    "source_funds": req.session.sourceFunds,
-                                    "organizational_funds": req.session.organizational_funds,
-                                    "program_flow": req.session.programData,
-                                    "projectHeads": req.session.pheadData,
-                                    "breakdown_expenses": req.session.breakdownOfExpenses,
-                                    "projected_income": {
-                                        revenue: req.session.projRevData,
-                                        expenses: req.session.porjExpData,
-                                        total: req.session.projIncomeTotal
-                                    },
-                                    "comments": null,
-                                    "position": null,
-                                    "creationDate": new Date,
-                                    "org": usersOrganization, //fix this later on to session
-                                    "position": 0,
-                                    "status": "Pending",
-                                    "user_id": req.session.uid,
-                                    "processType": processType,
-                                    "currentCheckers": req.session.currentCheckers,
-                                    "archived": false,
-                                    "prevForm_id": null
-                                });
-                                preactsService.addForm(form).then((addedForm) => {
-                                    //                                    console.log(addedForm);
-                                    clearSessionForm(req);
-                                    res.redirect('/preacts-submission');
+                if (org == 'ORG') {
+                    roleService.getRoleWithName(role).then((retRole) => {
+                        roleObj = retRole;
+                        orgService.getOrgWithName(usersOrganization).then((retOrg) => {
+                            orgObj = retOrg;
+                            userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
+                                req.session.currentCheckers = retUsers
+                                roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                    //form creation
+                                    var form = new Form({
+                                        "title": req.session.title,
+                                        "nature": req.session.nature,
+                                        "typeOfActivity": req.session.type,
+                                        "enmp": req.session.enmp,
+                                        "enp": req.session.enp,
+                                        "startDate": req.session.startDate,
+                                        "startTime": req.session.startTime,
+                                        "endDate": req.session.endDate,
+                                        "endTime": req.session.endTime,
+                                        "venue": req.session.venue,
+                                        "reach": req.session.reach,
+                                        "GOSM": req.session.GOSM,
+                                        "online": req.session.online,
+                                        "context": [req.session.context1, req.session.context2, req.session.context3],
+                                        "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                        "person_responsible": [req.session.PR, req.session.PR_2],
+                                        "source_funds": req.session.sourceFunds,
+                                        "organizational_funds": req.session.organizational_funds,
+                                        "program_flow": req.session.programData,
+                                        "projectHeads": req.session.pheadData,
+                                        "breakdown_expenses": req.session.breakdownOfExpenses,
+                                        "projected_income": {
+                                            revenue: req.session.projRevData,
+                                            expenses: req.session.porjExpData,
+                                            total: req.session.projIncomeTotal
+                                        },
+                                        "comments": null,
+                                        "position": null,
+                                        "creationDate": new Date,
+                                        "org": usersOrganization, //fix this later on to session
+                                        "position": 0,
+                                        "status": "Pending",
+                                        "user_id": req.session.uid,
+                                        "processType": processType,
+                                        "currentCheckers": req.session.currentCheckers,
+                                        "archived": false,
+                                        "prevForm_id": null
+                                    });
+                                    preactsService.addForm(form).then((addedForm) => {
+                                        //                                    console.log(addedForm);
+                                        clearSessionForm(req);
+                                        res.redirect('/preacts-submission');
 
+                                    }).catch((err) => {
+                                        console.log("ERROR: Failed to add form in database");
+                                        console.log(err);
+                                        req.session.submissionError = true;
+                                        res.redirect('/preacts-submission');
+                                    });
                                 }).catch((err) => {
-                                    console.log("ERROR: Failed to add form in database");
                                     console.log(err);
                                     req.session.submissionError = true;
                                     res.redirect('/preacts-submission');
@@ -709,16 +739,90 @@ module.exports.controller = function (app) {
                                 console.log(err);
                                 req.session.submissionError = true;
                                 res.redirect('/preacts-submission');
-                            });
+                            })
                         }).catch((err) => {
+                            console.log(err);
                             req.session.submissionError = true;
                             res.redirect('/preacts-submission');
                         })
-                    }).catch((err) => {
-                        req.session.submissionError = true;
-                        res.redirect('/preacts-submission');
                     })
-                })
+                } else {
+                    roleService.getRoleWithName(role).then((retRole) => {
+                        roleObj = retRole;
+                        orgService.getOrgWithAbbrev(org).then((retOrg) => {
+                            orgObj = retOrg;
+                            userService.findUserByOrgAndRoleID(orgObj._id, roleObj._id).then((retUsers) => {
+                                req.session.currentCheckers = retUsers
+                                roleService.getRoleWithId(userObject.user_roles[0].role_id).then((role) => {
+                                    //form creation
+                                    var form = new Form({
+                                        "title": req.session.title,
+                                        "nature": req.session.nature,
+                                        "typeOfActivity": req.session.type,
+                                        "enmp": req.session.enmp,
+                                        "enp": req.session.enp,
+                                        "startDate": req.session.startDate,
+                                        "startTime": req.session.startTime,
+                                        "endDate": req.session.endDate,
+                                        "endTime": req.session.endTime,
+                                        "venue": req.session.venue,
+                                        "reach": req.session.reach,
+                                        "GOSM": req.session.GOSM,
+                                        "online": req.session.online,
+                                        "context": [req.session.context1, req.session.context2, req.session.context3],
+                                        "objectives": [req.session.objective1, req.session.objective2, req.session.objective3],
+                                        "person_responsible": [req.session.PR, req.session.PR_2],
+                                        "source_funds": req.session.sourceFunds,
+                                        "organizational_funds": req.session.organizational_funds,
+                                        "program_flow": req.session.programData,
+                                        "projectHeads": req.session.pheadData,
+                                        "breakdown_expenses": req.session.breakdownOfExpenses,
+                                        "projected_income": {
+                                            revenue: req.session.projRevData,
+                                            expenses: req.session.porjExpData,
+                                            total: req.session.projIncomeTotal
+                                        },
+                                        "comments": null,
+                                        "position": null,
+                                        "creationDate": new Date,
+                                        "org": usersOrganization, //fix this later on to session
+                                        "position": 0,
+                                        "status": "Pending",
+                                        "user_id": req.session.uid,
+                                        "processType": processType,
+                                        "currentCheckers": req.session.currentCheckers,
+                                        "archived": false,
+                                        "prevForm_id": null
+                                    });
+                                    preactsService.addForm(form).then((addedForm) => {
+                                        //                                    console.log(addedForm);
+                                        clearSessionForm(req);
+                                        res.redirect('/preacts-submission');
+
+                                    }).catch((err) => {
+                                        console.log("ERROR: Failed to add form in database");
+                                        console.log(err);
+                                        req.session.submissionError = true;
+                                        res.redirect('/preacts-submission');
+                                    });
+                                }).catch((err) => {
+                                    console.log(err);
+                                    req.session.submissionError = true;
+                                    res.redirect('/preacts-submission');
+                                });
+                            }).catch((err) => {
+                                console.log(err);
+                                req.session.submissionError = true;
+                                res.redirect('/preacts-submission');
+                            })
+                        }).catch((err) => {
+                            console.log(err);
+                            req.session.submissionError = true;
+                            res.redirect('/preacts-submission');
+                        })
+                    })
+                }
+
 
             }).catch((err) => {
                 console.log("ERROR: Failed to find organization given org_id - " + org_id);
@@ -780,9 +884,12 @@ module.exports.controller = function (app) {
             var orgId = retUser.user_roles[0].org_id;
             roleService.getRoleWithId(roleId).then((retRole) => {
                 orgService.findSpecificOrg(orgId).then((orgObject) => {
-                    var data = {type: orgObject.type, name: orgObject.name}
+                    var data = {
+                        type: orgObject.type,
+                        name: orgObject.name
+                    }
                     preactsService.findFormViaId(id).then((form) => {
-                        if(form.prevForm_id != null) {
+                        if (form.prevForm_id != null) {
                             preactsService.findFormViaId(form.prevForm_id).then((form2) => {
                                 if (retRole.name === "PROJECT_HEAD") {
                                     res.render('viewForm', {
@@ -835,7 +942,7 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.post('/editForm', function(req, res) {
+    app.post('/editForm', function (req, res) {
         if (!req.session.uid) res.redirect("/");
 
         var id = req.body.form_id;
@@ -942,8 +1049,8 @@ module.exports.controller = function (app) {
         var programData = [];
         var programlength = parseInt(req.body.dynamicTable2len, 10) + 1;
         for (var i = 0; i < programlength; i++) {
-            var start = req.body['startTime'+i].split(":"); 
-            var end = req.body['endTime'+i].split(":");
+            var start = req.body['startTime' + i].split(":");
+            var end = req.body['endTime' + i].split(":");
             var dur = new duration(new Date(0, 0, 0, start[0], start[1], 0, 0), new Date(0, 0, 0, end[0], end[1], 0, 0));
 
             var rowdata = {

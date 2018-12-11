@@ -147,6 +147,20 @@
                                 </div>
                                 <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                             </div>
+                            <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                                <div class="activity-wrapper flex-start">
+                                    <div class="activity-icon negative"><i class="fa fa-times"></i></div>
+                                    <div class="activity">
+                                        <h3 class="infoData" name="FormTitle">
+                                            {{form.title}}
+                                        </h3>
+                                        <p class="infoData" name="FormDetails">
+                                            {{form.startDate}} | {{form.org}} 
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            </div>
                             <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
                                 <div class="activity-wrapper flex-start">
                                     <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>

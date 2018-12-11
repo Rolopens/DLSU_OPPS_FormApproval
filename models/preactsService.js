@@ -121,9 +121,9 @@ module.exports.getAllFormsWithStringMatch = function(user_id, query){
         }).sort({
             creationDate: -1
         }).then((results)=>{            
-            console.log(user_id);
-            console.log(query);
-            console.log(results)
+//            console.log(user_id);
+//            console.log(query);
+//            console.log(results)
             resolve(results)
         }, (err)=> {
             reject(err)
@@ -147,9 +147,9 @@ module.exports.getAllOwnedFormsWithStringMatch = function(user_id, query){
         }).sort({
             creationDate: -1
         }).then((results)=>{            
-            console.log(user_id);
-            console.log(query);
-            console.log(results)
+//            console.log(user_id);
+//            console.log(query);
+//            console.log(results)
             resolve(results)
         }, (err)=> {
             reject(err)

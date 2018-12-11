@@ -423,6 +423,28 @@
                 </form>
                 <%if(button === true) {%>
                     <div>
+                        <!-- Full Rejection modal -->
+                        <div class="modal fade" id="modalActivityFullReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        You are about to <b>fully reject</b> the activity <b><%=data.title%></b>. Proceed?
+                                    </div>
+                                    <div class="modal-footer">                          
+                                        <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" id="reject">Reject</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Rejection modal -->
                         <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                             aria-hidden="true">
@@ -434,7 +456,7 @@
                                         <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
                                     </div>
                                     <div class="modal-body">
-                                        You are about to <b>reject</b> the activity <b><%=data.title%></b>. Proceed?
+                                        You are about to <b>reject for revisions</b> the activity <b><%=data.title%></b>. Proceed?
                                     </div>
                                     <div class="modal-footer">                          
                                         <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
@@ -470,7 +492,8 @@
                         </div>
                         
                         <input id="approve" type="submit" class="button approve" value="Approve" data-toggle="modal" data-target="#modalActivityApprove">
-                        <input id="reject" type="submit" class="button reject" value="Reject" data-toggle="modal" data-target="#modalActivityReject">  
+                        <input id="reject" type="submit" class="button reject" value="Reject" data-toggle="modal" data-target="#modalActivityReject">
+                        <input id="reject" type="submit" class="button reject" value="Full Reject" data-toggle="modal" data-target="#modalActivityFullReject"> 
                     </div>
                 <br/><br/>
                 <%} else {%>

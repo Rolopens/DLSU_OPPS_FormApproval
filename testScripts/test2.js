@@ -162,6 +162,22 @@ var promise2 = new Promise(
                             initialEnabled: true,
                         })
                     })
+                    .then((retUser)=>{
+                        return roleService.createRole({
+                            name: "FINANCE"
+                        });
+                    })
+                    .then((retRole)=>{
+                        return userService.createUser({
+                            email: "FINANCE_GAS@dlsu.edu.ph",
+                            password: "password",
+                            firstname: "Sheldon",
+                            lastname: "Cooper",
+                            initialOrgId: og1._id,
+                            initialRoleId: retRole._id,
+                            initialEnabled: true,
+                        })
+                    })
                     .then((retUser) => {
                         return userService.addRoleToUser({
                             user_id: retUser._id,
@@ -169,6 +185,38 @@ var promise2 = new Promise(
                             role_id: re1._id,
                             enabled: true
                         });
+                    })
+                    .then((retUser)=>{
+                        return roleService.createRole({
+                            name: "EXEC_CHECKER"
+                        });
+                    })
+                    .then((retRole)=>{
+                        return userService.createUser({
+                            email: "EXEC_CHECKER_GAS@dlsu.edu.ph",
+                            password: "password",
+                            firstname: "Sheldon",
+                            lastname: "Pooper",
+                            initialOrgId: og1._id,
+                            initialRoleId: retRole._id,
+                            initialEnabled: true,
+                        })
+                    })
+                    .then((retUser)=>{
+                        return roleService.createRole({
+                            name: "ADVISER"
+                        });
+                    })
+                    .then((retRole)=>{
+                        return userService.createUser({
+                            email: "ADVISER_GAS@dlsu.edu.ph",
+                            password: "password",
+                            firstname: "Sheldon",
+                            lastname: "Trooper",
+                            initialOrgId: og1._id,
+                            initialRoleId: retRole._id,
+                            initialEnabled: true,
+                        })
                     })
                     .then((retUser) => {
                         return userService.createUser({
@@ -325,53 +373,53 @@ var promise5 = new Promise(
                         name: "DOCU_OFFICER"
                     });
                 })
-                .then((retRole1) => {
-                    role1 = retRole1;
-                    return userService.createUser({
-                        email: "DOCU_CSO@dlsu.edu.ph",
-                        password: "password",
-                        firstname: "Jordan",
-                        lastname: "Deja",
-                        initialOrgId: org1._id,
-                        initialRoleId: role1._id,
-                        initialEnabled: true,
-                    })
-                })
-                .then((retUser) => {
-                    return roleService.createRole({
-                        name: "FIN_OFFICER"
-                    });
-                })
-                .then((retRole2) => {
-                    role2 = retRole2;
-                    return userService.createUser({
-                        email: "FIN_CSO@dlsu.edu.ph",
-                        password: "password",
-                        firstname: "Jordan",
-                        lastname: "Deja",
-                        initialOrgId: org1._id,
-                        initialRoleId: role2._id,
-                        initialEnabled: true,
-                    })
-                })
-                .then((retUser) => {
-                    return roleService.createRole({
-                        name: "EXEC_CHECKER"
-                    });
-                })
-                .then((retRole3) => {
-                    role3 = retRole3;
-                    return userService.createUser({
-                        email: "EXEC_CSO@dlsu.edu.ph",
-                        password: "password",
-                        firstname: "Jordan",
-                        lastname: "Deja",
-                        initialOrgId: org1._id,
-                        initialRoleId: role3._id,
-                        initialEnabled: true,
-                    })
-                })
-                .then((retUser) => {
+//                .then((retRole1) => {
+//                    role1 = retRole1;
+//                    return userService.createUser({
+//                        email: "DOCU_CSO@dlsu.edu.ph",
+//                        password: "password",
+//                        firstname: "Jordan",
+//                        lastname: "Deja",
+//                        initialOrgId: org1._id,
+//                        initialRoleId: role1._id,
+//                        initialEnabled: true,
+//                    })
+//                })
+//                .then((retUser) => {
+//                    return roleService.createRole({
+//                        name: "FIN_OFFICER"
+//                    });
+//                })
+//                .then((retRole2) => {
+//                    role2 = retRole2;
+//                    return userService.createUser({
+//                        email: "FIN_CSO@dlsu.edu.ph",
+//                        password: "password",
+//                        firstname: "Jordan",
+//                        lastname: "Deja",
+//                        initialOrgId: org1._id,
+//                        initialRoleId: role2._id,
+//                        initialEnabled: true,
+//                    })
+//                })
+//                .then((retUser) => {
+//                    return roleService.createRole({
+//                        name: "EXEC_CHECKER"
+//                    });
+//                })
+//                .then((retRole3) => {
+//                    role3 = retRole3;
+//                    return userService.createUser({
+//                        email: "EXEC_CSO@dlsu.edu.ph",
+//                        password: "password",
+//                        firstname: "Jordan",
+//                        lastname: "Deja",
+//                        initialOrgId: org1._id,
+//                        initialRoleId: role3._id,
+//                        initialEnabled: true,
+//                    })
+//                })
+                .then((retRole) => {
                     return userService.createUser({
                         email: "APS_CSO@dlsu.edu.ph",
                         password: "password",

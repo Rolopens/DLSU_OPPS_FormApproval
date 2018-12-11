@@ -1,16 +1,16 @@
 {
     "ORGANIZATIONS_PROCESS-SLIFE" : [
+        "DOCU_OFFICER-CSO",
         "FIN_OFFICER-CSO",
         "EXEC_CHECKER-CSO",
         "PRESIDENT-ORG",
-        "ADVISER-ORG",
         "APPROVER-SLIFE"
     ],
     "ORGANIZATIONS_PROCESS-CSO" : [
+        "DOCU_OFFICER-CSO",
         "FIN_OFFICER-CSO",
         "EXEC_CHECKER-CSO",
         "PRESIDENT-ORG",
-        "ADVISER-ORG",
         "APS-CSO"
     ],
     "GOVERNMENT_PROCESS-USG-SLIFE" : [
@@ -35,6 +35,7 @@
         "APPROVER-SLIFE"
     ],
     "GOVERNMENT_PROCESS-USG-DAAM" : [
+        "CHECKER-OPLOG",
         "CHECKER-OTREAS",
         "PRESIDENT-USG",
         "PRESIDENT-DLSU",
