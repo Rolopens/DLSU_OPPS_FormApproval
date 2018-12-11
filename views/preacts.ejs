@@ -129,8 +129,9 @@
                     </div>
                 </div>
             </div>
-            <sec v-if="quickview">
+            <sec>
                 <!-- Rejection modal -->
+                <sec v-if="quickview">
                 <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -175,12 +176,13 @@
                         </div>
                     </div>
                 </div>
+                </sec>
 
                 <div id="sidebar">
                     <div class="content-header">
                         <h3 class="action-title">Quick View</h3>
                     </div>
-                    <div id="quick-view">
+                    <div id="quick-view" v-if="quickview">
                         <div class="row" data-id={{quickview._id}}>
                             <div class="column">
                                 <div class="info">
