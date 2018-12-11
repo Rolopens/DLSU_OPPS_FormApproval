@@ -76,6 +76,46 @@ var preacts_app = new Vue({
                 })
               
             console.log(this.forms);
+        },
+        sortEventDateAsc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortEventDateAsc/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
+        },
+        sortEventDateDesc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortEventDateDesc/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
+        },
+        sortFormDateAsc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortFormDateAsc/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
+        },
+        sortFormDateDesc: function() {            
+            axios.get('/whoami')
+                .then((rows) => {
+                    this.whoami = rows.data.user;                        
+                    axios.get("/preacts/sortFormDateDesc/"+ this.whoami._id).then((rows) => {
+                        this.forms = rows.data.forms;
+                        return this.forms;
+                    })  
+                })              
         }
     }
 })

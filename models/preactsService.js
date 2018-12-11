@@ -246,3 +246,84 @@ module.exports.deleteFormViaId = function (_id) {
         })
     })
 }
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db owned by 'user_id', sorted by date of creation (ascending)
+*/
+module.exports.sortEventDateAsc = function (id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            user_id: id,
+            archived: false
+        }).sort({
+            startDate: 1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db owned by 'user_id', sorted by date of creation (descending)
+*/
+module.exports.sortEventDateDesc = function (id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            user_id: id,
+            archived: false
+        }).sort({
+            startDate: -1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db owned by 'user_id', sorted by date of form submission (ascending)
+*/
+module.exports.sortFormDateAsc = function (id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            user_id: id,
+            archived: false
+        }).sort({
+            creationDate: 1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
+/*
+    Accepts: nothing
+    return: new promise that resolves all forms in db
+    Gets all forms in the db owned by 'user_id', sorted by date of form submission (descending)
+*/
+module.exports.sortFormDateDesc = function (id){
+    return new Promise(function (resolve, reject) {
+        Form.find({
+            user_id: id,
+            archived: false
+        }).sort({
+            creationDate: -1
+        }).then((results)=>{
+            resolve(results)
+        }, (err)=> {
+            reject(err)
+        })
+    })
+}
+
