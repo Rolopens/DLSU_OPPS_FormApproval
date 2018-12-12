@@ -424,7 +424,7 @@ module.exports.controller = function (app) {
     //ajax request for rejecting a form
     app.post("/preacts/reject/:id", function (req, res) {
         var id = req.params.id
-
+        console.log(req.body)
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Rejected"
@@ -452,13 +452,69 @@ module.exports.controller = function (app) {
 
     app.post("/preacts/fullReject/:id", function (req, res) {
         var id = req.params.id
-
+        console.log(req.body)
         preactsService.findFormViaId(id).then((formData) => {
             var form = formData
             form.status = "Fully Rejected"
             form.comments = req.body.comments;
             form.currentCheckers = []
+            form.currentCheckers.forEach(function(item){
+                form.currentViewers.push(item)
+            })
+            preactsService.updateForm(form).then((updatedForm) => {
+                preactsService.findFormViaId(form._id).then((formData1) => {
 
+                    //                    if(req.body.status != undefined) {
+                    //                        res.redirect('/preacts');
+                    //                    } else {
+                    //                        res.send({
+                    //                            formData1
+                    //                        })
+                    //                    }
+                    res.redirect('/preacts')
+                })
+            })
+        })
+    })
+    app.post("/preacts/commentreject/:id/:comment", function (req, res) {
+        var id = req.params.id
+        console.log(req.body)
+        preactsService.findFormViaId(id).then((formData) => {
+            var form = formData
+            form.status = "Rejected"
+            form.comments = req.params.comment;
+            form.currentCheckers.forEach(function(item){
+                form.currentViewers.push(item)
+            })
+            form.currentCheckers = []
+
+            preactsService.updateForm(form).then((updatedForm) => {
+                preactsService.findFormViaId(form._id).then((formData1) => {
+
+                    //                    if(req.body.status != undefined) {
+                    //                        res.redirect('/preacts');
+                    //                    } else {
+                    //                        res.send({
+                    //                            formData1
+                    //                        })
+                    //                    }
+                    res.redirect('/preacts')
+                })
+            })
+        })
+    })
+
+    app.post("/preacts/commentfullReject/:id/:comment", function (req, res) {
+        var id = req.params.id
+        console.log(req.body)
+        preactsService.findFormViaId(id).then((formData) => {
+            var form = formData
+            form.status = "Fully Rejected"
+            form.comments = req.params.comment;
+            form.currentCheckers = []
+            form.currentCheckers.forEach(function(item){
+                form.currentViewers.push(item)
+            })
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
 
@@ -1030,6 +1086,7 @@ module.exports.controller = function (app) {
                                     });
                                 } else {
                                     if (isInList(form.currentCheckers, req.session.uid)){
+//                                        console.log("True in form2")
                                         res.render('viewForm', {
                                             prevForm: form2,
                                             org: data,
@@ -1038,6 +1095,7 @@ module.exports.controller = function (app) {
                                             curUser: true
                                         });
                                     } else {
+//                                        console.log("False in form2")
                                         res.render('viewForm', {
                                             prevForm: form2,
                                             org: data,
@@ -1056,10 +1114,11 @@ module.exports.controller = function (app) {
                                     org: data,
                                     data: form,
                                     button: false,
-                                    curUser: null
+                                    curUser: false
                                 });
                             } else {
                                 if (isInList(form.currentCheckers, req.session.uid)){
+//                                    console.log("True in Null")
                                     res.render('viewForm', {
                                         prevForm: null,
                                         org: data,
@@ -1068,6 +1127,7 @@ module.exports.controller = function (app) {
                                         curUser: true
                                     });
                                 } else {
+//                                    console.log("False in Null")
                                     res.render('viewForm', {
                                         prevForm: null,
                                         org: data,
@@ -1100,11 +1160,14 @@ module.exports.controller = function (app) {
     function isInList(someList, value){
         var truth = false;
         someList.forEach(function(item){
+//            console.log(item)
+//            console.log(value)
             if (item == value){
                 truth = true;
             }
         })
-        return true;
+        console.log("TRUTH VALUE: "+ truth)
+        return truth;
     }
 
     app.post('/editForm', function (req, res) {

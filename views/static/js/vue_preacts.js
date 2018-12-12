@@ -75,8 +75,8 @@ var preacts_app = new Vue({
                 //                return this.forms;
             })
         },
-        rejectForm(_id) {
-            axios.post("/preacts/reject/" + _id)
+        rejectForm(_id, comment) {
+            axios.post("/preacts/commentreject/" + _id + "/" +comment)
                 .then((response) => {
                     if (response.error != undefined)
                         $("#error_msg").html(response.error)
@@ -90,7 +90,23 @@ var preacts_app = new Vue({
                 this.forms = rows.data.forms;
                 //                return this.forms;
             })
-        },    
+        },
+        fullyRejectForm(_id, comment) {
+            axios.post("/preacts/commentfullReject/" + _id+ "/" +comment)
+                .then((response) => {
+                    if (response.error != undefined)
+                        $("#error_msg").html(response.error)
+                    else {
+                        Vue.set(preacts_app, 'quickview', response.data.formData1);
+                        location.reload(true);
+                    }
+                })
+            axios.get('/preacts/getAllForms/forms').then((rows) => {
+                console.log(rows);
+                this.forms = rows.data.forms;
+                //                return this.forms;
+            })
+        },   
         removeSearchQuery: function() {
           this.searchQuery = '';
           this.isResult = false;

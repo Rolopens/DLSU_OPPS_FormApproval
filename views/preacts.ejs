@@ -54,7 +54,9 @@
         </nav>
 
         <header>
+            
             <div class="flex-between">
+                
                 <span style="flex-grow: 1;">
                     <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
                 </span>
@@ -119,6 +121,20 @@
                             </div>
                             <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                         </div>
+                        <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.startDate}} | {{form.org}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        </div>
                         <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
                             <div class="activity-wrapper flex-start">
                                 <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
@@ -133,6 +149,7 @@
                             </div>
                             <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -149,13 +166,14 @@
                                     <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
                                 </div>
                                 <div class="modal-body">
-                                    You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Proceed?
+                                    You are about to <b>fully reject</b> the activity <b>{{quickview.title}}</b>. Please state your reason.<br><br>
+                                    <textarea name="comments" id='comment' required></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
+                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id, $('.modal-body #comment').val())"
                                         data-dismiss="modal">Reject</button>
-                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
+                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="fullyRejectForm(quickview._id, $('.modal-body #comment').val())"
                                         data-dismiss="modal">Full Reject</button>
                                 </div>
                             </div>
