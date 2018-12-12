@@ -31,22 +31,26 @@
 <body>
     <div id="preacts">
         <% include partials/nav_bar.ejs %>
-            <nav id="secondary-nav">
-                <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
-                <br /><br />
-                <div class="filter-wrapper">
-                    <div class="filter-title">
-                        <i class="fa fa-filter fa-2x"></i>
-                        <span>&nbsp;&nbsp;&nbsp;Sort Forms by:</span>
-                    </div>
-                    <hr />
-                    <ul>
-                        <form action="">
-                            <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
-                            <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
-                            <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
-                            <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>                            
-<!--
+        <nav id="secondary-nav">
+            <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
+            <br /><br />
+            <div class="filter-wrapper">
+                <div class="filter-title">
+                    <i class="fa fa-filter fa-2x"></i>
+                    <span>&nbsp;&nbsp;&nbsp;Sort Forms by:</span>
+                </div>
+                <hr />
+                <ul>
+                    <form action="">
+                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date
+                                    of Event<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date
+                                    of Event<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date
+                                    of Form Submission<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date
+                                    of Form Submission<br>(Newest First)</span></label></li>
+                        <!--
                         <li>
                             <label>
                             <input type="radio" />
@@ -76,13 +80,13 @@
                             </label>
                         </li>
 -->
-                        </form>
-                    </ul>
-                </div>
-            </nav>
+                    </form>
+                </ul>
+            </div>
+        </nav>
 
-            <header>
-                <!--
+        <header>
+            <!--
 				<div id="account" class="flex-end">
 					<span id="account-name">
 						Timmy Tiberius Turner &nbsp; <i class="fa fa-angle-down"></i>
@@ -90,192 +94,196 @@
 				</div>
 -->
 
-                <!-- <div class="column"> -->
-                    <!-- </div> -->
-                    <!-- <div class="column"> -->
-                    <div class="flex-start">
-                        <h1 id="board-title">
-                            <i class="fa fa-file"></i> &nbsp; Pre-Activities Submission
-                        </h1>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <form action="create-form" method="get">
-                            <button class="hallow"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create New Form</button>
-                        </form>
-                         <%- include partials/user_dropdown %>
-                    </div>
-                    <!-- </div> -->
-                    <!-- <div class="row"> -->
-                    <nav id="acts-nav">
-                        <ul>
-                            <li class="active" v-on:click="allFilter">All</li>
-                            <li v-on:click="approvedFilter()">Approved</li>
-                            <li v-on:click="pendingFilter()">Pending</li>
-                            <li v-on:click="rejectedFilter()">Rejected</li>
-                            <li v-on:click="unreviewedFilter()">Unreviewed</li>
-                        </ul>
-                    </nav>
-                    <!-- </div> -->
-            </header>
-            <section>
-                <div id="main-content">
-                    <div class="content-header">
-                        <div id="select-wrapper">
-                            <div class="liveSearchArea">
-                                <form class="searchForm" v-on:submit.prevent="submitSearch">
-                                    <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..." @keyup="submitSearch">
-                                    <!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-feed">
-                        <div class="content-empty" v-if="forms.length == 0">
-                            No forms found.
-                        </div>
-                        <div v-else v-for="form in show">
-                            <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                <div class="activity-wrapper flex-start">
-                                    <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
-                                    <div class="activity">
-                                        <h3 class="infoData" name="FormTitle">
-                                            {{form.title}}
-                                        </h3>
-                                        <p class="infoData" name="FormDetails">
-                                            {{form.startDate}} | {{form.org}} 
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                            </div>
-                            <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                <div class="activity-wrapper flex-start">
-                                    <div class="activity-icon negative"><i class="fa fa-times"></i></div>
-                                    <div class="activity">
-                                        <h3 class="infoData" name="FormTitle">
-                                            {{form.title}}
-                                        </h3>
-                                        <p class="infoData" name="FormDetails">
-                                            {{form.startDate}} | {{form.org}} 
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                            </div>
-                            <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                <div class="activity-wrapper flex-start">
-                                    <div class="activity-icon negative"><i class="fa fa-times"></i></div>
-                                    <div class="activity">
-                                        <h3 class="infoData" name="FormTitle">
-                                            {{form.title}}
-                                        </h3>
-                                        <p class="infoData" name="FormDetails">
-                                            {{form.startDate}} | {{form.org}} 
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                            </div>
-                            <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                                <div class="activity-wrapper flex-start">
-                                    <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
-                                    <div class="activity">
-                                        <h3 class="infoData" name="FormTitle">
-                                            {{form.title}}
-                                        </h3>
-                                        <p class="infoData" name="FormDetails">
-                                            {{form.startDate}} | {{form.org}} 
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- <div class="column"> -->
+            <!-- </div> -->
+            <!-- <div class="column"> -->
+            <div class="flex-between">
+                <span style="flex-grow: 1;">
+                    <h1 id="board-title" style="display:inline;">
+                        <i class="fa fa-file"></i> &nbsp; Pre-Activities Submission
+                    </h1>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <form action="create-form" method="get" style="display:inline; align-self:center;">
+                        <button class="hallow"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Create
+                            New Form</button>
+                    </form>
+                </span>
 
-                </div>
-                <div id="sidebar">
-                    <div class="content-header">
-                        <h3 class="action-title">Quick View</h3>
+                <%- include partials/user_dropdown %>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="row"> -->
+            <nav id="acts-nav">
+                <ul>
+                    <li class="active" v-on:click="allFilter">All</li>
+                    <li v-on:click="approvedFilter()">Approved</li>
+                    <li v-on:click="pendingFilter()">Pending</li>
+                    <li v-on:click="rejectedFilter()">Rejected</li>
+                    <li v-on:click="unreviewedFilter()">Unreviewed</li>
+                </ul>
+            </nav>
+            <!-- </div> -->
+        </header>
+        <section>
+            <div id="main-content">
+                <div class="content-header">
+                    <div id="select-wrapper">
+                        <div class="liveSearchArea">
+                            <form class="searchForm" v-on:submit.prevent="submitSearch">
+                                <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..."
+                                    @keyup="submitSearch">
+                                <!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
+                            </form>
+                        </div>
                     </div>
-                    <div id="quick-view" v-if="quickview">
-                        <div class="row" data-id={{quickview._id}}>
-                            <div class="column">
-                                <div class="info">
-                                    <h4>Title</h4>
-                                    <p class="infoData" id="Title">{{quickview.title}}</p>
-                                </div>
-                                <div class="info">
-                                    <h4>Nature</h4>
-                                    <p class="infoData" id="Nature">{{quickview.nature}}</p>
-                                </div>
-                                <div class="info">
-                                    <h4>Type</h4>
-                                    <p class="infoData" id="Type">{{quickview.typeOfActivity}}</p>
-                                </div>
-                                <div class="info">
-                                    <h4>Status</h4>
-                                    <p class="infoData" id="status">{{quickview.status}}</p>
+                </div>
+                <div class="content-feed">
+                    <div class="content-empty" v-if="forms.length == 0">
+                        No forms found.
+                    </div>
+                    <div v-else v-for="form in show">
+                        <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.startDate}} | {{form.org}}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="column">
-                                <div class="info">
-                                    <h4>Date of Activity</h4>
-                                    <p class="infoData" id="startDate">{{quickview.startDate}}</p>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        </div>
+                        <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.startDate}} | {{form.org}}
+                                    </p>
                                 </div>
-                                <div class="info">
-                                    <h4>Time</h4>
-                                    <p class="infoData" id="startTime">{{quickview.startTime}} - {{quickview.endTime}}</p>
+                            </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        </div>
+                        <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.startDate}} | {{form.org}}
+                                    </p>
                                 </div>
-                                <div class="info">
-                                    <h4>Venue</h4>
-                                    <p class="infoData" id="location">{{quickview.venue}}</p>
+                            </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        </div>
+                        <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start">
+                                <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                                <div class="activity">
+                                    <h3 class="infoData" name="FormTitle">
+                                        {{form.title}}
+                                    </h3>
+                                    <p class="infoData" name="FormDetails">
+                                        {{form.startDate}} | {{form.org}}
+                                    </p>
                                 </div>
-                                <br />
-                                <form name="view-form" action="view-form" method="post">
-                                    <input style="display:none;" :value="quickview._id" name="form_id">
-                                    <button type="submit" class="hallow">View Activity</button>
-                                </form>
+                            </div>
+                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="sidebar">
+                <div class="content-header">
+                    <h3 class="action-title">Quick View</h3>
+                </div>
+                <div id="quick-view" v-if="quickview">
+                    <div class="row" data-id={{quickview._id}}>
+                        <div class="column">
+                            <div class="info">
+                                <h4>Title</h4>
+                                <p class="infoData" id="Title">{{quickview.title}}</p>
+                            </div>
+                            <div class="info">
+                                <h4>Nature</h4>
+                                <p class="infoData" id="Nature">{{quickview.nature}}</p>
+                            </div>
+                            <div class="info">
+                                <h4>Type</h4>
+                                <p class="infoData" id="Type">{{quickview.typeOfActivity}}</p>
+                            </div>
+                            <div class="info">
+                                <h4>Status</h4>
+                                <p class="infoData" id="status">{{quickview.status}}</p>
                             </div>
                         </div>
-                        <br /><br />
-                        <br />
-                        <br />
+                        <div class="column">
+                            <div class="info">
+                                <h4>Date of Activity</h4>
+                                <p class="infoData" id="startDate">{{quickview.startDate}}</p>
+                            </div>
+                            <div class="info">
+                                <h4>Time</h4>
+                                <p class="infoData" id="startTime">{{quickview.startTime}} - {{quickview.endTime}}</p>
+                            </div>
+                            <div class="info">
+                                <h4>Venue</h4>
+                                <p class="infoData" id="location">{{quickview.venue}}</p>
+                            </div>
+                            <br />
+                            <form name="view-form" action="view-form" method="post">
+                                <input style="display:none;" :value="quickview._id" name="form_id">
+                                <button type="submit" class="hallow">View Activity</button>
+                            </form>
+                        </div>
                     </div>
+                    <br /><br />
+                    <br />
+                    <br />
                 </div>
-            </section>
+            </div>
+        </section>
     </div>
     <script>
-       if (performance.navigation.type == 1){
-           
-       } else {
-           <%if(submitSuccess){%>
+        if (performance.navigation.type == 1) {
+
+        } else {
+            <%if(submitSuccess){%>
             Swal({
-              type: 'success',
-              title: 'Form Submission Success',
-              showConfirmButton: false,
-              timer: 1500
-            }) 
-        <%}%>
-        <%if(submissionError){%>
-            Swal({
-              type: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              timer: 1500
+                type: 'success',
+                title: 'Form Submission Success',
+                showConfirmButton: false,
+                timer: 1500
             })
-        <%}%>
-       }
+            <%}%>
+            <%if(submissionError){%>
+            Swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                timer: 1500
+            })
+            <%}%>
+        }
     </script>
 
     <script>
-        
-        
         $('').toggle(
-            function() {
-            $('#B').css('right', '0')
-            }, function() {
-            $('#B').css('right', 'calc(100% - calc(100% - 600px))')
-        })
+            function () {
+                $('#B').css('right', '0')
+            },
+            function () {
+                $('#B').css('right', 'calc(100% - calc(100% - 600px))')
+            })
     </script>
 </body>
 

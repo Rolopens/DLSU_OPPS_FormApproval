@@ -35,28 +35,38 @@
         <nav id="secondary-nav">
             <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
             <br /><br />
-                <div class="filter-wrapper">
-                    <div class="filter-title">
-                        <i class="fa fa-filter fa-2x"></i>
-                        <span>&nbsp;&nbsp;&nbsp;Sort Forms by:</span>
-                    </div>
-                    <hr />
-                    <ul>
-                        <form action="">
-                            <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
-                            <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
-                            <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
-                            <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>                            
-<!--                            <span class="checkmark"><i class="fa fa-check"></i></span>-->
-                        </form>
-                    </ul>
+            <div class="filter-wrapper">
+                <div class="filter-title">
+                    <i class="fa fa-filter fa-2x"></i>
+                    <span>&nbsp;&nbsp;&nbsp;Sort Forms by:</span>
                 </div>
+                <hr />
+                <ul>
+                    <form action="">
+                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date
+                                    of Event<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date
+                                    of Event<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date
+                                    of Form Submission<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date
+                                    of Form Submission<br>(Newest First)</span></label></li>
+                        <!--                            <span class="checkmark"><i class="fa fa-check"></i></span>-->
+                    </form>
+                </ul>
+            </div>
         </nav>
 
         <header>
-            <%- include partials/user_dropdown %>
+            <div class="flex-between">
+                <span style="flex-grow: 1;">
+                    <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
+                </span>
 
-            <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
+                <%- include partials/user_dropdown %>
+            </div>
+
+
             <nav id="acts-nav">
                 <ul>
                     <li class="active" v-on:click="allFilter">All</li>
@@ -73,8 +83,9 @@
                     <div id="select-wrapper">
                         <div class="liveSearchArea">
                             <form class="searchForm" v-on:submit.prevent="submitSearch">
-                                <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..." @keyup="submitSearch">
-<!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
+                                <input id="search" type="text" name="search" v-model="searchQuery" placeholder="Search for an activity..."
+                                    @keyup="submitSearch">
+                                <!--                                      <span v-show="searchQuery" class="removeInput" @click="removeSearchQuery"><i class="fa fa-times-circle"></i></span>-->
                             </form>
                         </div>
                     </div>
@@ -92,7 +103,7 @@
                                         {{form.title}}
                                     </h3>
                                     <p class="infoData" name="FormDetails">
-                                        {{form.startDate}} | {{form.org}} 
+                                        {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
@@ -106,7 +117,7 @@
                                         {{form.title}}
                                     </h3>
                                     <p class="infoData" name="FormDetails">
-                                        {{form.startDate}} | {{form.org}} 
+                                        {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
@@ -120,7 +131,7 @@
                                         {{form.title}}
                                     </h3>
                                     <p class="infoData" name="FormDetails">
-                                        {{form.startDate}} | {{form.org}} 
+                                        {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
@@ -132,50 +143,50 @@
             <sec>
                 <!-- Rejection modal -->
                 <sec v-if="quickview">
-                <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
-                            </div>
-                            <div class="modal-body">
-                                You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Proceed?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
-                                    data-dismiss="modal">Reject</button>
-                                <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
-                                    data-dismiss="modal">Full Reject</button>
+                    <div class="modal fade" id="modalActivityReject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                                </div>
+                                <div class="modal-body">
+                                    You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Proceed?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
+                                        data-dismiss="modal">Reject</button>
+                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id)"
+                                        data-dismiss="modal">Full Reject</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Approval modal -->
-                <div class="modal fade" id="modalActivityApprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
-                            </div>
-                            <div class="modal-body">
-                                You are about to <b>approve</b> the activity <b>{{quickview.title}}</b>. Proceed?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="modal-positive" v-on:click="approveForm(quickview._id)"
-                                    data-dismiss="modal">Approve</button>
+                    <!-- Approval modal -->
+                    <div class="modal fade" id="modalActivityApprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
+                                </div>
+                                <div class="modal-body">
+                                    You are about to <b>approve</b> the activity <b>{{quickview.title}}</b>. Proceed?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="modal-positive" v-on:click="approveForm(quickview._id)"
+                                        data-dismiss="modal">Approve</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </sec>
 
                 <div id="sidebar">
