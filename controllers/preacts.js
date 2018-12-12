@@ -665,31 +665,48 @@ module.exports.controller = function (app) {
             position: req.body.positionPR2
         }
 
-        req.session.sourceFunds = {
-            organization_funds: req.body.OrganizationalFunds,
-            participants_fee: req.body.ParticipantsFee,
-            others: req.body.OtherFunds,
-            total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
+        if(req.body.expenses == 1) {
+            req.session.sourceFunds = {
+                organization_funds: req.body.OrganizationalFunds,
+                participants_fee: req.body.ParticipantsFee,
+                others: req.body.OtherFunds,
+                total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
+            }
+            
+            //accessing data from breakdown of expenses table
+            var expensesData = [];
+            var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
+            var totalExpenses = 0.00;
+            for (var i = 0; i < expenseslength; i++) {
+                var rowdata = {
+                    name: req.body['material' + i],
+                    quantity: req.body['quantity' + i],
+                    unit_cost: req.body['unit' + i],
+                    total_cost: req.body['quantity' + i] * req.body['unit' + i]
+                }
+                totalExpenses = rowdata.total_cost + totalExpenses;
+                expensesData.push(rowdata);
+            }
+            req.session.breakdownOfExpenses = {
+                material: expensesData,
+                total_expense: totalExpenses
+            }
+        } else {
+            console.log("NO EXPENSES");
+            req.session.sourceFunds = {
+                organization_funds: null,
+                participants_fee: null,
+                others: null,
+                total: null
+            };
+            req.session.breakdownOfExpenses = {
+                material: null,
+                total_expense: null
+            };
+            totalExpenses = 0;
         }
 
-        //accessing data from breakdown of expenses table
-        var expensesData = [];
-        var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
-        var totalExpenses = 0.00;
-        for (var i = 0; i < expenseslength; i++) {
-            var rowdata = {
-                name: req.body['material' + i],
-                quantity: req.body['quantity' + i],
-                unit_cost: req.body['unit' + i],
-                total_cost: req.body['quantity' + i] * req.body['unit' + i]
-            }
-            totalExpenses = rowdata.total_cost + totalExpenses;
-            expensesData.push(rowdata);
-        }
-        req.session.breakdownOfExpenses = {
-            material: expensesData,
-            total_expense: totalExpenses
-        }
+        
         //        req.session.boeTotal = req.body.boeTotal;
         req.session.organizational_funds = {
             operational_fund: req.body.OperationalFund,
@@ -700,38 +717,45 @@ module.exports.controller = function (app) {
             projected_expenses: totalExpenses,
             rem_balance: parseFloat(req.body.OperationalFund) + parseFloat(req.body.DepositoryFund) + parseFloat(req.body.OtherFund) - totalExpenses
         }
-        //accessing data from projected revenue table
-        var projRevData = [],
-            totalRev = 0.00;
-        var projRevlength = parseInt(req.body.dynamicTable4len, 10) + 1;
-        for (var i = 0; i < projRevlength; i++) {
-            var rowdata = {
-                item: req.body['item' + i],
-                quantity: req.body['qty' + i],
-                price: req.body['price' + i],
-                amount: req.body['qty' + i] * req.body['price' + i]
+        
+        if(req.body.income == 1) {
+            //accessing data from projected revenue table
+            var projRevData = [],
+                totalRev = 0.00;
+            var projRevlength = parseInt(req.body.dynamicTable4len, 10) + 1;
+            for (var i = 0; i < projRevlength; i++) {
+                var rowdata = {
+                    item: req.body['item' + i],
+                    quantity: req.body['qty' + i],
+                    price: req.body['price' + i],
+                    amount: req.body['qty' + i] * req.body['price' + i]
+                }
+                totalRev = totalRev + req.body['qty' + i] * req.body['price' + i];
+                projRevData.push(rowdata);
             }
-            totalRev = totalRev + req.body['qty' + i] * req.body['price' + i];
-            projRevData.push(rowdata);
-        }
-        req.session.projRevData = projRevData;
+            req.session.projRevData = projRevData;
 
-        //accessing data from projected expenses table
-        var projExpData = [],
-            totalExp = 0;
-        var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
-        for (var i = 0; i < projExplength; i++) {
-            var rowdata = {
-                item: req.body['it' + i],
-                quantity: req.body['qu' + i],
-                price: req.body['pr' + i],
-                amount: req.body['qu' + i] * req.body['pr' + i]
+            //accessing data from projected expenses table
+            var projExpData = [],
+                totalExp = 0;
+            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+            for (var i = 0; i < projExplength; i++) {
+                var rowdata = {
+                    item: req.body['it' + i],
+                    quantity: req.body['qu' + i],
+                    price: req.body['pr' + i],
+                    amount: req.body['qu' + i] * req.body['pr' + i]
+                }
+                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
+                projExpData.push(rowdata);
             }
-            totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
-            projExpData.push(rowdata);
+            req.session.porjExpData = projExpData;
+            req.session.projIncomeTotal = totalRev - totalExp;
+        } else {
+            req.session.projRevData = null;
+            req.session.porjExpData = null;
+            req.session.projIncomeTotal = null;
         }
-        req.session.porjExpData = projExpData;
-        req.session.projIncomeTotal = totalRev - totalExp;
 
         var usersOrganization, processType;
         userService.getUserWithId(req.session.uid).then((userObject) => {
@@ -1216,31 +1240,47 @@ module.exports.controller = function (app) {
             position: req.body.positionPR2
         }
 
-        req.session.sourceFunds = {
-            organization_funds: req.body.OrganizationalFunds,
-            participants_fee: req.body.ParticipantsFee,
-            others: req.body.OtherFunds,
-            total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
+        if(req.body.expenses == 1) {
+            req.session.sourceFunds = {
+                organization_funds: req.body.OrganizationalFunds,
+                participants_fee: req.body.ParticipantsFee,
+                others: req.body.OtherFunds,
+                total: parseFloat(req.body.OrganizationalFunds) + parseFloat(req.body.ParticipantsFee) + parseFloat(req.body.OtherFunds)
+            }
+            
+            //accessing data from breakdown of expenses table
+            var expensesData = [];
+            var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
+            var totalExpenses = 0.00;
+            for (var i = 0; i < expenseslength; i++) {
+                var rowdata = {
+                    name: req.body['material' + i],
+                    quantity: req.body['quantity' + i],
+                    unit_cost: req.body['unit' + i],
+                    total_cost: req.body['quantity' + i] * req.body['unit' + i]
+                }
+                totalExpenses = rowdata.total_cost + totalExpenses;
+                expensesData.push(rowdata);
+            }
+            req.session.breakdownOfExpenses = {
+                material: expensesData,
+                total_expense: totalExpenses
+            }
+        } else {
+            console.log("NO EXPENSES");
+            req.session.sourceFunds = {
+                organization_funds: null,
+                participants_fee: null,
+                others: null,
+                total: null
+            };
+            req.session.breakdownOfExpenses = {
+                material: null,
+                total_expense: null
+            };
+            totalExpenses = 0;
         }
 
-        //accessing data from breakdown of expenses table
-        var expensesData = [];
-        var expenseslength = parseInt(req.body.dynamicTable3len, 10) + 1;
-        var totalExpenses = 0.00;
-        for (var i = 0; i < expenseslength; i++) {
-            var rowdata = {
-                name: req.body['material' + i],
-                quantity: req.body['quantity' + i],
-                unit_cost: req.body['unit' + i],
-                total_cost: req.body['quantity' + i] * req.body['unit' + i]
-            }
-            totalExpenses = rowdata.total_cost + totalExpenses;
-            expensesData.push(rowdata);
-        }
-        req.session.breakdownOfExpenses = {
-            material: expensesData,
-            total_expense: totalExpenses
-        }
         //        req.session.boeTotal = req.body.boeTotal;
         req.session.organizational_funds = {
             operational_fund: req.body.OperationalFund,
@@ -1251,39 +1291,46 @@ module.exports.controller = function (app) {
             projected_expenses: totalExpenses,
             rem_balance: parseFloat(req.body.OperationalFund) + parseFloat(req.body.DepositoryFund) + parseFloat(req.body.OtherFund) - totalExpenses
         }
-        //accessing data from projected revenue table
-        var projRevData = [],
-            totalRev = 0.00;
-        var projRevlength = parseInt(req.body.dynamicTable4len, 10) + 1;
-        for (var i = 0; i < projRevlength; i++) {
-            var rowdata = {
-                item: req.body['item' + i],
-                quantity: req.body['qty' + i],
-                price: req.body['price' + i],
-                amount: req.body['qty' + i] * req.body['price' + i]
+        
+        if(req.body.income == 1) {
+            //accessing data from projected revenue table
+            var projRevData = [],
+                totalRev = 0.00;
+            var projRevlength = parseInt(req.body.dynamicTable4len, 10) + 1;
+            for (var i = 0; i < projRevlength; i++) {
+                var rowdata = {
+                    item: req.body['item' + i],
+                    quantity: req.body['qty' + i],
+                    price: req.body['price' + i],
+                    amount: req.body['qty' + i] * req.body['price' + i]
+                }
+                totalRev = totalRev + req.body['qty' + i] * req.body['price' + i];
+                projRevData.push(rowdata);
             }
-            totalRev = totalRev + req.body['qty' + i] * req.body['price' + i];
-            projRevData.push(rowdata);
-        }
-        req.session.projRevData = projRevData;
+            req.session.projRevData = projRevData;
 
-        //accessing data from projected expenses table
-        var projExpData = [],
-            totalExp = 0;
-        var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
-        for (var i = 0; i < projExplength; i++) {
-            var rowdata = {
-                item: req.body['it' + i],
-                quantity: req.body['qu' + i],
-                price: req.body['pr' + i],
-                amount: req.body['qu' + i] * req.body['pr' + i]
+            //accessing data from projected expenses table
+            var projExpData = [],
+                totalExp = 0;
+            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+            for (var i = 0; i < projExplength; i++) {
+                var rowdata = {
+                    item: req.body['it' + i],
+                    quantity: req.body['qu' + i],
+                    price: req.body['pr' + i],
+                    amount: req.body['qu' + i] * req.body['pr' + i]
+                }
+                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
+                projExpData.push(rowdata);
             }
-            totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
-            projExpData.push(rowdata);
+            req.session.porjExpData = projExpData;
+            req.session.projIncomeTotal = totalRev - totalExp;
+        } else {
+            req.session.projRevData = null;
+            req.session.porjExpData = null;
+            req.session.projIncomeTotal = null;
         }
-        req.session.porjExpData = projExpData;
-        req.session.projIncomeTotal = totalRev - totalExp;
-
+        
         var usersOrganization, processType;
         userService.getUserWithId(req.session.uid).then((userObject) => {
             var org_id = userObject.user_roles[0].org_id;

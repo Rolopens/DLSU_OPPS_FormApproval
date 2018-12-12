@@ -572,12 +572,12 @@
 
                     <!--Page 3-->
                     <div class="tab">
-                        <input style="display:none;" value=<%=data.form.breakdown_expenses.material.length-1%> id="dynamicTable3length" name="dynamicTable3len">
                         <h3 class="labelHead ui header"><label>V. Breakdown of Expenses </label> <i class="ui tooltip far fa-question-circle"
                                                                                                     data-content="If applicable, list ALL projected expenses." data-position="bottom center"></i>
                         </h3>
-                        <span class="hiddenText" style="display: none;">The activity will not incur any expenses.</span>
-
+                        <%if(data.form.breakdown_expenses.total_expense != null){%>
+                        <input style="display:none;" value=<%=data.form.breakdown_expenses.material.length-1%> id="dynamicTable3length" name="dynamicTable3len">
+                        <input style="display:none;" value="1" id="expenses" name="expenses">
                         <table class="ui compact celled definition fixed table unstackable" id="dynamicTable3">
                             <thead class="full-width">
                                 <tr style="text-align: center;">
@@ -624,14 +624,17 @@
                             </tfoot>
                         </table>
                         <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
-                        <!-- <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button> -->
-
                         <br /><br />
+                        <%} else {%>
+                            <input style="display:none;" value="0" id="expenses" name="expenses">
+                            <span>The activity will not incur any expenses.</span>
+                        <%}%>
+                        <!-- <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button> -->
                         <h3 class="labelHead ui header"><label>VI. Source of Funds </label> <i class="ui tooltip far fa-question-circle"
                                                                                                data-content="If applicable, list the breakdown on where you will get the funding for the activity. IT MUST BE EQUAL TO PART V. Put 0 on the cells which will not be used."
                                                                                                data-position="bottom center"></i></h3>
-                        <span class="hiddenText" style="display: none;">The activity will not need any funding.</span>
 
+                        <%if(data.form.source_funds.total != null){%>
                         <table class="ui compact celled definition fixed table basic unstackable" id="sofTable">
                             <thead class="full-width">
                                 <tr style="text-align: center;">
@@ -666,6 +669,9 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <%} else {%>
+                            <span>The activity will not need any funding.</span>
+                        <%}%>
                         <br>
 
                         <h3 class="labelHead ui header"><label>VII. Organizational Funds </label> <i class="ui tooltip far fa-question-circle"
@@ -759,13 +765,13 @@
                         </table>
 
                         <br /><br>
-                        <input style="display:none;" value=<%=data.form.projected_income.revenue.length-1%> id="dynamicTable4length" name="dynamicTable4len">
                         <h3 class="labelHead ui header"><label>VIII. Projected Income </label> <i class="ui tooltip far fa-question-circle"
                                                                                                   data-content="This is a requirement for fund-raising and selling activities." data-position="bottom center"></i>
                         </h3>
-                        <span class="hiddenText" style="display: none;">The activity is not a fundraising/selling activity;
-                            thus, it will not incur
-                            income or loss.</span>
+                        
+                        <%if(data.form.projected_income.total != null) {%>
+                        <input style="display:none;" value=<%=data.form.projected_income.revenue.length-1%> id="dynamicTable4length" name="dynamicTable4len">
+                        <input style="display:none;" value="1" id="income" name="income">
                         <table class="ui compact celled definition fixed table unstackable" id="dynamicTable4">
                             <thead class="full-width">
                                 <tr>
@@ -861,8 +867,12 @@
                             </tfoot>
                         </table>
                         <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
-                        <!-- <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button> -->
                         <br><br>
+                        <%} else{%>
+                            <input style="display:none;" value="0" id="income" name="income">
+                            <span>The activity is not a fundraising/selling activity; thus, it will not incur income or loss.</span>
+                        <%}%>
+                        <!-- <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button> -->
                         <h3 class="labelHead ui header"><label>IX. Provisions for Profit and Loss </label> <i class="ui tooltip far fa-question-circle"
                                                                                                               data-content="Must be at least two (2) DIFFERENT persons responsible that will be signing."
                                                                                                               data-position="bottom center"></i></h3>
@@ -1183,60 +1193,64 @@
 
                 } else if (currentTab == 2) {
                     $("#error-message").empty();
-
-                    for (var i = 0; i <= $("#dynamicTable3length").val(); i++) {
-                        if ($('#material' + i).val() == "" || $('#quantity' + i).val() == "" || $('#unit' + i).val() == "") {
-                            valid = false;
-                            $("#error-message").append(
-                                "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Breakdown of Expenses at row " +
-                                (i + 1) + ".</div>");
-                            return false;
-                        } else if ($('#quantity' + i).val() < 0) {
-                            valid = false;
-                            $("#error-message").append(
-                                "<div id='error-message' style='text-align: center; class='header'>Quantity at row " +
-                                (i + 1) + " cannot be negative.</div>");
-                            return false;
-                        } else if ($('#unit' + i).val() < 0) {
-                            valid = false;
-                            $("#error-message").append(
-                                "<div id='error-message' style='text-align: center; class='header'>Unit cost at row " +
-                                (i + 1) + " cannot be negative.</div>");
-                            return false;
+                    
+                    <%if(data.form.breakdown_expenses.total_expense != null) {%>
+                        for (var i = 0; i <= $("#dynamicTable3length").val(); i++) {
+                            if ($('#material' + i).val() == "" || $('#quantity' + i).val() == "" || $('#unit' + i).val() == "") {
+                                valid = false;
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Breakdown of Expenses at row " +
+                                    (i + 1) + ".</div>");
+                                return false;
+                            } else if ($('#quantity' + i).val() < 0) {
+                                valid = false;
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Quantity at row " +
+                                    (i + 1) + " cannot be negative.</div>");
+                                return false;
+                            } else if ($('#unit' + i).val() < 0) {
+                                valid = false;
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Unit cost at row " +
+                                    (i + 1) + " cannot be negative.</div>");
+                                return false;
+                            }
                         }
-                    }
-
-                    if ($('#OrganizationalFunds').val() == "") {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out the Organizational Funds of the Source of Funds.</div>"
-                        );
-                    } else if ($('#OrganizationalFunds').val() < 0) {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>No negative value for the Organizational Funds of the Source of Funds.</div>"
-                        );
-                    } else if ($('#ParticipantsFee').val() == "") {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out the Participants Fee of the Source of Funds.</div>"
-                        );
-                    } else if ($('#ParticipantsFee').val() < 0) {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>No negative value for the Participants Fee of the Source of Funds.</div>"
-                        );
-                    } else if ($('#OtherFunds').val() == "") {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out the Other Funds of the Source of Funds.</div>"
-                        );
-                    } else if ($('#OtherFunds').val() < 0) {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>No negative value for the Other Funds of the Source of Funds.</div>"
-                        );
-                    } else if ($('#OperationalFund').val() == "") {
+                        
+                        if ($('#OrganizationalFunds').val() == "") {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>Please fill out the Organizational Funds of the Source of Funds.</div>"
+                            );
+                        } else if ($('#OrganizationalFunds').val() < 0) {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>No negative value for the Organizational Funds of the Source of Funds.</div>"
+                            );
+                        } else if ($('#ParticipantsFee').val() == "") {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>Please fill out the Participants Fee of the Source of Funds.</div>"
+                            );
+                        } else if ($('#ParticipantsFee').val() < 0) {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>No negative value for the Participants Fee of the Source of Funds.</div>"
+                            );
+                        } else if ($('#OtherFunds').val() == "") {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>Please fill out the Other Funds of the Source of Funds.</div>"
+                            );
+                        } else if ($('#OtherFunds').val() < 0) {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>No negative value for the Other Funds of the Source of Funds.</div>"
+                            );
+                        }
+                    <%}%>
+                
+                    if ($('#OperationalFund').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please fill out the Accumulated Operational Funds of the Organizational Funds.</div>"
@@ -1277,50 +1291,51 @@
                             "<div id='error-message' style='text-align: center; class='header'>Please fill out the position of the person responsible.</div>"
                         );
                     } else {
-
-                        for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
-                            if ($('#item' + i).val() == "" || $('#qty' + i).val() == "" || $('#price' + i).val() == "") {
-                                valid = false;
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Revenue at row " +
-                                    (i + 1) + ".</div>");
-                                return false;
-                            } else if ($('#qty' + i).val() < 0) {
-                                valid = false;
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Revenue at row " +
-                                    (i + 1) + " cannot be negative.</div>");
-                                return false;
-                            } else if ($('#price' + i).val() < 0) {
-                                valid = false;
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Price in Projected Revenue at row " +
-                                    (i + 1) + " cannot be negative.</div>");
-                                return false;
+                        <%if(data.form.projected_income.total != null) {%>
+                            for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
+                                if ($('#item' + i).val() == "" || $('#qty' + i).val() == "" || $('#price' + i).val() == "") {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Revenue at row " +
+                                        (i + 1) + ".</div>");
+                                    return false;
+                                } else if ($('#qty' + i).val() < 0) {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Revenue at row " +
+                                        (i + 1) + " cannot be negative.</div>");
+                                    return false;
+                                } else if ($('#price' + i).val() < 0) {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Price in Projected Revenue at row " +
+                                        (i + 1) + " cannot be negative.</div>");
+                                    return false;
+                                }
                             }
-                        }
 
-                        for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
-                            if ($('#it' + i).val() == "" || $('#qu' + i).val() == "" || $('#pr' + i).val() == "") {
-                                valid = false;
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row " +
-                                    (i + 1) + ".</div>");
-                                return false;
-                            } else if ($('#qu' + i).val() < 0) {
-                                valid = false;
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row " +
-                                    (i + 1) + " cannot be negative.</div>");
-                                return false;
-                            } else if ($('#pr' + i).val() < 0) {
-                                valid = false;
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row " +
-                                    (i + 1) + " cannot be negative.</div>");
-                                return false;
+                            for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
+                                if ($('#it' + i).val() == "" || $('#qu' + i).val() == "" || $('#pr' + i).val() == "") {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row " +
+                                        (i + 1) + ".</div>");
+                                    return false;
+                                } else if ($('#qu' + i).val() < 0) {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row " +
+                                        (i + 1) + " cannot be negative.</div>");
+                                    return false;
+                                } else if ($('#pr' + i).val() < 0) {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row " +
+                                        (i + 1) + " cannot be negative.</div>");
+                                    return false;
+                                }
                             }
-                        }
+                        <%}%>
 
                     }
                 }
