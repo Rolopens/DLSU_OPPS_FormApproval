@@ -65,6 +65,7 @@ var preacts_app = new Vue({
                         this.whoami = rows.data.user;                        
                         axios.get("/preacts/getAllFormsOfUser/"+ this.whoami._id).then((rows) => {
                             this.forms = rows.data.forms;
+                            this.filterOut();
                             return this.forms;
                         })  
                     }
@@ -72,6 +73,7 @@ var preacts_app = new Vue({
                         this.whoami = rows.data.user;
                         axios.get('/preacts/getAllOwnedFormsWithMatchingString/forms/' + this.whoami._id + '/' + this.searchQuery).then((rows) => {
                             this.forms = rows.data.forms;
+                            this.filterOut();
                             return this.forms;
                         })
                     }
