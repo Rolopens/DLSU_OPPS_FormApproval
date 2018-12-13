@@ -74,10 +74,11 @@ module.exports.controller = function (app){
             var form = formData
             form.status = "Fully Rejected"
             form.comments = req.params.comment;
-            form.currentCheckers = []
+            
             form.currentCheckers.forEach(function(item){
                 form.currentViewers.push(item)
             })
+            form.currentCheckers = []
             preactsService.updateForm(form).then((updatedForm) => {
                 preactsService.findFormViaId(form._id).then((formData1) => {
                     res.redirect('/preacts')
@@ -85,6 +86,7 @@ module.exports.controller = function (app){
             })
         })
     })
+
 
 
 

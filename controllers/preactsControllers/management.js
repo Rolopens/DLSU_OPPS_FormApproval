@@ -12,63 +12,7 @@ const {
 } = require(path.join(__dirname, "..", "..", "models", "preactsForm.js"))
 
 module.exports.controller = function (app){
-    //preacts page for submitters
-    app.get('/preacts-submission', function (req, res) {
-        if (!req.session.uid) res.redirect("/");
-        userService.getUserWithId(req.session.uid).then((retUser) => {
-            var roleId = retUser.user_roles[0].role_id; //FIX THIS LATER ON DEPENDING ON HOW MANY ORGS THEY HAVE
-            roleService.getRoleWithId(roleId).then((retRole) => {
-                if (retRole.name != "PROJECT_HEAD") {
-                    res.redirect('/preacts');
-                } else {
-                    if (req.session.submissionError == true) {
-                        res.render('preacts-submit', {
-                            preacts: false,
-                            preactsSubmission: true,
-                            accounts: false,
-                            organization: false,
-                            submitSuccess: false,
-                            submissionError: true
-                        });
-                        req.session.submissionError = false;
-                    } else {
-                        if (req.session.submissionValue == true) {
-                            req.session.submissionValue = false;
-                            res.render('preacts-submit', {
-                                preacts: false,
-                                preactsSubmission: true,
-                                accounts: false,
-                                organization: false,
-                                submitSuccess: true,
-                                submissionError: false
-                            });
-
-                        } else {
-                            res.render('preacts-submit', {
-                                preacts: false,
-                                preactsSubmission: true,
-                                accounts: false,
-                                organization: false,
-                                submitSuccess: false,
-                                submissionError: false
-                            });
-                        }
-                    }
-
-
-                }
-            }).catch((err) => {
-                console.log("ERROR MESSAGE: Cannot find role with id " + roleId);
-                console.log(err);
-            });
-        }).catch((err) => {
-            console.log("ERROR MESSAGE: Cannot find user with id " + req.session.uid);
-            console.log(err);
-        });
-
-    });
-
-    //form
+     //form
     app.get('/create-form', function (req, res) {
 
         if (!req.session.uid) res.redirect("/");
@@ -105,7 +49,6 @@ module.exports.controller = function (app){
 
     //confirm page
     app.post('/create-form-confirm', function (req, res) {
-        //        console.log(req.body)
         var isSlife = false;
         req.session.submissionValue = false;
         req.session.title = req.body.title;
@@ -113,22 +56,17 @@ module.exports.controller = function (app){
         if (req.body.type.split("-")[0] == 'SLIFE') {
             isSlife = true;
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers;
+                req.session.type = req.body.typeOthers2;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
         } else {
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers2;
+                req.session.type = req.body.typeOthers;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
         }
-        //        console.log(req.session.type)
-        //        console.log(req.body.type)
-        //        console.log(req.body.type.split("-")[0])
-        //        console.log(req.body.type.split("-")[1])
-        //        console.log("IS SLIFE? Answer:" + isSlife)
         req.session.startDate = req.body.startDate;
         req.session.startTime = req.body.startTime;
         req.session.endTime = req.body.endTime;
@@ -228,6 +166,22 @@ module.exports.controller = function (app){
                 material: expensesData,
                 total_expense: totalExpenses
             }
+            
+            //accessing data from projected expenses table
+            var projExpData = [],
+                totalExp = 0;
+            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+            for (var i = 0; i < projExplength; i++) {
+                var rowdata = {
+                    item: req.body['it' + i],
+                    quantity: req.body['qu' + i],
+                    price: req.body['pr' + i],
+                    amount: req.body['qu' + i] * req.body['pr' + i]
+                }
+                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
+                projExpData.push(rowdata);
+            }
+            req.session.porjExpData = projExpData;
         } else {
             console.log("NO EXPENSES");
             req.session.sourceFunds = {
@@ -241,9 +195,10 @@ module.exports.controller = function (app){
                 total_expense: null
             };
             totalExpenses = 0;
+            totalExp = 0;
+            req.session.porjExpData = null;
         }
 
-        
         //        req.session.boeTotal = req.body.boeTotal;
         req.session.organizational_funds = {
             operational_fund: req.body.OperationalFund,
@@ -271,27 +226,11 @@ module.exports.controller = function (app){
                 projRevData.push(rowdata);
             }
             req.session.projRevData = projRevData;
-
-            //accessing data from projected expenses table
-            var projExpData = [],
-                totalExp = 0;
-            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
-            for (var i = 0; i < projExplength; i++) {
-                var rowdata = {
-                    item: req.body['it' + i],
-                    quantity: req.body['qu' + i],
-                    price: req.body['pr' + i],
-                    amount: req.body['qu' + i] * req.body['pr' + i]
-                }
-                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
-                projExpData.push(rowdata);
-            }
-            req.session.porjExpData = projExpData;
             req.session.projIncomeTotal = totalRev - totalExp;
         } else {
             req.session.projRevData = null;
-            req.session.porjExpData = null;
             req.session.projIncomeTotal = null;
+            req.session.porjExpData = null;
         }
 
         var usersOrganization, processType;
@@ -351,7 +290,6 @@ module.exports.controller = function (app){
                                         "startDate": req.session.startDate,
                                         "startDateAlt": req.session.startDateAlt,
                                         "startTime": req.session.startTime,
-                                        "endDate": req.session.endDate,
                                         "endTime": req.session.endTime,
                                         "venue": req.session.venue,
                                         "reach": req.session.reach,
@@ -409,10 +347,6 @@ module.exports.controller = function (app){
                             req.session.submissionError = true;
                             res.redirect('/preacts-submission');
                         })
-                    }).catch((err)=> {
-                        console.log(err);
-                        req.session.submissionError = true;
-                        res.redirect('/preacts-submission');
                     })
                 } else {
                     roleService.getRoleWithName(role).then((retRole) => {
@@ -432,7 +366,6 @@ module.exports.controller = function (app){
                                         "startDate": req.session.startDate,
                                         "startDateAlt": req.session.startDateAlt,
                                         "startTime": req.session.startTime,
-                                        "endDate": req.session.endDate,
                                         "endTime": req.session.endTime,
                                         "venue": req.session.venue,
                                         "reach": req.session.reach,
@@ -490,10 +423,6 @@ module.exports.controller = function (app){
                             req.session.submissionError = true;
                             res.redirect('/preacts-submission');
                         })
-                    }).catch((err) => {
-                        console.log(err);
-                        req.session.submissionError = true;
-                        res.redirect('/preacts-submission');
                     })
                 }
 
@@ -711,13 +640,13 @@ module.exports.controller = function (app){
         if (req.body.type.split("-")[0] == 'SLIFE') {
             isSlife = true;
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers;
+                req.session.type = req.body.typeOthers2;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
         } else {
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers2;
+                req.session.type = req.body.typeOthers;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
@@ -818,6 +747,22 @@ module.exports.controller = function (app){
                 material: expensesData,
                 total_expense: totalExpenses
             }
+            
+            //accessing data from projected expenses table
+            var projExpData = [],
+                totalExp = 0;
+            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+            for (var i = 0; i < projExplength; i++) {
+                var rowdata = {
+                    item: req.body['it' + i],
+                    quantity: req.body['qu' + i],
+                    price: req.body['pr' + i],
+                    amount: req.body['qu' + i] * req.body['pr' + i]
+                }
+                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
+                projExpData.push(rowdata);
+            }
+            req.session.porjExpData = projExpData;
         } else {
             console.log("NO EXPENSES");
             req.session.sourceFunds = {
@@ -831,6 +776,7 @@ module.exports.controller = function (app){
                 total_expense: null
             };
             totalExpenses = 0;
+            req.session.porjExpData = 0;
         }
 
         //        req.session.boeTotal = req.body.boeTotal;
@@ -860,22 +806,6 @@ module.exports.controller = function (app){
                 projRevData.push(rowdata);
             }
             req.session.projRevData = projRevData;
-
-            //accessing data from projected expenses table
-            var projExpData = [],
-                totalExp = 0;
-            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
-            for (var i = 0; i < projExplength; i++) {
-                var rowdata = {
-                    item: req.body['it' + i],
-                    quantity: req.body['qu' + i],
-                    price: req.body['pr' + i],
-                    amount: req.body['qu' + i] * req.body['pr' + i]
-                }
-                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
-                projExpData.push(rowdata);
-            }
-            req.session.porjExpData = projExpData;
             req.session.projIncomeTotal = totalRev - totalExp;
         } else {
             req.session.projRevData = null;

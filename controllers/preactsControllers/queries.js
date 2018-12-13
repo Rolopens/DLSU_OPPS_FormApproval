@@ -89,7 +89,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms owned by a user, sorted by date of event (ascending)
     app.get("/preacts/sortEventDateAsc/:id", function (req, res) {
-        console.log("Test");
+//        console.log("Test");
         preactsService.sortEventDateAsc(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -99,7 +99,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms owned by a user, sorted by date of event (descending)
     app.get("/preacts/sortEventDateDesc/:id", function (req, res) {
-        console.log("Test2");
+//        console.log("Test2");
         preactsService.sortEventDateDesc(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -109,7 +109,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms owned by a user, sorted by date of form submission (ascending)
     app.get("/preacts/sortFormDateAsc/:id", function (req, res) {
-        console.log("Test3");
+//        console.log("Test3");
         preactsService.sortFormDateAsc(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -119,7 +119,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms owned by a user, sorted by date of form submission (descending)
     app.get("/preacts/sortFormDateDesc/:id", function (req, res) {
-        console.log("Test4");
+//        console.log("Test4");
         preactsService.sortFormDateDesc(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -129,7 +129,7 @@ module.exports.controller = function (app){
     
     //ajax request for all the forms checked by a user, sorted by date of event (ascending)
     app.get("/preacts/sortEventDateAscChecked/:id", function (req, res) {
-        console.log("Test");
+//        console.log("Test");
         preactsService.sortEventDateAscChecked(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -139,7 +139,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms checked by a user, sorted by date of event (descending)
     app.get("/preacts/sortEventDateDescChecked/:id", function (req, res) {
-        console.log("Test2");
+//        console.log("Test2");
         preactsService.sortEventDateDescChecked(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -149,7 +149,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms checked by a user, sorted by date of form submission (ascending)
     app.get("/preacts/sortFormDateAscChecked/:id", function (req, res) {
-        console.log("Test3");
+//        console.log("Test3");
         preactsService.sortFormDateAscChecked(req.params.id).then((forms) => {
             res.send({
                 forms
@@ -159,7 +159,7 @@ module.exports.controller = function (app){
 
     //ajax request for all the forms checked by a user, sorted by date of form submission (descending)
     app.get("/preacts/sortFormDateDescChecked/:id", function (req, res) {
-        console.log("Test4");
+//        console.log("Test4");
         preactsService.sortFormDateDescChecked(req.params.id).then((forms) => {
             res.send({
                 forms

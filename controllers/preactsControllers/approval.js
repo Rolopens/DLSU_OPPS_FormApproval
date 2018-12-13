@@ -12,7 +12,7 @@ const {
 } = require(path.join(__dirname, "..", "..",  "models", "preactsForm.js"))
 
 module.exports.controller = function (app){
-     //ajax request for approving a form
+   //ajax request for approving a form
     app.post("/preacts/approve/:id", function (req, res) {
         var id = req.params.id;
         preactsService.findFormViaId(id).then((formData) => {
@@ -193,5 +193,5 @@ module.exports.controller = function (app){
             }
 
         })
-    })
+    }) 
 }
