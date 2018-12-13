@@ -1098,7 +1098,8 @@
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENMP.</div>"
                         );
                     }
-                    if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && ($("#enmp").val() > $("#enp").val())) {
+                    if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && $("#enmp").val() > 0 && $("#enp").val() > 0 &&
+                    ($("#enmp").val() > $("#enp").val())) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>ENMP must not be greater than ENP.</div>"
