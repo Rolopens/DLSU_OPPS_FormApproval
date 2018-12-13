@@ -620,7 +620,6 @@ module.exports.controller = function (app) {
 
     //confirm page
     app.post('/create-form-confirm', function (req, res) {
-        //        console.log(req.body)
         var isSlife = false;
         req.session.submissionValue = false;
         req.session.title = req.body.title;
@@ -628,22 +627,17 @@ module.exports.controller = function (app) {
         if (req.body.type.split("-")[0] == 'SLIFE') {
             isSlife = true;
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers;
+                req.session.type = req.body.typeOthers2;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
         } else {
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers2;
+                req.session.type = req.body.typeOthers;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
         }
-        //        console.log(req.session.type)
-        //        console.log(req.body.type)
-        //        console.log(req.body.type.split("-")[0])
-        //        console.log(req.body.type.split("-")[1])
-        //        console.log("IS SLIFE? Answer:" + isSlife)
         req.session.startDate = req.body.startDate;
         req.session.startTime = req.body.startTime;
         req.session.endTime = req.body.endTime;
@@ -866,7 +860,6 @@ module.exports.controller = function (app) {
                                         "startDate": req.session.startDate,
                                         "startDateAlt": req.session.startDateAlt,
                                         "startTime": req.session.startTime,
-                                        "endDate": req.session.endDate,
                                         "endTime": req.session.endTime,
                                         "venue": req.session.venue,
                                         "reach": req.session.reach,
@@ -943,7 +936,6 @@ module.exports.controller = function (app) {
                                         "startDate": req.session.startDate,
                                         "startDateAlt": req.session.startDateAlt,
                                         "startTime": req.session.startTime,
-                                        "endDate": req.session.endDate,
                                         "endTime": req.session.endTime,
                                         "venue": req.session.venue,
                                         "reach": req.session.reach,
