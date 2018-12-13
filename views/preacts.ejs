@@ -67,9 +67,9 @@
 
             <nav id="acts-nav">
                         <ul id="options">
-                            <li value="all" class="active" v-on:click="allFilter">All</li>
+                            <li value="pending" class="active" v-on:click="pendingFilter()">Pending</li>
+                            <li value="all" v-on:click="allFilter">All</li>
                             <li value="approved" v-on:click="approvedFilter()">Approved</li>
-                            <li value="pending" v-on:click="pendingFilter()">Pending</li>
                             <li value="rejected" v-on:click="rejectedFilter()">Rejected</li>
                             <li value="unreviewed" v-on:click="unreviewedFilter()">Unreviewed</li>
                         </ul>
@@ -166,7 +166,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
                                 </div>
                                 <div class="modal-body">
-                                    You are about to <b>fully reject</b> the activity <b>{{quickview.title}}</b>. Please state your reason.<br><br>
+                                    You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Please state your reason.<br><br>
                                     <textarea name="comments" id='comment' required></textarea>
                                 </div>
                                 <div class="modal-footer">
