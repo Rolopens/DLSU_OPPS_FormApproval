@@ -345,8 +345,8 @@ module.exports.controller = function (app) {
                         org1 = retOrg
                         userService.findUserByOrgAndRoleID(org1._id, role1._id).then((users) => {
                             var temp = form.currentCheckers;
-                            form.currentViewers.forEach(function(item){
-                                form.currentCheckers.push(item)
+                            form.currentCheckers.forEach(function(item){
+                                form.currentViewers.push(item)
                             })
                             if (form.status === "Approved") {
                                 form.currentCheckers = [];
