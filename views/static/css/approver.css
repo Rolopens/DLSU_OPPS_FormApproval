@@ -282,7 +282,7 @@ header {
 	padding-right: 2.5em;
 	min-width: 208px;
 	max-height: 425px;
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 
 #main-content .content-feed .content-wrapper {
@@ -296,8 +296,15 @@ header {
 	cursor: pointer;
 }
 
-#main-content .content-feed .content-empty {
+#main-content .content-feed {
 	padding: 20;
+	margin: 1em 0;
+}
+
+.content-empty {
+    text-align: center;
+    font-size: 20px;
+    padding: 20;
 	margin: 1em 0;
 }
 
@@ -502,4 +509,15 @@ header {
 	content: "";
 	display: table;
 	clear: both;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
