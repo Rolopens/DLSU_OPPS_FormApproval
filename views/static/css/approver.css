@@ -302,9 +302,9 @@ header {
 }
 
 .content-empty {
-    text-align: center;
-    font-size: 20px;
-    padding: 20;
+	text-align: center;
+	font-size: 20px;
+	padding: 20;
 	margin: 1em 0;
 }
 
@@ -442,6 +442,11 @@ header {
 	cursor: pointer;
 	border-radius: 3px;
 	width: 60%;
+	transition: ease 0.3s all;
+	-webkit-transition: ease 0.3s all;
+	-moz-transition: ease 0.3s all;
+	-o-transition: ease 0.3s all;
+	-ms-transition: ease 0.3s all;
 }
 
 #quick-view .positive,
@@ -449,6 +454,20 @@ header {
 	background-color: var(--theme-approval);
 	border-color: var(--theme-approval);
 	text-align: center;
+	color: white;
+	border: thin solid var(--theme-approval);
+}
+
+#quick-view .positive:hover,
+#modal-positive:hover {
+	/* background-color: var(--theme-approval); */
+	/* border-color: var(--theme-approval); */
+	text-align: center;
+	/* color: white; */
+	background-color: var(--theme-button-color-value);
+	border-color: var(--theme-approval);
+	color: var(--theme-approval);
+	border: thin solid var(--theme-approval);
 }
 
 #quick-view .neutral {
@@ -462,24 +481,38 @@ header {
 	background-color: var(--theme-rejection);
 	border-color: var(--theme-rejection);
 	text-align: center;
+	color: white;
+	border: thin solid var(--theme-rejection);
+}
+
+#quick-view .negative:hover,
+#modal-negative:hover {
+	/* background-color: var(--theme-approval); */
+	/* border-color: var(--theme-approval); */
+	text-align: center;
+	/* color: white; */
+	background-color: var(--theme-button-color-value);
+	border-color: var(--theme-approval);
+	color: var(--theme-rejection);
+	border: thin solid var(--theme-rejection);
 }
 
 #main-content .content-wrapper .activity-icon.positive {
-	color: var(--theme-approval);
+	color: var(--theme-button-color-value);
 	border: thin solid var(--theme-approval);
-	background-color: transparent;
+	background-color: var(--theme-approval);
 }
 
 #main-content .content-wrapper .activity-icon.neutral {
-	color: var(--theme-neutral);
+	color: var(--theme-button-color-value);
 	border: thin solid var(--theme-neutral);
-	background-color: transparent;
+	background-color: var(--theme-rejection);
 }
 
 #main-content .content-wrapper .activity-icon.negative {
-	color: var(--theme-rejection);
+	color: var(--theme-button-color-value);
 	border: thin solid var(--theme-rejection);
-	background-color: transparent;
+	background-color: var(--theme-rejection);
 }
 
 .positive:hover {
@@ -513,12 +546,12 @@ header {
 
 .reject1 {
 	background-color: var(--theme-rejection) !important;
-    border: none;
+	border: none;
 }
 
 .reject2 {
 	background-color: var(--theme-rejection-full) !important;
-    border: none;
+	border: none;
 }
 
 .reject1 {
@@ -531,12 +564,12 @@ header {
 }
 
 ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
+	-webkit-appearance: none;
+	width: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }

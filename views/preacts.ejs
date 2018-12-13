@@ -45,10 +45,14 @@
                 <hr />
                 <ul>
                     <form action="">
-                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date
+                                    of Event<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date
+                                    of Event<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date
+                                    of Form Submission<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date
+                                    of Form Submission<br>(Newest First)</span></label></li>
                         <!--                            <span class="checkmark"><i class="fa fa-check"></i></span>-->
                     </form>
                 </ul>
@@ -56,9 +60,9 @@
         </nav>
 
         <header>
-            
+
             <div class="flex-between">
-                
+
                 <span style="flex-grow: 1;">
                     <h1 id="board-title"><i class="fa fa-file"></i> &nbsp; Pre-Activities Submission</h1>
                 </span>
@@ -68,14 +72,14 @@
 
 
             <nav id="acts-nav">
-                        <ul id="options">
-                            <li value="pending" class="active" v-on:click="pendingFilter()">Pending ({{pending}})</li>
-                            <li value="all" v-on:click="allFilter">All ({{all}})</li>
-                            <li value="approved" v-on:click="approvedFilter()">Approved ({{approved}})</li>
-                            <li value="rejected" v-on:click="rejectedFilter()">Rejected ({{rejected}})</li>
-                            <li value="unreviewed" v-on:click="unreviewedFilter()">Unreviewed ({{unreviewed}})</li>
-                        </ul>
-                    </nav>
+                <ul id="options">
+                    <li value="pending" class="active" v-on:click="pendingFilter()">Pending ({{pending}})</li>
+                    <li value="all" v-on:click="allFilter">All ({{all}})</li>
+                    <li value="approved" v-on:click="approvedFilter()">Approved ({{approved}})</li>
+                    <li value="rejected" v-on:click="rejectedFilter()">Rejected ({{rejected}})</li>
+                    <li value="unreviewed" v-on:click="unreviewedFilter()">Unreviewed ({{unreviewed}})</li>
+                </ul>
+            </nav>
         </header>
         <section id="main-bars">
             <div id="main-content">
@@ -151,7 +155,7 @@
                             </div>
                             <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -168,14 +172,17 @@
                                     <h4 class="modal-title" id="myModalLabel">Confirm action</h4>
                                 </div>
                                 <div class="modal-body">
-                                    You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Please state your reason.<br><br>
+                                    You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Please
+                                    state your reason.<br><br>
                                     <textarea name="comments" id='comment' required></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary reject1" id="modal-negative" v-on:click="rejectForm(quickview._id, $('.modal-body #comment').val())"
+                                    <button type="button" class="btn btn-primary reject1" id="modal-negative"
+                                        v-on:click="rejectForm(quickview._id, $('.modal-body #comment').val())"
                                         data-dismiss="modal">Reject</button>
-                                    <button type="button" class="btn btn-primary reject2" id="modal-negative" v-on:click="fullyRejectForm(quickview._id, $('.modal-body #comment').val())"
+                                    <button type="button" class="btn btn-primary reject2" id="modal-negative"
+                                        v-on:click="fullyRejectForm(quickview._id, $('.modal-body #comment').val())"
                                         data-dismiss="modal">Full Reject</button>
                                 </div>
                             </div>
@@ -260,6 +267,12 @@
                                 <p class="action positive" id="ApproveForm" data-toggle="modal" data-target="#modalActivityApprove"><i
                                         class="fa fa-check-circle"></i> &nbsp; Approve Activity</p>
                             </div>
+                        </div>
+                    </div>
+                    <div id="quickview" v-else class="align-center parent">
+                        <div class="align-center child" style="color: rgba(0,0,0,0.55);">
+                            <center><i class="fa fa-frown fa-7x"></i></center><br>
+                            <h2>No form selected yet.</h2>
                         </div>
                     </div>
                 </div>
