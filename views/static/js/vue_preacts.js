@@ -23,7 +23,12 @@ var preacts_app = new Vue({
         quickview: null,
         forms: null,
         searchQuery: '',
-        show: null
+        show: null,
+        pending: null,
+        approved: null,
+        all: null,
+        unreviewed: null,
+        rejected: null
     },
     created: function () {
         axios.get('/whoami')
@@ -36,7 +41,8 @@ var preacts_app = new Vue({
                     console.log(rows);
                     this.forms = rows.data.forms;
                     this.show = this.forms;
-                    this.filterOut();
+                    this.pendingFilter();
+                    this.createNumbers();
                     return this.forms;
                 })
                 return this.whoami;
@@ -240,6 +246,38 @@ var preacts_app = new Vue({
             }else if(x == 'Unreviewed'){
                 this.unreviewedFilter();
             }
+        },
+        createNumbers(){
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Approved'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.approved = listForms.length;
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Pending'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.pending = listForms.length;
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Fully Rejected'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.rejected = listForms.length;
+            listForms = [];
+            for (form in this.forms){
+                if(this.forms[form].status == 'Rejected'){
+                    listForms.push(this.forms[form]);
+                }
+            }
+            this.unreviewed = listForms.length;
+            listForms = [];
+            this.all = this.forms.length;
         }
     }
 })
