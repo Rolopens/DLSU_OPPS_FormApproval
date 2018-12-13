@@ -1163,7 +1163,7 @@ Row</button> -->
                         );
                     }
 
-                    for (var i = 0; i <= $("#dynamicTable2length").val(); i++) {
+                    for (var i = 0; i <= parseInt($("#dynamicTable2length").val()); i++) {
                         if ($('#startTime' + i).val() == "" || $('#endTime' + i).val() == "" || $('#activity' + i).val() ==
                             "" || $('#description' + i).val() == "" || $('#person' + i).val() == "") {
                             valid = false;
@@ -1181,6 +1181,19 @@ Row</button> -->
                             //                                    return false;
                             //                                }
                         }
+                        if(i > 0){
+                            console.log($('#startTime' + i).val())
+                            
+                            if ($('#startTime' + i).val() != $('#endTime' + (i - 1)).val() || $('#startTime' + i).val() == $('#endTime' + (i)).val()){
+                                valid = false;
+                                
+                                
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Invalid time details of Comprehensive Program Design at row " +
+                                    (i + 1) + ".</div>");
+                                return false;  
+                            }
+                        }
                     }
                     
                     var newTime = convertTime($("#startTime0").val());
@@ -1190,6 +1203,7 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>Initial time in Comprehensive Program Design must match with the start time of the activity.</div>"
                         );
                     }
+                    
                     
                     var length =  $("#dynamicTable2length").val();
                     var end = $("#endTime"+length).val();
@@ -1201,7 +1215,20 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design must match with the end time of the activity.</div>"
                         );  
                     }
-
+                    
+                    if (parseInt(end.split(":").join("")) < parseInt($("#endTime0").val().split(":").join("")) && i > 0){
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design Row 1 exceeds the end time of the activity.</div>"
+                        ); 
+                    }
+                    if (parseInt($("#startTime0").val().split(":").join("")) > parseInt($("#endTime0").val().split(":").join("")) && i > 0){
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design Row 1 is earlier than the start time of the activity.</div>"
+                        ); 
+                    }
+                    
                 } else if (currentTab == 2) {
                     
                     $("#error-message").empty();
