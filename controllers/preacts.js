@@ -737,6 +737,22 @@ module.exports.controller = function (app) {
                 material: expensesData,
                 total_expense: totalExpenses
             }
+            
+            //accessing data from projected expenses table
+            var projExpData = [],
+                totalExp = 0;
+            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+            for (var i = 0; i < projExplength; i++) {
+                var rowdata = {
+                    item: req.body['it' + i],
+                    quantity: req.body['qu' + i],
+                    price: req.body['pr' + i],
+                    amount: req.body['qu' + i] * req.body['pr' + i]
+                }
+                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
+                projExpData.push(rowdata);
+            }
+            req.session.porjExpData = projExpData;
         } else {
             console.log("NO EXPENSES");
             req.session.sourceFunds = {
@@ -750,9 +766,10 @@ module.exports.controller = function (app) {
                 total_expense: null
             };
             totalExpenses = 0;
+            totalExp = 0;
+            req.session.porjExpData = null;
         }
 
-        
         //        req.session.boeTotal = req.body.boeTotal;
         req.session.organizational_funds = {
             operational_fund: req.body.OperationalFund,
@@ -780,27 +797,11 @@ module.exports.controller = function (app) {
                 projRevData.push(rowdata);
             }
             req.session.projRevData = projRevData;
-
-            //accessing data from projected expenses table
-            var projExpData = [],
-                totalExp = 0;
-            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
-            for (var i = 0; i < projExplength; i++) {
-                var rowdata = {
-                    item: req.body['it' + i],
-                    quantity: req.body['qu' + i],
-                    price: req.body['pr' + i],
-                    amount: req.body['qu' + i] * req.body['pr' + i]
-                }
-                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
-                projExpData.push(rowdata);
-            }
-            req.session.porjExpData = projExpData;
             req.session.projIncomeTotal = totalRev - totalExp;
         } else {
             req.session.projRevData = null;
-            req.session.porjExpData = null;
             req.session.projIncomeTotal = null;
+            req.session.porjExpData = null;
         }
 
         var usersOrganization, processType;
@@ -1317,6 +1318,22 @@ module.exports.controller = function (app) {
                 material: expensesData,
                 total_expense: totalExpenses
             }
+            
+            //accessing data from projected expenses table
+            var projExpData = [],
+                totalExp = 0;
+            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
+            for (var i = 0; i < projExplength; i++) {
+                var rowdata = {
+                    item: req.body['it' + i],
+                    quantity: req.body['qu' + i],
+                    price: req.body['pr' + i],
+                    amount: req.body['qu' + i] * req.body['pr' + i]
+                }
+                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
+                projExpData.push(rowdata);
+            }
+            req.session.porjExpData = projExpData;
         } else {
             console.log("NO EXPENSES");
             req.session.sourceFunds = {
@@ -1330,6 +1347,7 @@ module.exports.controller = function (app) {
                 total_expense: null
             };
             totalExpenses = 0;
+            req.session.porjExpData = 0;
         }
 
         //        req.session.boeTotal = req.body.boeTotal;
@@ -1359,23 +1377,7 @@ module.exports.controller = function (app) {
                 projRevData.push(rowdata);
             }
             req.session.projRevData = projRevData;
-
-            //accessing data from projected expenses table
-            var projExpData = [],
-                totalExp = 0;
-            var projExplength = parseInt(req.body.dynamicTable5len, 10) + 1;
-            for (var i = 0; i < projExplength; i++) {
-                var rowdata = {
-                    item: req.body['it' + i],
-                    quantity: req.body['qu' + i],
-                    price: req.body['pr' + i],
-                    amount: req.body['qu' + i] * req.body['pr' + i]
-                }
-                totalExp = totalExp + req.body['qu' + i] * req.body['pr' + i]
-                projExpData.push(rowdata);
-            }
-            req.session.porjExpData = projExpData;
-            req.session.projIncomeTotal = totalRev - totalExp;
+            req.session.projIncomeTotal = totalRev - req.session.porjExpData;
         } else {
             req.session.projRevData = null;
             req.session.porjExpData = null;

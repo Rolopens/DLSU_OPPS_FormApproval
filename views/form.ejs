@@ -1229,6 +1229,28 @@ Row</button> -->
                             }
                         }
                         
+                        for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
+                                if ($('#it' + i).val() == "" || $('#qu' + i).val() == "" || $('#pr' + i).val() == "") {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row " +
+                                        (i + 1) + ".</div>");
+                                    return false;
+                                } else if ($('#qu' + i).val() < 0) {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row " +
+                                        (i + 1) + " cannot be negative.</div>");
+                                    return false;
+                                } else if ($('#pr' + i).val() < 0) {
+                                    valid = false;
+                                    $("#error-message").append(
+                                        "<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row " +
+                                        (i + 1) + " cannot be negative.</div>");
+                                    return false;
+                                }
+                        }
+                        
                         if ($('#OrganizationalFunds').val() == "") {
                             valid = false;
                             $("#error-message").append(
@@ -1262,43 +1284,46 @@ Row</button> -->
                         }
                         document.getElementById("expenses").setAttribute('value', 1);
                         
-                        var projectedExp = 0;
-                        var BOE_Total = 0;
+                        if($('#hasIncome').is(":checked")) {
+                            var projectedExp = 0;
+                            var BOE_Total = 0;
 
-                        var rowCountExp = $('#dynamicTable5 tr').length - 3;
-                        for (num = 0; num < rowCountExp; num++) {
-                            $("input[name=qu" + num + "]").each(function () {
-                                subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
-                            });
+                            var rowCountExp = $('#dynamicTable5 tr').length - 3;
+                            for (num = 0; num < rowCountExp; num++) {
+                                $("input[name=qu" + num + "]").each(function () {
+                                    subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
+                                });
 
-                            $("input[name=pr" + num + "]").each(function () {
-                                subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
-                            });
+                                $("input[name=pr" + num + "]").each(function () {
+                                    subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
+                                });
 
-                            if (!isNaN(subtotal))
-                                projectedExp += subtotal;
-                        }
+                                if (!isNaN(subtotal))
+                                    projectedExp += subtotal;
+                            }
 
-                        var rowCount = $('#dynamicTable3 tr').length - 2;
-                        for (var num = 0; num < rowCount; num++) {
-                            $("input[name=quantity" + num + "]").each(function () {
-                                subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
-                            });
+                            var rowCount = $('#dynamicTable3 tr').length - 2;
+                            for (var num = 0; num < rowCount; num++) {
+                                $("input[name=quantity" + num + "]").each(function () {
+                                    subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
+                                });
 
-                            $("input[name=unit" + num + "]").each(function () {
-                                subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
-                            });
+                                $("input[name=unit" + num + "]").each(function () {
+                                    subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
+                                });
 
-                            if (!isNaN(subtotal_BOE)) {
-                                BOE_Total += subtotal_BOE;
+                                if (!isNaN(subtotal_BOE)) {
+                                    BOE_Total += subtotal_BOE;
+                                }
+                            }
+
+                            if(projectedExp != BOE_Total) {
+                                valid = false;
+                                $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
                             }
                         }
-
-                        if(projectedExp != BOE_Total) {
-                            valid = false;
-                            $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
-                        }
                     } else {
+                        computeIncome();
                         document.getElementById("expenses").setAttribute('value', 0);
                     }
 
@@ -1376,69 +1401,11 @@ Row</button> -->
                                     return false;
                                 }
                             }
-
-                            for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
-                                if ($('#it' + i).val() == "" || $('#qu' + i).val() == "" || $('#pr' + i).val() == "") {
-                                    valid = false;
-                                    $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row " +
-                                        (i + 1) + ".</div>");
-                                    return false;
-                                } else if ($('#qu' + i).val() < 0) {
-                                    valid = false;
-                                    $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row " +
-                                        (i + 1) + " cannot be negative.</div>");
-                                    return false;
-                                } else if ($('#pr' + i).val() < 0) {
-                                    valid = false;
-                                    $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row " +
-                                        (i + 1) + " cannot be negative.</div>");
-                                    return false;
-                                }
-                            }
-                            document.getElementById("income").setAttribute('value', 1);
                             
-                            var projectedExp = 0;
-                            var BOE_Total = 0;
-
-                            var rowCountExp = $('#dynamicTable5 tr').length - 3;
-                            for (num = 0; num < rowCountExp; num++) {
-                                $("input[name=qu" + num + "]").each(function () {
-                                    subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                $("input[name=pr" + num + "]").each(function () {
-                                    subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                if (!isNaN(subtotal))
-                                    projectedExp += subtotal;
-                            }
-
-                            var rowCount = $('#dynamicTable3 tr').length - 2;
-                            for (var num = 0; num < rowCount; num++) {
-                                $("input[name=quantity" + num + "]").each(function () {
-                                    subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                $("input[name=unit" + num + "]").each(function () {
-                                    subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                if (!isNaN(subtotal_BOE)) {
-                                    BOE_Total += subtotal_BOE;
-                                }
-                            }
-
-                            if(projectedExp != BOE_Total) {
-                                valid = false;
-                                $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
-                            }
-    
+                            document.getElementById("income").setAttribute('value', 1);
                                                            
                         } else {
+                            computeIncome();
                             document.getElementById("income").setAttribute('value', 0);
                         }
                     }
@@ -1486,9 +1453,11 @@ Row</button> -->
 
             $('.ui.radio.checkbox').checkbox();
 
+            var date = new Date();
+            date.setDate(date.getDate() + 7);
             $('#startdate').calendar({
                 type: 'date',
-                minDate: new Date()
+                minDate: date
             });
             $('#starttime').calendar({
                 //                minDate: new Date(),
@@ -2057,8 +2026,13 @@ Row</button> -->
                 var totalRev = 0;
                 var totalExp = 0;
                 var num;
+                var rowCountRev = 0;
 
-                var rowCountRev = $('#dynamicTable4 tr').length - 2;
+                if($('#hasExpenses').is(":checked")) 
+                    rowCountRev = $('#dynamicTable4 tr').length - 2;
+                else
+                    rowCountRev = $('#dynamicTable4 tr').length - 3;
+                    
                 for (num = 0; num < rowCountRev; num++) {
                     $("input[name=qty" + num + "]").each(function () {
                         subtotal = $("input[name=price" + num + "]").val() * parseFloat($(
@@ -2070,19 +2044,23 @@ Row</button> -->
                     });
                     totalRev += subtotal;
                 }
+                console.log("TotalRev: " + totalRev);
 
-                var rowCountExp = $('#dynamicTable5 tr').length - 3;
-                for (num = 0; num < rowCountExp; num++) {
-                    $("input[name=qu" + num + "]").each(function () {
-                        subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(
-                            this).val());
-                    });
-                    $("input[name=pr" + num + "]").each(function () {
-                        subtotal = $("input[name=qu" + num + "]").val() * parseFloat(
-                            $(this).val());
-                    });
-                    if (!isNaN(subtotal))
-                        totalExp += subtotal;
+                if($('#hasExpenses').is(":checked")) {
+                    var rowCountExp = $('#dynamicTable5 tr').length - 3;
+                    for (num = 0; num < rowCountExp; num++) {
+                        $("input[name=qu" + num + "]").each(function () {
+                            subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(
+                                this).val());
+                        });
+                        $("input[name=pr" + num + "]").each(function () {
+                            subtotal = $("input[name=qu" + num + "]").val() * parseFloat(
+                                $(this).val());
+                        });
+                        if (!isNaN(subtotal))
+                            totalExp += subtotal;
+                    }
+                    console.log("TotalExp: " + totalExp);
                 }
 
                 //projectedExp = totalExp;
@@ -2206,25 +2184,40 @@ Row</button> -->
                 if (element.checked) {
                     //show tables for parts V and VI
                     document.getElementById("dynamicTable3").removeAttribute("style");
+                    document.getElementById("dynamicTable5").removeAttribute("style");
+                    
                     document.getElementById("sofTable").removeAttribute("style");
 
                     //show add row button
                     document.getElementById("btnAddBOE").removeAttribute("style");
+                    document.getElementById("btnAddProjExp").removeAttribute("style");
 
                     //hide text
                     document.getElementsByClassName("hiddenText")[0].setAttribute("style", "display: none");
                     document.getElementsByClassName("hiddenText")[1].setAttribute("style", "display: none");
+                    document.getElementById("dynamicTable4").deleteTFoot();
+                    computeIncome();
                 } else {
                     //hide tables for parts V and VI
                     document.getElementById("dynamicTable3").setAttribute("style", "display: none");
+                    document.getElementById("dynamicTable5").setAttribute("style", "display: none");
+                    
                     document.getElementById("sofTable").setAttribute("style", "display: none");
 
                     //hide add row button
                     document.getElementById("btnAddBOE").setAttribute("style", "display: none");
+                    document.getElementById("btnAddProjExp").setAttribute("style", "display: none");
 
                     //show text
                     document.getElementsByClassName("hiddenText")[0].removeAttribute("style");
                     document.getElementsByClassName("hiddenText")[1].removeAttribute("style");
+                    
+                    var table = document.getElementById("dynamicTable4");
+                    var footer = table.createTFoot();
+                    footer.setAttribute('class', 'full-width');
+                    var row = footer.insertRow(0);
+                    row.innerHTML = '<th></th><th colspan="3" class="total"><div class="ui right floated small primary labeled">Total Projected Income: </div></th><th name="projIncomeTotal">Php 0.00</th>';
+                    computeIncome();
                 }
             }
 
@@ -2232,11 +2225,15 @@ Row</button> -->
                 if (element.checked) {
                     //show table for part VIII
                     document.getElementById("dynamicTable4").removeAttribute("style");
-                    document.getElementById("dynamicTable5").removeAttribute("style");
-
+                    
                     //show add row buttons
-                    document.getElementById("btnAddProjRev").removeAttribute("style");
                     document.getElementById("btnAddProjExp").removeAttribute("style");
+                   
+                    
+                    if($('#hasExpenses').is(":checked")) {
+                        document.getElementById("dynamicTable5").removeAttribute("style");
+                        document.getElementById("btnAddProjRev").removeAttribute("style");
+                    }
 
                     //hide text
                     document.getElementsByClassName("hiddenText")[2].setAttribute("style", "display: none");
@@ -2244,12 +2241,12 @@ Row</button> -->
 
                 } else {
                     //hide table for part VIII
-                    document.getElementById("dynamicTable4").setAttribute("style", "display: none");
                     document.getElementById("dynamicTable5").setAttribute("style", "display: none");
+                    document.getElementById("dynamicTable4").setAttribute("style", "display: none");
 
                     //hide add row buttons
-                    document.getElementById("btnAddProjRev").setAttribute("style", "display: none");
                     document.getElementById("btnAddProjExp").setAttribute("style", "display: none");
+                    document.getElementById("btnAddProjRev").setAttribute("style", "display: none");
 
                     //show text
                     document.getElementsByClassName("hiddenText")[2].removeAttribute("style");

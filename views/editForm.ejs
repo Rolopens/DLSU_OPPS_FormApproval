@@ -770,7 +770,7 @@
                                                                                                   data-content="This is a requirement for fund-raising and selling activities." data-position="bottom center"></i>
                         </h3>
                         
-                        <%if(data.form.projected_income.total != null) {%>
+                        <%if(data.form.projected_income.revenue != null) {%>
                         <input style="display:none;" value=<%=data.form.projected_income.revenue.length-1%> id="dynamicTable4length" name="dynamicTable4len">
                         <input style="display:none;" value="1" id="income" name="income">
                         <table class="ui compact celled definition fixed table unstackable" id="dynamicTable4">
@@ -811,10 +811,25 @@
                                     <td class="bg-gray" name="<%=amount%>">Php <%=toProperPHP(data.form.projected_income.revenue[i].amount)%></td>
                                 </tr>
                                 <%}%>
-                            </tbody>
+                                </tbody>
+                                <%if(data.form.projected_income.expenses == null) {%>
+                                <tfoot class="full-width">
+                                    <tr>
+                                        <th></th>
+                                        <th colspan="3" class="total">
+                                            <div class="ui right floated small primary labeled">
+                                                <!-- Income = Revenue - Expenses -->
+                                                Total Projected Income:
+                                            </div>
+                                        </th>
+                                        <th name="projIncomeTotal">Php <%=toProperPHP(data.form.projected_income.total)%></th>
+                                    </tr>
+                                </tfoot>
+                                <%}%>
                         </table>
                         <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
 
+                        <%if(data.form.projected_income.expenses != null) {%>
                         <input style="display:none;" value=<%=data.form.projected_income.expenses.length-1%> id="dynamicTable5length" name="dynamicTable5len">
                         <table class="ui compact celled definition fixed table unstackable" id="dynamicTable5">
                             <thead class="full-width">
@@ -868,6 +883,7 @@
                             </tfoot>
                         </table>
                         <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
+                        <%}%>
                         <br><br>
                         <%} else{%>
                             <input style="display:none;" value="0" id="income" name="income">
@@ -1279,6 +1295,28 @@
                             );
                         }
                     
+                        for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
+                            if ($('#it' + i).val() == "" || $('#qu' + i).val() == "" || $('#pr' + i).val() == "") {
+                                valid = false;
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row " +
+                                    (i + 1) + ".</div>");
+                                return false;
+                            } else if ($('#qu' + i).val() < 0) {
+                                valid = false;
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row " +
+                                    (i + 1) + " cannot be negative.</div>");
+                                return false;
+                            } else if ($('#pr' + i).val() < 0) {
+                                valid = false;
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row " +
+                                    (i + 1) + " cannot be negative.</div>");
+                                return false;
+                            }
+                        }
+                    
                         var projectedExp = 0;
                         var BOE_Total = 0;
 
@@ -1390,65 +1428,6 @@
                                     return false;
                                 }
                             }
-
-                            for (var i = 0; i <= $("#dynamicTable5length").val(); i++) {
-                                if ($('#it' + i).val() == "" || $('#qu' + i).val() == "" || $('#pr' + i).val() == "") {
-                                    valid = false;
-                                    $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Please complete the details of Projected Expenses at row " +
-                                        (i + 1) + ".</div>");
-                                    return false;
-                                } else if ($('#qu' + i).val() < 0) {
-                                    valid = false;
-                                    $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Quantity in Projected Expenses at row " +
-                                        (i + 1) + " cannot be negative.</div>");
-                                    return false;
-                                } else if ($('#pr' + i).val() < 0) {
-                                    valid = false;
-                                    $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Price in Projected Expenses at row " +
-                                        (i + 1) + " cannot be negative.</div>");
-                                    return false;
-                                }
-                            }
-                        
-                            var projectedExp = 0;
-                            var BOE_Total = 0;
-
-                            var rowCountExp = $('#dynamicTable5 tr').length - 3;
-                            for (num = 0; num < rowCountExp; num++) {
-                                $("input[name=qu" + num + "]").each(function () {
-                                    subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                $("input[name=pr" + num + "]").each(function () {
-                                    subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                if (!isNaN(subtotal))
-                                    projectedExp += subtotal;
-                            }
-
-                            var rowCount = $('#dynamicTable3 tr').length - 2;
-                            for (var num = 0; num < rowCount; num++) {
-                                $("input[name=quantity" + num + "]").each(function () {
-                                    subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                $("input[name=unit" + num + "]").each(function () {
-                                    subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
-                                });
-
-                                if (!isNaN(subtotal_BOE)) {
-                                    BOE_Total += subtotal_BOE;
-                                }
-                            }
-
-                            if(projectedExp != BOE_Total) {
-                                valid = false;
-                                $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
-                            }
                         <%}%>
 
                     }
@@ -1496,9 +1475,11 @@
 
             $('.ui.radio.checkbox').checkbox();
 
+            var date = new Date();
+            date.setDate(date.getDate() + 7);
             $('#startdate').calendar({
                 type: 'date',
-                minDate: new Date()
+                minDate: date
             });
             $('#starttime').calendar({
                 //                minDate: new Date(),
@@ -2104,6 +2085,7 @@
 
             //add row in projected expenses
             function addProjExp() {
+                
                 var row = document.createElement("tr");
                 var col1 = document.createElement("td");
                 col1.className = "collapsing";

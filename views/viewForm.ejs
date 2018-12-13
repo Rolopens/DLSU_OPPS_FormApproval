@@ -344,7 +344,7 @@
                         </table>
 
                         <h3 class="labelHead ui header"><label>Projected Income</label></h3>
-                        <%if(data.projected_income.total != null) {%>
+                        <%if(data.projected_income.revenue != null) {%>
                         <table id="pi" class="ui compact celled definition fixed table unstackable">
                             <thead class="full-width">
                                 <tr style="text-align: left;">
@@ -367,6 +367,7 @@
                                 </tr>
                                 <%}%>
                             </tbody>
+                            <%if(data.projected_income.expenses != null) {%>
                             <thead class="full-width">
                                 <tr style="text-align: left;">
                                     <th colspan="4">Less: Projected Expenses</th>
@@ -388,6 +389,7 @@
                                 </tr>
                                 <%}%>
                             </tbody>
+                            <%}%>
                             <tfoot class="full-width">
                                 <tr>
                                     <th></th>
