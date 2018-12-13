@@ -1168,6 +1168,26 @@ Row</button> -->
                             //                                }
                         }
                     }
+                    
+                    var newTime = convertTime($("#startTime0").val());
+                    if(newTime != $("#startTime").val()) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>Initial time must match with the start time of activity.</div>"
+                        );  
+                    }
+                    
+                    var length =  $("#dynamicTable2length").val();
+                    var end = $("#endTime"+length).val();
+                    
+                    alert("length: " + length + "END: " + end);
+                    newTime = convertTime(end);
+                    if(newTime != $("#endTime").val()) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>End time must match with the end time of activity.</div>"
+                        );  
+                    }
 
                 } else if (currentTab == 2) {
                     $("#error-message").empty();
@@ -1331,6 +1351,22 @@ Row</button> -->
                 return valid;
             }
 
+            function convertTime(time) {
+                var array = time.split(":");
+                var newTime;
+                
+                if(array[0] == "00")
+                    newTime = "12:" + array[1] + " AM";
+                else if(parseInt(array[0]) < 12)
+                    newTime = parseInt(array[0]) + ":" + array[1] + " AM";
+                else if(parseInt(array[0]) == 12)
+                    newTime = parseInt(array[0]) + ":" + array[1] + " PM";
+                else
+                    newTime = (parseInt(array[0]) - 12) + ":" + array[1] + " PM";
+                
+                return newTime;
+            }
+            
             function submitForm() {
                 document.getElementById("activityForm").submit();
             }
@@ -1485,7 +1521,7 @@ Row</button> -->
                 var time = $("#endTime").val();
                 input6.setAttribute('value', get24htime(time));
                 input6.setAttribute('name', 'endTime' + tableLength.value);
-                input2.setAttribute('id', 'endTime' + tableLength.value);
+                input6.setAttribute('id', 'endTime' + tableLength.value);
                 col2.append(input2);
                 col2.append(input6);
 
@@ -1494,7 +1530,7 @@ Row</button> -->
                 input3.className = "row-textarea";
                 input3.setAttribute('required', true);
                 input3.setAttribute('name', 'activity' + tableLength.value);
-                input2.setAttribute('id', 'activity' + tableLength.value);
+                input3.setAttribute('id', 'activity' + tableLength.value);
                 col3.append(input3);
 
                 var col4 = document.createElement("td");
