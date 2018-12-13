@@ -59,7 +59,7 @@
                     <br />
                     <h3 class="labelHead ui header">I. Activity Details</h3>
                     <h2 class="labelHead"><label>Title of the Activity <span class="red"> * </span></label></h2>
-                    <input id="title" class="inputron" type="text" name="title" required style="margin-top: -5px;">
+                    <input id="title" class="inputron" type="text" name="title" autofocus="true" required style="margin-top: -5px;">
 
                     <div class="ui large form">
                         <input style="display:none;" value='0' id="dynamicTable1length" name="dynamicTable1len">
@@ -1202,6 +1202,34 @@ Row</button> -->
                         //                                    $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>End time must be later than start time at row "+(i+1)+" in Comprehensive Program Design.</div>");
                         //                                    return false;
                         //                                }
+                        if (i > 0) {
+                            console.log($('#startTime' + i).val())
+
+                            if ($('#startTime' + i).val() != $('#endTime' + (i - 1)).val() || $('#startTime' + i).val() ==
+                                $('#endTime' + (i)).val()) {
+                                valid = false;
+
+
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Invalid time details of Comprehensive Program Design at row " +
+                                    (i + 1) + ".</div>");
+                                return false;
+                            }
+                        }
+                        if (parseInt(end.split(":").join("")) < parseInt($("#endTime0").val().split(":").join("")) && i >
+                            0) {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design Row 1 exceeds the end time of the activity.</div>"
+                            );
+                        }
+                        if (parseInt($("#startTime0").val().split(":").join("")) > parseInt($("#endTime0").val().split(
+                                ":").join("")) && i > 0) {
+                            valid = false;
+                            $("#error-message").append(
+                                "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design Row 1 is earlier than the start time of the activity.</div>"
+                            );
+                        }
                     }
                 }
 
@@ -1284,7 +1312,11 @@ Row</button> -->
                         );
                     }
                     document.getElementById("expenses").setAttribute('value', 1);
+                } else {
+                    document.getElementById("expenses").setAttribute('value', 0);
+                }
 
+                if ($('#hasExpenses').is(":checked") && $('#hasIncome').is(":checked")) {
                     var projectedExp = 0;
                     var BOE_Total = 0;
 
@@ -1315,20 +1347,7 @@ Row</button> -->
                         if (!isNaN(subtotal_BOE)) {
                             BOE_Total += subtotal_BOE;
                         }
-                        if (i > 0) {
-                            console.log($('#startTime' + i).val())
 
-                            if ($('#startTime' + i).val() != $('#endTime' + (i - 1)).val() || $('#startTime' + i).val() ==
-                                $('#endTime' + (i)).val()) {
-                                valid = false;
-
-
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Invalid time details of Comprehensive Program Design at row " +
-                                    (i + 1) + ".</div>");
-                                return false;
-                            }
-                        }
                     }
 
                     if (projectedExp != BOE_Total) {
@@ -1337,8 +1356,6 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>"
                         );
                     }
-                } else {
-                    document.getElementById("expenses").setAttribute('value', 0);
                 }
 
                 if ($('#OperationalFund').val() == "") {
@@ -1438,47 +1455,6 @@ Row</button> -->
                             }
                         }
                         document.getElementById("income").setAttribute('value', 1);
-
-                        var projectedExp = 0;
-                        var BOE_Total = 0;
-
-                        var rowCountExp = $('#dynamicTable5 tr').length - 3;
-                        for (num = 0; num < rowCountExp; num++) {
-                            $("input[name=qu" + num + "]").each(function () {
-                                subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            $("input[name=pr" + num + "]").each(function () {
-                                subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            if (!isNaN(subtotal))
-                                projectedExp += subtotal;
-                        }
-
-                        var rowCount = $('#dynamicTable3 tr').length - 2;
-                        for (var num = 0; num < rowCount; num++) {
-                            $("input[name=quantity" + num + "]").each(function () {
-                                subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            $("input[name=unit" + num + "]").each(function () {
-                                subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            if (!isNaN(subtotal_BOE)) {
-                                BOE_Total += subtotal_BOE;
-                            }
-                        }
-
-                        if (projectedExp != BOE_Total) {
-                            valid = false;
-                            $("#error-message").append(
-                                "<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>"
-                            );
-                        }
-
-
                     } else {
                         document.getElementById("income").setAttribute('value', 0);
                     }

@@ -517,512 +517,694 @@
                         <textarea id="context2" rows="2" name='context2' style="resize: none;" required><%=data.form.context[1]%></textarea>
                     </div>
 
-                    <br />
+                    <!--Page 3-->
+                    <div class="tab">
+                        <h3 class="labelHead ui header"><label>V. Breakdown of Expenses </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="If applicable, list ALL projected expenses." data-position="bottom center"></i>
+                        </h3>
+                        <%if(data.form.breakdown_expenses.total_expense != null){%>
+                        <input style="display:none;" value=<%=data.form.breakdown_expenses.material.length-1%>
+                        id="dynamicTable3length" name="dynamicTable3len">
+                        <input style="display:none;" value="1" id="expenses" name="expenses">
+                        <table class="ui compact celled definition fixed table unstackable" id="dynamicTable3">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th style="width: 40px;"></th>
+                                    <th class="item">Materials</th>
+                                    <th class="item">Quantity</th>
+                                    <th class="item">Unit Cost</th>
+                                    <th class="item">Total Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.form.breakdown_expenses.material.length;i++) {%>
+                                <%var mat = "material"+i;%>
+                                <%var qua = "quantity"+i;%>
+                                <%var unit = "unit"+i;%>
+                                <%var sub = "BOE_subtotal"+i;%>
+                                <tr>
+                                    <td class="collapsing">
+                                        <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteBOE(this)"></i>
+                                            <%}%>
+                                        </div>
+                                    </td>
+                                    <td><input id="<%=mat%>" class="inputron no-margin" type="text" name="<%=mat%>"
+                                            value="<%=data.form.breakdown_expenses.material[i].name%>" required></td>
+                                    <td><input id="<%=qua%>" class="inputron no-margin" type="number" name="<%=qua%>"
+                                            onkeyup="computeBOE()" min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>"
+                                            required></td>
+                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>"
+                                            onkeyup="computeBOE()" min=0 step=0.01 value="<%=data.form.breakdown_expenses.material[i].unit_cost%>"
+                                            required></td>
+                                    <td class="bg-gray" name="<%=sub%>">Php
+                                        <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            Total:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="boeTotal">Php
+                                        <%=toProperPHP(data.form.breakdown_expenses.total_expense)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
+                        <br /><br />
+                        <%} else {%>
+                        <input style="display:none;" value="0" id="expenses" name="expenses">
+                        <span>The activity will not incur any expenses.</span>
+                        <%}%>
+                        <!-- <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button> -->
+                        <h3 class="labelHead ui header"><label>VI. Source of Funds </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="If applicable, list the breakdown on where you will get the funding for the activity. IT MUST BE EQUAL TO PART V. Put 0 on the cells which will not be used."
+                                data-position="bottom center"></i></h3>
 
-                    <div class="required field">
-                        <h5 class="labelHead ui header"><label>Paragraph 3 <span class="red"> *</span></label></h5>
-                        <ol class="ui list">
-                            <li value="-">Out of all the possible projects, activities, and solutions, why this?</li>
-                            <li value="-">As an organization, what will you commit as a response to what you have
-                                started
-                                in
-                                Paragraph 2?</li>
-                        </ol>
-                        <textarea id="context3" rows="2" name='context3' style="resize: none;" required><%=data.form.context[2]%></textarea>
+                        <%if(data.form.source_funds.total != null){%>
+                        <table class="ui compact celled definition fixed table basic unstackable" id="sofTable">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th class="item eleven wide">Source/s of Funds</th>
+                                    <th class="item five wide">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Organizational Funds</td>
+                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds"
+                                            type="number" value="<%=data.form.source_funds.organization_funds%>" min="0"
+                                            step="0.01" onkeyup="computeSOF()" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Participants Fee</td>
+                                    <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
+                                            type="number" value="<%=data.form.source_funds.participants_fee%>" min="0"
+                                            step="0.01" onkeyup="computeSOF()" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Others (i.e. Sponsorships)</td>
+                                    <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.others)%>" min="0"
+                                            step="0.01" onkeyup="computeSOF()" required></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th colspan="1" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            Total:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="totalSource">Php
+                                        <%=toProperPHP(data.form.source_funds.total)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <%} else {%>
+                        <span>The activity will not need any funding.</span>
+                        <%}%>
+                        <br>
+
+                        <br />
+                        <h3 class="labelHead ui header"><label>III. Objectives of the Activity </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="State what you intend to address through this activity – the expected outputs of the activity."
+                                data-position="bottom center"></i></h3>
+                        <div class="field">
+                            <label>1.</label>
+                            <input id="objective1" class="inputron" name='objective1' type="text" value="<%=data.form.objectives[0]%>"
+                                required>
+                        </div>
+                        <br /><br />
+                        <div>
+                            <label>2.</label>
+                            <input id="objective2" class="inputron" name='objective2' type="text" value="<%=data.form.objectives[1]%>"
+                                required>
+                        </div>
+                        <br /><br />
+                        <div>
+                            <label>3.</label>
+                            <input id="objective3" class="inputron" name='objective3' type="text" value="<%=data.form.objectives[2]%>"
+                                required>
+                        </div>
+                        <br /><br />
+                        <input style="display:none;" value=<%=data.form.program_flow.length-1%>
+                        id="dynamicTable2length"
+                        name="dynamicTable2len">
+                        <h3 class="labelHead ui header"><label>IV. Comprehensive Program Design </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="List the actual activities that will happen ON THE DAY of the program/project implementation."
+                                data-position="bottom center"></i></h3>
+                        <table class="ui compact celled definition fixed table unstackable" id="dynamicTable2">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th style="width: 40px;"></th>
+                                    <th class="item">Start Time to End Time</th>
+                                    <th class="item">Activity</th>
+                                    <th class="item five wide">Brief Description of the Activity</th>
+                                    <th class="item">Person-in-charge</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.form.program_flow.length;i++) {%>
+                                <%var start = "startTime" + i;%>
+                                <%var end = "endTime" + i;%>
+                                <%var act = "activity" + i;%>
+                                <%var des = "description" + i;%>
+                                <%var per = "person" + i;%>
+                                <tr value=i>
+                                    <td class="collapsing">
+                                        <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteCPD(this)"></i>
+                                            <%}%>
+                                        </div>
+                                    </td>
+                                    <td><input id="<%=start%>" class="inputron no-margin" type="time" name="<%=start%>"
+                                            value="<%=data.form.program_flow[i].startTime%>" required>
+                                        <input id="<%=end%>" class="inputron no-margin" type="time" value="<%=data.form.program_flow[i].endTime%>"
+                                            name="<%=end%>" required></td>
+                                    <td><textarea id="<%=act%>" class="row-textarea" name="<%=act%>" required><%=data.form.program_flow[i].activity%></textarea></td>
+                                    <td><textarea id="<%=des%>" class="row-textarea" name="<%=des%>" required><%=data.form.program_flow[i].description%></textarea></td>
+                                    <td><textarea id="<%=per%>" class="row-textarea" name="<%=per%>" required><%=data.form.program_flow[i].person%></textarea></td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
+                        <!-- <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button> -->
+                        <br /><br /><br /><br />
                     </div>
 
-                    <br />
-                    <h3 class="labelHead ui header"><label>III. Objectives of the Activity </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="State what you intend to address through this activity – the expected outputs of the activity."
-                            data-position="bottom center"></i></h3>
-                    <div class="field">
-                        <label>1.</label>
-                        <input id="objective1" class="inputron" name='objective1' type="text" value="<%=data.form.objectives[0]%>"
-                            required>
-                    </div>
-                    <br /><br />
-                    <div>
-                        <label>2.</label>
-                        <input id="objective2" class="inputron" name='objective2' type="text" value="<%=data.form.objectives[1]%>"
-                            required>
-                    </div>
-                    <br /><br />
-                    <div>
-                        <label>3.</label>
-                        <input id="objective3" class="inputron" name='objective3' type="text" value="<%=data.form.objectives[2]%>"
-                            required>
-                    </div>
-                    <br /><br />
-                    <input style="display:none;" value=<%=data.form.program_flow.length-1%> id="dynamicTable2length"
-                    name="dynamicTable2len">
-                    <h3 class="labelHead ui header"><label>IV. Comprehensive Program Design </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="List the actual activities that will happen ON THE DAY of the program/project implementation."
-                            data-position="bottom center"></i></h3>
-                    <table class="ui compact celled definition fixed table unstackable" id="dynamicTable2">
-                        <thead class="full-width">
-                            <tr style="text-align: center;">
-                                <th style="width: 40px;"></th>
-                                <th class="item">Start Time to End Time</th>
-                                <th class="item">Activity</th>
-                                <th class="item five wide">Brief Description of the Activity</th>
-                                <th class="item">Person-in-charge</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%for(var i=0; i<data.form.program_flow.length;i++) {%>
-                            <%var start = "startTime" + i;%>
-                            <%var end = "endTime" + i;%>
-                            <%var act = "activity" + i;%>
-                            <%var des = "description" + i;%>
-                            <%var per = "person" + i;%>
-                            <tr value=i>
-                                <td class="collapsing">
-                                    <div class="ui fitted">
-                                        <%if(i!=0){%>
-                                        <i class="fas fa-trash-alt" onclick="deleteCPD(this)"></i>
-                                        <%}%>
-                                    </div>
-                                </td>
-                                <td><input id="<%=start%>" class="inputron no-margin" type="time" name="<%=start%>"
-                                        value="<%=data.form.program_flow[i].startTime%>" required>
-                                    <input id="<%=end%>" class="inputron no-margin" type="time" value="<%=data.form.program_flow[i].endTime%>"
-                                        name="<%=end%>" required></td>
-                                <td><textarea id="<%=act%>" class="row-textarea" name="<%=act%>" required><%=data.form.program_flow[i].activity%></textarea></td>
-                                <td><textarea id="<%=des%>" class="row-textarea" name="<%=des%>" required><%=data.form.program_flow[i].description%></textarea></td>
-                                <td><textarea id="<%=per%>" class="row-textarea" name="<%=per%>" required><%=data.form.program_flow[i].person%></textarea></td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                    </table>
-                    <button type="button" class="row-button next" id="btnAddCPD">Add Row</button>
-                    <!-- <button type="button" class="row-button previous" id="btnDeleteCPD">Delete Row</button> -->
-                    <br /><br /><br /><br />
-                </div>
+                    <!--Page 3-->
+                    <div class="tab">
+                        <h3 class="labelHead ui header"><label>V. Breakdown of Expenses </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="If applicable, list ALL projected expenses." data-position="bottom center"></i>
+                        </h3>
+                        <%if(data.form.breakdown_expenses.total_expense != null){%>
+                        <input style="display:none;" value=<%=data.form.breakdown_expenses.material.length-1%>
+                        id="dynamicTable3length" name="dynamicTable3len">
+                        <input style="display:none;" value="1" id="expenses" name="expenses">
+                        <table class="ui compact celled definition fixed table unstackable" id="dynamicTable3">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th style="width: 40px;"></th>
+                                    <th class="item">Materials</th>
+                                    <th class="item">Quantity</th>
+                                    <th class="item">Unit Cost</th>
+                                    <th class="item">Total Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.form.breakdown_expenses.material.length;i++) {%>
+                                <%var mat = "material"+i;%>
+                                <%var qua = "quantity"+i;%>
+                                <%var unit = "unit"+i;%>
+                                <%var sub = "BOE_subtotal"+i;%>
+                                <tr>
+                                    <td class="collapsing">
+                                        <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteBOE(this)"></i>
+                                            <%}%>
+                                        </div>
+                                    </td>
+                                    <td><input id="<%=mat%>" class="inputron no-margin" type="text" name="<%=mat%>"
+                                            value="<%=data.form.breakdown_expenses.material[i].name%>" required></td>
+                                    <td><input id="<%=qua%>" class="inputron no-margin" type="number" name="<%=qua%>"
+                                            onkeyup="computeBOE()" min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>"
+                                            required></td>
+                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>"
+                                            onkeyup="computeBOE()" min=0 step=0.01 value="<%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>"
+                                            required></td>
+                                    <td class="bg-gray" name="<%=sub%>">Php
+                                        <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            Total:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="boeTotal">Php
+                                        <%=toProperPHP(data.form.breakdown_expenses.total_expense)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
+                        <br /><br />
+                        <%} else {%>
+                        <input style="display:none;" value="0" id="expenses" name="expenses">
+                        <span>The activity will not incur any expenses.</span>
+                        <%}%>
+                        <!-- <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button> -->
+                        <h3 class="labelHead ui header"><label>VI. Source of Funds </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="If applicable, list the breakdown on where you will get the funding for the activity. IT MUST BE EQUAL TO PART V. Put 0 on the cells which will not be used."
+                                data-position="bottom center"></i></h3>
 
-                <!--Page 3-->
-                <div class="tab">
-                    <h3 class="labelHead ui header"><label>V. Breakdown of Expenses </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="If applicable, list ALL projected expenses." data-position="bottom center"></i>
-                    </h3>
-                    <%if(data.form.breakdown_expenses.total_expense != null){%>
-                    <input style="display:none;" value=<%=data.form.breakdown_expenses.material.length-1%>
-                    id="dynamicTable3length" name="dynamicTable3len">
-                    <input style="display:none;" value="1" id="expenses" name="expenses">
-                    <table class="ui compact celled definition fixed table unstackable" id="dynamicTable3">
-                        <thead class="full-width">
-                            <tr style="text-align: center;">
-                                <th style="width: 40px;"></th>
-                                <th class="item">Materials</th>
-                                <th class="item">Quantity</th>
-                                <th class="item">Unit Cost</th>
-                                <th class="item">Total Cost</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%for(var i=0; i<data.form.breakdown_expenses.material.length;i++) {%>
-                            <%var mat = "material"+i;%>
-                            <%var qua = "quantity"+i;%>
-                            <%var unit = "unit"+i;%>
-                            <%var sub = "BOE_subtotal"+i;%>
-                            <tr>
-                                <td class="collapsing">
-                                    <div class="ui fitted">
-                                        <%if(i!=0){%>
-                                        <i class="fas fa-trash-alt" onclick="deleteBOE(this)"></i>
-                                        <%}%>
-                                    </div>
-                                </td>
-                                <td><input id="<%=mat%>" class="inputron no-margin" type="text" name="<%=mat%>" value="<%=data.form.breakdown_expenses.material[i].name%>"
-                                        required></td>
-                                <td><input id="<%=qua%>" class="inputron no-margin" type="number" name="<%=qua%>"
-                                        onkeyup="computeBOE()" min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>"
-                                        required></td>
-                                <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>"
-                                        onkeyup="computeBOE()" min=0 step=0.01 value="<%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>"
-                                        required></td>
-                                <td class="bg-gray" name="<%=sub%>">Php
-                                    <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%>
-                                </td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                        <tfoot class="full-width">
-                            <tr>
-                                <th></th>
-                                <th colspan="3" class="total">
-                                    <div class="ui right floated small primary labeled">
-                                        Total:
-                                    </div>
-                                </th>
-                                <th class="result" name="boeTotal">Php
-                                    <%=toProperPHP(data.form.breakdown_expenses.total_expense)%>
-                                </th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <button type="button" class="row-button next" id="btnAddBOE">Add Row</button>
-                    <br /><br />
-                    <%} else {%>
-                    <input style="display:none;" value="0" id="expenses" name="expenses">
-                    <span>The activity will not incur any expenses.</span>
-                    <%}%>
-                    <!-- <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button> -->
-                    <h3 class="labelHead ui header"><label>VI. Source of Funds </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="If applicable, list the breakdown on where you will get the funding for the activity. IT MUST BE EQUAL TO PART V. Put 0 on the cells which will not be used."
-                            data-position="bottom center"></i></h3>
+                        <%if(data.form.source_funds.total != null){%>
+                        <table class="ui compact celled definition fixed table basic unstackable" id="sofTable">
+                            <thead class="full-width">
+                                <tr style="text-align: center;">
+                                    <th class="item eleven wide">Source/s of Funds</th>
+                                    <th class="item five wide">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Organizational Funds</td>
+                                    <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds"
+                                            type="number" value="<%=data.form.source_funds.organization_funds%>" min="0"
+                                            step="0.01" onkeyup="computeSOF()" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Participants Fee</td>
+                                    <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee)%>"
+                                            min="0" step="0.01" onkeyup="computeSOF()" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Others (i.e. Sponsorships)</td>
+                                    <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.others)%>" min="0"
+                                            step="0.01" onkeyup="computeSOF()" required></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th colspan="1" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            Total:
+                                        </div>
+                                    </th>
+                                    <th class="result" name="totalSource">Php
+                                        <%=toProperPHP(data.form.source_funds.total)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <%} else {%>
+                        <span>The activity will not need any funding.</span>
+                        <%}%>
+                        <br>
 
-                    <%if(data.form.source_funds.total != null){%>
-                    <table class="ui compact celled definition fixed table basic unstackable" id="sofTable">
-                        <thead class="full-width">
-                            <tr style="text-align: center;">
-                                <th class="item eleven wide">Source/s of Funds</th>
-                                <th class="item five wide">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Organizational Funds</td>
-                                <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds"
-                                        type="number" value="<%=data.form.source_funds.organization_funds%>" min="0"
-                                        step="0.01" onkeyup="computeSOF()" required></td>
-                            </tr>
-                            <tr>
-                                <td>Participants Fee</td>
-                                <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
-                                        type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee)%>"
-                                        min="0" step="0.01" onkeyup="computeSOF()" required></td>
-                            </tr>
-                            <tr>
-                                <td>Others (i.e. Sponsorships)</td>
-                                <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds"
-                                        type="number" value="<%=toProperPHP(data.form.source_funds.others)%>" min="0"
-                                        step="0.01" onkeyup="computeSOF()" required></td>
-                            </tr>
-                        </tbody>
-                        <tfoot class="full-width">
-                            <tr>
-                                <th colspan="1" class="total">
-                                    <div class="ui right floated small primary labeled">
-                                        Total:
-                                    </div>
-                                </th>
-                                <th class="result" name="totalSource">Php
-                                    <%=toProperPHP(data.form.source_funds.total)%>
-                                </th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <%} else {%>
-                    <span>The activity will not need any funding.</span>
-                    <%}%>
-                    <br>
+                        <h3 class="labelHead ui header"><label>VII. Organizational Funds </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="Kindly indicate the current organizational funds and this should be endorsed ONLY by the VP Finance/Treasurer or USG Executive Treasurer."
+                                data-position="bottom center"></i></h3>
+                        <table class="ui compact celled definition fixed table basic unstackable">
+                            <thead class="full-width">
+                                <tr style="text-align: left;">
+                                    <!-- <th style="width: 40px;"></th> -->
+                                    <!-- <th class="item" style="width: 50%">Accumulated Operational Funds</th> -->
+                                    <th class="item eleven wide" style="border-right: none;">Accumulated Operational
+                                        Funds</th>
+                                    <th class="item five wide" style="border-left: none;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="right">
+                                            Operational Fund
+                                        </div>
+                                    </td>
+                                    <td>Php <input id="OperationalFund" class="inputron no-margin table_input" name="OperationalFund"
+                                            type="number" value="<%=toProperPHP(data.form.organizational_funds.operational_fund)%>"
+                                            min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                </tr>
 
-                    <h3 class="labelHead ui header"><label>VII. Organizational Funds </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="Kindly indicate the current organizational funds and this should be endorsed ONLY by the VP Finance/Treasurer or USG Executive Treasurer."
-                            data-position="bottom center"></i></h3>
-                    <table class="ui compact celled definition fixed table basic unstackable">
-                        <thead class="full-width">
-                            <tr style="text-align: left;">
-                                <!-- <th style="width: 40px;"></th> -->
-                                <!-- <th class="item" style="width: 50%">Accumulated Operational Funds</th> -->
-                                <th class="item eleven wide" style="border-right: none;">Accumulated Operational Funds</th>
-                                <th class="item five wide" style="border-left: none;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="right">
-                                        Operational Fund
-                                    </div>
-                                </td>
-                                <td>Php <input id="OperationalFund" class="inputron no-margin table_input" name="OperationalFund"
-                                        type="number" value="<%=toProperPHP(data.form.organizational_funds.operational_fund)%>"
-                                        min="0" step="0.01" onkeyup="computeOF()" required></td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Accumulated
-                                    Depository Funds</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="right">
-                                        Depository Fund
-                                    </div>
-                                </td>
-                                <td>Php <input id="DepositoryFund" class="inputron no-margin table_input" name="DepositoryFund"
-                                        type="number" value="<%=data.form.organizational_funds.depository_fund%>" min="0"
-                                        step="0.01" onkeyup="computeOF()" required></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other
-                                    Sources of Funds <i class="ui tooltip far fa-question-circle" data-content="If N/A, put 0"
-                                        data-position="right center" data-variation="tiny"></i></td>
-                            </tr>
-                            <tr>
-                                <!-- <td class="collapsing">
+                                <tr>
+                                    <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Accumulated
+                                        Depository Funds</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="right">
+                                            Depository Fund
+                                        </div>
+                                    </td>
+                                    <td>Php <input id="DepositoryFund" class="inputron no-margin table_input" name="DepositoryFund"
+                                            type="number" value="<%=data.form.organizational_funds.depository_fund%>"
+                                            min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other
+                                        Sources of Funds <i class="ui tooltip far fa-question-circle" data-content="If N/A, put 0"
+                                            data-position="right center" data-variation="tiny"></i></td>
+                                </tr>
+                                <tr>
+                                    <!-- <td class="collapsing">
 
 </td> -->
-                                <td>
-                                    <div class="right">
-                                        Participants Fee/Donation/Sponsorships
-                                    </div>
-                                </td>
-                                <td>Php <input id="OtherFund" class="inputron no-margin table_input" name="OtherFund"
-                                        type="number" value="<%=toProperPHP(data.form.organizational_funds.other_fund)%>"
-                                        min="0" step="0.01" onkeyup="computeOF()" required></td>
-                            </tr>
-                            <tr>
-                                <!-- <td class="collapsing">
+                                    <td>
+                                        <div class="right">
+                                            Participants Fee/Donation/Sponsorships
+                                        </div>
+                                    </td>
+                                    <td>Php <input id="OtherFund" class="inputron no-margin table_input" name="OtherFund"
+                                            type="number" value="<%=toProperPHP(data.form.organizational_funds.other_fund)%>"
+                                            min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                </tr>
+                                <tr>
+                                    <!-- <td class="collapsing">
 
 </td> -->
-                                <td class="bg-gray bold">
-                                    <div class="right italics">
-                                        Total Cash For Disbursement
-                                    </div>
-                                </td>
-                                <td style="background-color: #F7F7F7;" name="totalDisbursement">Php
-                                    <%=toProperPHP(data.form.organizational_funds.total_disbursement)%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <!-- <td class="collapsing">
+                                    <td class="bg-gray bold">
+                                        <div class="right italics">
+                                            Total Cash For Disbursement
+                                        </div>
+                                    </td>
+                                    <td style="background-color: #F7F7F7;" name="totalDisbursement">Php
+                                        <%=toProperPHP(data.form.organizational_funds.total_disbursement)%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <!-- <td class="collapsing">
 
 </td> -->
-                                <td>
-                                    <div class="right bold">
-                                        Less: Total Projected Expenses
-                                    </div>
-                                </td>
-                                <td style="background-color: #F7F7F7;" name="lessExp">Php
-                                    <%=toProperPHP(data.form.organizational_funds.projected_expenses)%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <!-- <td class="collapsing">
+                                    <td>
+                                        <div class="right bold">
+                                            Less: Total Projected Expenses
+                                        </div>
+                                    </td>
+                                    <td style="background-color: #F7F7F7;" name="lessExp">Php
+                                        <%=toProperPHP(data.form.organizational_funds.projected_expenses)%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <!-- <td class="collapsing">
 
 </td> -->
-                                <td class="bg-gray">
-                                    <div class="right bold">
-                                        REMAINING BALANCE
-                                    </div>
-                                </td>
-                                <td style="background-color: #F7F7F7;" name="remBalance">Php
-                                    <%=toProperPHP(data.form.organizational_funds.rem_balance)%>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <td class="bg-gray">
+                                        <div class="right bold">
+                                            REMAINING BALANCE
+                                        </div>
+                                    </td>
+                                    <td style="background-color: #F7F7F7;" name="remBalance">Php
+                                        <%=toProperPHP(data.form.organizational_funds.rem_balance)%>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <br /><br>
-                    <h3 class="labelHead ui header"><label>VIII. Projected Income </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="This is a requirement for fund-raising and selling activities." data-position="bottom center"></i>
-                    </h3>
+                        <br /><br>
+                        <h3 class="labelHead ui header"><label>VIII. Projected Income </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="This is a requirement for fund-raising and selling activities."
+                                data-position="bottom center"></i>
+                        </h3>
 
-                    <%if(data.form.projected_income.revenue != null) {%>
-                    <input style="display:none;" value=<%=data.form.projected_income.revenue.length-1%>
-                    id="dynamicTable4length" name="dynamicTable4len">
-                    <input style="display:none;" value="1" id="income" name="income">
-                    <table class="ui compact celled definition fixed table unstackable" id="dynamicTable4">
-                        <thead class="full-width">
-                            <tr>
-                                <th style="width:40px"></th>
-                                <th colspan="4">Projected Revenue</th>
-                                <!-- <th class="pj-border"></th>
+                        <%if(data.form.projected_income.revenue != null) {%>
+                        <input style="display:none;" value=<%=data.form.projected_income.revenue.length-1%>
+                        id="dynamicTable4length" name="dynamicTable4len">
+                        <input style="display:none;" value="1" id="income" name="income">
+                        <table class="ui compact celled definition fixed table unstackable" id="dynamicTable4">
+                            <thead class="full-width">
+                                <tr>
+                                    <th style="width:40px"></th>
+                                    <th colspan="4">Projected Revenue</th>
+                                    <!-- <th class="pj-border"></th>
 <th class="pj-border"></th>
 <th class="pj-border"></th> -->
-                            </tr>
-                            <tr style="text-align: center;">
-                                <th style="width: 40px;"></th>
-                                <th class="item">Item</th>
-                                <th class="item">Qty</th>
-                                <th class="item">Selling Price</th>
-                                <th class="item">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%for(var i=0; i<data.form.projected_income.revenue.length;i++) {%>
-                            <%var item = "item"+i;%>
-                            <%var qty = "qty"+i;%>
-                            <%var price = "price"+i;%>
-                            <%var amount = "amount"+i;%>
-                            <tr>
-                                <td class="collapsing">
-                                    <div class="ui fitted">
-                                        <%if(i!=0){%>
-                                        <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
-                                        <%}%>
-                                    </div>
-                                </td>
-                                <td><input id="<%=item%>" class="inputron no-margin" type="text" name="<%=item%>" value="<%=data.form.projected_income.revenue[i].item%>"
-                                        required></td>
-                                <td><input id="<%=qty%>" class="inputron no-margin" type="number" name="<%=qty%>"
-                                        onkeyup="computeRev()" value="<%=data.form.projected_income.revenue[i].quantity%>"
-                                        min="0"></td>
-                                <td><input id="<%=price%>" class="inputron no-margin" name="<%=price%>" onkeyup="computeRev()"
-                                        type="number" value="<%=toProperPHP(data.form.projected_income.revenue[i].price)%>"
-                                        min="0" step="0.01" required></td>
-                                <td class="bg-gray" name="<%=amount%>">Php
-                                    <%=toProperPHP(data.form.projected_income.revenue[i].amount)%>
-                                </td>
-                            </tr>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <th style="width: 40px;"></th>
+                                    <th class="item">Item</th>
+                                    <th class="item">Qty</th>
+                                    <th class="item">Selling Price</th>
+                                    <th class="item">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.form.projected_income.revenue.length;i++) {%>
+                                <%var item = "item"+i;%>
+                                <%var qty = "qty"+i;%>
+                                <%var price = "price"+i;%>
+                                <%var amount = "amount"+i;%>
+                                <tr>
+                                    <td class="collapsing">
+                                        <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
+                                            <%}%>
+                                        </div>
+                                    </td>
+                                    <td><input id="<%=item%>" class="inputron no-margin" type="text" name="<%=item%>"
+                                            value="<%=data.form.projected_income.revenue[i].item%>" required></td>
+                                    <td><input id="<%=qty%>" class="inputron no-margin" type="number" name="<%=qty%>"
+                                            onkeyup="computeRev()" value="<%=data.form.projected_income.revenue[i].quantity%>"
+                                            min="0"></td>
+                                    <td><input id="<%=price%>" class="inputron no-margin" name="<%=price%>" onkeyup="computeRev()"
+                                            type="number" value="<%=data.form.projected_income.revenue[i].price%>" min="0"
+                                            step="0.01" required></td>
+                                    <td class="bg-gray" name="<%=amount%>">Php
+                                        <%=toProperPHP(data.form.projected_income.revenue[i].amount)%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <%if(data.form.projected_income.expenses == null) {%>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            <!-- Income = Revenue - Expenses -->
+                                            Total Projected Income:
+                                        </div>
+                                    </th>
+                                    <th name="projIncomeTotal">Php
+                                        <%=toProperPHP(data.form.projected_income.total)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
                             <%}%>
-                        </tbody>
-                        <%if(data.form.projected_income.expenses == null) {%>
-                        <tfoot class="full-width">
-                            <tr>
-                                <th></th>
-                                <th colspan="3" class="total">
-                                    <div class="ui right floated small primary labeled">
-                                        <!-- Income = Revenue - Expenses -->
-                                        Total Projected Income:
-                                    </div>
-                                </th>
-                                <th name="projIncomeTotal">Php
-                                    <%=toProperPHP(data.form.projected_income.total)%>
-                                </th>
-                            </tr>
-                        </tfoot>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
+
+                        <%if(data.form.projected_income.expenses != null) {%>
+                        <input style="display:none;" value=<%=data.form.projected_income.expenses.length-1%>
+                        id="dynamicTable5length" name="dynamicTable5len">
+                        <table class="ui compact celled definition fixed table unstackable" id="dynamicTable5">
+                            <thead class="full-width">
+                                <tr>
+                                    <th style="width:40px"></th>
+                                    <th colspan="4">Less: Projected Expenses <i class="ui tooltip far fa-question-circle"
+                                            data-content="Should match with Part V" data-position="right center"
+                                            data-variation="tiny"></i></th>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <th style="width: 40px;"></th>
+                                    <th class="item">Item</th>
+                                    <th class="item">Qty</th>
+                                    <th class="item">Selling Price</th>
+                                    <th class="item">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.form.projected_income.expenses.length;i++) {%>
+                                <%var it = "it"+i;%>
+                                <%var qu = "qu"+i;%>
+                                <%var pr = "pr"+i;%>
+                                <%var am = "am"+i;%>
+                                <tr>
+                                    <td class="collapsing">
+                                        <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
+                                            <%}%>
+                                        </div>
+                                    </td>
+                                    <td><input id="<%=it%>" class="inputron no-margin" type="text" name="<%=it%>" value="<%=data.form.projected_income.expenses[i].item%>"
+                                            required></td>
+                                    <td><input id="<%=qu%>" class="inputron no-margin" type="number" name="<%=qu%>"
+                                            onkeyup="computeExp()" value="<%=data.form.projected_income.expenses[i].quantity%>"
+                                            min="0"></td>
+                                    <td><input id="<%=pr%>" class="inputron no-margin" name="<%=pr%>" onkeyup="computeExp()"
+                                            type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price)%>"
+                                            min="0" step="0.01" required></td>
+                                    <td class="bg-gray" name="<%=am%>">Php
+                                        <%=toProperPHP(data.form.projected_income.expenses[i].amount)%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            <!-- Income = Revenue - Expenses -->
+                                            Total Projected Income:
+                                        </div>
+                                    </th>
+                                    <th name="projIncomeTotal">Php
+                                        <%=toProperPHP(data.form.projected_income.total)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
                         <%}%>
-                    </table>
-                    <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
+                        <br><br>
+                        <%} else{%>
+                        <input style="display:none;" value="0" id="income" name="income">
+                        <span>The activity is not a fundraising/selling activity; thus, it will not incur income or
+                            loss.</span>
+                        <%}%>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddProjRev">Add Row</button>
 
-                    <%if(data.form.projected_income.expenses != null) {%>
-                    <input style="display:none;" value=<%=data.form.projected_income.expenses.length-1%>
-                    id="dynamicTable5length" name="dynamicTable5len">
-                    <table class="ui compact celled definition fixed table unstackable" id="dynamicTable5">
-                        <thead class="full-width">
-                            <tr>
-                                <th style="width:40px"></th>
-                                <th colspan="4">Less: Projected Expenses <i class="ui tooltip far fa-question-circle"
-                                        data-content="Should match with Part V" data-position="right center"
-                                        data-variation="tiny"></i></th>
-                            </tr>
-                            <tr style="text-align: center;">
-                                <th style="width: 40px;"></th>
-                                <th class="item">Item</th>
-                                <th class="item">Qty</th>
-                                <th class="item">Selling Price</th>
-                                <th class="item">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%for(var i=0; i<data.form.projected_income.expenses.length;i++) {%>
-                            <%var it = "it"+i;%>
-                            <%var qu = "qu"+i;%>
-                            <%var pr = "pr"+i;%>
-                            <%var am = "am"+i;%>
-                            <tr>
-                                <td class="collapsing">
-                                    <div class="ui fitted">
-                                        <%if(i!=0){%>
-                                        <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
-                                        <%}%>
-                                    </div>
-                                </td>
-                                <td><input id="<%=it%>" class="inputron no-margin" type="text" name="<%=it%>" value="<%=data.form.projected_income.expenses[i].item%>"
-                                        required></td>
-                                <td><input id="<%=qu%>" class="inputron no-margin" type="number" name="<%=qu%>" onkeyup="computeExp()"
-                                        value="<%=data.form.projected_income.expenses[i].quantity%>" min="0"></td>
-                                <td><input id="<%=pr%>" class="inputron no-margin" name="<%=pr%>" onkeyup="computeExp()"
-                                        type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price)%>"
-                                        min="0" step="0.01" required></td>
-                                <td class="bg-gray" name="<%=am%>">Php
-                                    <%=toProperPHP(data.form.projected_income.expenses[i].amount)%>
-                                </td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                        <tfoot class="full-width">
-                            <tr>
-                                <th></th>
-                                <th colspan="3" class="total">
-                                    <div class="ui right floated small primary labeled">
-                                        <!-- Income = Revenue - Expenses -->
-                                        Total Projected Income:
-                                    </div>
-                                </th>
-                                <th name="projIncomeTotal">Php
-                                    <%=toProperPHP(data.form.projected_income.total)%>
-                                </th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
-                    <%}%>
-                    <br><br>
-                    <%} else{%>
-                    <input style="display:none;" value="0" id="income" name="income">
-                    <span>The activity is not a fundraising/selling activity; thus, it will not incur income or loss.</span>
-                    <%}%>
-                    <!-- <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button> -->
-                    <h3 class="labelHead ui header"><label>IX. Provisions for Profit and Loss </label> <i class="ui tooltip far fa-question-circle"
-                            data-content="Must be at least two (2) DIFFERENT persons responsible that will be signing."
-                            data-position="bottom center"></i></h3>
-                    The following people shall be held liable and will shoulder any remaining balance incurred
-                    by the project.<br><br>
-                    <div class="ui grid">
-                        <div class="two column row">
-                            <div class="left floated column">
-                                <label>Name of Person Responsible</label><br />
-                                <input id="namePR1" class="inputron" name='namePR' type="text" value="<%=data.form.person_responsible[0].name%>"
-                                    required>
-                                <br /><br />
-                                <label>Position</label><br>
-                                <input id="positionPR" class="inputron" name='positionPR' type="text" value="<%=data.form.person_responsible[0].position%>"
-                                    required>
-                                <br /><br />
-                            </div>
-                            <div class="right floated column">
-                                <label style="float: left;">Name of Person Responsible</label>
-                                <br />
-                                <input id="namePR2" class="inputron" name='namePR2' type="text" value="<%=data.form.person_responsible[1].name%>"
-                                    required><br /><br />
-                                <label style="float: left;">Position</label>
-                                <br />
-                                <input id="positionPR2" class="inputron" name='positionPR2' type="text" value="<%=data.form.person_responsible[1].position%>"
-                                    required>
-                                <br /><br />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div id="error" style="display: none;" class="ui red message">
-                    <div id="error-message" class="header">
-                        <!-- Please fill out all the fields. -->
-                    </div>
-                </div>
-
-                <div class="ui grid">
-                    <div class="row"></div>
-                    <div class="three column row">
-                        <div class="four wide left floated column">
-                            <button class="submit-button previous" type="button" id="prevBtn" onclick="nextPrev(-1)"><i
-                                    class="left chevron icon" style='float: left; margin-left: -1.5rem; margin-right: 1.3rem; margin-top: 0.1rem;'></i>
-                                Previous</button>
-                        </div>
-                        <div class="three wide column">
-                            <!-- Circles which indicates the steps of the form -->
-                            <div class="ui items">
-                                <div class="item">
-                                    <div class="content" style="margin-top: 1.3em; margin-left: 0.5em;">
-                                        <!-- <span class="step"></span>
-<span class="step"></span>
-<span class="step"></span> -->
-                                        <span id="bottomPagination" style="color: rgba(0, 0, 0, .55)">Page 1 of 3</span>
-                                    </div>
+                        <%if(data.form.projected_income.expenses != null) {%>
+                        <input style="display:none;" value=<%=data.form.projected_income.expenses.length-1%>
+                        id="dynamicTable5length" name="dynamicTable5len">
+                        <table class="ui compact celled definition fixed table unstackable" id="dynamicTable5">
+                            <thead class="full-width">
+                                <tr>
+                                    <th style="width:40px"></th>
+                                    <th colspan="4">Less: Projected Expenses <i class="ui tooltip far fa-question-circle"
+                                            data-content="Should match with Part V" data-position="right center"
+                                            data-variation="tiny"></i></th>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <th style="width: 40px;"></th>
+                                    <th class="item">Item</th>
+                                    <th class="item">Qty</th>
+                                    <th class="item">Selling Price</th>
+                                    <th class="item">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%for(var i=0; i<data.form.projected_income.expenses.length;i++) {%>
+                                <%var it = "it"+i;%>
+                                <%var qu = "qu"+i;%>
+                                <%var pr = "pr"+i;%>
+                                <%var am = "am"+i;%>
+                                <tr>
+                                    <td class="collapsing">
+                                        <div class="ui fitted">
+                                            <%if(i!=0){%>
+                                            <i class="fas fa-trash-alt" onclick="deleteProjRev(this)"></i>
+                                            <%}%>
+                                        </div>
+                                    </td>
+                                    <td><input id="<%=it%>" class="inputron no-margin" type="text" name="<%=it%>" value="<%=data.form.projected_income.expenses[i].item%>"
+                                            required></td>
+                                    <td><input id="<%=qu%>" class="inputron no-margin" type="number" name="<%=qu%>"
+                                            onkeyup="computeExp()" value="<%=data.form.projected_income.expenses[i].quantity%>"
+                                            min="0"></td>
+                                    <td><input id="<%=pr%>" class="inputron no-margin" name="<%=pr%>" onkeyup="computeExp()"
+                                            type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price)%>"
+                                            min="0" step="0.01" required></td>
+                                    <td class="bg-gray" name="<%=am%>">Php
+                                        <%=toProperPHP(data.form.projected_income.expenses[i].amount)%>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                            <tfoot class="full-width">
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3" class="total">
+                                        <div class="ui right floated small primary labeled">
+                                            <!-- Income = Revenue - Expenses -->
+                                            Total Projected Income:
+                                        </div>
+                                    </th>
+                                    <th name="projIncomeTotal">Php
+                                        <%=toProperPHP(data.form.projected_income.total)%>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
+                        <%}%>
+                        <br><br>
+                        <%} else{%>
+                        <input style="display:none;" value="0" id="income" name="income">
+                        <span>The activity is not a fundraising/selling activity; thus, it will not incur income or
+                            loss.</span>
+                        <%}%>
+                        <!-- <button type="button" class="row-button previous" id="btnDeleteProjExp">Delete Row</button> -->
+                        <h3 class="labelHead ui header"><label>IX. Provisions for Profit and Loss </label> <i class="ui tooltip far fa-question-circle"
+                                data-content="Must be at least two (2) DIFFERENT persons responsible that will be signing."
+                                data-position="bottom center"></i></h3>
+                        The following people shall be held liable and will shoulder any remaining balance incurred
+                        by the project.<br><br>
+                        <div class="ui grid">
+                            <div class="two column row">
+                                <div class="left floated column">
+                                    <label>Name of Person Responsible</label><br />
+                                    <input id="namePR1" class="inputron" name='namePR' type="text" value="<%=data.form.person_responsible[0].name%>"
+                                        required>
+                                    <br /><br />
+                                    <label>Position</label><br>
+                                    <input id="positionPR" class="inputron" name='positionPR' type="text" value="<%=data.form.person_responsible[0].position%>"
+                                        required>
+                                    <br /><br />
+                                </div>
+                                <div class="right floated column">
+                                    <label style="float: left;">Name of Person Responsible</label>
+                                    <br />
+                                    <input id="namePR2" class="inputron" name='namePR2' type="text" value="<%=data.form.person_responsible[1].name%>"
+                                        required><br /><br />
+                                    <label style="float: left;">Position</label>
+                                    <br />
+                                    <input id="positionPR2" class="inputron" name='positionPR2' type="text" value="<%=data.form.person_responsible[1].position%>"
+                                        required>
+                                    <br /><br />
                                 </div>
                             </div>
                         </div>
-                        <div class="four wide right floated column">
-                            <button class="submit-button next" type="button" id="nextBtn" onclick="nextPrev(1)"><span>Next</span>
-                                <i class="right chevron icon"></i></button>
+
+                    </div>
+
+                    <div id="error" style="display: none;" class="ui red message">
+                        <div id="error-message" class="header">
+                            <!-- Please fill out all the fields. -->
                         </div>
                     </div>
-                </div>
+
+                    <div class="ui grid">
+                        <div class="row"></div>
+                        <div class="three column row">
+                            <div class="four wide left floated column">
+                                <button class="submit-button previous" type="button" id="prevBtn" onclick="nextPrev(-1)"><i
+                                        class="left chevron icon" style='float: left; margin-left: -1.5rem; margin-right: 1.3rem; margin-top: 0.1rem;'></i>
+                                    Previous</button>
+                            </div>
+                            <div class="three wide column">
+                                <!-- Circles which indicates the steps of the form -->
+                                <div class="ui items">
+                                    <div class="item">
+                                        <div class="content" style="margin-top: 1.3em; margin-left: 0.5em;">
+                                            <!-- <span class="step"></span>
+<span class="step"></span>
+<span class="step"></span> -->
+                                            <span id="bottomPagination" style="color: rgba(0, 0, 0, .55)">Page 1 of 3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="four wide right floated column">
+                                <button class="submit-button next" type="button" id="nextBtn" onclick="nextPrev(1)"><span>Next</span>
+                                    <i class="right chevron icon"></i></button>
+                            </div>
+                        </div>
+                    </div>
 
             </form>
         </div>
