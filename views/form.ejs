@@ -405,13 +405,13 @@ Row</button> -->
                                 <h3 class="labelHead ui header"><label>Online Activity? <span class="red"> * </span></label></h3>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="yes" name="online" checked="checked">
+                                        <input type="radio" value="yes" name="online">
                                         <label>Yes</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" value="no" name="online">
+                                        <input type="radio" value="no" name="online" checked="checked">
                                         <label>No</label>
                                     </div>
                                 </div>
@@ -988,15 +988,20 @@ Row</button> -->
                 var x = document.getElementsByClassName("tab");
                 // Exit the function if any field in the current tab is invalid:
 
-                if (n == 1 && !validateForm()) {
-                    // TODO: FIX ANIMATION TRIGGER
-                    $('#error').addClass('shake').one('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd',
+                $('#error').addClass('shake').one('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd animationend',
                                                       function () {
                         $(this).removeClass('shake');
                     });
+
+                if (n == 1 && !validateForm()) {
                     $('#error').show();
+                    $('#error').addClass('shake').one('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd animationend',
+                                                      function () {
+                        $(this).removeClass('shake');
+                    });
                     return false;
                 }
+
                 // Hide the current tab:
                 $('#error').hide();
                 x[currentTab].style.display = "none";
@@ -1072,6 +1077,12 @@ Row</button> -->
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENMP.</div>"
+                        );
+                    }
+                    if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && ($("#enmp").val() > $("#enp").val())) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>ENMP must not be greater than ENP.</div>"
                         );
                     }
                     if ($("#enp").val() == "") {
