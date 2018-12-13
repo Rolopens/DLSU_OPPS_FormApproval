@@ -142,3 +142,8 @@ h1 {
     z-index: 3 !important;
     overflow-y: scroll !important;
 }
+
+#headerTitle {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
