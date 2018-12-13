@@ -1631,8 +1631,6 @@
             var input3 = document.createElement("input");
             input3.className = "inputron no-margin";
             input3.setAttribute('type', 'number');
-            input3.setAttribute('onblur', "if (this.value == '') { this.value = '0'; }");
-            input3.setAttribute('onfocus', "if (this.value == '0') {this.value = '';}");
             input3.setAttribute('required', true);
             input3.setAttribute('name', 'phead_number' + tableLength.value);
             input3.setAttribute('placeholder', 'ex. 09xxxxxxxxx');
@@ -1844,8 +1842,8 @@
             var input4 = document.createElement("input");
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
-            input4.setAttribute('onblur', "if (this.value == '') { this.value = '0'; }");
-            input4.setAttribute('onfocus', "if (this.value == '0') {this.value = '';}");
+            input4.setAttribute('onblur', "if (this.value == '') { this.value = '0.00'; }");
+            input4.setAttribute('onfocus', "if (this.value == '0.00') {this.value = '';}");
             input4.setAttribute('required', true);
             input4.setAttribute('onkeyup', 'computeBOE()');
             input4.setAttribute('name', 'unit' + tableLength.value);
@@ -2046,8 +2044,8 @@
             var input4 = document.createElement("input");
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
-            input4.setAttribute('onblur', "if (this.value == '') { this.value = '0'; }");
-            input4.setAttribute('onfocus', "if (this.value == '0') {this.value = '';}");
+            input4.setAttribute('onblur', "if (this.value == '') { this.value = '0.00'; }");
+            input4.setAttribute('onfocus', "if (this.value == '0.00') {this.value = '';}");
             input4.setAttribute('required', true);
             input4.setAttribute('name', 'price' + tableLength.value);
             input4.setAttribute('id', 'price' + tableLength.value);
@@ -2243,8 +2241,8 @@
             var input4 = document.createElement("input");
             input4.className = "inputron no-margin";
             input4.setAttribute('type', 'number');
-            input4.setAttribute('onblur', "if (this.value == '') { this.value = '0'; }");
-            input4.setAttribute('onfocus', "if (this.value == '0') {this.value = '';}");
+            input4.setAttribute('onblur', "if (this.value == '') { this.value = '0.00'; }");
+            input4.setAttribute('onfocus', "if (this.value == '0.00') {this.value = '';}");
             input4.setAttribute('required', true);
             input4.setAttribute('name', 'pr' + tableLength.value);
             input4.setAttribute('id', 'pr' + tableLength.value);

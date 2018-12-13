@@ -506,7 +506,7 @@ header {
 #main-content .content-wrapper .activity-icon.neutral {
 	color: var(--theme-button-color-value);
 	border: thin solid var(--theme-neutral);
-	background-color: var(--theme-rejection);
+	background-color: var(--theme-neutral);
 }
 
 #main-content .content-wrapper .activity-icon.negative {
@@ -559,7 +559,7 @@ header {
 }
 
 .reject2 {
-    width: auto !important;
+	width: auto !important;
 	background-color: var(--theme-rejection-full) !important;
 }
 
