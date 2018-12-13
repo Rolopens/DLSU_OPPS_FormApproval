@@ -2292,6 +2292,11 @@ Row</button> -->
 
                 //show add row button
                 document.getElementById("btnAddBOE").removeAttribute("style");
+                
+                if($('#hasIncome').is(":checked")) {
+                    document.getElementById("dynamicTable5").removeAttribute("style");
+                    document.getElementById("btnAddProjExp").removeAttribute("style");
+                }
 
                 //hide text
                 document.getElementsByClassName("hiddenText")[0].setAttribute("style", "display: none");
@@ -2299,10 +2304,12 @@ Row</button> -->
             } else {
                 //hide tables for parts V and VI
                 document.getElementById("dynamicTable3").setAttribute("style", "display: none");
+                document.getElementById("dynamicTable5").setAttribute("style", "display: none");
                 document.getElementById("sofTable").setAttribute("style", "display: none");
 
                 //hide add row button
                 document.getElementById("btnAddBOE").setAttribute("style", "display: none");
+                document.getElementById("btnAddProjExp").setAttribute("style", "display: none");
 
                 //show text
                 document.getElementsByClassName("hiddenText")[0].removeAttribute("style");
@@ -2314,11 +2321,14 @@ Row</button> -->
             if (element.checked) {
                 //show table for part VIII
                 document.getElementById("dynamicTable4").removeAttribute("style");
-                document.getElementById("dynamicTable5").removeAttribute("style");
 
                 //show add row buttons
                 document.getElementById("btnAddProjRev").removeAttribute("style");
-                document.getElementById("btnAddProjExp").removeAttribute("style");
+                
+                if($('#hasExpenses').is(":checked")) {
+                    document.getElementById("dynamicTable5").removeAttribute("style");
+                    document.getElementById("btnAddProjExp").removeAttribute("style");
+                }
 
                 //hide text
                 document.getElementsByClassName("hiddenText")[2].setAttribute("style", "display: none");
