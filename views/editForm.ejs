@@ -1108,6 +1108,12 @@
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENP.</div>"
                         );
                     }
+                    if ($("#enmp").val() > $("#enp").val()) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>ENMP is greater than ENP.</div>"
+                        );
+                    }
                     for (var i = 0; i <= $("#dynamicTable1length").val(); i++) {
                         if ($('#phead_name' + i).val() == "" || $('#phead_number' + i).val() == "") {
                             valid = false;
@@ -1336,7 +1342,7 @@
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for the Other Sources of Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#namePR').val() == "") {
+                    } else if ($('#namePR1').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please fill out the name of the person responsible.</div>"
@@ -1345,6 +1351,16 @@
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please fill out the position of the person responsible.</div>"
+                        );
+                    } else if ($('#namePR2').val() == "") {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>Please fill out the name of the second person responsible.</div>"
+                        );
+                    } else if ($('#positionPR2').val() == "") {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>Please fill out the position of the second person responsible.</div>"
                         );
                     } else {
                         <%if(data.form.projected_income.total != null) {%>
