@@ -125,6 +125,7 @@ module.exports.controller = function (app) {
 
     });
     
+    //Sends the app object to all the js files found inside ./preactsControllers
     fs.readdirSync('./controllers/preactsControllers').forEach(function (file) {
         if (file.substr(-3) == '.js') {
             route = require('./preactsControllers/' + file)
