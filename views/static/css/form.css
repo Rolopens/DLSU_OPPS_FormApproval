@@ -152,6 +152,19 @@ td.highlight textarea {
   border-bottom-color: #5e6479 !important;
 }
 
+.fas.fa-trash-alt {
+  color: rgba(0, 0, 0, 0.47);
+  transition: ease 0.3s all;
+  -webkit-transition: ease 0.3s all;
+  -moz-transition: ease 0.3s all;
+  -o-transition: ease 0.3s all;
+  -ms-transition: ease 0.3s all;
+}
+
+.fas.fa-trash-alt:hover {
+  color: #c82121;
+}
+
 .total div {
   position: relative !important;
   right: 5px !important;
@@ -207,8 +220,8 @@ input[type="number"] {
   border-top: 0px !important;
 }
 
-.ui.toggle.checkbox input:focus:checked ~ .box:before,
-.ui.toggle.checkbox input:focus:checked ~ label:before {
+.ui.toggle.checkbox input:focus:checked~.box:before,
+.ui.toggle.checkbox input:focus:checked~label:before {
   background-color: #26be9b !important;
 }
 
@@ -217,8 +230,8 @@ input[type="number"] {
   background-color: #d9d9d9;
 }
 
-.ui.toggle.checkbox input:checked ~ .box:before,
-.ui.toggle.checkbox input:checked ~ label:before {
+.ui.toggle.checkbox input:checked~.box:before,
+.ui.toggle.checkbox input:checked~label:before {
   background-color: #26be9b !important;
 }
 
@@ -259,6 +272,7 @@ input.invalid {
 }
 
 @-webkit-keyframes shake {
+
   10%,
   90% {
     -webkit-transform: translate3d(-1px, 0, 0);
@@ -286,6 +300,7 @@ input.invalid {
 }
 
 @keyframes shake {
+
   10%,
   90% {
     -webkit-transform: translate3d(-1px, 0, 0);
