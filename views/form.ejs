@@ -356,14 +356,16 @@ Row</button> -->
                                     <span class="labelHead"><label>ENMP </label> <i class="ui tooltip far fa-question-circle"
                                                                                     data-content="If N/A, put 0" data-position="bottom center"></i></span>
                                     <br />
-                                    <input id="enmp" class="inputron" name="enmp" type="number" min="0" required>
+                                    <input id="enmp" class="inputron" name="enmp" type="number" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                    required>
                                 </div>
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENP <i class="ui tooltip far fa-question-circle"
                                                                           data-content="If N/A, put 0" data-position="bottom center"></i></label></span>
                                     <br />
-                                    <input id="enp" class="inputron" name="enp" type="number" min="0" required>
+                                    <input id="enp" class="inputron" name="enp" type="number" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                    required>
                                 </div>
                             </div>
                         </div>
@@ -1080,7 +1082,7 @@ Row</button> -->
                         );
                     }
                     if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && $("#enmp").val() > 0 && $("#enp").val() > 0 &&
-                    ($("#enmp").val() > $("#enp").val())) {
+                    (parseInt($("#enmp").val()) > parseInt($("#enp").val()))) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>ENMP must not be greater than ENP.</div>"
