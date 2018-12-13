@@ -1097,12 +1097,6 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENP.</div>"
                         );
                     }
-                    if ($("#enmp").val() > $("#enp").val()) {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>ENMP is greater than ENP.</div>"
-                        );
-                    }
                     for (var i = 0; i <= $("#dynamicTable1length").val(); i++) {
                         if ($('#phead_name' + i).val() == "" || $('#phead_number' + i).val() == "") {
                             valid = false;

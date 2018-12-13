@@ -711,7 +711,6 @@
                                                    type="number" value="<%=data.form.organizational_funds.depository_fund%>" min="0" step="0.01" onkeyup="computeOF()" required></td>
                                 </tr>
                                 <tr>
-                                    <!-- TODO: FIX TOOLTIP HERE -->
                                     <td colspan="2" style="background: white; padding-top: 0.8em; padding-bottom: 0.8em;">Other
                                         Sources of Funds <i class="ui tooltip far fa-question-circle" data-content="If N/A, put 0"
                                                             data-position="right center" data-variation="tiny"></i></td>
@@ -1009,14 +1008,17 @@
                 // This function will figure out which tab to display
                 var x = document.getElementsByClassName("tab");
                 // Exit the function if any field in the current tab is invalid:
-
-                if (n == 1 && !validateForm()) {
-                    // TODO: FIX ANIMATION TRIGGER
-                    $('#error').addClass('shake').one('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd',
+                $('#error').addClass('shake').one('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd animationend',
                                                       function () {
                         $(this).removeClass('shake');
                     });
+
+                if (n == 1 && !validateForm()) {
                     $('#error').show();
+                    $('#error').addClass('shake').one('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd animationend',
+                                                      function () {
+                        $(this).removeClass('shake');
+                    });
                     return false;
                 }
                 // Hide the current tab:
@@ -1096,6 +1098,12 @@
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENMP.</div>"
                         );
                     }
+                    if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && ($("#enmp").val() > $("#enp").val())) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>ENMP must not be greater than ENP.</div>"
+                        );
+                    }
                     if ($("#enp").val() == "") {
                         valid = false;
                         $("#error-message").append(
@@ -1106,12 +1114,6 @@
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENP.</div>"
-                        );
-                    }
-                    if ($("#enmp").val() > $("#enp").val()) {
-                        valid = false;
-                        $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>ENMP is greater than ENP.</div>"
                         );
                     }
                     for (var i = 0; i <= $("#dynamicTable1length").val(); i++) {
