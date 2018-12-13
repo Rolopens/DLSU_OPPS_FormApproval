@@ -1378,7 +1378,7 @@ module.exports.controller = function (app) {
                 projRevData.push(rowdata);
             }
             req.session.projRevData = projRevData;
-            req.session.projIncomeTotal = totalRev - totalExpenses;
+            req.session.projIncomeTotal = totalRev - req.session.porjExpData;
         } else {
             req.session.projRevData = null;
             req.session.porjExpData = null;
