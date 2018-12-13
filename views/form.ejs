@@ -578,10 +578,10 @@ Row</button> -->
                                         required></td>
                                 <td><input id="quantity0" class="inputron no-margin" type="number" name="quantity0"
                                         onkeyup="computeBOE()" onblur="if (this.value == '') { this.value = '0'; }"
-                                        value=0 min=0 required></td>
+                                        onfocus="if (this.value == '0') {this.value = '';}" value=0 min=0 required></td>
                                 <td><input id="unit0" class="inputron no-margin" type="number" name="unit0" onkeyup="computeBOE()"
-                                        value=0.00 onblur="if (this.value == '') { this.value = '0'; }" min=0 step=0.01
-                                        required></td>
+                                        value=0.00 onblur="if (this.value == '') { this.value = '0'; }" onfocus="if (this.value == '0') {this.value = '';}"
+                                        min=0 step=0.01 required></td>
                                 <td class="bg-gray" name="BOE_subtotal0">Php 0.00</td>
                             </tr>
                         </tbody>
@@ -673,7 +673,8 @@ Row</button> -->
                                 </td>
                                 <td>Php <input id="OperationalFund" class="inputron no-margin table_input" name="OperationalFund"
                                         type="number" value="0.00" onblur="if (this.value == '') { this.value = '0'; }"
-                                        min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                        onfocus="if (this.value == '0') {this.value = '';}" min="0" step="0.01" onkeyup="computeOF()"
+                                        required></td>
                             </tr>
 
                             <tr>
@@ -696,7 +697,8 @@ Row</button> -->
                                 </td>
                                 <td>Php <input id="DepositoryFund" class="inputron no-margin table_input" name="DepositoryFund"
                                         type="number" value="0.00" onblur="if (this.value == '') { this.value = '0'; }"
-                                        min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                        onfocus="if (this.value == '0') {this.value = '';}" min="0" step="0.01" onkeyup="computeOF()"
+                                        required></td>
                             </tr>
                             <tr>
                                 <!-- <td class="collapsing">
@@ -719,7 +721,8 @@ Row</button> -->
                                 </td>
                                 <td>Php <input id="OtherFund" class="inputron no-margin table_input" name="OtherFund"
                                         type="number" value="0.00" onblur="if (this.value == '') { this.value = '0'; }"
-                                        min="0" step="0.01" onkeyup="computeOF()" required></td>
+                                        onfocus="if (this.value == '0') {this.value = '';}" min="0" step="0.01" onkeyup="computeOF()"
+                                        required></td>
                             </tr>
                             <tr>
                                 <!-- <td class="collapsing">
@@ -795,10 +798,12 @@ Row</button> -->
                                 </td>
                                 <td><input id="item0" class="inputron no-margin" type="text" name="item0" required></td>
                                 <td><input id="qty0" class="inputron no-margin" type="number" name="qty0" onkeyup="computeRev()"
-                                        value="0" onblur="if (this.value == '') { this.value = '0'; }" min="0"></td>
+                                        value="0" onblur="if (this.value == '') { this.value = '0'; }" onfocus="if (this.value == '0') {this.value = '';}"
+                                        min="0"></td>
                                 <td><input id="price0" class="inputron no-margin" name="price0" onkeyup="computeRev()"
                                         type="number" value="0.00" onblur="if (this.value == '') { this.value = '0'; }"
-                                        min="0" step="0.01" required></td>
+                                        onfocus="if (this.value == '0') {this.value = '';}" min="0" step="0.01"
+                                        required></td>
                                 <td class="bg-gray" name="amount0">Php 0.00</td>
                             </tr>
                         </tbody>
@@ -832,10 +837,11 @@ Row</button> -->
                                 </td>
                                 <td><input id="it0" class="inputron no-margin" type="text" name="it0" required></td>
                                 <td><input id="qu0" class="inputron no-margin" type="number" name="qu0" onkeyup="computeExp()"
-                                        required value="0" onblur="if (this.value == '') { this.value = '0'; }" min="0"></td>
+                                        required value="0" onblur="if (this.value == '') { this.value = '0'; }" onfocus="if (this.value == '0') {this.value = '';}"
+                                        min="0"></td>
                                 <td><input id="pr0" class="inputron no-margin" name="pr0" type="number" onkeyup="computeExp()"
-                                        value="0.00" onblur="if (this.value == '') { this.value = '0'; }" min="0" step="0.01"
-                                        required></td>
+                                        value="0.00" onblur="if (this.value == '') { this.value = '0'; }" onfocus="if (this.value == '0') {this.value = '';}"
+                                        min="0" step="0.01" required></td>
                                 <td class="bg-gray" name="am0">Php 0.00</td>
                             </tr>
                         </tbody>
