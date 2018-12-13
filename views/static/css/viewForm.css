@@ -146,3 +146,34 @@ h1 {
 #headerTitle {
     word-wrap: break-word;
 }
+
+.checkerButtonsPanel .applyMargin {
+    margin-right: 1.5em;
+}
+
+.checkerButtonsPanel .approve {
+	background-color: var(--theme-approval);
+    border: none;
+}
+
+.checkerButtonsPanel .reject1 {
+	background-color: var(--theme-rejection);
+    border: none;
+}
+
+.checkerButtonsPanel .reject2 {
+	background-color: var(--theme-rejection-full);
+    border: none;
+}
+
+.checkerButtonsPanel:hover .approve {
+	background-color: var(--theme-approval);
+}
+
+.checkerButtonsPanel:hover .reject1 {
+	background-color: var(--theme-rejection);
+}
+
+.checkerButtonsPanel:hover .reject2 {
+	background-color: var(--theme-rejection-full);
+}

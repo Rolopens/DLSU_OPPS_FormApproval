@@ -469,7 +469,7 @@
                                     </div>
                                     <form id="status-form" action="/preacts/fullReject/<%=data._id%>" method="post">
                                         <div class="modal-body">
-                                            You are about to <b>fully reject</b> the activity <b><%=data.title%></b>. Please state your reason.
+                                            You are about to <b>fully reject</b> the activity <b><%=data.title%></b>.<br>Please state your reasons:
                                             <textarea name="comments" required></textarea>
                                         </div>
                                         <div class="modal-footer">                          
@@ -492,7 +492,7 @@
                                     </div>
                                     <form id="status-form" action="/preacts/reject/<%=data._id%>" method="post">
                                         <div class="modal-body">
-                                            You are about to <b>reject for revisions</b> the activity <b><%=data.title%></b>. Please state your reasons.
+                                            You are about to <b>reject for revisions</b> the activity <b><%=data.title%></b>.<br>Please state your reasons:
                                             <textarea name="comments" required></textarea>
                                         </div>
 
@@ -528,9 +528,11 @@
                             </div>
                         </div>
                         <%if(curUser == true) {%>
-                        <input id="approve" type="submit" class="button approve" value="Approve" data-toggle="modal" data-target="#modalActivityApprove">
-                        <input id="reject" type="submit" class="button reject" value="Reject" data-toggle="modal" data-target="#modalActivityReject">
-                        <input id="reject" type="submit" class="button reject" value="Full Reject" data-toggle="modal" data-target="#modalActivityFullReject"> 
+                        <div class="checkerButtonsPanel">
+                            <input id="approve" type="submit" class="button approve" value="Approve" data-toggle="modal" data-target="#modalActivityApprove">
+                            <input id="reject" type="submit" class="button reject reject1 applyMargin" value="Reject" data-toggle="modal" data-target="#modalActivityReject">
+                            <input id="reject" type="submit" class="button reject reject2 applyMargin" value="Full Reject" data-toggle="modal" data-target="#modalActivityFullReject">                            
+                        </div> 
                         <%}%>
                     </div>
                 <br/><br/>
