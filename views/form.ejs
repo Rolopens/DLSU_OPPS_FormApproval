@@ -1141,7 +1141,7 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>Invalid contact number length at row " +
                             (i + 1) + ".</div>");
                         return false;
-                    } else if (!$('#phead_number' + i).val().toString().startsWith("9")) {
+                    } else if (!$('#phead_number' + i).val().toString().startsWith("09")) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Contact number at row " +
