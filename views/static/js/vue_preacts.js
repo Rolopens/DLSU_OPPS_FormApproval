@@ -83,36 +83,55 @@ var preacts_app = new Vue({
             })
         },
         rejectForm(_id, comment) {
-            axios.post("/preacts/commentreject/" + _id + "/" +comment)
-                .then((response) => {
-                    if (response.error != undefined)
-                        $("#error_msg").html(response.error)
-                    else {
-                        Vue.set(preacts_app, 'quickview', response.data.formData1);
-                        location.reload(true);
-                    }
+            if ($('#comment').val() == ""){
+                Swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Please place a comment!',
+                timer: 2000
                 })
-            axios.get('/preacts/getAllForms/forms').then((rows) => {
-                console.log(rows);
-                this.forms = rows.data.forms;
-                //                return this.forms;
-            })
+            } else {
+                axios.post("/preacts/commentreject/" + _id + "/" +comment)
+                    .then((response) => {
+                        if (response.error != undefined)
+                            $("#error_msg").html(response.error)
+                        else {
+                            Vue.set(preacts_app, 'quickview', response.data.formData1);
+                            location.reload(true);
+                        }
+                    })
+                axios.get('/preacts/getAllForms/forms').then((rows) => {
+                    console.log(rows);
+                    this.forms = rows.data.forms;
+                    //                return this.forms;
+                })
+            }
+            
         },
         fullyRejectForm(_id, comment) {
-            axios.post("/preacts/commentfullReject/" + _id+ "/" +comment)
-                .then((response) => {
-                    if (response.error != undefined)
-                        $("#error_msg").html(response.error)
-                    else {
-                        Vue.set(preacts_app, 'quickview', response.data.formData1);
-                        location.reload(true);
-                    }
+            if ($('#comment').val() == ""){
+                Swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Please place a comment!',
+                timer: 2000
                 })
-            axios.get('/preacts/getAllForms/forms').then((rows) => {
-                console.log(rows);
-                this.forms = rows.data.forms;
-                //                return this.forms;
-            })
+            } else {
+                axios.post("/preacts/commentfullReject/" + _id+ "/" +comment)
+                    .then((response) => {
+                        if (response.error != undefined)
+                            $("#error_msg").html(response.error)
+                        else {
+                            Vue.set(preacts_app, 'quickview', response.data.formData1);
+                            location.reload(true);
+                        }
+                    })
+                axios.get('/preacts/getAllForms/forms').then((rows) => {
+                    console.log(rows);
+                    this.forms = rows.data.forms;
+                    //                return this.forms;
+                })
+            }
         },   
         removeSearchQuery: function() {
           this.searchQuery = '';
@@ -235,17 +254,17 @@ var preacts_app = new Vue({
         },
         filterOut(){
             var x = $("#options .active").text();
-            if (x == 'All'){
+            if (x.includes('All')){
                 this.allFilter()
-            }else if(x == 'Pending'){
-                this.pendingFilterFilter();
-            }else if(x == 'Approved'){
+            }else if(x.includes('Pending')){
+                this.pendingFilter();
+            }else if(x.includes('Approved')){
                 this.approvedFilter();
-            }else if(x == 'Rejected'){
+            }else if(x.includes('Rejected')){
                 this.rejectedFilter();
-            }else if(x == 'Unreviewed'){
+            }else if(x.includes('Unreviewed')){
                 this.unreviewedFilter();
-            }
+            } 
         },
         createNumbers(){
             listForms = [];

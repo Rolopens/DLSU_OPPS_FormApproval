@@ -12,6 +12,7 @@
     <script src="lib/axios.min.js" type="application/javascript"> </script>
 
     <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.css"/>
     <link rel="stylesheet" type="text/css" href="css/theme.css" />
     <link rel="stylesheet" type="text/css" href="css/variables.css" />
     <link rel="stylesheet" type="text/css" href="css/approver.css" />
@@ -24,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap_modal_2.css" />
 
     <!-- javascript -->
+    <script src="js/sweetalert2.js" type="text/javascript"></script>
     <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="js/approver.js" type="text/javascript"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -171,9 +173,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="rejectForm(quickview._id, $('.modal-body #comment').val())"
+                                    <button type="button" class="btn btn-primary reject1" id="modal-negative" v-on:click="rejectForm(quickview._id, $('.modal-body #comment').val())"
                                         data-dismiss="modal">Reject</button>
-                                    <button type="button" class="btn btn-primary" id="modal-negative" v-on:click="fullyRejectForm(quickview._id, $('.modal-body #comment').val())"
+                                    <button type="button" class="btn btn-primary reject2" id="modal-negative" v-on:click="fullyRejectForm(quickview._id, $('.modal-body #comment').val())"
                                         data-dismiss="modal">Full Reject</button>
                                 </div>
                             </div>
