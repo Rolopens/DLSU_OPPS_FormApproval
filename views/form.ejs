@@ -1079,7 +1079,8 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>No negative value for ENMP.</div>"
                         );
                     }
-                    if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && ($("#enmp").val() > $("#enp").val())) {
+                    if ($("#enmp").val().length > 0 && $("#enp").val().length > 0 && $("#enmp").val() > 0 && $("#enp").val() > 0 &&
+                    ($("#enmp").val() > $("#enp").val())) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>ENMP must not be greater than ENP.</div>"
@@ -1184,8 +1185,8 @@ Row</button> -->
                     if(newTime != $("#startTime").val()) {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Initial time must match with the start time of activity.</div>"
-                        );  
+                            "<div id='error-message' style='text-align: center; class='header'>Initial time in Comprehensive Program Design must match with the start time of the activity.</div>"
+                        );
                     }
                     
                     var length =  $("#dynamicTable2length").val();
@@ -1195,7 +1196,7 @@ Row</button> -->
                     if(newTime != $("#endTime").val()) {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>End time must match with the end time of activity.</div>"
+                            "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design must match with the end time of the activity.</div>"
                         );  
                     }
 
