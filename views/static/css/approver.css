@@ -559,6 +559,7 @@ header {
 }
 
 .reject2 {
+    width: auto !important;
 	background-color: var(--theme-rejection-full) !important;
 }
 
