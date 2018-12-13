@@ -1,353 +1,350 @@
 body {
-    background-color: #a3e2d5 !important;
+  background-color: #a3e2d5 !important;
 }
 
 textarea {
-    margin: 0 !important;
-    -webkit-appearance: none !important;
-    padding: .78571429em 1em !important;
-    background: #FFF !important;
-    border: 1px solid rgba(34, 36, 38, .15) !important;
-    color: rgba(0, 0, 0, .87) !important;
-    border-radius: .28571429rem !important;
-    -webkit-transition: color .1s ease, border-color .1s ease !important;
-    transition: color .1s ease, border-color .1s ease !important;
-    font-size: 1em !important;
-    line-height: 1.2857 !important;
-    resize: none !important;
-    width: 100% !important;
+  margin: 0 !important;
+  -webkit-appearance: none !important;
+  padding: 0.78571429em 1em !important;
+  background: #fff !important;
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  border-radius: 0.28571429rem !important;
+  -webkit-transition: color 0.1s ease, border-color 0.1s ease !important;
+  transition: color 0.1s ease, border-color 0.1s ease !important;
+  font-size: 1em !important;
+  line-height: 1.2857 !important;
+  resize: none !important;
+  width: 100% !important;
 }
 
 .row-textarea {
-    border: none !important;
-    resize: none !important;
+  border: none !important;
+  resize: none !important;
 }
 
 .main {
-    background-color: white !important;
+  background-color: white !important;
 }
 
 .main .labelHead {
-    font-weight: 700 !important;
+  font-weight: 700 !important;
 }
 
 .red {
-    color: #CA1010;
-    display: none;
+  color: #ca1010;
+  display: none;
 }
 
 .tooltip {
-    color: rgba(0, 0, 0, .47);
+  color: rgba(0, 0, 0, 0.47);
 }
 
 .tooltip:hover {
-    cursor: help;
+  cursor: help;
 }
 
 .ui.toggle.checkbox[class*="right floated"] {
-    float: right !important;
-    margin-right: 0.5em !important;
-    /* margin-left: 1em !important; */
+  float: right !important;
+  margin-right: 0.5em !important;
+  /* margin-left: 1em !important; */
 }
 
 .fas:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 i.blue {
-    color: #26BE9B;
+  color: #26be9b;
 }
 
 .highlight {
-    background-color: lightyellow !important;
-    /* color: white; */
+  background-color: lightyellow !important;
+  /* color: white; */
 }
 
 td.highlight input {
-    background-color: lightyellow !important;
+  background-color: lightyellow !important;
 }
 
 td.highlight textarea {
-    background-color: lightyellow !important;
+  background-color: lightyellow !important;
 }
 
 .inputron {
-    border: none !important;
-    border-bottom: 1px solid rgba(34, 36, 38, .15) !important;
-    padding: .5em .2em !important;
-    line-height: 1.2857 !important;
-    width: 100% !important;
-    border-radius: 0px !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15) !important;
+  padding: 0.5em 0.2em !important;
+  line-height: 1.2857 !important;
+  width: 100% !important;
+  border-radius: 0px !important;
 }
 
 .table_input {
-    margin-top: 0px !important;
-    width: 70% !important;
+  margin-top: 0px !important;
+  width: 70% !important;
 }
 
 .inputron:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 .no-margin {
-    border: none !important;
-    margin-top: -0.1em !important;
+  border: none !important;
+  margin-top: -0.1em !important;
 }
 
 .row-button {
-    float: right;
-    margin-bottom: 20px;
-    background: white;
-    border-color: #26BE9B;
-    border-style: solid;
-    color: #26BE9B;
-    border-radius: 5px;
-    padding: 7px 30px;
-    font-weight: 700;
+  float: right;
+  margin-bottom: 20px;
+  background: white;
+  border-color: #26be9b;
+  border-style: solid;
+  color: #26be9b;
+  border-radius: 5px;
+  padding: 7px 30px;
+  font-weight: 700;
 }
 
 .submit-button {
-    margin-top: 5%;
-    margin-right: 10px;
-    background: white;
-    border-color: #26BE9B;
-    border-style: solid;
-    color: #26BE9B;
-    border-radius: 5px;
-    height: 50px;
-    font-weight: 700;
-    display: block;
-    width: 100%;
+  margin-top: 5%;
+  margin-right: 10px;
+  background: white;
+  border-color: #26be9b;
+  border-style: solid;
+  color: #26be9b;
+  border-radius: 5px;
+  height: 50px;
+  font-weight: 700;
+  display: block;
+  width: 100%;
 }
 
 .submit-button span:after {
-    float: right;
-    padding-left: 1em;
+  float: right;
+  padding-left: 1em;
 }
 
 .next:hover {
-    background: #26BE9B;
-    border-color: #26BE9B;
-    color: white;
-    border-style: solid;
+  background: #26be9b;
+  border-color: #26be9b;
+  color: white;
+  border-style: solid;
 }
 
 .previous {
-    border-color: #CA1010;
-    color: #CA1010;
+  border-color: #ca1010;
+  color: #ca1010;
 }
 
 .previous:hover {
-    background: #CA1010;
-    border-color: #CA1010;
-    color: white;
-    border-style: solid;
+  background: #ca1010;
+  border-color: #ca1010;
+  color: white;
+  border-style: solid;
 }
 
 .div-input {
-    display: flex !important;
-    flex-direction: row !important;
-    border: none !important;
-    border-bottom: 1.5px solid !important;
-    border-bottom-color: #5e6479 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  border: none !important;
+  border-bottom: 1.5px solid !important;
+  border-bottom-color: #5e6479 !important;
 }
 
 .total div {
-    position: relative !important;
-    right: 5px !important;
+  position: relative !important;
+  right: 5px !important;
 }
 
 .bold {
-    font-weight: 700 !important;
+  font-weight: 700 !important;
 }
 
 .right {
-    text-align: right !important;
+  text-align: right !important;
 }
 
 .bg-gray {
-    background-color: #F7F7F7 !important;
+  background-color: #f7f7f7 !important;
 }
 
 .pj-border {
-    border-left-style: none !important;
-
+  border-left-style: none !important;
 }
 
 .pwp {
-    white-space: pre !important;
+  white-space: pre !important;
 }
 
 .php {
-    width: auto !important;
-    display: flex !important;
-    flex-direction: row-reverse !important;
+  width: auto !important;
+  display: flex !important;
+  flex-direction: row-reverse !important;
 }
 
 .italics {
-    font-style: italic !important;
+  font-style: italic !important;
 }
 
 textarea {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    height: 107px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  height: 107px !important;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none !important;
-    margin: 0 !important;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
 }
 
-input[type=number] {
-    -moz-appearance: textfield !important;
+input[type="number"] {
+  -moz-appearance: textfield !important;
 }
 
 .ui.table.borderless tr td {
-    border-top: 0px !important;
+  border-top: 0px !important;
 }
 
-.ui.toggle.checkbox input:focus:checked~.box:before,
-.ui.toggle.checkbox input:focus:checked~label:before {
-    background-color: #26BE9B !important
+.ui.toggle.checkbox input:focus:checked ~ .box:before,
+.ui.toggle.checkbox input:focus:checked ~ label:before {
+  background-color: #26be9b !important;
 }
 
 .ui.toggle.checkbox .box:before,
 .ui.toggle.checkbox label:before {
-    background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 
-.ui.toggle.checkbox input:checked~.box:before,
-.ui.toggle.checkbox input:checked~label:before {
-    background-color: #26BE9B !important;
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before {
+  background-color: #26be9b !important;
 }
 
 .go-back {
-    top: 0;
-    position: fixed;
-    /* background-color: #34495e; */
-    color: white;
-    width: auto;
-    left: 0;
-    /* text-align: center; */
-    z-index: 2;
-    padding: 0.8rem;
+  top: 0;
+  position: fixed;
+  /* background-color: #34495e; */
+  color: white;
+  width: auto;
+  left: 0;
+  /* text-align: center; */
+  z-index: 2;
+  padding: 0.8rem;
 }
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
-    background-color: #ffdddd;
+  background-color: #ffdddd;
 }
 
 .ui.red.message .header {
-    font-weight: 100 !important;
+  font-weight: 100 !important;
 }
 
 .ui.red.message div {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 #error.shake {
-    -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
 }
 
 @-webkit-keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0);
+  }
 
-    10%,
-    90% {
-        -webkit-transform: translate3d(-1px, 0, 0);
-        transform: translate3d(-1px, 0, 0);
-    }
+  20%,
+  80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0);
+  }
 
-    20%,
-    80% {
-        -webkit-transform: translate3d(2px, 0, 0);
-        transform: translate3d(2px, 0, 0);
-    }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0);
+  }
 
-    30%,
-    50%,
-    70% {
-        -webkit-transform: translate3d(-4px, 0, 0);
-        transform: translate3d(-4px, 0, 0);
-    }
-
-    40%,
-    60% {
-        -webkit-transform: translate3d(4px, 0, 0);
-        transform: translate3d(4px, 0, 0);
-    }
+  40%,
+  60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 @keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0);
+  }
 
-    10%,
-    90% {
-        -webkit-transform: translate3d(-1px, 0, 0);
-        transform: translate3d(-1px, 0, 0);
-    }
+  20%,
+  80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0);
+  }
 
-    20%,
-    80% {
-        -webkit-transform: translate3d(2px, 0, 0);
-        transform: translate3d(2px, 0, 0);
-    }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0);
+  }
 
-    30%,
-    50%,
-    70% {
-        -webkit-transform: translate3d(-4px, 0, 0);
-        transform: translate3d(-4px, 0, 0);
-    }
-
-    40%,
-    60% {
-        -webkit-transform: translate3d(4px, 0, 0);
-        transform: translate3d(4px, 0, 0);
-    }
+  40%,
+  60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 /* Hide all steps by default: */
 .tab {
-    display: none;
+  display: none;
 }
 
 /* Make circles that indicate the steps of the form: */
 .step {
-    padding: 0px !important;
-    height: 15px !important;
-    width: 15px !important;
-    margin: 0 2px !important;
-    background-color: #bbbbbb !important;
-    border: none !important;
-    border-radius: 50% !important;
-    display: inline-block !important;
-    opacity: 0.5 !important;
+  padding: 0px !important;
+  height: 15px !important;
+  width: 15px !important;
+  margin: 0 2px !important;
+  background-color: #bbbbbb !important;
+  border: none !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  opacity: 0.5 !important;
 }
 
 /* Mark the active step: */
 .step.active {
-    opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-    background-color: #4CAF50 !important;
+  background-color: #4caf50 !important;
 }
 
 .commentBox {
-    margin: 5% !important;
-    font-size: 18px !important;
-    width: 300px !important;
-    position: fixed !important;
-    z-index: 3 !important;
-    overflow-y: scroll !important;
+  margin: 5% !important;
+  font-size: 18px !important;
+  width: 300px !important;
+  position: fixed !important;
+  z-index: 3 !important;
+  overflow-y: scroll !important;
 }
