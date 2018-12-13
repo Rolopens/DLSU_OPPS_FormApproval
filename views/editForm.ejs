@@ -559,7 +559,7 @@
                                             onkeyup="computeBOE()" min=0 step=0.01 value="<%=data.form.breakdown_expenses.material[i].unit_cost%>"
                                             required></td>
                                     <td class="bg-gray" name="<%=sub%>">Php
-                                        <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%>
+                                        <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <%}%>
@@ -573,7 +573,7 @@
                                         </div>
                                     </th>
                                     <th class="result" name="boeTotal">Php
-                                        <%=toProperPHP(data.form.breakdown_expenses.total_expense)%>
+                                        <%=toProperPHP(data.form.breakdown_expenses.total_expense).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -601,19 +601,19 @@
                                 <tr>
                                     <td>Organizational Funds</td>
                                     <td>Php <input id="OrganizationalFunds" class="inputron no-margin table_input" name="OrganizationalFunds"
-                                            type="number" value="<%=data.form.source_funds.organization_funds%>" min="0"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.organization_funds).split(",").join("")%>" min="0"
                                             step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Participants Fee</td>
                                     <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
-                                            type="number" value="<%=data.form.source_funds.participants_fee%>" min="0"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee).split(",").join("")%>" min="0"
                                             step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Others (i.e. Sponsorships)</td>
                                     <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds"
-                                            type="number" value="<%=toProperPHP(data.form.source_funds.others)%>" min="0"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.others).split(",").join("")%>" min="0"
                                             step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                             </tbody>
@@ -625,7 +625,7 @@
                                         </div>
                                     </th>
                                     <th class="result" name="totalSource">Php
-                                        <%=toProperPHP(data.form.source_funds.total)%>
+                                        <%=toProperPHP(data.form.source_funds.total).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -743,10 +743,10 @@
                                             onkeyup="computeBOE()" min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>"
                                             required></td>
                                     <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>"
-                                            onkeyup="computeBOE()" min=0 step=0.01 value="<%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>"
+                                            onkeyup="computeBOE()" min=0 step=0.01 value="<%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost).split(",").join("")%>"
                                             required></td>
                                     <td class="bg-gray" name="<%=sub%>">Php
-                                        <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%>
+                                        <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <%}%>
@@ -760,7 +760,7 @@
                                         </div>
                                     </th>
                                     <th class="result" name="boeTotal">Php
-                                        <%=toProperPHP(data.form.breakdown_expenses.total_expense)%>
+                                        <%=toProperPHP(data.form.breakdown_expenses.total_expense).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -794,13 +794,13 @@
                                 <tr>
                                     <td>Participants Fee</td>
                                     <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
-                                            type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee)%>"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee).split(",").join("")%>"
                                             min="0" step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Others (i.e. Sponsorships)</td>
                                     <td>Php <input id="OtherFunds" class="inputron no-margin table_input" name="OtherFunds"
-                                            type="number" value="<%=toProperPHP(data.form.source_funds.others)%>" min="0"
+                                            type="number" value="<%=toProperPHP(data.form.source_funds.others).split(",").join("")%>" min="0"
                                             step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                             </tbody>
@@ -812,7 +812,7 @@
                                         </div>
                                     </th>
                                     <th class="result" name="totalSource">Php
-                                        <%=toProperPHP(data.form.source_funds.total)%>
+                                        <%=toProperPHP(data.form.source_funds.total).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -876,7 +876,7 @@
                                         </div>
                                     </td>
                                     <td>Php <input id="OtherFund" class="inputron no-margin table_input" name="OtherFund"
-                                            type="number" value="<%=toProperPHP(data.form.organizational_funds.other_fund)%>"
+                                            type="number" value="<%=toProperPHP(data.form.organizational_funds.other_fund).split(",").join("")%>"
                                             min="0" step="0.01" onkeyup="computeOF()" required></td>
                                 </tr>
                                 <tr>
@@ -889,7 +889,7 @@
                                         </div>
                                     </td>
                                     <td style="background-color: #F7F7F7;" name="totalDisbursement">Php
-                                        <%=toProperPHP(data.form.organizational_funds.total_disbursement)%>
+                                        <%=toProperPHP(data.form.organizational_funds.total_disbursement).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -902,7 +902,7 @@
                                         </div>
                                     </td>
                                     <td style="background-color: #F7F7F7;" name="lessExp">Php
-                                        <%=toProperPHP(data.form.organizational_funds.projected_expenses)%>
+                                        <%=toProperPHP(data.form.organizational_funds.projected_expenses).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -915,7 +915,7 @@
                                         </div>
                                     </td>
                                     <td style="background-color: #F7F7F7;" name="remBalance">Php
-                                        <%=toProperPHP(data.form.organizational_funds.rem_balance)%>
+                                        <%=toProperPHP(data.form.organizational_funds.rem_balance).split(",").join("")%>
                                     </td>
                                 </tr>
                             </tbody>
@@ -971,7 +971,7 @@
                                             type="number" value="<%=data.form.projected_income.revenue[i].price%>" min="0"
                                             step="0.01" required></td>
                                     <td class="bg-gray" name="<%=amount%>">Php
-                                        <%=toProperPHP(data.form.projected_income.revenue[i].amount)%>
+                                        <%=toProperPHP(data.form.projected_income.revenue[i].amount).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <%}%>
@@ -987,7 +987,7 @@
                                         </div>
                                     </th>
                                     <th name="projIncomeTotal">Php
-                                        <%=toProperPHP(data.form.projected_income.total)%>
+                                        <%=toProperPHP(data.form.projected_income.total).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -1034,10 +1034,10 @@
                                             onkeyup="computeExp()" value="<%=data.form.projected_income.expenses[i].quantity%>"
                                             min="0"></td>
                                     <td><input id="<%=pr%>" class="inputron no-margin" name="<%=pr%>" onkeyup="computeExp()"
-                                            type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price)%>"
+                                            type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price).split(",").join("")%>"
                                             min="0" step="0.01" required></td>
                                     <td class="bg-gray" name="<%=am%>">Php
-                                        <%=toProperPHP(data.form.projected_income.expenses[i].amount)%>
+                                        <%=toProperPHP(data.form.projected_income.expenses[i].amount).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <%}%>
@@ -1052,7 +1052,7 @@
                                         </div>
                                     </th>
                                     <th name="projIncomeTotal">Php
-                                        <%=toProperPHP(data.form.projected_income.total)%>
+                                        <%=toProperPHP(data.form.projected_income.total).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -1107,10 +1107,10 @@
                                             onkeyup="computeExp()" value="<%=data.form.projected_income.expenses[i].quantity%>"
                                             min="0"></td>
                                     <td><input id="<%=pr%>" class="inputron no-margin" name="<%=pr%>" onkeyup="computeExp()"
-                                            type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price)%>"
+                                            type="number" value="<%=toProperPHP(data.form.projected_income.expenses[i].price).split(",").join("")%>"
                                             min="0" step="0.01" required></td>
                                     <td class="bg-gray" name="<%=am%>">Php
-                                        <%=toProperPHP(data.form.projected_income.expenses[i].amount)%>
+                                        <%=toProperPHP(data.form.projected_income.expenses[i].amount).split(",").join("")%>
                                     </td>
                                 </tr>
                                 <%}%>
@@ -1125,13 +1125,13 @@
                                         </div>
                                     </th>
                                     <th name="projIncomeTotal">Php
-                                        <%=toProperPHP(data.form.projected_income.total)%>
+                                        <%=toProperPHP(data.form.projected_income.total).split(",").join("")%>
                                     </th>
                                 </tr>
                             </tfoot>
                         </table>
                         <button type="button" class="row-button next" id="btnAddProjExp">Add Row</button>
-                        <%}%>
+                        
                         <br><br>
                         <%} else{%>
                         <input style="display:none;" value="0" id="income" name="income">
