@@ -1212,13 +1212,13 @@ module.exports.controller = function (app) {
         if (req.body.type.split("-")[0] == 'SLIFE') {
             isSlife = true;
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers;
+                req.session.type = req.body.typeOthers2;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
         } else {
             if (req.body.type.split("-")[1] == 'Others') {
-                req.session.type = req.body.typeOthers2;
+                req.session.type = req.body.typeOthers;
             } else {
                 req.session.type = req.body.type.split("-")[1];
             }
@@ -1378,7 +1378,7 @@ module.exports.controller = function (app) {
                 projRevData.push(rowdata);
             }
             req.session.projRevData = projRevData;
-            req.session.projIncomeTotal = totalRev - req.session.porjExpData;
+            req.session.projIncomeTotal = totalRev - totalExp;
         } else {
             req.session.projRevData = null;
             req.session.porjExpData = null;
