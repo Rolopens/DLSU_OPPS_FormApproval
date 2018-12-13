@@ -1138,31 +1138,37 @@ Row</button> -->
                     } else if ($('#phead_number' + i).val().toString().length != 11) {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Invalid contact number at row " +
+                            "<div id='error-message' style='text-align: center; class='header'>Invalid contact number length at row " +
                             (i + 1) + ".</div>");
+                        return false;
+                    } else if (!$('#phead_number' + i).val().toString().startsWith("09")) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>Contact number at row " +
+                            (i + 1) + " must start with '09'.</div>");
                         return false;
                     }
                 }
-                
-                if($("#no").is(':checked')) {
+
+                if ($("#no").is(':checked')) {
                     if ($("#venue").val().toLowerCase() == "n/a") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Venue cannot be N/A for non-online activity.</div>"
                         );
-                }
-                if ($("#enmp").val() == 0) {
-                    valid = false;
-                    $("#error-message").append(
-                        "<div id='error-message' style='text-align: center; class='header'>ENMP cannot be 0 for non-online activity.</div>"
-                    );
-                }
-                if ($("#enp").val() == 0) {
-                    valid = false;
-                    $("#error-message").append(
-                        "<div id='error-message' style='text-align: center; class='header'>ENP cannot be 0 for non-online activity.</div>"
-                    );
-                }
+                    }
+                    if ($("#enmp").val() == 0) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>ENMP cannot be 0 for non-online activity.</div>"
+                        );
+                    }
+                    if ($("#enp").val() == 0) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>ENP cannot be 0 for non-online activity.</div>"
+                        );
+                    }
                 }
 
 
