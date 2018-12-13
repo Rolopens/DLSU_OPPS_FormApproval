@@ -511,6 +511,24 @@ header {
 	clear: both;
 }
 
+.reject1 {
+	background-color: var(--theme-rejection) !important;
+    border: none;
+}
+
+.reject2 {
+	background-color: var(--theme-rejection-full) !important;
+    border: none;
+}
+
+.reject1 {
+	background-color: var(--theme-rejection) !important;
+}
+
+.reject2 {
+	background-color: var(--theme-rejection-full) !important;
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;

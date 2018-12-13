@@ -177,17 +177,17 @@ var preacts_app = new Vue({
         },
         filterOut(){
             var x = $("#options .active").text();
-            if (x == 'All'){
+            if (x.includes('All')){
                 this.allFilter()
-            }else if(x == 'Pending'){
-                this.pendingFilterFilter();
-            }else if(x == 'Approved'){
+            }else if(x.includes('Pending')){
+                this.pendingFilter();
+            }else if(x.includes('Approved')){
                 this.approvedFilter();
-            }else if(x == 'Rejected'){
+            }else if(x.includes('Rejected')){
                 this.rejectedFilter();
-            }else if(x == 'Unreviewed'){
+            }else if(x.includes('Unreviewed')){
                 this.unreviewedFilter();
-            }
+            } 
         },
         createNumbers(){
             listForms = [];
