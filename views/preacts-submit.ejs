@@ -45,14 +45,10 @@
                 <hr />
                 <ul>
                     <form action="">
-                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date
-                                    of Event<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date
-                                    of Event<br>(Newest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date
-                                    of Form Submission<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date
-                                    of Form Submission<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>
                         <!--
                         <li>
                             <label>
@@ -118,11 +114,11 @@
             <!-- <div class="row"> -->
             <nav id="acts-nav">
                 <ul id="options">
-                    <li value="all" class="active" v-on:click="allFilter">All</li>
-                    <li value="approved" v-on:click="approvedFilter()">Approved</li>
-                    <li value="pending" v-on:click="pendingFilter()">Pending</li>
-                    <li value="rejected" v-on:click="rejectedFilter()">Rejected</li>
-                    <li value="unreviewed" v-on:click="unreviewedFilter()">Unreviewed</li>
+                    <li value="pending" class="active" v-on:click="pendingFilter()">Pending ({{pending}})</li>
+                    <li value="all" v-on:click="allFilter">All ({{all}})</li>
+                    <li value="approved" v-on:click="approvedFilter()">Approved ({{approved}})</li>
+                    <li value="rejected" v-on:click="rejectedFilter()">Rejected ({{rejected}})</li>
+                    <li value="unreviewed" v-on:click="unreviewedFilter()">Unreviewed ({{unreviewed}}) <i style="color: red;" v-if="unreviewed>0" class="fas fa-circle fa-xs"></i></li>
                 </ul>
             </nav>
             <!-- </div> -->
