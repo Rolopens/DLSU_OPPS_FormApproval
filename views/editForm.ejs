@@ -608,7 +608,7 @@
                                                value="<%=data.form.breakdown_expenses.material[i].name%>" required></td>
                                     <td><input id="<%=qua%>" class="inputron no-margin" type="number" name="<%=qua%>"
                                                onkeyup="computeBOE()" min=0 value="<%=data.form.breakdown_expenses.material[i].quantity%>" required></td>
-                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>" onkeyup="computeBOE()" min=0 step=0.01 value="<%=toProperPHP(data.form.breakdown_expenses.material[i].unit_cost)%>" required></td>
+                                    <td><input id="<%=unit%>" class="inputron no-margin" type="number" name="<%=unit%>" onkeyup="computeBOE()" min=0 step=0.01 value="<%=data.form.breakdown_expenses.material[i].unit_cost%>" required></td>
                                     <td class="bg-gray" name="<%=sub%>">Php <%=toProperPHP(data.form.breakdown_expenses.material[i].total_cost)%></td>
                                 </tr>
                                 <%}%>
@@ -652,7 +652,7 @@
                                 <tr>
                                     <td>Participants Fee</td>
                                     <td>Php <input id="ParticipantsFee" class="inputron no-margin table_input" name="ParticipantsFee"
-                                                   type="number" value="<%=toProperPHP(data.form.source_funds.participants_fee)%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
+                                                   type="number" value="<%=data.form.source_funds.participants_fee%>" min="0" step="0.01" onkeyup="computeSOF()" required></td>
                                 </tr>
                                 <tr>
                                     <td>Others (i.e. Sponsorships)</td>
@@ -807,7 +807,7 @@
                                     <td><input id="<%=item%>" class="inputron no-margin" type="text" name="<%=item%>" value="<%=data.form.projected_income.revenue[i].item%>" required></td>
                                     <td><input id="<%=qty%>" class="inputron no-margin" type="number" name="<%=qty%>" onkeyup="computeRev()" value="<%=data.form.projected_income.revenue[i].quantity%>" min="0"></td>
                                     <td><input id="<%=price%>" class="inputron no-margin" name="<%=price%>" onkeyup="computeRev()"
-                                               type="number" value="<%=toProperPHP(data.form.projected_income.revenue[i].price)%>" min="0" step="0.01" required></td>
+                                               type="number" value="<%=data.form.projected_income.revenue[i].price%>" min="0" step="0.01" required></td>
                                     <td class="bg-gray" name="<%=amount%>">Php <%=toProperPHP(data.form.projected_income.revenue[i].amount)%></td>
                                 </tr>
                                 <%}%>

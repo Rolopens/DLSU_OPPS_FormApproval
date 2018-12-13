@@ -1310,7 +1310,11 @@ Row</button> -->
                         );
                     }
                     document.getElementById("expenses").setAttribute('value', 1);
-
+                } else {
+                    document.getElementById("expenses").setAttribute('value', 0);
+                }
+                
+                if($('#hasExpenses').is(":checked") && $('#hasIncome').is(":checked")) {
                     var projectedExp = 0;
                     var BOE_Total = 0;
 
@@ -1350,8 +1354,6 @@ Row</button> -->
                             "<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>"
                         );
                     }
-                } else {
-                    document.getElementById("expenses").setAttribute('value', 0);
                 }
 
                 if ($('#OperationalFund').val() == "") {
@@ -1451,47 +1453,6 @@ Row</button> -->
                             }
                         }
                         document.getElementById("income").setAttribute('value', 1);
-
-                        var projectedExp = 0;
-                        var BOE_Total = 0;
-
-                        var rowCountExp = $('#dynamicTable5 tr').length - 3;
-                        for (num = 0; num < rowCountExp; num++) {
-                            $("input[name=qu" + num + "]").each(function () {
-                                subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            $("input[name=pr" + num + "]").each(function () {
-                                subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            if (!isNaN(subtotal))
-                                projectedExp += subtotal;
-                        }
-
-                        var rowCount = $('#dynamicTable3 tr').length - 2;
-                        for (var num = 0; num < rowCount; num++) {
-                            $("input[name=quantity" + num + "]").each(function () {
-                                subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            $("input[name=unit" + num + "]").each(function () {
-                                subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
-                            });
-
-                            if (!isNaN(subtotal_BOE)) {
-                                BOE_Total += subtotal_BOE;
-                            }
-                        }
-
-                        if (projectedExp != BOE_Total) {
-                            valid = false;
-                            $("#error-message").append(
-                                "<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>"
-                            );
-                        }
-
-
                     } else {
                         document.getElementById("income").setAttribute('value', 0);
                     }
