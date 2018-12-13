@@ -1762,7 +1762,6 @@ Row</button> -->
 
                 $("th[name=totalSource]").text("Php " + sum_SOF.toFixed(2));
 
-                computeRB();
             }
 
             function computeOF() {
@@ -1782,12 +1781,13 @@ Row</button> -->
                     sum_OF = sum_OF + parseFloat(otherfund);
 
                 $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
+                computeRB();
             }
 
             function computeRB() {
 
-                var sourceVal = ($("th[name=totalDisbursement]").text()).substring(4)
-                var boeVal = ($("th[name=lessExp]").text()).substring(4);
+                var sourceVal = document.getElementsByName("totalDisbursement")[0].innerHTML.substring(4);
+                var boeVal = document.getElementsByName("lessExp")[0].innerHTML.substring(4);
 
                 var sum = parseFloat(sourceVal) - parseFloat(boeVal);
                 // console.log("SOF")
