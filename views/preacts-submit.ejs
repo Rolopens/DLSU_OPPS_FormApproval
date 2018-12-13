@@ -111,9 +111,9 @@
             <!-- <div class="row"> -->
             <nav id="acts-nav">
                         <ul id="options">
-                            <li value="all" class="active" v-on:click="allFilter">All</li>
+                            <li value="pending" class="active" v-on:click="pendingFilter()">Pending</li>
+                            <li value="all"  v-on:click="allFilter">All</li>
                             <li value="approved" v-on:click="approvedFilter()">Approved</li>
-                            <li value="pending" v-on:click="pendingFilter()">Pending</li>
                             <li value="rejected" v-on:click="rejectedFilter()">Rejected</li>
                             <li value="unreviewed" v-on:click="unreviewedFilter()">Unreviewed</li>
                         </ul>

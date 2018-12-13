@@ -35,7 +35,8 @@ var preacts_app = new Vue({
                 axios.get('/preacts/getAllForms/forms/' + this.whoami._id).then((rows) => {
                     console.log(rows);
                     this.forms = rows.data.forms;
-                    this.show = this.forms
+                    this.show = this.forms;
+                    this.filterOut();
                     return this.forms;
                 })
                 return this.whoami;
@@ -183,7 +184,7 @@ var preacts_app = new Vue({
                 })              
         },
         allFilter(){
-            this.show = this.forms
+            this.show = this.forms;
             this.quickview = null;
         },
         approvedFilter(){
@@ -193,7 +194,7 @@ var preacts_app = new Vue({
                     listForms.push(this.forms[form]);
                 }
             }
-            this.show = listForms
+            this.show = listForms;
             this.quickview = null;
         },
         pendingFilter(){
@@ -203,7 +204,7 @@ var preacts_app = new Vue({
                     listForms.push(this.forms[form]);
                 }
             }
-            this.show = listForms
+            this.show = listForms;
             this.quickview = null;
         },
         rejectedFilter(){
@@ -213,7 +214,7 @@ var preacts_app = new Vue({
                     listForms.push(this.forms[form]);
                 }
             }
-            this.show = listForms
+            this.show = listForms;
             this.quickview = null;
         },
         unreviewedFilter(){
@@ -223,7 +224,7 @@ var preacts_app = new Vue({
                     listForms.push(this.forms[form]);
                 }
             }
-            this.show = listForms
+            this.show = listForms;
             this.quickview = null;
         },
         filterOut(){
@@ -231,13 +232,13 @@ var preacts_app = new Vue({
             if (x == 'All'){
                 this.allFilter()
             }else if(x == 'Pending'){
-                this.pendingFilterFilter()
+                this.pendingFilterFilter();
             }else if(x == 'Approved'){
-                this.approvedFilter()
+                this.approvedFilter();
             }else if(x == 'Rejected'){
-                this.rejectedFilter()
+                this.rejectedFilter();
             }else if(x == 'Unreviewed'){
-                this.unreviewedFilter()
+                this.unreviewedFilter();
             }
         }
     }
