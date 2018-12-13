@@ -1190,8 +1190,9 @@ Row</button> -->
                     }
 
                 } else if (currentTab == 2) {
+                    
                     $("#error-message").empty();
-
+                    
                     if($('#hasExpenses').is(":checked")) {
                         for (var i = 0; i <= $("#dynamicTable3length").val(); i++) {
                             if ($('#material' + i).val() == "" || $('#quantity' + i).val() == "" || $('#unit' + i).val() == "") {
@@ -1247,6 +1248,43 @@ Row</button> -->
                             );
                         }
                         document.getElementById("expenses").setAttribute('value', 1);
+                        
+                        var projectedExp = 0;
+                        var BOE_Total = 0;
+
+                        var rowCountExp = $('#dynamicTable5 tr').length - 3;
+                        for (num = 0; num < rowCountExp; num++) {
+                            $("input[name=qu" + num + "]").each(function () {
+                                subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            $("input[name=pr" + num + "]").each(function () {
+                                subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            if (!isNaN(subtotal))
+                                projectedExp += subtotal;
+                        }
+
+                        var rowCount = $('#dynamicTable3 tr').length - 2;
+                        for (var num = 0; num < rowCount; num++) {
+                            $("input[name=quantity" + num + "]").each(function () {
+                                subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            $("input[name=unit" + num + "]").each(function () {
+                                subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            if (!isNaN(subtotal_BOE)) {
+                                BOE_Total += subtotal_BOE;
+                            }
+                        }
+
+                        if(projectedExp != BOE_Total) {
+                            valid = false;
+                            $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
+                        }
                     } else {
                         document.getElementById("expenses").setAttribute('value', 0);
                     }
@@ -1338,6 +1376,45 @@ Row</button> -->
                                 }
                             }
                             document.getElementById("income").setAttribute('value', 1);
+                            
+                            var projectedExp = 0;
+                            var BOE_Total = 0;
+
+                            var rowCountExp = $('#dynamicTable5 tr').length - 3;
+                            for (num = 0; num < rowCountExp; num++) {
+                                $("input[name=qu" + num + "]").each(function () {
+                                    subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                $("input[name=pr" + num + "]").each(function () {
+                                    subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                if (!isNaN(subtotal))
+                                    projectedExp += subtotal;
+                            }
+
+                            var rowCount = $('#dynamicTable3 tr').length - 2;
+                            for (var num = 0; num < rowCount; num++) {
+                                $("input[name=quantity" + num + "]").each(function () {
+                                    subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                $("input[name=unit" + num + "]").each(function () {
+                                    subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                if (!isNaN(subtotal_BOE)) {
+                                    BOE_Total += subtotal_BOE;
+                                }
+                            }
+
+                            if(projectedExp != BOE_Total) {
+                                valid = false;
+                                $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
+                            }
+    
+                                                           
                         } else {
                             document.getElementById("income").setAttribute('value', 0);
                         }
@@ -1697,6 +1774,7 @@ Row</button> -->
                 //     $("td[name=lessExp]").text("Php 0.00");
                 // } else {
                 // console.log("TOTAL BOE = " + totalBOE);
+                //BOE_Total = totalBOE;
                 $("th[name=boeTotal]").text("Php " + totalBOE.toFixed(2));
                 $("td[name=lessExp]").text("Php " + totalBOE.toFixed(2));
 
@@ -1984,6 +2062,7 @@ Row</button> -->
                         totalExp += subtotal;
                 }
 
+                //projectedExp = totalExp;
                 totalIncome = totalRev - totalExp;
                 if (isNaN(totalIncome))
                     $("th[name=projIncomeTotal]").text("Php 0.00");

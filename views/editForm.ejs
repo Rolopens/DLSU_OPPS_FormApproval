@@ -1190,6 +1190,26 @@
                             //                                }
                         }
                     }
+                    
+                    var newTime = convertTime($("#startTime0").val());
+                    if(newTime != $("#startTime").val()) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>Initial time must match with the start time of activity.</div>"
+                        );  
+                    }
+                    
+                    var length =  $("#dynamicTable2length").val();
+                    var end = $("#endTime"+length).val();
+                    
+                    alert("length: " + length + "END: " + end);
+                    newTime = convertTime(end);
+                    if(newTime != $("#endTime").val()) {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>End time must match with the end time of activity.</div>"
+                        );  
+                    }
 
                 } else if (currentTab == 2) {
                     $("#error-message").empty();
@@ -1247,6 +1267,43 @@
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>No negative value for the Other Funds of the Source of Funds.</div>"
                             );
+                        }
+                    
+                        var projectedExp = 0;
+                        var BOE_Total = 0;
+
+                        var rowCountExp = $('#dynamicTable5 tr').length - 3;
+                        for (num = 0; num < rowCountExp; num++) {
+                            $("input[name=qu" + num + "]").each(function () {
+                                subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            $("input[name=pr" + num + "]").each(function () {
+                                subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            if (!isNaN(subtotal))
+                                projectedExp += subtotal;
+                        }
+
+                        var rowCount = $('#dynamicTable3 tr').length - 2;
+                        for (var num = 0; num < rowCount; num++) {
+                            $("input[name=quantity" + num + "]").each(function () {
+                                subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            $("input[name=unit" + num + "]").each(function () {
+                                subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
+                            });
+
+                            if (!isNaN(subtotal_BOE)) {
+                                BOE_Total += subtotal_BOE;
+                            }
+                        }
+
+                        if(projectedExp != BOE_Total) {
+                            valid = false;
+                            $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
                         }
                     <%}%>
                 
@@ -1335,6 +1392,43 @@
                                     return false;
                                 }
                             }
+                        
+                            var projectedExp = 0;
+                            var BOE_Total = 0;
+
+                            var rowCountExp = $('#dynamicTable5 tr').length - 3;
+                            for (num = 0; num < rowCountExp; num++) {
+                                $("input[name=qu" + num + "]").each(function () {
+                                    subtotal = $("input[name=pr" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                $("input[name=pr" + num + "]").each(function () {
+                                    subtotal = $("input[name=qu" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                if (!isNaN(subtotal))
+                                    projectedExp += subtotal;
+                            }
+
+                            var rowCount = $('#dynamicTable3 tr').length - 2;
+                            for (var num = 0; num < rowCount; num++) {
+                                $("input[name=quantity" + num + "]").each(function () {
+                                    subtotal_BOE = $("input[name=unit" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                $("input[name=unit" + num + "]").each(function () {
+                                    subtotal_BOE = $("input[name=quantity" + num + "]").val() * parseFloat($(this).val());
+                                });
+
+                                if (!isNaN(subtotal_BOE)) {
+                                    BOE_Total += subtotal_BOE;
+                                }
+                            }
+
+                            if(projectedExp != BOE_Total) {
+                                valid = false;
+                                $("#error-message").append("<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>");
+                            }
                         <%}%>
 
                     }
@@ -1347,6 +1441,22 @@
                 return valid;
             }
 
+            function convertTime(time) {
+                var array = time.split(":");
+                var newTime;
+                
+                if(array[0] == "00")
+                    newTime = "12:" + array[1] + " AM";
+                else if(parseInt(array[0]) < 12)
+                    newTime = parseInt(array[0]) + ":" + array[1] + " AM";
+                else if(parseInt(array[0]) == 12)
+                    newTime = parseInt(array[0]) + ":" + array[1] + " PM";
+                else
+                    newTime = (parseInt(array[0]) - 12) + ":" + array[1] + " PM";
+                
+                return newTime;
+            }
+            
             function submitForm() {
                 document.getElementById("activityForm").submit();
             }
@@ -1742,7 +1852,6 @@
 
                 $("th[name=totalSource]").text("Php " + sum_SOF.toFixed(2));
 
-                computeRB();
             }
 
             function computeOF() {
@@ -1762,12 +1871,14 @@
                     sum_OF = sum_OF + parseFloat(otherfund);
 
                 $("td[name=totalDisbursement]").text("Php " + sum_OF.toFixed(2));
+                
+                computeRB();
             }
 
             function computeRB() {
 
-                var sourceVal = ($("th[name=totalSource]").text()).substring(4)
-                var boeVal = ($("th[name=boeTotal]").text()).substring(4);
+                var sourceVal = document.getElementsByName("totalDisbursement")[0].innerHTML.substring(4);
+                var boeVal = document.getElementsByName("lessExp")[0].innerHTML.substring(4);
 
                 var sum = parseFloat(sourceVal) - parseFloat(boeVal);
                 // console.log("SOF")
