@@ -1223,6 +1223,20 @@ Row</button> -->
                         //                                    $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>End time must be later than start time at row "+(i+1)+" in Comprehensive Program Design.</div>");
                         //                                    return false;
                         //                                }
+                        if (i > 0) {
+                            console.log($('#startTime' + i).val())
+
+                            if ($('#startTime' + i).val() != $('#endTime' + (i - 1)).val() || $('#startTime' + i).val() ==
+                                $('#endTime' + (i)).val()) {
+                                valid = false;
+
+
+                                $("#error-message").append(
+                                    "<div id='error-message' style='text-align: center; class='header'>Invalid time details of Comprehensive Program Design at row " +
+                                    (i + 1) + ".</div>");
+                                return false;
+                            }
+                        }
                     }
                 }
 
@@ -1242,6 +1256,19 @@ Row</button> -->
                     valid = false;
                     $("#error-message").append(
                         "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design must match with the end time of the activity.</div>"
+                    );
+                }
+                if (parseInt(end.split(":").join("")) < parseInt($("#endTime0").val().split(":").join("")) && i > 0) {
+                    valid = false;
+                    $("#error-message").append(
+                        "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design Row 1 exceeds the end time of the activity.</div>"
+                    );
+                }
+                if (parseInt($("#startTime0").val().split(":").join("")) > parseInt($("#endTime0").val().split(":").join(
+                        "")) && i > 0) {
+                    valid = false;
+                    $("#error-message").append(
+                        "<div id='error-message' style='text-align: center; class='header'>End time in Comprehensive Program Design Row 1 is earlier than the start time of the activity.</div>"
                     );
                 }
 
@@ -1336,20 +1363,7 @@ Row</button> -->
                         if (!isNaN(subtotal_BOE)) {
                             BOE_Total += subtotal_BOE;
                         }
-                        if (i > 0) {
-                            console.log($('#startTime' + i).val())
-
-                            if ($('#startTime' + i).val() != $('#endTime' + (i - 1)).val() || $('#startTime' + i).val() ==
-                                $('#endTime' + (i)).val()) {
-                                valid = false;
-
-
-                                $("#error-message").append(
-                                    "<div id='error-message' style='text-align: center; class='header'>Invalid time details of Comprehensive Program Design at row " +
-                                    (i + 1) + ".</div>");
-                                return false;
-                            }
-                        }
+                        
                     }
 
                     if (projectedExp != BOE_Total) {
