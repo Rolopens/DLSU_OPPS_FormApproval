@@ -413,7 +413,7 @@ Row</button> -->
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" value="no" name="online" checked="checked">
+                                    <input id="no" type="radio" value="no" name="online" checked="checked">
                                     <label>No</label>
                                 </div>
                             </div>
@@ -1142,6 +1142,27 @@ Row</button> -->
                             (i + 1) + ".</div>");
                         return false;
                     }
+                }
+                
+                if($("#no").is(':checked')) {
+                    if ($("#venue").val().toLowerCase() == "n/a") {
+                        valid = false;
+                        $("#error-message").append(
+                            "<div id='error-message' style='text-align: center; class='header'>Venue cannot be N/A for non-online activity.</div>"
+                        );
+                }
+                if ($("#enmp").val() == 0) {
+                    valid = false;
+                    $("#error-message").append(
+                        "<div id='error-message' style='text-align: center; class='header'>ENMP cannot be 0 for non-online activity.</div>"
+                    );
+                }
+                if ($("#enp").val() == 0) {
+                    valid = false;
+                    $("#error-message").append(
+                        "<div id='error-message' style='text-align: center; class='header'>ENP cannot be 0 for non-online activity.</div>"
+                    );
+                }
                 }
 
 
