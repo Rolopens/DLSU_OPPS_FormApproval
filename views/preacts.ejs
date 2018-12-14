@@ -36,7 +36,7 @@
 <body>
     <div id="preacts">
         <% include partials/nav_bar.ejs %>
-        <nav id="secondary-nav">
+        <nav id="secondary-nav" v-on:click="unselectActivity($event)">
             <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
             <br /><br />
             <div class="filter-wrapper">
@@ -57,8 +57,7 @@
             </div>
         </nav>
 
-        <header>
-
+        <header v-on:click="unselectActivity($event)">
             <div class="flex-between">
 
                 <span style="flex-grow: 1;">
@@ -80,7 +79,7 @@
             </nav>
         </header>
         <section id="main-bars">
-            <div id="main-content">
+            <div id="main-content" v-on:click="unselectActivity($event)">
                 <div class="content-header">
                     <div id="select-wrapper">
                         <div class="liveSearchArea">
