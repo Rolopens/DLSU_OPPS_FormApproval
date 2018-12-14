@@ -343,18 +343,38 @@ Row</button> -->
                         </div>
 
                         <br /><br />
+                        
+                        <div class="ui form">
+                            <div class="grouped fields">
+                                <h3 class="labelHead ui header"><label>Online Activity? <span class="red"> * </span></label></h3>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="yes" type="radio" value="yes" name="online">
+                                        <label>Yes</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="no" type="radio" value="no" name="online" checked="checked">
+                                        <label>No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        
                         <div class="ui grid">
                             <div class="row">
                                 <div class="nine wide column">
                                     <span class="labelHead"><label>Venue of the Activity</label> <i class="ui tooltip far fa-question-circle"
                                                                                                     data-content="If online activity, put N/A" data-position="bottom center"></i></span>
                                     <br />
-                                    <input id="venue" class="inputron" name="venue" type="text" required>
+                                    <input placeholder="ex. G201, Araneta" id="venue" class="inputron" name="venue" type="text" required>
                                 </div>
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENMP </label> <i class="ui tooltip far fa-question-circle"
-                                                                                    data-content="If N/A, put 0" data-position="bottom center"></i></span>
+                                                                                    data-content="Expected Number of Member Participants" data-position="bottom center"></i></span>
                                     <br />
                                     <input id="enmp" class="inputron" name="enmp" type="number" min="0" oninput="this.value=(parseInt(this.value)||0)"
                                            required>
@@ -362,7 +382,7 @@ Row</button> -->
 
                                 <div class="three wide column">
                                     <span class="labelHead"><label>ENP <i class="ui tooltip far fa-question-circle"
-                                                                          data-content="If N/A, put 0" data-position="bottom center"></i></label></span>
+                                                                          data-content="Expected Number of Participants" data-position="bottom center"></i></label></span>
                                     <br />
                                     <input id="enp" class="inputron" name="enp" type="number" min="0" oninput="this.value=(parseInt(this.value)||0)"
                                            required>
@@ -396,25 +416,6 @@ Row</button> -->
                                     <div class="ui radio checkbox">
                                         <input type="radio" value="University Wide" name="reach">
                                         <label>University Wide</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br />
-                        <div class="ui form">
-                            <div class="grouped fields">
-                                <h3 class="labelHead ui header"><label>Online Activity? <span class="red"> * </span></label></h3>
-                                <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input type="radio" value="yes" name="online">
-                                        <label>Yes</label>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input id="no" type="radio" value="no" name="online" checked="checked">
-                                        <label>No</label>
                                     </div>
                                 </div>
                             </div>
@@ -2315,7 +2316,31 @@ Row</button> -->
             }
 
             $(document).ready(function () {
-
+                
+                $('input[type=radio][name=online]').change(function() {
+                    if (this.value == 'yes') {
+                        $("#venue").val("N/A");
+                        $("#venue").prop("readonly", true);
+                        $("#enmp").val("0");
+                        $("#enmp").prop("readonly", true);
+                        $("#enp").val("0");
+                        $("#enp").prop("readonly", true);
+                        $("#venue").css("background-color", "rgba(0,0,0,0.05)");
+                        $("#enmp").css("background-color", "rgba(0,0,0,0.05)");
+                        $("#enp").css("background-color", "rgba(0,0,0,0.05)");
+                    } else if (this.value == 'no') {
+                        $("#venue").val("");
+                        $("#venue").prop("readonly", false);
+                        $("#enmp").val("");
+                        $("#enmp").prop("readonly", false);
+                        $("#enp").val("");
+                        $("#enp").prop("readonly", false);
+                        $("#venue").css("background-color", "rgba(0,0,0,0.0)");
+                        $("#enmp").css("background-color", "rgba(0,0,0,0.0)");
+                        $("#enp").css("background-color", "rgba(0,0,0,0.0)");
+                    }
+                });
+                
                 $("#toa").on('change', function () {
                     if ($(this).val() == 'cso') {
                         $('#activityType').replaceWith(

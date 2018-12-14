@@ -220,6 +220,12 @@ var preacts_app = new Vue({
             this.unreviewed = listForms.length;
             listForms = [];
             this.all = this.forms.length;
+        },
+        unselectActivity(event){
+            if(event.target.className != "itemRow") {
+                this.quickview = null;
+                $('.content-wrapper').removeClass('active');
+            }
         }
     }
 })

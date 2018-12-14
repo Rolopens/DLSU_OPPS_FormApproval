@@ -34,7 +34,7 @@
 <body>
     <div id="preacts">
         <% include partials/nav_bar.ejs %>
-        <nav id="secondary-nav">
+        <nav id="secondary-nav" v-on:click="unselectActivity($event)">
             <img src="assets/svg/logo_opps-logo-white.svg" id="system-logo" />
             <br /><br />
             <div class="filter-wrapper">
@@ -49,42 +49,12 @@
                         <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
                         <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
                         <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>
-                        <!--
-                        <li>
-                            <label>
-                            <input type="radio" />
-                            <span class="checkmark"><i class="fa fa-check"></i></span>
-                            <span>Date of Event (Ascending)</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                            <input type="radio" />
-                            <span class="checkmark"><i class="fa fa-check"></i></span>
-                            <span>Date of Event (Descending)</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                            <input type="radio" />
-                            <span class="checkmark"><i class="fa fa-check"></i></span>
-                            <span>Date of Form Submission (Ascending)</span>                            
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                            <input type="radio" />
-                            <span class="checkmark"><i class="fa fa-check"></i></span>
-                            <span>Date of Form Submission (Descending)</span>                            
-                            </label>
-                        </li>
--->
                     </form>
                 </ul>
             </div>
         </nav>
 
-        <header>
+        <header v-on:click="unselectActivity($event)">
             <!--
 				<div id="account" class="flex-end">
 					<span id="account-name">
@@ -124,7 +94,7 @@
             <!-- </div> -->
         </header>
         <section>
-            <div id="main-content">
+            <div id="main-content" v-on:click="unselectActivity($event)">
                 <div class="content-header">
                     <div id="select-wrapper">
                         <div class="liveSearchArea">
@@ -141,61 +111,61 @@
                         No forms found.
                     </div>
                     <div v-else v-for="form in show">
-                        <div v-if="form.status == 'Approved'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div v-if="form.status == 'Approved'" class="activity-icon positive"><i class="fa fa-check"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
+                        <div v-if="form.status == 'Approved'" class="content-wrapper itemRow" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start itemRow">
+                                <div v-if="form.status == 'Approved'" class="activity-icon positive itemRow"><i class="fa fa-check itemRow"></i></div>
+                                <div class="activity itemRow">
+                                    <h3 class="infoData itemRow" name="FormTitle">
                                         {{form.title}}
                                     </h3>
-                                    <p class="infoData" name="FormDetails">
+                                    <p class="infoData itemRow" name="FormDetails">
                                         {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            <div class="goto itemRow"><i class="fa fa-angle-right fa-2x itemRow"></i></div>
                         </div>
-                        <div v-else v-if="form.status == 'Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
+                        <div v-else v-if="form.status == 'Rejected'" class="content-wrapper itemRow" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start itemRow">
+                                <div class="activity-icon negative itemRow"><i class="fa fa-times itemRow"></i></div>
+                                <div class="activity itemRow">
+                                    <h3 class="infoData itemRow" name="FormTitle">
                                         {{form.title}}
                                     </h3>
-                                    <p class="infoData" name="FormDetails">
+                                    <p class="infoData itemRow" name="FormDetails">
                                         {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            <div class="goto itemRow"><i class="fa fa-angle-right fa-2x itemRow"></i></div>
                         </div>
-                        <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div class="activity-icon negative"><i class="fa fa-times"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
+                        <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper itemRow" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start itemRow">
+                                <div class="activity-icon full-negative itemRow"><i class="far fa-hand-paper itemRow"></i></div>
+                                <div class="activity itemRow">
+                                    <h3 class="infoData itemRow" name="FormTitle">
                                         {{form.title}}
                                     </h3>
-                                    <p class="infoData" name="FormDetails">
+                                    <p class="infoData itemRow" name="FormDetails">
                                         {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            <div class="goto itemRow"><i class="fa fa-angle-right fa-2x itemRow"></i></div>
                         </div>
-                        <div v-else v-if="form.status == 'Pending'" class="content-wrapper" v-on:click="quickviewForm(form._id)">
-                            <div class="activity-wrapper flex-start">
-                                <div class="activity-icon neutral"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
-                                <div class="activity">
-                                    <h3 class="infoData" name="FormTitle">
+                        <div v-else v-if="form.status == 'Pending'" class="content-wrapper itemRow" v-on:click="quickviewForm(form._id)">
+                            <div class="activity-wrapper flex-start itemRow">
+                                <div class="activity-icon neutral itemRow"><i class="fa fa-ellipsis-h itemRow" aria-hidden="true"></i></div>
+                                <div class="activity itemRow">
+                                    <h3 class="infoData itemRow" name="FormTitle">
                                         {{form.title}}
                                     </h3>
-                                    <p class="infoData" name="FormDetails">
+                                    <p class="infoData itemRow" name="FormDetails">
                                         {{form.startDate}} | {{form.org}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="goto"><i class="fa fa-angle-right fa-2x"></i></div>
+                            <div class="goto itemRow"><i class="fa fa-angle-right fa-2x itemRow"></i></div>
                         </div>
                     </div>
                 </div>

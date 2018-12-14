@@ -84,11 +84,13 @@ var preacts_app = new Vue({
         },
         rejectForm(_id, comment) {
             if ($('#comment').val() == ""){
-                Swal({
+                swal({
+                title: 'Oops',
+                text: 'Please place a comment if you will reject!',
                 type: 'error',
-                title: 'Oops...',
-                text: 'Please place a comment!',
-                timer: 2000
+                allowOutsideClick: false, 
+                }).then(()=>{
+                    $('#modalActivityReject').modal('show');
                 })
             } else {
                 axios.post("/preacts/commentreject/" + _id + "/" +comment)
@@ -110,11 +112,13 @@ var preacts_app = new Vue({
         },
         fullyRejectForm(_id, comment) {
             if ($('#comment').val() == ""){
-                Swal({
+                swal({
+                title: 'Oops',
+                text: 'Please place a comment if you will fully reject!',
                 type: 'error',
-                title: 'Oops...',
-                text: 'Please place a comment!',
-                timer: 2000
+                allowOutsideClick: false, 
+                }).then(()=>{
+                    $('#modalActivityReject').modal('show');
                 })
             } else {
                 axios.post("/preacts/commentfullReject/" + _id+ "/" +comment)
@@ -297,6 +301,12 @@ var preacts_app = new Vue({
             this.unreviewed = listForms.length;
             listForms = [];
             this.all = this.forms.length;
+        },
+        unselectActivity(event){
+            if(event.target.className != "itemRow") {
+                this.quickview = null;
+                $('.content-wrapper').removeClass('active');
+            }
         }
     }
 })
