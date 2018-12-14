@@ -515,6 +515,12 @@ header {
 	background-color: var(--theme-rejection);
 }
 
+#main-content .content-wrapper .activity-icon.full-negative {
+	color: var(--theme-button-color-value);
+	border: thin solid var(--theme-rejection-full);
+	background-color: var(--theme-rejection-full);
+}
+
 .positive:hover {
 	color: white;
 }
@@ -546,6 +552,7 @@ header {
 
 .reject1 {
 	background-color: var(--theme-rejection) !important;
+    color: white;
 	border: none;
 }
 
@@ -556,6 +563,10 @@ header {
 
 .reject1 {
 	background-color: var(--theme-rejection) !important;
+}
+
+.reject1:hover {
+    color: var(--theme-rejection-lighter-accent) !important;
 }
 
 .reject2 {
