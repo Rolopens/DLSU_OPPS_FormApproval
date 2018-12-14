@@ -1372,27 +1372,32 @@
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the value of Organizational Funds in Source of Funds.</div>"
                         );
-                    } else if ($('#OrganizationalFunds').val() < 0) {
+                    } 
+                    if ($('#OrganizationalFunds').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value of Organizational Funds in Source of Funds cannot be negative.</div>"
                         );
-                    } else if ($('#ParticipantsFee').val() == "") {
+                    } 
+                    if ($('#ParticipantsFee').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the value of Participants Fee in Source of Funds.</div>"
                         );
-                    } else if ($('#ParticipantsFee').val() < 0) {
+                    } 
+                    if ($('#ParticipantsFee').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value of Participants Fee in Source of Funds cannot be negative.</div>"
                         );
-                    } else if ($('#OtherFunds').val() == "") {
+                    } 
+                    if ($('#OtherFunds').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the value of Others in Source of Funds.</div>"
                         );
-                    } else if ($('#OtherFunds').val() < 0) {
+                    } 
+                    if ($('#OtherFunds').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value of Others in Source of Funds cannot be negative.</div>"
@@ -1421,6 +1426,9 @@
                         }
                     }
 
+                    if(<%=data.breakdown_expenses.total_expense%> != null){
+                       
+                    }
                     var projectedExp = 0;
                     var BOE_Total = 0;
 
@@ -1466,52 +1474,61 @@
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the Accumulated Operational Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#OperationalFund').val() < 0) {
+                    } 
+                    if ($('#OperationalFund').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value for the Accumulated Operational Funds of the Organizational Funds cannot be negative.</div>"
                         );
-                    } else if ($('#DepositoryFund').val() == "") {
+                    } 
+                    if ($('#DepositoryFund').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the Accumulated Depository Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#DepositoryFund').val() < 0) {
+                    }
+                    if ($('#DepositoryFund').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value for the Accumulated Depository Funds of the Organizational Funds cannot be negative.</div>"
                         );
-                    } else if ($('#OtherFund').val() == "") {
+                    } 
+                    if ($('#OtherFund').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the Other Sources of Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#OtherFund').val() < 0) {
+                    } 
+                    if ($('#OtherFund').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value for the Other Sources of Funds of the Organizational Funds cannot be negative.</div>"
                         );
-                    } else if ($('#namePR1').val() == "") {
+                    } 
+                    if ($('#namePR1').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the name of the person responsible.</div>"
                         );
-                    } else if ($('#positionPR').val() == "") {
+                    } 
+                    if ($('#positionPR').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the position of the person responsible.</div>"
                         );
-                    } else if ($('#namePR2').val() == "") {
+                    } 
+                    if ($('#namePR2').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the name of the second person responsible.</div>"
                         );
-                    } else if ($('#positionPR2').val() == "") {
+                    } 
+                    if ($('#positionPR2').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the position of the second person responsible.</div>"
                         );
-                    } else {
+                    }
                         <%if(data.form.projected_income.total != null) {%>
                         for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
                             if ($('#item' + i).val() == "" || $('#qty' + i).val() == "" || $('#price' + i).val() == "") {
@@ -1533,7 +1550,7 @@
                         }
                         <%}%>
 
-                    }
+                    
                 }
 
                 // if (valid) {

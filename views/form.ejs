@@ -1190,37 +1190,37 @@ Row</button> -->
                     if ($("#context1").val() == "") {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out Paragraph 1 in Part II.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>Please fill out Paragraph 1 in Part II.</div>"
                         );
                     }
                     if ($("#context2").val() == "") {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out Paragraph 2 in Part II.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>Please fill out Paragraph 2 in Part II.</div>"
                         );
                     }
                     if ($("#context3").val() == "") {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out Paragraph 3 in Part II.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>Please fill out Paragraph 3 in Part II.</div>"
                         );
                     }
                     if ($("#objective1").val() == "") {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out Objective 1.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>Please fill out Objective 1.</div>"
                         );
                     }
                     if ($("#objective2").val() == "") {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out Objective 2.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>Please fill out Objective 2.</div>"
                         );
                     }
                     if ($("#objective3").val() == "") {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>Please fill out Objective 3.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>Please fill out Objective 3.</div>"
                         );
                     }
 
@@ -1229,7 +1229,7 @@ Row</button> -->
                             "" || $('#description' + i).val() == "" || $('#person' + i).val() == "") {
                             valid = false;
                             $("#error-message").append(
-                                "<div id='error-message' style='text-align: center; class='header'Please fill up (row "+(i+1)+") in Comprehensive Program Design.</div>");
+                                "<div id='error-message' style='text-align: center;' class='header'>Please fill up (row "+(i+1)+") in Comprehensive Program Design.</div>");
                             return false;
                             //                            } else {
                             //                                var startTime = Date.parse($('#startTime'+i).val());
@@ -1251,7 +1251,7 @@ Row</button> -->
 
 
                                     $("#error-message").append(
-                                        "<div id='error-message' style='text-align: center; class='header'>Your program schedule is not consistent. Please specify a valid time at (row "+(i+1)+") in Comprehensive Progam Design.</div>");
+                                        "<div id='error-message' style='text-align: center;' class='header'>Your program schedule is not consistent. Please specify a valid time at (row "+(i+1)+") in Comprehensive Progam Design.</div>");
                                     return false;
                                 }
                             }
@@ -1261,7 +1261,7 @@ Row</button> -->
                     if (newTime != $("#startTime").val()) {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>The start time in Comprehensive Program Design must match the start time of the activity.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>The start time in Comprehensive Program Design must match the start time of the activity.</div>"
                         );
                     }
 
@@ -1272,13 +1272,13 @@ Row</button> -->
                     if (newTime != $("#endTime").val()) {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>The end time in Comprehensive Program Design must match the end time of the activity.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>The end time in Comprehensive Program Design must match the end time of the activity.</div>"
                         );
                     }
                     if (parseInt(end.split(":").join("")) < parseInt($("#endTime0").val().split(":").join("")) && i > 0) {
                         valid = false;
                         $("#error-message").append(
-                            "<div id='error-message' style='text-align: center; class='header'>The end time in Comprehensive Program Design cannot exceed the end time of the activity.</div>"
+                            "<div id='error-message' style='text-align: center;' class='header'>The end time in Comprehensive Program Design cannot exceed the end time of the activity.</div>"
                         );
                     }
                     if (parseInt($("#startTime0").val().split(":").join("")) > parseInt($("#endTime0").val().split(":").join(
@@ -1300,17 +1300,17 @@ Row</button> -->
                                 valid = false;
                                 $("#error-message").append(
                                     "<div id='error-message' style='text-align: center; class='header'>Please fill up (row "+(i+1)+") in Breakdown of Expenses.</div>");
-                                return false;
+//                                return false;
                             } else if ($('#quantity' + i).val() < 0) {
                                 valid = false;
                                 $("#error-message").append(
                                     "<div id='error-message' style='text-align: center; class='header'>The value of quantity at (row "+(i+1)+") cannot be negative.</div>");
-                                return false;
+//                                return false;
                             } else if ($('#unit' + i).val() < 0) {
                                 valid = false;
                                 $("#error-message").append(
                                     "<div id='error-message' style='text-align: center; class='header'>The value of unit cost at (row "+(i+1)+") cannot be negative.</div>");
-                                return false;
+//                                return false;
                             }
                         }
 
@@ -1319,27 +1319,32 @@ Row</button> -->
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>Please specify the value of Organizational Funds in Source of Funds.</div>"
                             );
-                        } else if ($('#OrganizationalFunds').val() < 0) {
+                        } 
+                        if ($('#OrganizationalFunds').val() < 0) {
                             valid = false;
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>The value of Organizational Funds in Source of Funds cannot be negative.</div>"
                             );
-                        } else if ($('#ParticipantsFee').val() == "") {
+                        }
+                        if ($('#ParticipantsFee').val() == "") {
                             valid = false;
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>Please specify the value of Participants Fee in Source of Funds.</div>"
                             );
-                        } else if ($('#ParticipantsFee').val() < 0) {
+                        }
+                        if ($('#ParticipantsFee').val() < 0) {
                             valid = false;
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>The value of Participants Fee in Source of Funds cannot be negative.</div>"
                             );
-                        } else if ($('#OtherFunds').val() == "") {
+                        } 
+                        if ($('#OtherFunds').val() == "") {
                             valid = false;
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>Please specify the value of Others in Source of Funds.</div>"
                             );
-                        } else if ($('#OtherFunds').val() < 0) {
+                        } 
+                        if ($('#OtherFunds').val() < 0) {
                             valid = false;
                             $("#error-message").append(
                                 "<div id='error-message' style='text-align: center; class='header'>The value of Others in Source of Funds cannot be negative.</div>"
@@ -1398,52 +1403,61 @@ Row</button> -->
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the Accumulated Operational Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#OperationalFund').val() < 0) {
+                    } 
+                    if ($('#OperationalFund').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value for the Accumulated Operational Funds of the Organizational Funds cannot be negative.</div>"
                         );
-                    } else if ($('#DepositoryFund').val() == "") {
+                    } 
+                    if ($('#DepositoryFund').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the Accumulated Depository Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#DepositoryFund').val() < 0) {
+                    } 
+                    if ($('#DepositoryFund').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value for the Accumulated Depository Funds of the Organizational Funds cannot be negative.</div>"
                         );
-                    } else if ($('#OtherFund').val() == "") {
+                    } 
+                    if ($('#OtherFund').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the Other Sources of Funds of the Organizational Funds.</div>"
                         );
-                    } else if ($('#OtherFund').val() < 0) {
+                    } 
+                    if ($('#OtherFund').val() < 0) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>The value for the Other Sources of Funds of the Organizational Funds cannot be negative.</div>"
                         );
-                    } else if ($('#namePR').val() == "") {
+                    } 
+                    if ($('#namePR1').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the name of the first person responsible.</div>"
                         );
-                    } else if ($('#positionPR').val() == "") {
+                    } 
+                    if ($('#positionPR').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the position of the first person responsible.</div>"
                         );
-                    } else if ($('#namePR2').val() == "") {
+                    } 
+                    if ($('#namePR2').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the name of the second person responsible.</div>"
                         );
-                    } else if ($('#positionPR2').val() == "") {
+                    } 
+                    if ($('#positionPR2').val() == "") {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Please specify the position of the second person responsible.</div>"
                         );
-                    } else {
+                    } 
 
                         if ($('#hasIncome').is(":checked")) {
                             for (var i = 0; i <= $("#dynamicTable4length").val(); i++) {
@@ -1470,7 +1484,7 @@ Row</button> -->
                         } else {
                             document.getElementById("income").setAttribute('value', 0);
                         }
-                    }
+                    
                 }
 
                 // if (valid) {
