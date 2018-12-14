@@ -666,7 +666,6 @@
                     <input style="display:none;" value="0" id="expenses" name="expenses">
                     <span>The activity will not incur any expenses.</span>
                     <%}%>
-                    <!-- <button type="button" class="row-button previous" id="btnDeleteBOE">Delete Row</button> -->
                     <h3 class="labelHead ui header"><label>VI. Source of Funds </label> <i class="ui tooltip far fa-question-circle"
                             data-content="If applicable, list the breakdown on where you will get the funding for the activity. IT MUST BE EQUAL TO PART V. Put 0 on the cells which will not be used."
                             data-position="bottom center"></i></h3>
@@ -723,8 +722,6 @@
                     <table class="ui compact celled definition fixed table basic unstackable">
                         <thead class="full-width">
                             <tr style="text-align: left;">
-                                <!-- <th style="width: 40px;"></th> -->
-                                <!-- <th class="item" style="width: 50%">Accumulated Operational Funds</th> -->
                                 <th class="item eleven wide" style="border-right: none;">Accumulated Operational Funds</th>
                                 <th class="item five wide" style="border-left: none;"></th>
                             </tr>
@@ -761,9 +758,6 @@
                                         data-position="right center" data-variation="tiny"></i></td>
                             </tr>
                             <tr>
-                                <!-- <td class="collapsing">
-
-</td> -->
                                 <td>
                                     <div class="right">
                                         Participants Fee/Donation/Sponsorships
@@ -774,9 +768,6 @@
                                         min="0" step="0.01" onkeyup="computeOF()" required></td>
                             </tr>
                             <tr>
-                                <!-- <td class="collapsing">
-
-</td> -->
                                 <td class="bg-gray bold">
                                     <div class="right italics">
                                         Total Cash For Disbursement
@@ -787,9 +778,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <td class="collapsing">
-
-</td> -->
                                 <td>
                                     <div class="right bold">
                                         Less: Total Projected Expenses
@@ -800,9 +788,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <td class="collapsing">
-
-</td> -->
                                 <td class="bg-gray">
                                     <div class="right bold">
                                         REMAINING BALANCE
@@ -829,9 +814,7 @@
                             <tr>
                                 <th style="width:40px"></th>
                                 <th colspan="4">Projected Revenue</th>
-                                <!-- <th class="pj-border"></th>
-<th class="pj-border"></th>
-<th class="pj-border"></th> -->
+                                
                             </tr>
                             <tr style="text-align: center;">
                                 <th style="width: 40px;"></th>
@@ -1009,9 +992,7 @@
                             <div class="ui items">
                                 <div class="item">
                                     <div class="content" style="margin-top: 1.3em; margin-left: 0.5em;">
-                                        <!-- <span class="step"></span>
-<span class="step"></span>
-<span class="step"></span> -->
+                                       
                                         <span id="bottomPagination" style="color: rgba(0, 0, 0, .55)">Page 1 of 3</span>
                                     </div>
                                 </div>
@@ -1027,22 +1008,6 @@
             </form>
         </div>
     </div>
-
-    <!-- <div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h3 class="modal-title">Submission successful!</h3>
-</div>
-<div class="modal-body">
-<p>The form has successfully been sent for checking.</p>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn" onclick="submitForm()">OK</button>
-</div>
-</div>
-</div>
-</div> -->
 
     <script>
         $('.tooltip').popup({
@@ -2098,9 +2063,7 @@
                                 2);
                     }
                     if (i > 1 && j == 4) {
-                        document.getElementById("dynamicTable4").rows[i].cells[j].setAttribute('name', 'amount' + (
-                            i -
-                            2));
+                        document.getElementById("dynamicTable4").rows[i].cells[j].setAttribute('name', 'amount' + (i - 2));
                     }
                 }
             }
@@ -2307,60 +2270,6 @@
             // console.log('DELETE ProjExp()');
 
             computeExp();
-        }
-
-        function toggleExpenses(element) {
-            if (element.checked) {
-                //show tables for parts V and VI
-                document.getElementById("dynamicTable3").removeAttribute("style");
-                document.getElementById("sofTable").removeAttribute("style");
-
-                //show add row button
-                document.getElementById("btnAddBOE").removeAttribute("style");
-
-                //hide text
-                document.getElementsByClassName("hiddenText")[0].setAttribute("style", "display: none");
-                document.getElementsByClassName("hiddenText")[1].setAttribute("style", "display: none");
-            } else {
-                //hide tables for parts V and VI
-                document.getElementById("dynamicTable3").setAttribute("style", "display: none");
-                document.getElementById("sofTable").setAttribute("style", "display: none");
-
-                //hide add row button
-                document.getElementById("btnAddBOE").setAttribute("style", "display: none");
-
-                //show text
-                document.getElementsByClassName("hiddenText")[0].removeAttribute("style");
-                document.getElementsByClassName("hiddenText")[1].removeAttribute("style");
-            }
-        }
-
-        function toggleIncome(element) {
-            if (element.checked) {
-                //show table for part VIII
-                document.getElementById("dynamicTable4").removeAttribute("style");
-                document.getElementById("dynamicTable5").removeAttribute("style");
-
-                //show add row buttons
-                document.getElementById("btnAddProjRev").removeAttribute("style");
-                document.getElementById("btnAddProjExp").removeAttribute("style");
-
-                //hide text
-                document.getElementsByClassName("hiddenText")[2].setAttribute("style", "display: none");
-
-
-            } else {
-                //hide table for part VIII
-                document.getElementById("dynamicTable4").setAttribute("style", "display: none");
-                document.getElementById("dynamicTable5").setAttribute("style", "display: none");
-
-                //hide add row buttons
-                document.getElementById("btnAddProjRev").setAttribute("style", "display: none");
-                document.getElementById("btnAddProjExp").setAttribute("style", "display: none");
-
-                //show text
-                document.getElementsByClassName("hiddenText")[2].removeAttribute("style");
-            }
         }
 
         $(document).ready(function () {
