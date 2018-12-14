@@ -241,11 +241,13 @@
                     <br />
                     <div class="ui large form">
                         <h3 class="labelHead ui header"><label>Type of the Activity <span class="red"> * </span></label></h3>
-
-                        <select id="toa" class="ui dropdown">
+                        <div style="display: none;">
+                        <select style="display:none;" id="toa" class="ui dropdown">
                             <option value="cso">Through CSO/DAAM</option>
                             <option value="slife">Through SLIFE</option>
                         </select>
+                        </div>
+                        
                         <div class="grouped fields">
                             <table class="ui two column very basic table borderless">
                                 <tr>
@@ -2419,7 +2421,7 @@
                 document.getElementById("hasIncome").addEventListener("change", function () {
                     toggleIncome(this);
                 });
-            } 
+            }}) 
 //            else {
 //                console.log("IF 3")
 //                            console.log("Part 1")
