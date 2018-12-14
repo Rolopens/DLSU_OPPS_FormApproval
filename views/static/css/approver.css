@@ -552,7 +552,12 @@ header {
 
 .reject1 {
 	background-color: var(--theme-rejection) !important;
+    color: white;
 	border: none;
+}
+
+.reject1:hover {
+    color: var(--theme-rejection-lighter-accent) !important;
 }
 
 .reject2 {
