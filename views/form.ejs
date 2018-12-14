@@ -1229,7 +1229,9 @@ Row</button> -->
                             //                                    $("#error-message").replaceWith("<div id='error-message' style='text-align: center; class='header'>End time must be later than start time at row "+(i+1)+" in Comprehensive Program Design.</div>");
                             //                                    return false;
                             //                                }
-                            if (i > 0) {
+                            
+                        }
+                        if (i > 0) {
                                 console.log($('#startTime' + i).val())
 
                                 if ($('#startTime' + i).val() != $('#endTime' + (i - 1)).val() || $('#startTime' + i).val() ==
@@ -1243,7 +1245,6 @@ Row</button> -->
                                     return false;
                                 }
                             }
-                        }
                     }
 
                     var newTime = convertTime($("#startTime0").val());
