@@ -47,10 +47,14 @@
                 <hr />
                 <ul>
                     <form action="">
-                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date
+                                    of Event<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date
+                                    of Event<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date
+                                    of Form Submission<br>(Oldest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date
+                                    of Form Submission<br>(Newest First)</span></label></li>
                         <!--                            <span class="checkmark"><i class="fa fa-check"></i></span>-->
                     </form>
                 </ul>
@@ -171,7 +175,7 @@
                                 </div>
                                 <div class="modal-body">
                                     You are about to <b>reject</b> the activity <b>{{quickview.title}}</b>. Please
-                                    state your reason.<br><br>
+                                    state your reasons:<br><br>
                                     <textarea name="comments" id='comment' required></textarea>
                                 </div>
                                 <div class="modal-footer">

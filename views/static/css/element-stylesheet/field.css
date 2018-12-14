@@ -98,6 +98,22 @@ input.full-radius{
     border-radius: 200px;
 }
 
+textarea {
+    /* margin: 0 !important; */
+    -webkit-appearance: none !important;
+    padding: .78571429em 0.3em !important;
+    background: #FFF !important;
+    border: 1px solid rgba(34, 36, 38, .15) !important;
+    color: rgba(0, 0, 0, .87) !important;
+    border-radius: .28571429rem !important;
+    -webkit-transition: color .1s ease, border-color .1s ease !important;
+    transition: color .1s ease, border-color .1s ease !important;
+    font-size: 1em !important;
+    line-height: 1.2857 !important;
+    resize: none !important;
+    font-size: 0.9em;
+    font-family: 'Lato', sans-serif;
+}
 
 /* Pseudoclasses */
 input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
