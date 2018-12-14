@@ -383,7 +383,25 @@
                             </div> <!-- END ROW -->
                         </div>
 
-                        <br /><br />
+                        <div class="ui form">
+                            <div class="grouped fields">
+                                <h3 class="labelHead ui header"><label>Online Activity? <span class="red"> * </span></label></h3>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="Online_true" type="radio" value="yes" name="online" checked="checked">
+                                        <label>Yes</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="Online_false" type="radio" value="no" name="online">
+                                        <label>No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br />
                         <div class="ui grid">
                             <div class="row">
                                 <div class="nine wide column">
@@ -438,25 +456,6 @@
                                     <div class="ui radio checkbox">
                                         <input id="University_Wide" type="radio" value="University Wide" name="reach">
                                         <label>University Wide</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br />
-                        <div class="ui form">
-                            <div class="grouped fields">
-                                <h3 class="labelHead ui header"><label>Online Activity? <span class="red"> * </span></label></h3>
-                                <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input id="Online_true" type="radio" value="yes" name="online" checked="checked">
-                                        <label>Yes</label>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="ui radio checkbox">
-                                        <input id="Online_false" type="radio" value="no" name="online">
-                                        <label>No</label>
                                     </div>
                                 </div>
                             </div>
@@ -1426,9 +1425,6 @@
                         }
                     }
 
-                    if(<%=data.breakdown_expenses.total_expense%> != null){
-                       
-                    }
                     var projectedExp = 0;
                     var BOE_Total = 0;
 
@@ -2324,6 +2320,31 @@
             }
 
             $(document).ready(function () {
+                
+                $('input[type=radio][name=online]').change(function() {
+                    if (this.value == 'yes') {
+                        $("#venue").val("N/A");
+                        $("#venue").prop("readonly", true);
+                        $("#enmp").val("0");
+                        $("#enmp").prop("readonly", true);
+                        $("#enp").val("0");
+                        $("#enp").prop("readonly", true);
+                        $("#venue").css("background-color", "rgba(0,0,0,0.05)");
+                        $("#enmp").css("background-color", "rgba(0,0,0,0.05)");
+                        $("#enp").css("background-color", "rgba(0,0,0,0.05)");
+                    } else if (this.value == 'no') {
+                        $("#venue").val("");
+                        $("#venue").prop("readonly", false);
+                        $("#enmp").val("");
+                        $("#enmp").prop("readonly", false);
+                        $("#enp").val("");
+                        $("#enp").prop("readonly", false);
+                        $("#venue").css("background-color", "rgba(0,0,0,0.0)");
+                        $("#enmp").css("background-color", "rgba(0,0,0,0.0)");
+                        $("#enp").css("background-color", "rgba(0,0,0,0.0)");
+                    }
+                });
+                
                 //nature
                 var nature = "";
                 var array = "<%=data.form.nature%>".split(" ");
