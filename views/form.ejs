@@ -1006,6 +1006,8 @@ Row</button> -->
 
             function nextPrev(n) {
                 // This function will figure out which tab to display
+                document.getElementById("nextBtn").setAttribute('data-toggle', '');
+                document.getElementById("nextBtn").setAttribute('data-target', '');
                 var x = document.getElementsByClassName("tab");
                 // Exit the function if any field in the current tab is invalid:
 
@@ -1041,8 +1043,7 @@ Row</button> -->
                     return false;
                 }
                 // Otherwise, display the correct tab:
-                document.getElementById("nextBtn").setAttribute('data-toggle', '');
-                document.getElementById("nextBtn").setAttribute('data-target', '');
+                
                 showTab(currentTab);
             }
 

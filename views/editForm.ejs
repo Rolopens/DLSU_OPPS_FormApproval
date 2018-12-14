@@ -1060,6 +1060,8 @@
 
         function nextPrev(n) {
             // This function will figure out which tab to display
+            document.getElementById("nextBtn").setAttribute('data-toggle', '');
+            document.getElementById("nextBtn").setAttribute('data-target', '');
             var x = document.getElementsByClassName("tab");
             // Exit the function if any field in the current tab is invalid:
             $('#error').addClass('shake').one(
@@ -1093,8 +1095,7 @@
                 return false;
             }
             // Otherwise, display the correct tab:
-            document.getElementById("nextBtn").setAttribute('data-toggle', '');
-            document.getElementById("nextBtn").setAttribute('data-target', '');
+            
             showTab(currentTab);
         }
 
@@ -2383,35 +2384,73 @@
                 }
             });
 
-            document.getElementById("btnAddCPD").addEventListener("click", function () {
-                addCPD();
-            });
-
-            document.getElementById("btnAddPhead").addEventListener("click", function () {
-                addPhead();
-            });
-
-            document.getElementById("btnAddBOE").addEventListener("click", function () {
-                addBOE();
-            });
-
-            document.getElementById("btnAddProjRev").addEventListener("click", function () {
-                addProjRev();
-            });
-
-            document.getElementById("btnAddProjExp").addEventListener("click", function () {
-                addProjExp();
-            });
-
-            document.getElementById("hasExpenses").addEventListener("change", function () {
-                toggleExpenses(this);
-            });
-
-            document.getElementById("hasIncome").addEventListener("change", function () {
-                toggleIncome(this);
-            });
-
-        });
+            if (document.getElementById("btnAddProjRev") == null){
+                console.log("IF 1")
+                document.getElementById("btnAddCPD").addEventListener("click", function () {
+                    addCPD();
+                });
+                document.getElementById("btnAddPhead").addEventListener("click", function () {
+                    addPhead();
+                });
+                document.getElementById("btnAddBOE").addEventListener("click", function () {
+                    addBOE();
+                });   
+            } else {
+                console.log("IF 2")
+                document.getElementById("btnAddCPD").addEventListener("click", function () {
+                    addCPD();
+                });
+                document.getElementById("btnAddPhead").addEventListener("click", function () {
+                    addPhead();
+                });  
+                document.getElementById("btnAddProjRev").addEventListener("click", function () {
+                    addProjRev();
+                });
+                
+                document.getElementById("btnAddBOE").addEventListener("click", function () {
+                    addBOE();
+                });
+                document.getElementById("btnAddProjExp").addEventListener("click", function () {
+                    addProjExp();
+                });
+                document.getElementById("hasExpenses").addEventListener("change", function () {
+                    toggleExpenses(this);
+                });
+                document.getElementById("hasIncome").addEventListener("change", function () {
+                    toggleIncome(this);
+                });
+            } 
+//            else {
+//                console.log("IF 3")
+//                            console.log("Part 1")
+//            document.getElementById("btnAddCPD").addEventListener("click", function () {
+//                addCPD();
+//            });
+//console.log("Part 2")
+//            document.getElementById("btnAddPhead").addEventListener("click", function () {
+//                addPhead();
+//            });
+//console.log("Part 3")
+//            document.getElementById("btnAddBOE").addEventListener("click", function () {
+//                addBOE();
+//            });
+//console.log("Part 4")
+//            document.getElementById("btnAddProjRev").addEventListener("click", function () {
+//                addProjRev();
+//            });
+//console.log("Part 5")
+//            document.getElementById("btnAddProjExp").addEventListener("click", function () {
+//                addProjExp();
+//            });
+//console.log("Part 6")
+//            document.getElementById("hasExpenses").addEventListener("change", function () {
+//                toggleExpenses(this);
+//            });
+//console.log("Part 7")
+//            document.getElementById("hasIncome").addEventListener("change", function () {
+//                toggleIncome(this);
+//            });
+//            }
     </script>
 </body>
 
