@@ -48,7 +48,7 @@
                 <ul>
                     <form action="">
                         <li><label><input type="radio" name="sortOption" id="eventDateAsc" v-on:click="sortEventDateAsc()"><span>Date of Event<br>(Oldest First)</span></label></li>
-                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date= of Event<br>(Newest First)</span></label></li>
+                        <li><label><input type="radio" name="sortOption" id="eventDateDesc" v-on:click="sortEventDateDesc();"><span>Date of Event<br>(Newest First)</span></label></li>
                         <li><label><input type="radio" name="sortOption" id="formDateAsc" v-on:click="sortFormDateAsc();"><span>Date of Form Submission<br>(Oldest First)</span></label></li>
                         <li><label><input type="radio" name="sortOption" id="formDateDesc" v-on:click="sortFormDateDesc();"><span>Date of Form Submission<br>(Newest First)</span></label></li>
                         <!--                            <span class="checkmark"><i class="fa fa-check"></i></span>-->
@@ -112,7 +112,7 @@
                         </div>
                         <div v-else v-if="form.status == 'Rejected'" class="content-wrapper itemRow" v-on:click="quickviewForm(form._id)">
                             <div class="activity-wrapper flex-start itemRow">
-                                <div class="activity-icon negative itemRow"><i class="fa fa-times itemRow"></i></div>
+                                <div class="activity-icon negative itemRow"><i class="fas fa-pencil-alt itemRow"></i></div>
                                 <div class="activity itemRow">
                                     <h3 class="infoData itemRow" name="FormTitle">
                                         {{form.title}}
@@ -126,7 +126,7 @@
                         </div>
                         <div v-else v-if="form.status == 'Fully Rejected'" class="content-wrapper itemRow" v-on:click="quickviewForm(form._id)">
                             <div class="activity-wrapper flex-start itemRow">
-                                <div class="activity-icon full-negative itemRow"><i class="fa fa-hand-paper itemRow"></i></div>
+                                <div class="activity-icon full-negative itemRow"><i class="fa fa-times itemRow"></i></div>
                                 <div class="activity itemRow">
                                     <h3 class="infoData itemRow" name="FormTitle">
                                         {{form.title}}
