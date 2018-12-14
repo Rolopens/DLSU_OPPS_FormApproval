@@ -53,9 +53,12 @@
 
                     <!-- Page 1-->
                     <div class="tab">
+                        
                         <h3 class="labelHead"><label>Organization/Unit</label></h3>
                         <label><%=org.name%></label>
                         <br />
+                        
+                        <h3 class="labelHead"><label>I. Activity Details</label></h3>
 
                         <h3 class="labelHead ui header"><label>Project Head/s</label></h3>
                         <table id="pheads" class="ui compact celled definition fixed table unstackable">
@@ -140,7 +143,7 @@
 
                     <!-- Page 2-->
                     <div class="tab">
-                        <h3 class="labelHead ui header">Brief Context /
+                        <h3 class="labelHead ui header">II. Brief Context /
                             Perspective of the Activity</h3>
 
                         <div id="context" class=box>
@@ -150,7 +153,7 @@
                         </div>
 
                         <br />
-                        <h3 class="labelHead ui header"><label>Objectives of the Activity</label></h3>
+                        <h3 class="labelHead ui header"><label>III. Objectives of the Activity</label></h3>
                         <div id="objectives" class="box">
                             <div class="field">
                                 <label>1. <%=data.objectives[0]%></label>
@@ -166,7 +169,7 @@
                         </div>
                         <br />
 
-                        <h3 class="labelHead ui header"><label>Comprehensive Program Design</label></h3>
+                        <h3 class="labelHead ui header"><label>IV. Comprehensive Program Design</label></h3>
                         <table id="cpd" class="ui compact celled definition fixed table unstackable">
                             <thead class="full-width">
                                 <tr style="text-align: center;">
@@ -194,7 +197,7 @@
 
                     <!--Page 3-->
                     <div class="tab">
-                        <h3 class="labelHead ui header"><label>Breakdown of Expenses</label></h3>
+                        <h3 class="labelHead ui header"><label>V. Breakdown of Expenses</label></h3>
                         <%if(data.breakdown_expenses.total_expense != null) {%>
                         <table id="boe" class="ui compact celled definition fixed table unstackable">
                             <thead class="full-width">
@@ -231,7 +234,7 @@
                             <span>The activity will not incur any expenses.</span>
                         <%}%>
 
-                        <h3 class="labelHead ui header"><label>Source of Funds</label></h3>
+                        <h3 class="labelHead ui header"><label>VI. Source of Funds</label></h3>
                         
                         <%if(data.source_funds.total != null) {%>
                         <table id="sof" class="ui compact celled definition fixed table unstackable">
@@ -275,7 +278,7 @@
                             <span>The activity will not need any funding.</span>
                         <%}%>
 
-                        <h3 class="labelHead ui header"><label>Organizational Funds</label></h3>
+                        <h3 class="labelHead ui header"><label>VII. Organizational Funds</label></h3>
                         <table id="of" class="ui compact celled definition fixed table basic unstackable">
                             <thead class="full-width">
                                 <tr style="text-align: left;">
@@ -343,7 +346,7 @@
                             </tbody>
                         </table>
 
-                        <h3 class="labelHead ui header"><label>Projected Income</label></h3>
+                        <h3 class="labelHead ui header"><label>VIII. Projected Income</label></h3>
                         <%if(data.projected_income.revenue != null) {%>
                         <table id="pi" class="ui compact celled definition fixed table unstackable">
                             <thead class="full-width">
@@ -406,7 +409,7 @@
                             <span>The activity is not a fundraising/selling activity; thus, it will not incur income or loss.</span>
                         <%}%>
 
-                        <h3 class="labelHead ui header"><label>Provision for Profit and Loss</label></h3>
+                        <h3 class="labelHead ui header"><label>IX. Provisions for Profit and Loss</label></h3>
                         The following people shall be held liable and will shoulder any remaining balance incurred
                         by the project.<br><br>
 
