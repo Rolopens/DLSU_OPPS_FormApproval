@@ -1456,13 +1456,14 @@
                             BOE_Total += subtotal_BOE;
                         }
                     }
-
+                    <%if(data.form.projected_income.expenses != null) {%>
                     if (projectedExp != BOE_Total) {
                         valid = false;
                         $("#error-message").append(
                             "<div id='error-message' style='text-align: center; class='header'>Projected Expenses must be equal to Breakdown of Expenses.</div>"
                         );
                     }
+                    <%}%>
                     <%}%>
 
                     if ($('#OperationalFund').val() == "") {
